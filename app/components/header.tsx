@@ -4,16 +4,14 @@ import { useState } from "react";
 import { useOffCanvas } from "~/hooks/useOffCanvas";
 import CartButton from "./cartButton";
 import WishlistButton from "./wishListButton";
+import { useAppDispatch, useAppSelector } from '~/hooks';
 
 const Header = () => {
-    const { isOpen, open, close, toggle } = useOffCanvas();
+    const { isOpen: isCartOpen, toggle: toggleCart, open: openCart, close: closeCart } = useOffCanvas();
+    const { isOpen: isMenuOpen, toggle: toggleMenu, open: openMenu, close: closeMenu } = useOffCanvas();
 
-
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+    // Get the cart items from the Redux store
+    const cartItems = useAppSelector(state => state.cart.items);
 
     return (
         <header className="bg-gray-100 border-b border-gray-300">
@@ -78,17 +76,17 @@ const Header = () => {
                     >
                         Register
                     </Link>
-                    <CartButton onClick={toggle} />
+                    <CartButton onClick={toggleCart} />
                     <WishlistButton wishlistCount={3} />
                 </div>
             </div>
-  {/* Off-canvas for Cart */}
-  <div
-                className={`fixed top-0 right-0 w-64 h-full bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"} z-50`}
+            {/* Off-canvas for Cart */}
+            <div
+                className={`fixed top-0 right-0 w-96 h-full bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${isCartOpen  ? "translate-x-0" : "translate-x-full"} z-50`}
             >
                 <div className="flex justify-between p-4 border-b border-gray-300">
                     <div className="font-bold text-lg">Your Cart</div>
-                    <button onClick={toggle} className="text-gray-700">
+                    <button onClick={toggleCart} className="text-gray-700">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-6 w-6"
@@ -107,7 +105,18 @@ const Header = () => {
                 </div>
                 {/* Cart content goes here */}
                 <div className="p-4">
-                    <p>Your cart is empty</p> {/* Replace with actual cart items */}
+                {cartItems.length === 0 ? (
+                        <p>Your cart is empty</p>
+                    ) : (
+                        <ul>
+                            {cartItems.map((item, index) => (
+                                <li key={`${item.id}-${index}`} className="flex justify-between py-2 border-b border-gray-300">
+                                    <span>{item.name}</span>
+                                    <span>{item.quantity} x ${item.price}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
             </div>
             {/* Mobile Off-canvas Navigation Menu */}
@@ -170,6 +179,12 @@ const Header = () => {
                 <div
                     className="fixed inset-0 bg-black bg-opacity-50 z-40"
                     onClick={toggleMenu}
+                ></div>
+            )}
+            {isCartOpen && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-0 z-40"
+                    onClick={toggleCart}
                 ></div>
             )}
         </header>

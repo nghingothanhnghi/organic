@@ -19,7 +19,7 @@ interface CartButtonProps {
   
         {/* Badge */}
         {cartCount > 0 && (
-          <span className="absolute -top-2 -right-2 inline-block w-5 h-5 bg-red-500 text-white text-xs rounded-full text-center">
+          <span className="absolute -top-2 -right-2 inline-block w-5 h-5 bg-red-500 text-white text-xs rounded-full text-center leading-5">
             {cartCount}
           </span>
         )}
