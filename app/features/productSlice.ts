@@ -1,7 +1,8 @@
 // app/features/productSlice.ts
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit'
 import { fetchProductsAPI } from '~/services/productService';
-import type { ProductState } from '~/types/product';
+import type { ProductState, Product } from '~/types/product';
 
 // Initial state
 const initialState: ProductState = {
@@ -10,17 +11,17 @@ const initialState: ProductState = {
     error: null,
   };
 
-// Async thunk to fetch products from the API using the service
-export const fetchProducts = createAsyncThunk(
+// Async thunk to fetch products from the API
+export const fetchProducts = createAsyncThunk<Product[], void, { rejectValue: string }>(
     'products/fetchProducts', // Action name
     async (_, { rejectWithValue }) => {
       try {
         const response = await fetchProductsAPI(); // Call the service function
         // Extract and flatten the data from the response
-        const products = response.data.map((product: any) => ({
+        const products: Product[] = response.data.map((product: any) => ({
           id: product.id,
           name: product.attributes.name,
-          price: product.attributes.price ?? 0, // Fallback to 0 if price is null or undefined,
+          price: product.attributes.price ?? 0, // Fallback to 0 if price is null or undefined
           description: product.attributes.description,
         }));
         return products; // Return the flattened products array

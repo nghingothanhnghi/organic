@@ -1,7 +1,7 @@
 // app/types/product.ts
 // Product interface for the Redux state (matching the state in productSlice)
 export interface Product {
-    id: string;
+    id: number;
     name: string;
     description: string;
     price: number;

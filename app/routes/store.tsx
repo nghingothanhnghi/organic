@@ -1,13 +1,20 @@
 // routes/store.tsx
+import type { Route } from "./+types/store";
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '~/hooks';
 import { fetchProducts } from '~/features/productSlice';
-import type { RootState, AppDispatch } from '~/store';
 import ProductList from '~/components/productList';
 
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "Store" },
+    { name: "description", content: "Welcome to React Router!" },
+  ];
+}
+
 const Store = () => {
-    const dispatch = useDispatch<AppDispatch>();
-    const { products, loading, error } = useSelector((state: RootState) => state.products);
+    const dispatch = useAppDispatch();
+    const { products, loading, error } = useAppSelector(state => state.products);
   
     useEffect(() => {
       dispatch(fetchProducts()); // Fetch products when the component mounts
