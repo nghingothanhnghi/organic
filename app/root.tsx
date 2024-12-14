@@ -6,7 +6,8 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
+import { Provider } from 'react-redux'; // Import Provider from react-redux
+import { store } from "./store";
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
 
@@ -34,7 +35,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <Provider store={store}> {/* Wrap the app with the Redux provider */}
+          {children}
+        </Provider>
         <ScrollRestoration />
         <Scripts />
       </body>
