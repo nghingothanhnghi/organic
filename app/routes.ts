@@ -10,6 +10,7 @@ export default [
       index("routes/home.tsx"),
       route("contacts/:contactId", "routes/contact.tsx"),
       route("store", "routes/store.tsx"), // Store page
+      route("cart", "routes/cart.tsx"), // Store page
     ]),
     route("about", "routes/about.tsx"),
   ] satisfies RouteConfig;

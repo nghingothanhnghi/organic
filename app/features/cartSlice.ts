@@ -37,7 +37,6 @@ const cartSlice = createSlice({
                 localStorage.setItem('cart', JSON.stringify(state));
             }
         },
-
         // Remove an item from the cart by matching the product ID
         removeItem: (state, action: PayloadAction<number>) => { // Use 'number' instead of 'string' for ID
             state.items = state.items.filter(item => item.id !== action.payload); // Filter by product ID
