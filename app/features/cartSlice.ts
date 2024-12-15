@@ -7,6 +7,7 @@ import type { Product } from '~/types/product';
 interface CartState {
     items: Product[]; // Array of products instead of just item IDs or names
     itemCount: number;
+    
 }
 
 // Load the cart data from localStorage (if it exists)

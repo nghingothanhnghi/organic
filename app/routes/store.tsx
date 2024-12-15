@@ -6,6 +6,7 @@ import { fetchProducts } from '~/features/productSlice';
 import ProductList from '~/components/productList';
 import Pagination from "~/components/pagination";
 import Filter from "~/components/filter";
+import Hero from "~/components/hero";
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -31,10 +32,36 @@ const Store = () => {
 
   return (
     <div className="store-container">
-      <h1 className="text-2xl font-bold">Welcome to the Store</h1>
-      <p className="text-gray-600">Browse our products and make your purchase!</p>
+      <Hero
+        title="Welcome to the Store"
+        description="Browse our products and make your purchase!"
+      />
       <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
-        {loading && <p className="text-blue-500">Loading products...</p>}
+        {loading && (
+          <div className="flex justify-center items-center space-x-2">
+            <svg
+              className="animate-spin h-10 w-10 text-green-600"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v8H4z"
+              ></path>
+            </svg>
+            <span>Loading products...</span>
+          </div>
+        )}
         {error && <p className="text-red-500">Error: {error}</p>}
         {!loading && !error && (
           <>
