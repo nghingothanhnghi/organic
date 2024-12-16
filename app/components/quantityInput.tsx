@@ -1,20 +1,32 @@
 // app/components/quantityInput.tsx
 import type { QuantityInputProps } from "~/types/quantityInput";
 
-const QuantityInput: React.FC<QuantityInputProps> = ({ quantity, onIncrement, onDecrement, onChange }) => {
+const QuantityInput: React.FC<QuantityInputProps> = ({ value, min = 1, max = Infinity, onChange }) => {
+    const handleIncrease = () => {
+        if (value < max) {
+            onChange(value + 1);
+        }
+    };
+
+    const handleDecrease = () => {
+        if (value > min) {
+            onChange(value - 1);
+        }
+    };
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newQuantity = Number(e.target.value);
-        if (newQuantity > 0) {
-            onChange(newQuantity); // Call onChange with the new quantity value
+        const newValue = Math.max(min, Math.min(max, Number(e.target.value)));
+        if (!isNaN(newValue)) {
+            onChange(newValue);
         }
     };
 
     return (
         <div className="flex items-center space-x-2">
             <button
-                onClick={onDecrement}
-                disabled={quantity <= 1}
-                className="p-2 rounded border border-gray-300 bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                onClick={handleDecrease}
+                disabled={value <= min}
+                className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
@@ -23,13 +35,16 @@ const QuantityInput: React.FC<QuantityInputProps> = ({ quantity, onIncrement, on
             </button>
             <input
                 type="number"
-                value={quantity}
+                value={value}
                 onChange={handleInputChange}
-                className="w-16 px-2 py-1 text-center border border-gray-300 rounded focus:ring focus:ring-blue-500 focus:outline-none"
+                className="w-12 text-center border rounded-md"
+                min={min}
+                max={max}
             />
             <button
-                onClick={onIncrement}
-                className="p-2 rounded border border-gray-300 bg-gray-100 hover:bg-gray-200 flex items-center justify-center"
+                onClick={handleIncrease}
+                className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded"
+                disabled={value >= max}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />

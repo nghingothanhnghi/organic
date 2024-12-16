@@ -2,9 +2,12 @@
 import { Link } from "react-router";
 import { useState } from "react";
 import { useOffCanvas } from "~/hooks/useOffCanvas";
+import CartList from "./cartList";
 import CartButton from "./cartButton";
 import WishlistButton from "./wishListButton";
+import ProceedToCheckoutButton from "./proceedToCheckoutButton";
 import { useAppDispatch, useAppSelector } from '~/hooks';
+
 
 const Header = () => {
     const { isOpen: isCartOpen, toggle: toggleCart, open: openCart, close: closeCart } = useOffCanvas();
@@ -82,7 +85,7 @@ const Header = () => {
             </div>
             {/* Off-canvas for Cart */}
             <div
-                className={`fixed top-0 right-0 w-96 h-full bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${isCartOpen  ? "translate-x-0" : "translate-x-full"} z-50`}
+                className={`fixed top-0 right-0 w-96 h-full bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${isCartOpen ? "translate-x-0" : "translate-x-full"} z-50`}
             >
                 <div className="flex justify-between p-4 border-b border-gray-300">
                     <div className="font-bold text-lg">Your Cart</div>
@@ -105,18 +108,8 @@ const Header = () => {
                 </div>
                 {/* Cart content goes here */}
                 <div className="p-4">
-                {cartItems.length === 0 ? (
-                        <p>Your cart is empty</p>
-                    ) : (
-                        <ul>
-                            {cartItems.map((item, index) => (
-                                <li key={`${item.id}-${index}`} className="flex justify-between py-2 border-b border-gray-300">
-                                    <span>{item.name}</span>
-                                    <span>{item.quantity} x ${item.price}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
+                    <CartList />
+                    <ProceedToCheckoutButton/>
                 </div>
             </div>
             {/* Mobile Off-canvas Navigation Menu */}

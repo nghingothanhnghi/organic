@@ -1,5 +1,6 @@
 // app/components/addToCartButton.tsx
 import { useSelector } from 'react-redux';
+import { useAppSelector } from '~/hooks';
 import { Link } from "react-router";
 
 interface CartButtonProps {
@@ -7,8 +8,10 @@ interface CartButtonProps {
 }
 
   const CartButton: React.FC<CartButtonProps> = ({ onClick }) => {
-    // Get the cart count from the Redux store
-    const cartCount = useSelector((state: any) => state.cart.itemCount);
+
+    const cartCount = useAppSelector(state =>
+      state.cart.items.reduce((total, item) => total + item.quantity, 0)
+    );
   
     return (
       <button onClick={onClick} className="relative text-gray-700 hover:text-gray-900 transition-colors">

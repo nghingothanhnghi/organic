@@ -1,7 +1,7 @@
 // app/components/addToCartButton.tsx
 import React, { useState } from 'react';
 import { useAppDispatch } from '~/hooks';
-import { addItem } from '~/features/cartSlice';
+import { addToCart } from '~/features/cartSlice';
 import type { Product } from '~/types/product';
 
 const AddToCartButton: React.FC<{ product: Product }> = ({ product }) => {
@@ -14,8 +14,8 @@ const AddToCartButton: React.FC<{ product: Product }> = ({ product }) => {
       // Simulate async operation, such as an API call
       await new Promise(resolve => setTimeout(resolve, 1000));
 
-      // Dispatch addItem with quantity
-      dispatch(addItem(product));
+      // Dispatch addToCart with quantity
+      dispatch(addToCart(product));
     } catch (error) {
       console.error('Failed to add item to cart:', error);
     } finally {
