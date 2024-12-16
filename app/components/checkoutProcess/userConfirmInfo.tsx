@@ -1,9 +1,18 @@
 // app/components/checkoutProcess/userConfirmInfo.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { userConfirmValidationSchema } from '~/validation/userConfirmValidation';
 
-const UserConfirmInfo: React.FC = () => {
+
+interface UserConfirmInfoProps {
+    setIsValid: (isValid: boolean) => void;  // Function to update parent validity state
+    shippingData: any; // Received from parent
+    paymentData: any;  // Received from parent
+    onSubmit: (finalData: any) => void; // Final submit handler
+}
+
+const UserConfirmInfo: React.FC<UserConfirmInfoProps> = ({ setIsValid, shippingData, paymentData, onSubmit }) => {
+    console.log("paymentData form Confirm:", paymentData);
     const formik = useFormik({
         initialValues: {
             termsAndConditions: false,
@@ -12,11 +21,38 @@ const UserConfirmInfo: React.FC = () => {
         onSubmit: (values) => {
             // Handle form submission (final confirmation of the order)
             console.log(values);
+             // Combine all collected data
+             const finalData = {
+                ...shippingData,
+                ...paymentData,
+                ...values, // Contains terms and conditions confirmation
+            };
+            onSubmit(finalData); // Call parent's submit function
         },
     });
 
+    // Update the parent component's isValid state
+    useEffect(() => {
+        setIsValid(formik.isValid && formik.dirty); // Ensure form is dirty before valid
+    }, [formik.isValid, formik.dirty, setIsValid]);
+
     return (
         <form onSubmit={formik.handleSubmit} className="space-y-6">
+            {/* Shipping Information Preview */}
+            <div className="border-b pb-7 p-4 mb-4">
+                <h3 className="text-lg font-semibold text-gray-800 mb-3">Shipping Information</h3>
+                <p className='flex justify-between mb-2'><strong>Name:</strong> {shippingData.name}</p>
+                <p className='flex justify-between mb-2'><strong>Address:</strong> {shippingData.address}</p>
+                <p className='flex justify-between mb-2'><strong>City:</strong> {shippingData.city}</p>
+                <p className='flex justify-between mb-2'><strong>Postal Code:</strong> {shippingData.postalCode}</p>
+            </div>
+
+            {/* Payment Information Preview */}
+            <div className="border-b pb-5 p-4 mb-4">
+                <h3 className="text-lg font-semibold text-gray-800 mb-3">Payment Information</h3>
+                <p className='flex justify-between mb-2'><strong>Card Number:</strong> **** **** **** {paymentData.cardNumber.slice(-4)}</p>
+                <p className='flex justify-between mb-2'><strong>Expiration Date:</strong> {paymentData.expirationDate}</p>
+            </div>
             <div className="flex items-center">
                 <input
                     id="termsAndConditions"
@@ -33,11 +69,10 @@ const UserConfirmInfo: React.FC = () => {
             {formik.errors.termsAndConditions && (
                 <div className="text-red-500 text-xs">{formik.errors.termsAndConditions}</div>
             )}
-
             <div className="flex justify-end">
                 <button
                     type="submit"
-                    className="w-full py-3 px-6 mt-4 text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="py-3 px-6 mt-4  rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
                 >
                     Confirm Order
                 </button>

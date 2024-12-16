@@ -1,9 +1,15 @@
 // pp/components/checkoutProcess/userShippingInfo.tsx
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useFormik } from 'formik';
 import { userShippingValidationSchema } from '~/validation/userShippingValidation';
 
-const UserShippingInfo: React.FC = () => {
+interface UserShippingInfoProps {
+    onNext: () => void;
+    setShippingData: (data: any) => void; // Setter function to update shipping data
+    setIsValid: (isValid: boolean) => void;
+}
+
+const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid, setShippingData }) => {
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -15,8 +21,16 @@ const UserShippingInfo: React.FC = () => {
         onSubmit: (values) => {
             // Handle form submission
             console.log(values);
+            setShippingData(values);
+            setIsValid(formik.isValid); // Update validity state
+            onNext();
         },
     });
+
+        // Set validity when validation changes
+        useEffect(() => {
+            setIsValid(formik.isValid);
+        }, [formik.isValid]);
 
     return (
         <form onSubmit={formik.handleSubmit} className="space-y-6">

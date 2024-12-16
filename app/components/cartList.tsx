@@ -25,7 +25,7 @@ const CartList: React.FC = () => {
                     {cartItems.map((item) => (
                         <div key={item.id} className="flex items-center justify-between border p-4 rounded-md shadow-sm">
                             <div className="flex items-center space-x-4">
-                                <img src={item.imageUrl} alt={item.name} className="w-16 h-16 object-cover rounded-md" />
+                                <img src={item.imageUrl || undefined} alt={item.name} className="w-16 h-16 object-cover rounded-md" />
                                 <div className='flex-column space-y-1'>
                                     <h3 className="text-sm font-medium">{item.name}</h3>
                                     <p className="text-xs text-gray-500">${item.price.toFixed(2)} each</p>
