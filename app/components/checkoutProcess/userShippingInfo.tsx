@@ -35,7 +35,7 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
     return (
         <form onSubmit={formik.handleSubmit} className="space-y-6">
             <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+                <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">Name</label>
                 <input
                     type="text"
                     name="name"
@@ -46,7 +46,7 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
                 {formik.errors.name && <div className="text-red-500 text-xs">{formik.errors.name}</div>}
             </div>
             <div>
-                <label htmlFor="address" className="block text-sm font-medium text-gray-700">Address</label>
+                <label htmlFor="address" className="block text-sm font-semibold text-gray-700 mb-2">Address</label>
                 <input
                     type="text"
                     name="address"
@@ -57,7 +57,7 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
                 {formik.errors.address && <div className="text-red-500 text-xs">{formik.errors.address}</div>}
             </div>
             <div>
-                <label htmlFor="city" className="block text-sm font-medium text-gray-700">City</label>
+                <label htmlFor="city" className="block text-sm font-semibold text-gray-700 mb-2">City</label>
                 <input
                     type="text"
                     name="city"
@@ -68,7 +68,7 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
                 {formik.errors.city && <div className="text-red-500 text-xs">{formik.errors.city}</div>}
             </div>
             <div>
-                <label htmlFor="zip" className="block text-sm font-medium text-gray-700">Zip</label>
+                <label htmlFor="zip" className="block text-sm font-semibold text-gray-700 mb-2">Zip</label>
                 <input
                     type="text"
                     name="zip"
@@ -81,7 +81,7 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
             <div className="flex justify-end">
                 <button
                     type="submit"
-                    className="w-full py-3 px-6 mt-4 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="py-3 px-6 mt-4 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                     Next
                 </button>

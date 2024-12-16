@@ -1,20 +1,23 @@
 // components/Header.tsx
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { useState } from "react";
 import { useOffCanvas } from "~/hooks/useOffCanvas";
 import CartList from "./cartList";
 import CartButton from "./cartButton";
 import WishlistButton from "./wishListButton";
 import ProceedToCheckoutButton from "./proceedToCheckoutButton";
-import { useAppDispatch, useAppSelector } from '~/hooks';
-
+import CartSummary from "./cartSummary";
 
 const Header = () => {
     const { isOpen: isCartOpen, toggle: toggleCart, open: openCart, close: closeCart } = useOffCanvas();
     const { isOpen: isMenuOpen, toggle: toggleMenu, open: openMenu, close: closeMenu } = useOffCanvas();
 
-    // Get the cart items from the Redux store
-    const cartItems = useAppSelector(state => state.cart.items);
+    // Get the current route
+    const location = useLocation();
+
+    // Define routes where the CartButton should be hidden
+    const hideCartButtonRoutes = ["/cart", "/checkout"];
+    const shouldHideCartButton = hideCartButtonRoutes.includes(location.pathname);
 
     return (
         <header className="bg-gray-100 border-b border-gray-300">
@@ -25,7 +28,7 @@ const Header = () => {
                 </div>
 
                 {/* Centered Navigation Menu */}
-                <nav className="hidden md:flex space-x-6">
+                <nav className="hidden md:flex space-x-6 lg:order-first">
                     <Link
                         to="/"
                         className="text-gray-700 hover:text-gray-900 transition-colors"
@@ -79,13 +82,13 @@ const Header = () => {
                     >
                         Register
                     </Link>
-                    <CartButton onClick={toggleCart} />
+                    {!shouldHideCartButton && <CartButton onClick={toggleCart} />}
                     <WishlistButton wishlistCount={3} />
                 </div>
             </div>
             {/* Off-canvas for Cart */}
             <div
-                className={`fixed top-0 right-0 w-96 h-full bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${isCartOpen ? "translate-x-0" : "translate-x-full"} z-50`}
+                className={`fixed flex-column top-0 right-0 w-96 h-full bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${isCartOpen ? "translate-x-0" : "translate-x-full"} z-50`}
             >
                 <div className="flex justify-between p-4 border-b border-gray-300">
                     <div className="font-bold text-lg">Your Cart</div>
@@ -107,10 +110,14 @@ const Header = () => {
                     </button>
                 </div>
                 {/* Cart content goes here */}
-                <div className="p-4">
+                <div className="flex-shrink-0">
                     <CartList />
-                    <ProceedToCheckoutButton/>
                 </div>
+                <div>
+                    <CartSummary taxRate={10} shippingFee={15} />
+                    <ProceedToCheckoutButton closeCart={closeCart} />
+                </div>
+
             </div>
             {/* Mobile Off-canvas Navigation Menu */}
             <nav

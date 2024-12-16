@@ -3,12 +3,18 @@ import React from 'react';
 import { useAppSelector } from '~/hooks';  // Assuming you use Redux for cart state
 import { useNavigate } from 'react-router';
 
-const ProceedToCheckoutButton: React.FC = () => {
+interface ProceedToCheckoutButtonProps {
+    closeCart: () => void; // Function to close the cart sidebar
+}
+
+const ProceedToCheckoutButton: React.FC<ProceedToCheckoutButtonProps> = ({ closeCart }) => {
     const navigate = useNavigate();
     const cartItems = useAppSelector(state => state.cart.items);
 
     const handleProceedToCheckout = () => {
         if (cartItems.length > 0) {
+            // Close the cart sidebar before navigating
+            closeCart();
             // Navigate to the checkout page, passing cartItems in the state
             navigate('/checkout', { state: { cartItems } });
         } else {

@@ -35,7 +35,7 @@ const UserPaymentInfo: React.FC<UserPaymentInfoProps> = ({ onNext, handlePreviou
     return (
         <form onSubmit={formik.handleSubmit} className="space-y-6">
             <div>
-                <label htmlFor="cardNumber" className="block text-sm font-medium text-gray-700">Card Number</label>
+                <label htmlFor="cardNumber" className="block text-sm font-semibold text-gray-700 mb-2">Card Number</label>
                 <input
                     id="cardNumber"
                     type="text"
@@ -48,7 +48,7 @@ const UserPaymentInfo: React.FC<UserPaymentInfoProps> = ({ onNext, handlePreviou
             </div>
 
             <div>
-                <label htmlFor="expirationDate" className="block text-sm font-medium text-gray-700">Expiration date (MM/YY)</label>
+                <label htmlFor="expirationDate" className="block text-sm font-semibold text-gray-700 mb-2">Expiration date (MM/YY)</label>
                 <input
                     id="expirationDate"
                     type="text"
@@ -61,7 +61,7 @@ const UserPaymentInfo: React.FC<UserPaymentInfoProps> = ({ onNext, handlePreviou
             </div>
 
             <div>
-                <label htmlFor="cvv" className="block text-sm font-medium text-gray-700">CVV</label>
+                <label htmlFor="cvv" className="block text-sm font-semibold text-gray-700 mb-2">CVV</label>
                 <input
                     id="cvv"
                     type="text"

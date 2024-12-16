@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router';
 import { useAppSelector, useAppDispatch } from '~/hooks';
 import { updateQuantity, removeFromCart } from '~/features/cartSlice'; // Adjust the path to your slice
 import QuantityInput from './quantityInput';
@@ -7,6 +8,7 @@ import { calculateSubtotal, calculateTotal } from '~/utils/calculate';
 const CartList: React.FC = () => {
     const dispatch = useAppDispatch();
     const cartItems = useAppSelector(state => state.cart.items);
+    const location = useLocation();
 
     const handleQuantityChange = (id: number, quantity: number) => {
         if (quantity > 0) {
@@ -17,7 +19,8 @@ const CartList: React.FC = () => {
     const handleRemoveItem = (id: number) => {
         dispatch(removeFromCart(id));
     };
-
+    // Check if the current path is '/checkout'
+    const isCheckoutPage = location.pathname === '/checkout';
     return (
         <div className="cart-list">
             {cartItems.length > 0 ? (
@@ -29,17 +32,21 @@ const CartList: React.FC = () => {
                                 <div className='flex-column space-y-1'>
                                     <h3 className="text-sm font-medium">{item.name}</h3>
                                     <p className="text-xs text-gray-500">${item.price.toFixed(2)} each</p>
-                                    <QuantityInput
-                                        value={item.quantity}
-                                        min={1}
-                                        onChange={(quantity) => handleQuantityChange(item.id, quantity)}
-                                    />
-                                    <button
-                                        onClick={() => handleRemoveItem(item.id)}
-                                        className="text-red-500 hover:text-red-700"
-                                    >
-                                        Remove
-                                    </button>
+                                    {!isCheckoutPage && (
+                                        <>
+                                            <QuantityInput
+                                                value={item.quantity}
+                                                min={1}
+                                                onChange={(quantity) => handleQuantityChange(item.id, quantity)}
+                                            />
+                                            <button
+                                                onClick={() => handleRemoveItem(item.id)}
+                                                className="text-red-500 hover:text-red-700"
+                                            >
+                                                Remove
+                                            </button>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                             <div>
@@ -49,11 +56,11 @@ const CartList: React.FC = () => {
                             </div>
                         </div>
                     ))}
-                    <div className="cart-summary mt-6 p-4 border-t border-gray-300">
+                    {/* <div className="cart-summary mt-6 p-4 border-t border-gray-300">
                         <h3 className="text-xl font-semibold">
                         Total: ${calculateTotal(cartItems).toFixed(2)}
                         </h3>
-                    </div>
+                    </div> */}
                 </div>
             ) : (
                 <p className="text-gray-500">Your cart is empty.</p>
