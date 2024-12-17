@@ -25,7 +25,7 @@ const ProceedToCheckoutButton: React.FC<ProceedToCheckoutButtonProps> = ({ close
     return (
         <button
             onClick={handleProceedToCheckout}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+            className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
         >
             Proceed to Checkout
         </button>

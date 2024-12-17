@@ -4,7 +4,7 @@ import type { PaginationProps } from '~/types/pagination';
 
 const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
     return (
-        <div className="flex items-center justify-center space-x-4 py-4">
+        <div className="flex items-center justify-center space-x-4 py-4 my-10">
             <button
                 className={`px-4 py-2 bg-green-500 text-white rounded-md flex items-center justify-center disabled:bg-gray-300 disabled:cursor-not-allowed transition duration-200 ${currentPage === 1 ? 'cursor-not-allowed' : 'hover:bg-green-600'
                     }`}

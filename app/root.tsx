@@ -8,6 +8,8 @@ import {
 } from "react-router";
 import { Provider } from 'react-redux'; // Import Provider from react-redux
 import { store } from "./store";
+import { ToastContainer } from "react-toastify"; // Import ToastContainer
+import "react-toastify/dist/ReactToastify.css"; // Import the toastify styles
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
 
@@ -37,6 +39,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <Provider store={store}> {/* Wrap the app with the Redux provider */}
           {children}
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={true}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover={true}
+            theme="dark"
+          />
         </Provider>
         <ScrollRestoration />
         <Scripts />

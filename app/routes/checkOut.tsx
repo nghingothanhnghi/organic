@@ -6,6 +6,7 @@ import StepWizard from "~/components/stepWizard";
 import UserShippingInfo from "~/components/checkoutProcess/userShippingInfo";
 import UserPaymentInfo from "~/components/checkoutProcess/userPaymentInfo";
 import UserConfirmInfo from "~/components/checkoutProcess/userConfirmInfo";
+import CartSummary from "~/components/cartSummary";
 
 const CheckOut = () => {
     const [currentStep, setCurrentStep] = useState(0);
@@ -66,10 +67,6 @@ const CheckOut = () => {
             ),
         },
     ];
-
-
-
-
     return (
         <div className="CheckOut-container">
             <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
@@ -85,6 +82,7 @@ const CheckOut = () => {
                     </div>
                     <div>
                         <CartList />
+                        <CartSummary taxRate={0} shippingFee={0}/>
                     </div>
                 </div>
             </div>

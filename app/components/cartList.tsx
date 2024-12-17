@@ -3,7 +3,7 @@ import { useLocation } from 'react-router';
 import { useAppSelector, useAppDispatch } from '~/hooks';
 import { updateQuantity, removeFromCart } from '~/features/cartSlice'; // Adjust the path to your slice
 import QuantityInput from './quantityInput';
-import { calculateSubtotal, calculateTotal } from '~/utils/calculate';
+import { calculateSubtotal } from '~/utils/calculate';
 
 const CartList: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -30,7 +30,9 @@ const CartList: React.FC = () => {
                             <div className="flex items-center space-x-4">
                                 <img src={item.imageUrl || undefined} alt={item.name} className="w-16 h-16 object-cover rounded-md" />
                                 <div className='flex-column space-y-1'>
-                                    <h3 className="text-sm font-medium">{item.name}</h3>
+                                    <h3 className="text-sm font-medium">
+                                     {item.name} {isCheckoutPage && (<sup className='text-gray-500'>x{item.quantity}</sup>)}
+                                    </h3>
                                     <p className="text-xs text-gray-500">${item.price.toFixed(2)} each</p>
                                     {!isCheckoutPage && (
                                         <>
@@ -56,11 +58,6 @@ const CartList: React.FC = () => {
                             </div>
                         </div>
                     ))}
-                    {/* <div className="cart-summary mt-6 p-4 border-t border-gray-300">
-                        <h3 className="text-xl font-semibold">
-                        Total: ${calculateTotal(cartItems).toFixed(2)}
-                        </h3>
-                    </div> */}
                 </div>
             ) : (
                 <p className="text-gray-500">Your cart is empty.</p>

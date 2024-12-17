@@ -14,18 +14,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             {/* Image Section */}
             <div className="relative w-full h-56 bg-gray-200">
                 <img
-                    src={imageUrl || '/placeholder.jpg'} // Default placeholder image if no imageUrl
+                    src={imageUrl || ''} // Default placeholder image if no imageUrl
                     alt={name}
                     className="object-cover w-full h-full"
                 />
             </div>
             {/* Content Section */}
             <div className="p-4">
-                <h3 className="text-xl font-semibold text-gray-900 truncate">{name}</h3>
+                <h3 className="text-sm font-semibold text-gray-900 truncate">{name}</h3>
                 {/* Price */}
                 <p className="mt-3 text-lg font-semibold text-gray-800">
-                    ${price.toFixed(2)}
-                </p>
+                    <span className='text-lime-700'>${price.toFixed(2)}</span>
+                    </p>
                 {/* Add to Cart Button */}
                 <div className="mt-4">
                     <AddToCartButton product={product} />

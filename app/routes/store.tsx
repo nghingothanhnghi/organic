@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from '~/hooks';
 import { fetchProducts } from '~/features/productSlice';
 import ProductList from '~/components/productList';
 import Pagination from "~/components/pagination";
-import Filter from "~/components/filter";
 import Hero from "~/components/hero";
 
 export function meta({ }: Route.MetaArgs) {

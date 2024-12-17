@@ -20,7 +20,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({ taxRate, shippingFee }) => {
                 <span>Subtotal:</span> ${subtotal.toFixed(2)}
             </p>
             <p className="flex justify-between text-sm font-medium">
-                <span>Tax</span> ({taxRate}%): ${tax.toFixed(2)}
+                <span>Tax ({taxRate}%):</span>  ${tax.toFixed(2)}
             </p>
             <p className="flex justify-between text-sm font-medium">
                 <span>Shipping Fee:</span> ${shippingFee.toFixed(2)}

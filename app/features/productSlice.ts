@@ -1,6 +1,6 @@
 // app/features/productSlice.ts
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify';
 import { fetchProductsAPI } from '~/services/productService';
 import type { ProductState, Product, PaginationMeta} from '~/types/product';
 
@@ -64,6 +64,7 @@ const productSlice = createSlice({
     builder
       .addCase(fetchProducts.pending, (state) => {
         state.loading = true; // Set loading to true when the request starts
+        toast.info('Loading products...'); // Toast for loading state
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false; // Set loading to false when the request succeeds
@@ -74,6 +75,7 @@ const productSlice = createSlice({
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false; // Set loading to false when the request fails
         state.error = action.payload as string; // Store the error message
+        toast.error(action.payload || 'Failed to load products');
       });
   },
 });
