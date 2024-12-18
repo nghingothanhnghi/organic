@@ -32,6 +32,7 @@ export interface Product {
     loading: boolean;
     error: string | null;
     pagination: PaginationMeta | null;
+    filters: Record<string, any>;
   }
 
   export interface PaginationMeta {

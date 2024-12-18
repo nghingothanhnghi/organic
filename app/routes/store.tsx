@@ -2,9 +2,10 @@
 import type { Route } from "./+types/store";
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { fetchProducts } from '~/features/productSlice';
+import { fetchProducts, setFilters } from '~/features/productSlice';
 import ProductList from '~/components/productList';
 import Pagination from "~/components/pagination";
+import ProductFilter from "~/components/productFilter";
 import Hero from "~/components/hero";
 
 export function meta({ }: Route.MetaArgs) {
@@ -16,18 +17,32 @@ export function meta({ }: Route.MetaArgs) {
 
 const Store = () => {
   const dispatch = useAppDispatch();
-  const { products, loading, error, pagination } = useAppSelector(state => state.products);
+  const { products, loading, error, pagination, filters } = useAppSelector(state => state.products);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10; // Example page size
 
   // Fetch products with pagination
   useEffect(() => {
-    dispatch(fetchProducts({ page: currentPage, pageSize }));
-  }, [dispatch, currentPage, pageSize]);
+    dispatch(fetchProducts({ page: currentPage, pageSize, filters }));
+  }, [dispatch, currentPage, pageSize, filters]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+
+  const handleFilterChange = (newFilters: Record<string, any>) => {
+    // Dispatch the setFilters action to update filters in the store
+    dispatch(setFilters(newFilters));
+    setCurrentPage(1); // Reset to the first page when filters change
+  };
+
+  // Calculate the start and end items being displayed
+  const startItem = (currentPage - 1) * pageSize + 1;
+  const endItem = Math.min(currentPage * pageSize, pagination?.total || 0);
+
+  useEffect(() => {
+    console.log("pagination:", pagination);
+  }, [pagination]);
 
   return (
     <div className="store-container">
@@ -36,6 +51,8 @@ const Store = () => {
         description="Browse our products and make your purchase!"
       />
       <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
+        {/* Product Filter Component */}
+        <ProductFilter onFilterChange={handleFilterChange} />
         {loading && (
           <div className="flex justify-center items-center space-x-2">
             <svg
@@ -66,14 +83,21 @@ const Store = () => {
           <>
             <ProductList searchResults={products} viewMode="grid" />
 
-            {/* Use the Pagination component here */}
-            {pagination && (
+            {/* Show "Showing X–Y of Z results" */}
+            <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm text-gray-700">
+                  Showing <span className="font-medium">{startItem}</span> - <span className="font-medium">{endItem}</span> of <span className="font-medium">{pagination?.total}</span> results
+                </p>
+              </div>
+              {pagination && (
               <Pagination
                 currentPage={currentPage}
                 totalPages={pagination.pageCount}
                 onPageChange={handlePageChange}
               />
             )}
+            </div>
           </>
         )}
       </div>

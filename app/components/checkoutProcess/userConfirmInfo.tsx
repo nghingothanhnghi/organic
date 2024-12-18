@@ -37,7 +37,7 @@ const UserConfirmInfo: React.FC<UserConfirmInfoProps> = ({ setIsValid, shippingD
     }, [formik.isValid, formik.dirty, setIsValid]);
 
     return (
-        <form onSubmit={formik.handleSubmit} className="space-y-6">
+        <form onSubmit={formik.handleSubmit} className="space-y-6 lg:pe-10">
             {/* Shipping Information Preview */}
             <div className="border-b pb-7 p-4 mb-4">
                 <h3 className="text-lg font-semibold text-gray-800 mb-3">Shipping Information</h3>
@@ -60,7 +60,7 @@ const UserConfirmInfo: React.FC<UserConfirmInfoProps> = ({ setIsValid, shippingD
                     name="termsAndConditions"
                     onChange={formik.handleChange}
                     checked={formik.values.termsAndConditions}
-                    className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
+                    className="h-4 w-4 text-green-600 border-green-300 rounded focus:ring-2 focus:ring-green-500"
                 />
                 <label htmlFor="termsAndConditions" className="ml-2 text-sm text-gray-700">
                     I accept the terms and conditions

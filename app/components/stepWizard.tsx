@@ -21,10 +21,10 @@ const StepWizard: React.FC<StepWizardProps> = ({ steps, currentStep, handleNext,
                 {steps.map((step, index) => (
                     <div
                         key={index}
-                        className={`flex-1 text-center transition-all ${index <= currentStep ? 'text-blue-600' : 'text-gray-400'}`}
+                        className={`flex-1 text-center transition-all ${index <= currentStep ? 'text-green-600' : 'text-gray-400'}`}
                     >
                         <div className="py-2 text-sm font-semibold">{step.title}</div>
-                        {index < currentStep && <div className="h-1 bg-blue-600"></div>}
+                        {index < currentStep && <div className="h-1 bg-green-600"></div>}
                     </div>
                 ))}
             </div>

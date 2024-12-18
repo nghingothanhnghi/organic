@@ -10,6 +10,8 @@ import { Provider } from 'react-redux'; // Import Provider from react-redux
 import { store } from "./store";
 import { ToastContainer } from "react-toastify"; // Import ToastContainer
 import "react-toastify/dist/ReactToastify.css"; // Import the toastify styles
+import { I18nextProvider } from 'react-i18next'; // Import I18nextProvider
+import i18n from './i18n'; // Your i18next instance
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
 
@@ -38,7 +40,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <Provider store={store}> {/* Wrap the app with the Redux provider */}
-          {children}
+          <I18nextProvider i18n={i18n}> {/* Wrap with I18nextProvider for translation support */}
+            {children}
+          </I18nextProvider>
           <ToastContainer
             position="top-right"
             autoClose={5000}

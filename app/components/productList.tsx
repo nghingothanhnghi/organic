@@ -20,7 +20,7 @@ const ProductList: React.FC<ProductListProps> = ({ searchResults, viewMode }) =>
 
     return (
         <div
-            className={`${viewMode === "grid" ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4" : "flex flex-col"
+            className={`${viewMode === "grid" ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-7" : "flex flex-col"
                 }`}
         >
             {content}

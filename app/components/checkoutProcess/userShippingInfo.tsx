@@ -33,7 +33,7 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
         }, [formik.isValid]);
 
     return (
-        <form onSubmit={formik.handleSubmit} className="space-y-6">
+        <form onSubmit={formik.handleSubmit} className="space-y-6 lg:pe-10">
             <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">Name</label>
                 <input
@@ -81,7 +81,7 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
             <div className="flex justify-end">
                 <button
                     type="submit"
-                    className="py-3 px-6 mt-4 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="py-3 px-6 mt-4 text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
                 >
                     Next
                 </button>

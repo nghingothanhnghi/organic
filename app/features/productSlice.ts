@@ -10,18 +10,19 @@ const initialState: ProductState = {
   loading: false,
   error: null,
   pagination: null, // Initialize meta as null
+  filters: {},
 };
 
 // Async thunk to fetch products from the API
 export const fetchProducts = createAsyncThunk<
   { products: Product[]; pagination: PaginationMeta },
-  { page: number; pageSize: number }, // Arguments for pagination
+  { page: number; pageSize: number; filters?: Record<string, any> }, // Arguments for pagination
   { rejectValue: string }
 >(
   'products/fetchProducts', // Action name
-  async ({ page, pageSize }, { rejectWithValue }) => {
+  async ({ page, pageSize, filters = {} }, { rejectWithValue }) => {
     try {
-      const response = await fetchProductsAPI(page, pageSize); // Call the service function
+      const response = await fetchProductsAPI(page, pageSize, filters); // Call the service function
       // Extract and flatten the data from the response
       const products: Product[] = response.data.map((product: any) => ({
         id: product.id,
@@ -59,12 +60,14 @@ const productSlice = createSlice({
   initialState,
   reducers: {
     // You can add any local reducer logic if necessary
+    setFilters: (state, action) => {
+      state.filters = action.payload; // Update filters with the payload
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
         state.loading = true; // Set loading to true when the request starts
-        toast.info('Loading products...'); // Toast for loading state
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false; // Set loading to false when the request succeeds
@@ -79,5 +82,7 @@ const productSlice = createSlice({
       });
   },
 });
+
+export const { setFilters } = productSlice.actions; // Export the setFilters action
 
 export default productSlice.reducer;

@@ -1,0 +1,289 @@
+{
+    "menu": {
+        "home": "Trang chủ",
+        "store": "Cửa hàng",
+        "posts": "Bài viết",
+        "categoryPosts": "Xem theo danh mục",
+        "subcategory21": "Subcategory 2.1",
+        "subcategory22": "Subcategory 2.2",
+        "about": "Giới thiệu",
+        "contact": "Liên hệ"
+      },
+    "btn":{
+        "add_to_cart": "Thêm vào giỏ",
+        "buy_now": "Mua ngay",
+        "clear_all": "Xóa tất cả",
+        "clear": "Xóa",
+        "remove": "Xóa",
+        "cancel": "Thoát",
+        "sign_up": "Đăng ký",
+        "login": "Đăng nhập",
+        "next": "Tiếp tục",
+        "previous": "Quay lại",
+        "proceed_to_checkout": "Thanh toán ngay",
+        "profile": "Tài khoản",
+        "logout": "Thoát",
+        "loading": "Đang xử lý...",
+        "call_for_price": "Gọi ngay",
+        "send": "Gửi"
+    },
+    "badge_status":{
+        "inStock": "Còn hàng",
+        "outStock": "Liên hệ",
+        "lowStock": "Sắp hết"
+    },
+    "loading_state":{
+        "message_01": "Đang tải hình ảnh"
+    },
+    "select":{
+        "category":{
+            "label": "Danh mục",
+            "placeholder": "Chọn danh mục..."
+        },
+        "brand":{
+            "label": "Nhãn hiệu",
+            "placeholder": "Chọn nhãn hiệu..."
+        },
+        "country":{
+            "label": "Quốc gia",
+            "placeholder": "Chọn quốc gia..."
+        },
+        "city":{
+            "label": "Thành phố/Tỉnh",
+            "placeholder": "Chọn Thành phố/Tỉnh..."
+        },
+        "dist":{
+            "label": "Quận/Huyện",
+            "placeholder": "Chọn quận/huyện..."
+        },
+        "ward":{
+            "label": "Phường/Xã",
+            "placeholder": "chọn phường/xã..."
+        }
+    },
+    "input":{
+        "firstName":{
+            "label": "Tên",
+            "placeholder": ""
+        },
+        "lastName":{
+            "label": "Họ",
+            "placeholder": ""
+        },
+        "email":{
+            "label": "Email liên hệ",
+            "placeholder": ""
+        },
+        "phone":{
+            "label": "Số di động",
+            "placeholder": ""
+        },
+        "title":{
+            "label": "Tiêu đề",
+            "placeholder": ""
+        },
+        "message":{
+            "label": "Nội dung",
+            "placeholder": ""
+        },
+        "address":{
+            "label": "Địa chỉ",
+            "placeholder": ""
+        },
+        "postalCode":{
+            "label": "Mã bưu chính",
+            "placeholder": "XXX-XX"
+        },
+        "username":{
+            "label": "Tên đăng nhập",
+            "placeholder": ""  
+        },
+        "password":{
+            "label": "Mật khẩu",
+            "placeholder": ""  
+        }
+    },
+    "dataGrid": {
+        "headerName":{
+            "purchaseOrder": "Mã đơn",
+            "items": "Sản phẩm",
+            "subTotal": "Tổng tiền",
+            "totalAmount": "Tổng cộng",
+            "actions": "Thao tác"
+        }
+    },
+    "paging":{
+        "pageSize": "Xem",
+        "to": "đến",
+        "of": "của",
+        "page": "Trang",
+        "goTo": "Đi đến"
+    },
+    "language": {
+        "english": "Tiếng Anh",
+        "vietnamese": "Tiếng Việt"
+    },
+    "page_title":{
+        "home": "Tranh chủ",
+        "store": "Cửa hàng",
+        "product": "Sản phẩm",
+        "checkout": "Thanh toán",
+        "cart": "Giỏ hàng",
+        "wishlist": "Danh sách yêu thích",
+        "post": "Bài viết",
+        "profile": "Tài khoản"
+    },
+    "section_title":{
+        "view_by_info": "Thông tin",
+        "view_by_go-to": "Đi đến?",
+        "view_by_categories": "Xem theo danh mục",
+        "view_by_benefits": {
+            "Benefit_01": {
+                "title": "Hàng nhập khẩu chính hãng",
+                "description": "Hoàn tiền 100% nếu không giống như miêu tả sản phẩm."
+            },
+            "Benefit_02": {
+                "title": "Giá cạnh tranh & Nhiều ưu đãi",
+                "description": "Có chiết khấu nếu mua số lượng trên 5 sản phẩm, có nhiều ưu đãi hoàn tiền hấp dẫn."
+            },
+            "Benefit_03": {
+                "title": "Đa dạng phụ tùng thay thế",
+                "description": "Trên 5000+ phụ tùng, bao gồm các thương hiệu ôtô hàng đầu cung cấp."
+            },
+            "Benefit_04": {
+                "title": "Mua sắm qua cửa hàng online",
+                "description": "Mua sắm trên ứng dụng của chúng tôi dành cho máy tính bảng, điện thoại di động. Theo dõi đơn hàng trực tuyến. Nhận các bản cập nhật giá khuyến mãi miễn phí."
+            },
+            "Benefit_05": {
+                "title": "Miễn phí vận chuyển nội thành TPHCM?",
+                "description": "Chúng tôi có đội ngủ vận chuyển và thợ chuyên nghiệp, kinh nghiệm lâu năm các dòng xe kiểm tra tại nhà."
+            },
+            "Benefit_06": {
+                "title": "Trả hàng/Hoàn tiền dễ dàng",
+                "description": "Không hài lòng với sản phẩm? Trả lại tại cửa và được hoàn lại tiền trong vòng vài giờ. Chính sách không cần hỏi lý do."
+            }
+        },
+        "view_by_featured_post": "Bài viết về xe hơi, đồ chơi xe",
+        "view_by_filter": "Xem theo?",
+        "view_by-review_summary":{
+            "customer_reviews": "Khách hàng đã đánh giá",
+            "outOf": "/",
+            "global_ratings": "Xếp hạng",
+            "noRating": "Hãy là người đầu tiên đánh giá"
+        },
+        "view_by-add_review":{
+            "user_review": "Đánh giá?",
+            "voted_star": "Bình chọn của bạn",
+            "global_ratings": "Xếp hạng",
+            "placeholder_message": "Viết đánh giá của bạn về sản phẩm..."
+        },
+        "view_by_reviews_list":{
+            "review_title": "Bình luận"
+        },
+        "view_by_accept_payment":{
+            "accenpt_payment_title": "Chấp nhận thanh toán"
+        }
+    },
+    "category": {
+        "uncategorized": "Chưa phân loại"
+    },
+    "placeholder_message":{
+        "search":{
+            "message_01": "Không tìm thấy sản phẩm phù hợp.",
+            "message_02": "Tìm theo tên xe."
+        }
+    },
+    "info": {
+        "order":{
+            "message_01": "🧐 Đơn hàng không tìm thấy. Vui lòng quay lại sau."
+        },
+        "banner":{
+            "message_01": "Không tìm thấy hình ảnh..."
+        },
+        "product":{
+            "message_01": "Không tìm thấy mặt hàng quý khách đã lựa chọn."
+        },
+        "post": {
+            "message_01": "Không tìm thấy nội dung. Vui lòng quay lại sau nhé...",
+            "message_02": "Không tìm thấy bài viết."
+        },
+        "review": {
+            "message_01": "Chưa có bình luận nào."
+        }
+    },
+    "error": {
+        "order":{
+            "message_01": "Đơn hàng không thể hoàn thành. Vui lòng liên hệ",
+            "message_02": "Lỗi: {{error}}",
+            "message_03": "⛔ Vui lòng chọn sản phẩm để thanh toán.",
+            "message_04": "🤔 Đơn hàng không thể hiển thị. Vui lòng quay lại sau."
+        },
+        "banner":{
+            "message_01": "Lỗi tải hình ảnh"
+        },
+        "product":{
+            "message_01": "🤔 Có lỗi khi tải sản phẩm. Vui lòng thử lại sau."
+        },
+        "contact":{
+            "message_01": "Tin nhắn của quý khách không thể gửi. Vui lòng gọi hotline để hỗ trợ. Xin cám ơn!"
+        },
+        "review": {
+            "message_01": "😢 Bạn phải đăng nhập để có thể gửi đánh giá về sản phẩm.",
+            "message_02": "🌟 Vui lòng đánh sao bình chọn.",
+            "message_03": "😢 Đánh giá không thể gửi. Vui lòng thử lại",
+            "message_04": "Bạn không thể gửi đánh giá thêm nữa. Chúng tôi đã nhận được đánh giá hữu ích cho sản phẩm này!"
+        },
+        "authorized": {
+            "unauthorizedError": "Unauthorized error: {{message}}",
+            "missingCredentials": "Missing or invalid credentials.",
+            "failedLoadReviews": "Failed product reviews: {{error}}"
+        }
+    },
+    "success": {
+        "order":{
+            "message_01": "Đơn hàng đã hoàn thành!",
+            "message_02": ""
+        },
+        "cart":{
+            "message_01": "{{itemName}} đã thêm vào giỏ!",
+            "message_02": "{{itemName}} đã xóa trong giỏ hàng!"
+            
+        },
+        "wishlist":{
+            "message_01": "{{itemName}} đã thêm vào mục yêu thích!",
+            "message_02": "{{itemName}} đã xóa trong mục yêu thích!"
+        },   
+        "contact":{
+            "message_01": "Tin nhắn của quý khách đã được gửi thành công!. Nhân viên của chúng tôi sẽ liên hệ trong thời gian sớm nhất."
+        },
+        "review": {
+            "message_01": "Đánh giá của bạn đã được gửi!"
+        }
+    },
+    "confirm":{
+        "cart":{
+            "message_01": "{{itemName}} added to your cart!",
+            "message_02": "{{itemName}} has been removed from your cart!",
+            "message_03": "Bạn có chắc là xóa <b>{{itemName}}</b> khỏi giỏ hàng? Chúng tôi rất lấy làm tiếc! 😊"
+        }    
+    },
+    "validation": {
+        "firstNameRequired": "Tên là bắt buộc",
+        "lastNameRequired": "Họ là bắt buộc",
+        "usernameRequired": "Tên đăng nhập bắt buộc",
+        "emailRequired": "Email là bắt buộc",
+        "invalidEmail": "Địa chỉ email không hợp lệ",
+        "phoneRequired": "Số điện thoại là bắt buộc",
+        "addressRequired": "Địa chỉ là bắt buộc",
+        "countryRequired": "Quốc gia là bắt buộc",
+        "cityRequired": "Thành phố là bắt buộc",
+        "districtRequired": "Quận là bắt buộc",
+        "wardRequired": "Phường là bắt buộc",
+        "postalCodeRequired": "Mã bưu chính là bắt buộc",
+        "passwordRequired": "Mật khẩu bắt buộc",
+        "passwordUnMatchingRequired": "Mật khẩu không khớp?",
+        "titleRequired": "Tiêu đề không được để trống",
+        "messageRequired": "Nội dung được yêu cầu",
+        "agreeRequired": "Tôi đồng ý cung cấp thông tin cho Phutungtoyota"
+    }
+}

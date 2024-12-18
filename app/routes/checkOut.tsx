@@ -71,8 +71,8 @@ const CheckOut = () => {
         <div className="CheckOut-container">
             <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
                 <h1 className="text-2xl font-bold mb-4">CheckOut</h1>
-                <div className="grid grid-cols-3 gap-8">
-                    <div className="col-span-2">
+                <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 lg:gap-8 w-full">
+                    <div className="col-span-1 lg:col-span-6 w-full">
                         <StepWizard
                             steps={steps}
                             currentStep={currentStep}
@@ -80,7 +80,7 @@ const CheckOut = () => {
                             handlePrevious={handlePrevious}
                         />
                     </div>
-                    <div>
+                    <div className="col-span-1 lg:col-span-4 w-full">
                         <CartList />
                         <CartSummary taxRate={0} shippingFee={0}/>
                     </div>
