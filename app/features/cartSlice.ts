@@ -2,15 +2,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Product } from '~/types/product';
+import type { CartItem, CartState } from '~/types/cart';
 import { toast } from 'react-toastify';
 
-interface CartItem extends Product {
-    quantity: number;
-}
+// interface CartItem extends Product {
+//     quantity: number;
+// }
 
-interface CartState {
-    items: CartItem[];
-}
+// interface CartState {
+//     items: CartItem[];
+// }
 
 // Helper function to update sessionStorage safely
 const updateSessionStorage = (items: CartItem[]) => {

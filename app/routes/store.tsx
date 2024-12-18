@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { fetchProducts, setFilters } from '~/features/productSlice';
 import ProductList from '~/components/productList';
+import PaginationSummary from "~/components/paginationSummary";
 import Pagination from "~/components/pagination";
 import ProductFilter from "~/components/productFilter";
 import Hero from "~/components/hero";
@@ -35,10 +36,6 @@ const Store = () => {
     dispatch(setFilters(newFilters));
     setCurrentPage(1); // Reset to the first page when filters change
   };
-
-  // Calculate the start and end items being displayed
-  const startItem = (currentPage - 1) * pageSize + 1;
-  const endItem = Math.min(currentPage * pageSize, pagination?.total || 0);
 
   useEffect(() => {
     console.log("pagination:", pagination);
@@ -85,11 +82,14 @@ const Store = () => {
 
             {/* Show "Showing X–Y of Z results" */}
             <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-              <div>
-                <p className="text-sm text-gray-700">
-                  Showing <span className="font-medium">{startItem}</span> - <span className="font-medium">{endItem}</span> of <span className="font-medium">{pagination?.total}</span> results
-                </p>
-              </div>
+                          {/* Use the PaginationSummary component here */}
+            {pagination && (
+              <PaginationSummary
+                currentPage={currentPage}
+                pageSize={pageSize}
+                totalItems={pagination.total}
+              />
+            )}
               {pagination && (
               <Pagination
                 currentPage={currentPage}
