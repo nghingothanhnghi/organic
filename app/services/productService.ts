@@ -1,5 +1,5 @@
 // Example of using the default api instance
-import axiosPrivate from '~/api/axios';
+import { axiosPrivate } from "~/api/axios";
 
 // Service function to fetch products from the API
 export const fetchProductsAPI = async (
