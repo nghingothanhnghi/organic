@@ -5,14 +5,6 @@ import type { Product } from '~/types/product';
 import type { CartItem, CartState } from '~/types/cart';
 import { toast } from 'react-toastify';
 
-// interface CartItem extends Product {
-//     quantity: number;
-// }
-
-// interface CartState {
-//     items: CartItem[];
-// }
-
 // Helper function to update sessionStorage safely
 const updateSessionStorage = (items: CartItem[]) => {
     if (typeof window !== 'undefined') {  // Check if window is defined (browser environment)
@@ -41,8 +33,6 @@ const cartSlice = createSlice({
             updateSessionStorage(state.items);
         },
         removeFromCart: (state, action: PayloadAction<number>) => {
-            // state.items = state.items.filter((item) => item.id !== action.payload);
-            // updateSessionStorage(state.items);
             const removedItem = state.items.find((item) => item.id === action.payload);
             state.items = state.items.filter((item) => item.id !== action.payload);
             updateSessionStorage(state.items);

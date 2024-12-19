@@ -7,6 +7,7 @@ import ProductList from '~/components/productList';
 import PaginationSummary from "~/components/paginationSummary";
 import Pagination from "~/components/pagination";
 import ProductFilter from "~/components/productFilter";
+import ProductDisplay from "~/components/productDisplay";
 import Hero from "~/components/hero";
 
 export function meta({ }: Route.MetaArgs) {
@@ -47,8 +48,7 @@ const Store = () => {
         title="Welcome to the Store"
         description="Browse our products and make your purchase!"
       />
-      <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
-        {/* Product Filter Component */}
+      {/* <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
         <ProductFilter onFilterChange={handleFilterChange} />
         {loading && (
           <div className="flex justify-center items-center space-x-2">
@@ -79,27 +79,37 @@ const Store = () => {
         {!loading && !error && (
           <>
             <ProductList searchResults={products} viewMode="grid" />
-
-            {/* Show "Showing X–Y of Z results" */}
             <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-                          {/* Use the PaginationSummary component here */}
-            {pagination && (
-              <PaginationSummary
-                currentPage={currentPage}
-                pageSize={pageSize}
-                totalItems={pagination.total}
-              />
-            )}
               {pagination && (
-              <Pagination
-                currentPage={currentPage}
-                totalPages={pagination.pageCount}
-                onPageChange={handlePageChange}
-              />
-            )}
+                <PaginationSummary
+                  currentPage={currentPage}
+                  pageSize={pageSize}
+                  totalItems={pagination.total}
+                />
+              )}
+              {pagination && (
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={pagination.pageCount}
+                  onPageChange={handlePageChange}
+                />
+              )}
             </div>
           </>
         )}
+      </div> */}
+      <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
+        <ProductFilter onFilterChange={handleFilterChange} />
+        <ProductDisplay
+          products={products}
+          pagination={pagination}
+          currentPage={currentPage}
+          pageSize={pageSize}
+          onPageChange={handlePageChange}
+          loading={loading}
+          error={error}
+          viewMode="grid"
+        />
       </div>
     </div>
   );

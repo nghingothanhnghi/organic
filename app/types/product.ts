@@ -47,3 +47,15 @@ export interface ProductListProps {
     viewMode: "grid" | "list"; // Controls layout
 }
 
+
+// Props for the Product Display component
+export interface ProductDisplayProps {
+  products: Product[]; // Array of products
+  pagination: PaginationMeta | null; // Pagination information
+  currentPage: number; // Current active page
+  pageSize: number; // Number of items per page
+  onPageChange: (page: number) => void; // Handler for page change
+  loading: boolean; // Loading state
+  error: string | null; // Error message
+  viewMode?: "grid" | "list"; // Optional view mode, default is "grid"
+}
