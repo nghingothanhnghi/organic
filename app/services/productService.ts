@@ -1,5 +1,5 @@
 // Example of using the default api instance
-import { axiosPrivate } from "~/api/axios";
+import { api } from "~/api/axios";
 
 // Service function to fetch products from the API
 export const fetchProductsAPI = async (
@@ -18,6 +18,6 @@ export const fetchProductsAPI = async (
       params.append(`filters[${key}][$contains]`, filters[key].toString());
     }
   });
-  const response = await axiosPrivate.get(`/products?${params.toString()}`);
+  const response = await api.get(`/products?${params.toString()}`);
   return response.data; // Assuming the API returns the product data
 };
