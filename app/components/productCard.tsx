@@ -15,7 +15,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             {/* Image Section */}
             <div className="relative w-full h-56 bg-gray-200">
                 <img
-                    src={imageUrl || ''} // Default placeholder image if no imageUrl
+                    src={imageUrl || 'N/A'} // Default placeholder image if no imageUrl
                     alt={name}
                     className="object-cover w-full h-full"
                 />

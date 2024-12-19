@@ -24,6 +24,8 @@ export interface Product {
     updatedAt?: string; // ISO Date
     publishedAt?: string; // ISO Date
     slug?: string | null; // Optional
+    productImg: ProductImage[];
+    ratings: any[]; // Add a proper type based on your needs
   }
   
   // Redux state interface
@@ -33,6 +35,26 @@ export interface Product {
     error: string | null;
     pagination: PaginationMeta | null;
     filters: Record<string, any>;
+  }
+
+  export interface ProductImage {
+    id: number;
+    attributes: {
+      name: string;
+      url: string;
+      formats: {
+        thumbnail: {
+          url: string;
+          width: number;
+          height: number;
+        };
+        small: {
+          url: string;
+          width: number;
+          height: number;
+        };
+      };
+    };
   }
 
   export interface PaginationMeta {

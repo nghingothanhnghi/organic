@@ -29,6 +29,14 @@ export const fetchProducts = createAsyncThunk<
         name: product.attributes.name,
         description: product.attributes.description,
         imageUrl: product.attributes.imageUrl,
+        productImg: product.attributes.productImg?.data?.map((img: any) => ({
+          id: img.id,
+          attributes: {
+            name: img.attributes.name,
+            url: img.attributes.url,
+            formats: img.attributes.formats,
+          },
+        })) ?? [], // Fallback to empty array if productImg or productImg.data is null or undefined
         price: product.attributes.price ?? 0, // Fallback to 0 if price is null or undefined
         quantity: product.attributes.quantity ?? 0, // Fallback to 0
         bestseller: product.attributes.bestseller ?? false,
@@ -44,6 +52,7 @@ export const fetchProducts = createAsyncThunk<
         updatedAt: product.attributes.updatedAt,
         publishedAt: product.attributes.publishedAt,
         slug: product.attributes.slug ?? null,
+        ratings: product.attributes.ratings?.data ?? [],
       }));
 
       const pagination: PaginationMeta = response.meta.pagination; // Extract pagination data
