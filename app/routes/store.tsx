@@ -3,12 +3,11 @@ import type { Route } from "./+types/store";
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { fetchProducts, setFilters } from '~/features/productSlice';
-import ProductList from '~/components/productList';
-import PaginationSummary from "~/components/paginationSummary";
-import Pagination from "~/components/pagination";
 import ProductFilter from "~/components/productFilter";
 import ProductDisplay from "~/components/productDisplay";
 import Hero from "~/components/hero";
+import Breadcrumb from "~/components/breadcrumb";
+import { useTranslation } from "react-i18next";
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -18,6 +17,11 @@ export function meta({ }: Route.MetaArgs) {
 }
 
 const Store = () => {
+  const { t } = useTranslation();
+  const breadcrumbItems = [
+    { label: t("page_title.home"), path: '/' },
+    { label: t("page_title.store"), path: '/products' },
+  ];
   const dispatch = useAppDispatch();
   const { products, loading, error, pagination, filters } = useAppSelector(state => state.products);
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,61 +48,13 @@ const Store = () => {
 
   return (
     <div className="store-container">
+      <Breadcrumb items={breadcrumbItems} />
       <Hero
         title="Welcome to the Store"
         description="Browse our products and make your purchase!"
       />
-      {/* <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
-        <ProductFilter onFilterChange={handleFilterChange} />
-        {loading && (
-          <div className="flex justify-center items-center space-x-2">
-            <svg
-              className="animate-spin h-10 w-10 text-green-600"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8v8H4z"
-              ></path>
-            </svg>
-            <span>Loading products...</span>
-          </div>
-        )}
-        {error && <p className="text-red-500">Error: {error}</p>}
-        {!loading && !error && (
-          <>
-            <ProductList searchResults={products} viewMode="grid" />
-            <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-              {pagination && (
-                <PaginationSummary
-                  currentPage={currentPage}
-                  pageSize={pageSize}
-                  totalItems={pagination.total}
-                />
-              )}
-              {pagination && (
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={pagination.pageCount}
-                  onPageChange={handlePageChange}
-                />
-              )}
-            </div>
-          </>
-        )}
-      </div> */}
       <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
+
         <ProductFilter onFilterChange={handleFilterChange} />
         <ProductDisplay
           products={products}
