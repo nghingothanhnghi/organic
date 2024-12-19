@@ -26,7 +26,7 @@ interface SwiperLayoutProps {
 
 const SwiperLayout: React.FC<SwiperLayoutProps> = ({
     slides,
-    spaceBetween = 50,
+    spaceBetween = 1,
     slidesPerView = 3,
     onSlideChange,
     onSwiper,
@@ -45,9 +45,10 @@ const SwiperLayout: React.FC<SwiperLayoutProps> = ({
             onSwiper={onSwiper}
             scrollbar={{ draggable: true }}
             breakpoints={{
-                640: { slidesPerView: 1 },    // Show 1 slide for screens >= 640px
-                768: { slidesPerView: 1 },    // Show 1 slides for screens >= 768px
-                1024: { slidesPerView: 2 },   // Show 2 slides for screens >= 1024px
+                320: { slidesPerView: 1, spaceBetween: 1 },    // Show 1 slide for screens >= 320px
+                640: { slidesPerView: 1, spaceBetween: 1 },    // Show 1 slide for screens >= 640px
+                768: { slidesPerView: 2, spaceBetween: 1 },    // Show 1 slides for screens >= 768px
+                1024: { slidesPerView: 2, spaceBetween: 1 },   // Show 2 slides for screens >= 1024px
               }}
         >
             {slides.map((slide, index) => (
@@ -56,21 +57,22 @@ const SwiperLayout: React.FC<SwiperLayoutProps> = ({
                         className="slide-content"
                         style={{
                             background: slide.background,
-                            padding: '20px',
-                            borderRadius: '10px',
+                            padding: '20px 30px',
                             color: '#fff',
                             display: 'flex',
                             flexDirection: 'column',
-                            justifyContent: 'start',
+                            justifyContent: 'center',
                             textAlign: 'left',
-                            height: '100%',
+                            minHeight: '400px',
                         }}
                     >
-                        <h2>{slide.title}</h2>
-                        <p>{slide.description}</p>
-                        <button className="w-auto mt-4 px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors">
+                        <div>
+                        <h2 className='text-3xl font-bold text-lime-900'>{slide.title}</h2>
+                        <p className='text-xl mt-4 text-yellow-950'>{slide.description}</p>
+                        <button className="w-auto mt-6 px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors">
                             {slide.buttonText}
                         </button>
+                        </div>
                     </div>
                 </SwiperSlide>
             ))}

@@ -44,7 +44,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             {children}
           </I18nextProvider>
           <ToastContainer
-            position="top-right"
+            position="bottom-left"
             autoClose={5000}
             hideProgressBar={true}
             newestOnTop={false}

@@ -5,25 +5,25 @@ const slideData = [
       title: 'Slide 1',
       description: 'This is the first slide description.',
       buttonText: 'Learn More',
-      background: 'linear-gradient(to right, #ff7e5f, #feb47b)', // Gradient background
+      background: 'linear-gradient(to right, #f1fff4, #f1ffd8)', // Gradient background
     },
     {
       title: 'Slide 2',
       description: 'This is the second slide description.',
       buttonText: 'Get Started',
-      background: 'url("https://via.placeholder.com/600x300") center/cover no-repeat', // Image background
+      background: 'linear-gradient(to right, #f1ffd8, #C6EBC9)', // Image background
     },
     {
       title: 'Slide 3',
       description: 'This is the third slide description.',
       buttonText: 'Explore More',
-      background: 'linear-gradient(to right, #6a11cb, #2575fc)', // Gradient background
+      background: 'linear-gradient(to right, #C6EBC9, #C6EBC9)', // Gradient background
     },
     {
       title: 'Slide 4',
       description: 'This is the fourth slide description.',
       buttonText: 'Join Now',
-      background: 'url("https://via.placeholder.com/600x300") center/cover no-repeat', // Image background
+      background: '#C6EBC9',
     },
   ];
 
@@ -37,7 +37,7 @@ const Default = () => {
       };
     
       return (
-        <div className="container mx-auto flex items-center justify-between py-4 px-6">
+        <div>
           <SwiperLayout
             slides={slideData}
             spaceBetween={30}
