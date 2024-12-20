@@ -25,7 +25,8 @@
         "logout": "Thoát",
         "loading": "Đang xử lý...",
         "call_for_price": "Gọi ngay",
-        "send": "Gửi"
+        "send": "Gửi",
+        "check_order": "Kiểm tra đơn hàng"
     },
     "badge_status":{
         "inStock": "Còn hàng",

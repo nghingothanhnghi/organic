@@ -25,7 +25,8 @@
         "logout": "Logout",
         "loading": "Processing...",
         "call_for_price": "Call now",
-        "send": "Send"
+        "send": "Send",
+        "check_order": "Check Orders"
     },
     "badge_status":{
         "inStock": "In Stock",

@@ -11,7 +11,7 @@ export default [
       route("contacts/:contactId", "routes/contact.tsx"),
       route("store", "routes/store.tsx"), // Store page
       route("cart", "routes/cart.tsx"), // Cart page
-      route("checkout", "routes/checkOut.tsx"), // Cart page
+      route("checkout", "routes/checkOut.tsx"), // Checkout page
     ]),
     route("about", "routes/about.tsx"),
   ] satisfies RouteConfig;

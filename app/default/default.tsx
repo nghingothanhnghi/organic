@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import SwiperLayout from "~/components/swiperLayout";
 import ProductGallery from "~/components/productGallery";
+import ProductFeatured from '~/components/productFeatured';
+import ProductBestSellers from '~/components/productBestSellers';
 import { useAppDispatch, useAppSelector } from "~/hooks";
 import { fetchProducts, setFilters } from '~/features/productSlice';
+import AboutContent from '~/components/cmsContent/aboutContent';
 
 const slideData = [
   {
@@ -61,6 +64,33 @@ const Default = () => {
         slidesPerView={2}
         onSlideChange={handleSlideChange}
         onSwiper={handleSwiperInstance}
+      />
+      <AboutContent />
+      {/* Bestsellers Carousel */}
+      <ProductBestSellers
+        products={products}
+        viewMode="grid"
+        pagination={null}
+        currentPage={0}
+        pageSize={0}
+        onPageChange={function (page: number): void {
+          throw new Error('Function not implemented.');
+        }}
+        loading={false}
+        error={null}
+      />
+      {/* Featured Products Carousel */}
+      <ProductFeatured
+        products={products}
+        viewMode="grid"
+        pagination={null}
+        currentPage={0}
+        pageSize={0}
+        onPageChange={function (page: number): void {
+          throw new Error('Function not implemented.');
+        }}
+        loading={false}
+        error={null}
       />
       <ProductGallery products={products} />
     </div>

@@ -5,3 +5,10 @@ export interface PaginationProps {
     totalPages: number;
     onPageChange: (page: number) => void;
 }
+
+  export interface PaginationMeta {
+    page: number;
+    pageSize: number;
+    pageCount: number;
+    total: number;
+  }

@@ -2,7 +2,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { fetchProductsAPI } from '~/services/productService';
-import type { ProductState, Product, PaginationMeta} from '~/types/product';
+import type { ProductState, Product} from '~/types/product';
+import type { PaginationMeta } from '~/types/pagination';
 
 // Initial state
 const initialState: ProductState = {

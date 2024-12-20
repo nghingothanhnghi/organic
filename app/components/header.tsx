@@ -1,16 +1,19 @@
 // components/Header.tsx
 import { Link, useLocation } from "react-router";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import LogoImage from "~/assets/logo.png";
 import { useOffCanvas } from "~/hooks/useOffCanvas";
 import CartButton from "./cartButton";
 import WishlistButton from "./wishListButton";
 import CartOffCanvas from "./cartOffCanvas";
 import MobileMenuOffCanvas from "./mobileMenuOffCanvas";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
     const { isOpen: isCartOpen, toggle: toggleCart, open: openCart, close: closeCart } = useOffCanvas();
     const { isOpen: isMenuOpen, toggle: toggleMenu, open: openMenu, close: closeMenu } = useOffCanvas();
+
+    const { t } = useTranslation();
 
     // Get the current route
     const location = useLocation();
@@ -78,9 +81,11 @@ const Header = () => {
                 <div className="hidden md:flex items-center space-x-4">
                     <Link
                         to="/register"
-                        className="text-sm bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+                        className="relative inline-flex items-center justify-center p-0.5 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800"
                     >
-                        Register
+                        <span className="px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                            {t("btn.check_order")}
+                        </span>
                     </Link>
                     {!shouldHideCartButton && <CartButton onClick={toggleCart} />}
                     <WishlistButton wishlistCount={3} />
@@ -92,10 +97,10 @@ const Header = () => {
                 toggleCart={toggleCart}
                 closeCart={closeCart}
             />
-             {/* Mobile Off-canvas Navigation Menu */}
-      <MobileMenuOffCanvas isOpen={isMenuOpen} toggleMenu={toggleMenu} />
             {/* Mobile Off-canvas Navigation Menu */}
-         
+            <MobileMenuOffCanvas isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+            {/* Mobile Off-canvas Navigation Menu */}
+
         </header>
     );
 };

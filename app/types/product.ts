@@ -2,6 +2,7 @@
 import type { Store } from "./store";
 import type { Category } from "./category";
 import type { Brand } from "./brand";
+import type { PaginationMeta } from "./pagination";
 
 // Product interface for the Redux state (matching the state in productSlice)
 export interface Product {
@@ -57,12 +58,6 @@ export interface Product {
     };
   }
 
-  export interface PaginationMeta {
-    page: number;
-    pageSize: number;
-    pageCount: number;
-    total: number;
-  }
 
 export interface ProductListProps {
     searchResults: Product[]; // Array of products

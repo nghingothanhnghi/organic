@@ -1,8 +1,8 @@
-// app/services/productService.ts
+// app/services/contentService.ts
 import { axiosPrivate } from "~/api/axios";
 
 // Service function to fetch products from the API
-export const fetchProductsAPI = async (
+export const fetchContentAPI = async (
   page: number,
   pageSize: number,
   filters: Record<string, any> = {}
@@ -18,6 +18,6 @@ export const fetchProductsAPI = async (
       params.append(`filters[${key}][$contains]`, filters[key].toString());
     }
   });
-  const response = await axiosPrivate.get(`/products?${params.toString()}`);
+  const response = await axiosPrivate.get(`/sections?${params.toString()}`);
   return response.data; // Assuming the API returns the product data
 };

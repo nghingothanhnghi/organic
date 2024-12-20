@@ -23,8 +23,8 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ products }) => {
 
   return (
     <div className="mx-auto py-10 grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-       {images.map((image) => (
-        <div key={image.id} className="relative">
+       {images.map((image, index) => (
+        <div key={`${image.id}-${index}`} className="relative">
           {/* Placeholder spinner while image is loading */}
           {!loadedImages.has(image.id) && (
             <div className="absolute inset-0 flex items-center justify-center bg-gray-200 rounded-lg">

@@ -3,6 +3,7 @@ import { useLocation } from 'react-router';
 import { useAppSelector, useAppDispatch } from '~/hooks';
 import { updateQuantity, removeFromCart } from '~/features/cartSlice'; // Adjust the path to your slice
 import QuantityInput from './quantityInput';
+import ProductThumb from './productThumb';
 import { calculateSubtotal } from '~/utils/calculate';
 
 const CartList: React.FC = () => {
@@ -26,9 +27,9 @@ const CartList: React.FC = () => {
             {cartItems.length > 0 ? (
                 <div className="cart-items space-y-4">
                     {cartItems.map((item) => (
-                        <div key={item.id} className="flex items-center justify-between border p-4 rounded-md shadow-sm">
-                            <div className="flex items-center space-x-4">
-                                <img src={item.imageUrl || undefined} alt={item.name} className="w-16 h-16 object-cover rounded-md" />
+                        <div key={item.id} className="flex justify-between border p-4 rounded-md shadow-sm">
+                            <div className="flex space-x-4">
+                                <ProductThumb product={item} className='w-16 h-16 object-cover rounded-md'/>
                                 <div className='flex-column space-y-1'>
                                     <h3 className="text-sm font-medium">
                                      {item.name} {isCheckoutPage && (<sup className='text-gray-500'>x{item.quantity}</sup>)}

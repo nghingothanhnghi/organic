@@ -1,0 +1,29 @@
+// services/authService.ts
+import { axiosPrivate } from '~/api/axios';
+
+export const loginService = async (email: string, password: string) => {
+  const response = await axiosPrivate.post('/auth/local', {
+    identifier: email,
+    password,
+  });
+  return response.data;  // Contains user data and JWT token
+};
+
+export const registerService = async ({ username, email, password }: { username: string; email: string; password: string }) => {
+  const response = await axiosPrivate.post('/auth/local/register', {
+    username,
+    email,
+    password,
+  });
+  return response.data;  // Contains user data and JWT token
+};
+
+export const refreshTokenService = async () => {
+  const response = await axiosPrivate.post('/auth/refresh-token');
+  return response.data;  // Contains new JWT token
+};
+
+export const forgotPasswordService = async (email: string) => {
+  const response = await axiosPrivate.post('/auth/forgot-password', { email });
+  return response.data;  // Contains message indicating success/failure
+};
