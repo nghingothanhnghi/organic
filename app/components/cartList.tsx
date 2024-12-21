@@ -5,8 +5,11 @@ import { updateQuantity, removeFromCart } from '~/features/cartSlice'; // Adjust
 import QuantityInput from './quantityInput';
 import ProductThumb from './productThumb';
 import { calculateSubtotal } from '~/utils/calculate';
+import { formatPrice } from '~/utils/formatPrice';
+import { useTranslation } from 'react-i18next';
 
 const CartList: React.FC = () => {
+    const {t} = useTranslation();
     const dispatch = useAppDispatch();
     const cartItems = useAppSelector(state => state.cart.items);
     const location = useLocation();
@@ -34,7 +37,7 @@ const CartList: React.FC = () => {
                                     <h3 className="text-sm font-medium">
                                      {item.name} {isCheckoutPage && (<sup className='text-gray-500'>x{item.quantity}</sup>)}
                                     </h3>
-                                    <p className="text-xs text-gray-500">${item.price.toFixed(2)} each</p>
+                                    <p className="text-xs text-gray-500"> {formatPrice(item.price)} each</p>
                                     {!isCheckoutPage && (
                                         <>
                                             <QuantityInput
@@ -44,24 +47,24 @@ const CartList: React.FC = () => {
                                             />
                                             <button
                                                 onClick={() => handleRemoveItem(item.id)}
-                                                className="text-red-500 hover:text-red-700"
+                                                className="text-red-500 hover:text-red-700 text-sm"
                                             >
-                                                Remove
+                                                {t("btn.remove")}
                                             </button>
                                         </>
                                     )}
                                 </div>
                             </div>
                             <div>
-                                <p className="text-xs font-semibold">
-                                    ${calculateSubtotal(item.price, item.quantity).toFixed(2)}
+                                <p className="text-sm font-semibold">
+                                    {formatPrice(calculateSubtotal(item.price, item.quantity))} {/* Format subtotal */}
                                 </p>
                             </div>
                         </div>
                     ))}
                 </div>
             ) : (
-                <p className="text-gray-500">Your cart is empty.</p>
+                <p className="text-gray-500">{t("info.cart.message_01")}</p>
             )}
         </div>
     );

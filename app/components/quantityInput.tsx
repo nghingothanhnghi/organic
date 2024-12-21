@@ -28,7 +28,7 @@ const QuantityInput: React.FC<QuantityInputProps> = ({ value, min = 1, max = Inf
                 disabled={value <= min}
                 className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-3">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
                 </svg>
 
@@ -37,7 +37,7 @@ const QuantityInput: React.FC<QuantityInputProps> = ({ value, min = 1, max = Inf
                 type="number"
                 value={value}
                 onChange={handleInputChange}
-                className="w-12 text-center border rounded-md"
+                className="w-12 text-center border rounded text-sm"
                 min={min}
                 max={max}
             />
@@ -46,7 +46,7 @@ const QuantityInput: React.FC<QuantityInputProps> = ({ value, min = 1, max = Inf
                 className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded"
                 disabled={value >= max}
             >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-3">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
             </button>

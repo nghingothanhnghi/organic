@@ -17,7 +17,7 @@ interface StepWizardProps {
 const StepWizard: React.FC<StepWizardProps> = ({ steps, currentStep, handleNext, handlePrevious }) => {
     return (
         <div className="step-wizard">
-            <div className="flex justify-between mb-6">
+            <div className="flex justify-between mb-6 border rounded">
                 {steps.map((step, index) => (
                     <div
                         key={index}

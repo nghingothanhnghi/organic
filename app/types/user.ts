@@ -5,6 +5,7 @@ export interface User {
     email: string;
     createdAt: string;
     updatedAt: string;
+    firstName: string;
     // Add any other fields returned by your backend for the user
 }
 

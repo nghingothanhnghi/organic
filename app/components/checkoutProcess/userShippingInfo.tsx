@@ -33,7 +33,7 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
         }, [formik.isValid]);
 
     return (
-        <form onSubmit={formik.handleSubmit} className="space-y-6 lg:pe-10">
+        <form onSubmit={formik.handleSubmit} className="space-y-6">
             <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">Name</label>
                 <input

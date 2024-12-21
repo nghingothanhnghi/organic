@@ -210,6 +210,9 @@
         },
         "review": {
             "message_01": "No reviews yet."
+        },
+        "cart": {
+            "message_01": "Your cart is empty!"
         }
     },
     "error": {

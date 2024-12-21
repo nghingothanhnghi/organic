@@ -2,9 +2,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
 import Dropdown from "./dropdown";
+import UserProfileDropdown from "./userProfileDropdown";
+import { useAppSelector } from "~/hooks";
 import { useTranslation } from "react-i18next";
 const TopNavBar = () => {
     const { t, i18n } = useTranslation();
+
+    // Assuming 'user' is stored in your global state or localStorage
+    const user = useAppSelector(state => state.auth.user); // Replace with your actual state shape if needed
+
 
     const handleLanguageChange = (lang: string) => {
         i18n.changeLanguage(lang); // Change language on selection
@@ -79,9 +85,19 @@ const TopNavBar = () => {
                         {t("btn.check_order")}
 
                     </Link>
-                    <Link to="/login"  className="px-2 py-1 flex items-center justify-center p-0.5 me-2 text-xs text-white rounded bg-green-600 hover:bg-green-500">
-                        {t("btn.login")}
-                    </Link>
+                    {/* Conditionally render User Profile or Login Button */}
+                    {user ? (
+                        // If user is logged in, show the profile dropdown
+                        <UserProfileDropdown />
+                    ) : (
+                        // If user is not logged in, show the login button
+                        <Link
+                            to="/login"
+                            className="px-2 py-1 flex items-center justify-center p-0.5 me-2 text-xs text-white rounded bg-green-600 hover:bg-green-500"
+                        >
+                            {t("btn.login")}
+                        </Link>
+                    )}
                 </div>
             </div>
         </div>

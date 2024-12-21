@@ -33,7 +33,7 @@ const UserPaymentInfo: React.FC<UserPaymentInfoProps> = ({ onNext, handlePreviou
     }, [formik.isValid, formik.dirty, setIsValid]);
 
     return (
-        <form onSubmit={formik.handleSubmit} className="space-y-6 lg:pe-10">
+        <form onSubmit={formik.handleSubmit} className="space-y-6">
             <div>
                 <label htmlFor="cardNumber" className="block text-sm font-semibold text-gray-700 mb-2">Card Number</label>
                 <input

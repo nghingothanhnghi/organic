@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router";
 import { useState, useTransition } from "react";
 import LogoImage from "~/assets/logo.png";
 import { useOffCanvas } from "~/hooks/useOffCanvas";
+import useResponsive from "~/hooks/useResponsive";
 import CartButton from "./cartButton";
 import WishlistButton from "./wishListButton";
 import CartOffCanvas from "./cartOffCanvas";
@@ -11,6 +12,7 @@ import TopNavBar from "./topNavBar";
 import { useTranslation } from "react-i18next";
 
 const Header = () => {
+    const { isMobile, isTablet, isDesktop } = useResponsive();
     const { isOpen: isCartOpen, toggle: toggleCart, open: openCart, close: closeCart } = useOffCanvas();
     const { isOpen: isMenuOpen, toggle: toggleMenu, open: openMenu, close: closeMenu } = useOffCanvas();
 
@@ -25,7 +27,7 @@ const Header = () => {
 
     return (
         <header className="bg-gray-100 border-b border-gray-300">
-            <TopNavBar />
+            {isDesktop && <TopNavBar />}
             <div className="container mx-auto flex items-center justify-between py-4 px-6">
                 {/* Brand */}
                 <div className="text-2xl font-bold">

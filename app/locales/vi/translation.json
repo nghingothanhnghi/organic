@@ -210,6 +210,9 @@
         },
         "review": {
             "message_01": "Chưa có bình luận nào."
+        },
+        "cart": {
+            "message_01": "Giỏ hàng của bạn đang trống!"
         }
     },
     "error": {

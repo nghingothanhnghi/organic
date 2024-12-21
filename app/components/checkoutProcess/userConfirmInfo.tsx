@@ -37,7 +37,7 @@ const UserConfirmInfo: React.FC<UserConfirmInfoProps> = ({ setIsValid, shippingD
     }, [formik.isValid, formik.dirty, setIsValid]);
 
     return (
-        <form onSubmit={formik.handleSubmit} className="space-y-6 lg:pe-10">
+        <form onSubmit={formik.handleSubmit} className="space-y-6">
             {/* Shipping Information Preview */}
             <div className="border-b pb-7 p-4 mb-4">
                 <h3 className="text-lg font-semibold text-gray-800 mb-3">Shipping Information</h3>
