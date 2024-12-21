@@ -7,6 +7,7 @@ import CartButton from "./cartButton";
 import WishlistButton from "./wishListButton";
 import CartOffCanvas from "./cartOffCanvas";
 import MobileMenuOffCanvas from "./mobileMenuOffCanvas";
+import TopNavBar from "./topNavBar";
 import { useTranslation } from "react-i18next";
 
 const Header = () => {
@@ -24,6 +25,7 @@ const Header = () => {
 
     return (
         <header className="bg-gray-100 border-b border-gray-300">
+            <TopNavBar />
             <div className="container mx-auto flex items-center justify-between py-4 px-6">
                 {/* Brand */}
                 <div className="text-2xl font-bold">
@@ -79,14 +81,6 @@ const Header = () => {
 
                 {/* Right Side Buttons */}
                 <div className="hidden md:flex items-center space-x-4">
-                    <Link
-                        to="/register"
-                        className="relative inline-flex items-center justify-center p-0.5 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800"
-                    >
-                        <span className="px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                            {t("btn.check_order")}
-                        </span>
-                    </Link>
                     {!shouldHideCartButton && <CartButton onClick={toggleCart} />}
                     <WishlistButton wishlistCount={3} />
                 </div>

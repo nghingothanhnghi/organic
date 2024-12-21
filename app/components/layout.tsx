@@ -12,7 +12,7 @@ const Layout = () => {
         <div>
             <Header />
             {isLoading && (
-                <div className="loading-overlay">
+                <div className="fixed inset-0 flex justify-center items-center bg-white bg-opacity-50 z-50">
                     <LoadingComp message="Loading, please wait..." />
                 </div>
             )}
