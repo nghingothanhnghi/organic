@@ -27,6 +27,7 @@ export interface Product {
     slug?: string | null; // Optional
     productImg: ProductImage[];
     ratings: any[]; // Add a proper type based on your needs
+    crossSellProducts?: Partial<Product>[];
   }
   
   // Redux state interface

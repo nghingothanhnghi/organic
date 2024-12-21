@@ -54,6 +54,17 @@ export const fetchProducts = createAsyncThunk<
         publishedAt: product.attributes.publishedAt,
         slug: product.attributes.slug ?? null,
         ratings: product.attributes.ratings?.data ?? [],
+        crossSellProducts: product.attributes.crossSellProducts?.data?.map((crossSell: any) => ({
+          id: crossSell.id,
+          name: crossSell.attributes.name,
+          description: crossSell.attributes.description,
+          price: crossSell.attributes.price,
+          imageUrl: crossSell.attributes.imageUrl,
+          published: crossSell.attributes.published,
+          createdAt: crossSell.attributes.createdAt,
+          updatedAt: crossSell.attributes.updatedAt,
+          slug: crossSell.attributes.slug,
+        })) ?? []
       }));
 
       const pagination: PaginationMeta = response.meta.pagination; // Extract pagination data
