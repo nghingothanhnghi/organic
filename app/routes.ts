@@ -14,4 +14,6 @@ export default [
       route("checkout", "routes/checkOut.tsx"), // Checkout page
     ]),
     route("about", "routes/about.tsx"),
+    route("login", "routes/login.tsx"),
+    route("dashboard", "routes/dashboard.tsx"),
   ] satisfies RouteConfig;

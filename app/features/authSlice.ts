@@ -23,7 +23,8 @@ export const login = createAsyncThunk<AuthResponse, { email: string; password: s
     async ({ email, password }, { rejectWithValue }) => {
         try {
             const response = await loginService(email, password);
-            return response.data;
+            console.log('Login Thunk Response:', response); 
+            return response;
         } catch (error: any) {
             return rejectWithValue(error.response?.data?.message || 'Login failed');
         }
@@ -86,6 +87,7 @@ const authSlice = createSlice({
                 state.error = null;
             })
             .addCase(login.fulfilled, (state, action) => {
+                console.log('Redux fulfilled:', action.payload); // Debug
                 state.loading = false;
                 state.isAuthenticated = true;
                 state.token = action.payload.jwt;

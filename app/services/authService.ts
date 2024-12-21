@@ -6,7 +6,8 @@ export const loginService = async (email: string, password: string) => {
     identifier: email,
     password,
   });
-  return response.data;  // Contains user data and JWT token
+  console.log('Login Service Response:', response); 
+  return response.data;
 };
 
 export const registerService = async ({ username, email, password }: { username: string; email: string; password: string }) => {

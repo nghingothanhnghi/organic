@@ -30,8 +30,12 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
           pagination={{ clickable: true }}
           navigation
           breakpoints={{
+            320: {
+              slidesPerView: 2, // For small screens
+              spaceBetween: 15,
+            },
             640: {
-              slidesPerView: 1, // For small screens
+              slidesPerView: 2, // For small screens
               spaceBetween: 5,
             },
             768: {
