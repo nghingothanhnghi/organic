@@ -21,3 +21,8 @@ export const calculateFinalTotal = (
     const tax = calculateTax(subtotal, taxRate);
     return subtotal + tax + shippingFee;
 };
+
+export const calculateDiscount = (price: number, discountPrice?: number): number => {
+    if (!discountPrice || discountPrice >= price) return 0; // No discount or invalid discount price
+    return Math.round(((price - discountPrice) / price) * 100);
+};

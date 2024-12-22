@@ -13,6 +13,7 @@ export interface Product {
     price: number;
     quantity: number;
     bestseller: boolean,
+    discount: boolean,
     discountPrice?: number; // Optional
     featured?: boolean; // Optional
     productSku?: string; // Optional
@@ -58,6 +59,10 @@ export interface Product {
       };
     };
   }
+
+export interface ProductCardProps {
+    product: Product; // Expect the whole product object
+}
 
 
 export interface ProductListProps {

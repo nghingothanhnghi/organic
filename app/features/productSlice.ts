@@ -41,6 +41,7 @@ export const fetchProducts = createAsyncThunk<
         price: product.attributes.price ?? 0, // Fallback to 0 if price is null or undefined
         quantity: product.attributes.quantity ?? 0, // Fallback to 0
         bestseller: product.attributes.bestseller ?? false,
+        discount: product.attributes.discount ?? false,
         discountPrice: product.attributes.discountPrice ?? 0,
         featured: product.attributes.featured ?? false,
         productSku: product.attributes.productSku ?? '',

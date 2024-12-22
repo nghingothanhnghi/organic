@@ -1,12 +1,25 @@
 // app/components/addToCartButton.tsx
-import React, { useState } from 'react';
-import { useAppDispatch } from '~/hooks';
+import React, { useState, useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '~/hooks';
 import { addToCart } from '~/features/cartSlice';
 import type { Product } from '~/types/product';
 
-const AddToCartButton: React.FC<{ product: Product }> = ({ product }) => {
+interface AddToCartButtonProps {
+  product: Product;
+  className?: string; // Optional className prop
+}
+
+const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, className }) => {
   const dispatch = useAppDispatch();
+  const cartItems = useAppSelector((state) => state.cart.items); 
   const [loading, setLoading] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+
+  useEffect(() => {
+    // Update the quantity from the cart state
+    const cartItem = cartItems.find((item) => item.id === product.id);
+    setQuantity(cartItem?.quantity || 0);
+  }, [cartItems, product.id]);
 
   const handleAddToCart = async () => {
     setLoading(true); // Start loading spinner
@@ -26,8 +39,9 @@ const AddToCartButton: React.FC<{ product: Product }> = ({ product }) => {
   return (
     <button
       onClick={handleAddToCart}
-      className={`w-full bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md ${loading ? 'cursor-not-allowed opacity-50' : 'hover:bg-green-700 hover:shadow-lg'
-        } transition duration-300`}
+      className={`w-full text-sm bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md ${
+        loading ? 'cursor-not-allowed opacity-50' : 'hover:bg-green-700 hover:shadow-lg'
+      } transition duration-300 ${className || ''}`}
       disabled={loading} // Disable button while loading
     >
       {loading ? (
@@ -54,6 +68,8 @@ const AddToCartButton: React.FC<{ product: Product }> = ({ product }) => {
           </svg>
           Adding...
         </div>
+      ) : quantity > 0 ? (
+        `(${quantity}) Added to Cart`
       ) : (
         'Add to Cart'
       )}
