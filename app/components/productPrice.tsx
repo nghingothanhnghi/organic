@@ -2,25 +2,23 @@
 import React from 'react';
 import { formatPrice } from '~/utils/formatPrice';
 
-interface ProductPriceProps {
-  price: number;
-  discountPrice?: number;  // Optional, for discounted price
-}
+import type { ProductPriceProps } from '~/types/product';
 
-const ProductPrice: React.FC<ProductPriceProps> = ({ price, discountPrice }) => {
+const ProductPrice: React.FC<ProductPriceProps> = ({ product, className }) => {
+  const { price, discountPrice } = product;
   return (
-    <p className="mt-3 text-lg font-semibold text-gray-800">
+    <div className={`mt-3 ${className || ''}`}>
       {discountPrice ? (
         // If there's a discount, display original price with a strikethrough and the discount price
-        <>
-          <span className="line-through text-red-500">{formatPrice(price)}</span>
-          <span className="text-lime-700 ml-2">{formatPrice(discountPrice)}</span>
-        </>
+          <div className='flex flex-col'>
+            <span className="line-through text-gray-400">{formatPrice(price)}</span>
+            <span className="text-lime-700">{formatPrice(discountPrice)}</span>
+          </div>
       ) : (
         // If there's no discount, simply display the original price in the discount color
         <span className="text-lime-700">{formatPrice(price)}</span>
       )}
-    </p>
+    </div>
   );
 };
 

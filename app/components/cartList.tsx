@@ -4,6 +4,7 @@ import { useAppSelector, useAppDispatch } from '~/hooks';
 import { updateQuantity, removeFromCart } from '~/features/cartSlice'; // Adjust the path to your slice
 import QuantityInput from './quantityInput';
 import ProductThumb from './productThumb';
+import ProductPrice from './productPrice';
 import { calculateSubtotal } from '~/utils/calculate';
 import { formatPrice } from '~/utils/formatPrice';
 import { useTranslation } from 'react-i18next';
@@ -37,7 +38,7 @@ const CartList: React.FC = () => {
                                     <h3 className="text-sm font-medium">
                                      {item.name} {isCheckoutPage && (<sup className='text-gray-500'>x{item.quantity}</sup>)}
                                     </h3>
-                                    <p className="text-xs text-gray-500"> {formatPrice(item.price)} each</p>
+                                    <ProductPrice product={item} className='text-xs'/>
                                     {!isCheckoutPage && (
                                         <>
                                             <QuantityInput
@@ -57,7 +58,7 @@ const CartList: React.FC = () => {
                             </div>
                             <div>
                                 <p className="text-sm font-semibold">
-                                    {formatPrice(calculateSubtotal(item.price, item.quantity))} {/* Format subtotal */}
+                                {formatPrice(calculateSubtotal(item.discountPrice || item.price, item.quantity))}
                                 </p>
                             </div>
                         </div>

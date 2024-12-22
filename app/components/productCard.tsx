@@ -26,7 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <div className="p-4">
                 <h3 className="text-sm font-semibold text-gray-900 truncate">{name}</h3>
                 {/* Price */}
-                <ProductPrice price={price} discountPrice={discountPrice} />
+                <ProductPrice product={product} />
             </div>
         </div>
     );

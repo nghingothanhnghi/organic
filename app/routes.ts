@@ -12,6 +12,7 @@ export default [
       route("store", "routes/store.tsx"), // Store page
       route("cart", "routes/cart.tsx"), // Cart page
       route("checkout", "routes/checkOut.tsx"), // Checkout page
+      route("order-check", "routes/orderCheck.tsx"), // Checkout page
     ]),
     route("about", "routes/about.tsx"),
     route("login", "routes/login.tsx"),

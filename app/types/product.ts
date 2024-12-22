@@ -64,6 +64,11 @@ export interface ProductCardProps {
     product: Product; // Expect the whole product object
 }
 
+// Props for the ProductPrice component
+export interface ProductPriceProps {
+  product: Product;
+  className?: string;
+}
 
 export interface ProductListProps {
     searchResults: Product[]; // Array of products

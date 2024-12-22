@@ -77,7 +77,7 @@ const TopNavBar = () => {
                         {/* Add more links as needed */}
                     </div>
                     <Link
-                        to="/register"
+                        to="/order-check"
                         className="px-2 py-1 flex items-center justify-center p-0.5 me-2 text-xs text-white rounded bg-orange-900 hover:bg-orange-800"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-3 me-2">

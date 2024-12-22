@@ -7,12 +7,18 @@ import UserShippingInfo from "~/components/checkoutProcess/userShippingInfo";
 import UserPaymentInfo from "~/components/checkoutProcess/userPaymentInfo";
 import UserConfirmInfo from "~/components/checkoutProcess/userConfirmInfo";
 import CartSummary from "~/components/cartSummary";
+import { submitOrder } from "~/features/checkOutSlice";
 
 const CheckOut = () => {
     const [currentStep, setCurrentStep] = useState(0);
     const [isValid, setIsValid] = useState(false);
     const [shippingData, setShippingData] = useState({});
     const [paymentData, setPaymentData] = useState({});
+
+    // Get cart items from the Redux store
+    const cartItems = useAppSelector((state) => state.cart.items);
+
+    const dispatch = useAppDispatch();
 
     const handleNext = () => {
         if (isValid && currentStep < steps.length - 1) {
@@ -28,9 +34,16 @@ const CheckOut = () => {
 
     // Define handleFinalSubmit before using it
     const handleFinalSubmit = (finalData: any) => {
-        // Combine all collected data and submit the final order
-        console.log('Final order submission:', finalData);
-        // Call backend API or handle the final submission here
+      // Combine all collected data (shipping, payment, and cart items)
+      const finalOrderData = {
+        cartItems, // Include cart items in the final order data
+        ...finalData, // Any additional data
+    };
+
+    console.log('Final order submission:', finalOrderData);
+
+    // Dispatch the action to submit the order with all the data
+    dispatch(submitOrder(finalOrderData));
     };
 
     const steps = [
@@ -49,7 +62,7 @@ const CheckOut = () => {
             content: (
                 <UserPaymentInfo
                     onNext={() => handleNext()}
-                    handlePrevious={handlePrevious} 
+                    handlePrevious={handlePrevious}
                     setIsValid={setIsValid}
                     setPaymentData={setPaymentData} // Pass the setter for payment data
                 />
@@ -82,7 +95,7 @@ const CheckOut = () => {
                     </div>
                     <div className="col-span-1 lg:col-span-4 w-full">
                         <CartList />
-                        <CartSummary taxRate={0} shippingFee={0}/>
+                        <CartSummary taxRate={0} shippingFee={0} />
                     </div>
                 </div>
             </div>

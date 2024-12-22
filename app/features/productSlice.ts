@@ -42,7 +42,7 @@ export const fetchProducts = createAsyncThunk<
         quantity: product.attributes.quantity ?? 0, // Fallback to 0
         bestseller: product.attributes.bestseller ?? false,
         discount: product.attributes.discount ?? false,
-        discountPrice: product.attributes.discountPrice ?? 0,
+        discountPrice: product.attributes.discount_price ?? 0,
         featured: product.attributes.featured ?? false,
         productSku: product.attributes.productSku ?? '',
         availableStartDate: product.attributes.availableStartDate ?? null,

@@ -20,17 +20,6 @@ const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-        // addToCart: (state, action: PayloadAction<Product>) => {
-        //     const itemIndex = state.items.findIndex((item) => item.id === action.payload.id);
-        //     if (itemIndex !== -1) {
-        //         state.items[itemIndex].quantity += 1;
-        //         toast.info(`Increased quantity of ${action.payload.name} in the cart.`);
-        //     } else {
-        //         state.items.push({ ...action.payload, quantity: 1 });
-        //         toast.success(`${action.payload.name} added to the cart.`);
-        //     }
-        //     updateSessionStorage(state.items);
-        // },
         addToCart: (state, action: PayloadAction<Product>) => {
             const { id, price, discountPrice, name } = action.payload;
             // Calculate the finalPrice, using discountPrice if available
