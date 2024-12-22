@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useAppSelector } from "~/hooks";
 import CartList from "./cartList";
@@ -18,13 +18,23 @@ const CartOffCanvas: React.FC<CartOffCanvasProps> = ({
   closeCart,
 }) => {
   const {t} = useTranslation();
+  
   const navigate = useNavigate();
   const cartItems = useAppSelector((state) => state.cart.items); // Get cart items from Redux
+
   const isCartEmpty = cartItems.length === 0; // Check if the cart is empty
+
+  
+
   const handleNavigateToStore = () => {
     closeCart(); // Close the cart before navigating
     navigate("/store"); // Adjust the path based on your routing setup
   };
+  
+
+
+
+
   return (
     <>
       {/* Cart Off-canvas */}

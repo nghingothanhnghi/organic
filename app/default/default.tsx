@@ -6,6 +6,7 @@ import ProductBestSellers from '~/components/productBestSellers';
 import { useAppDispatch, useAppSelector } from "~/hooks";
 import { fetchProducts, setFilters } from '~/features/productSlice';
 import AboutContent from '~/components/cmsContent/aboutContent';
+import WarrantyContent from '~/components/cmsContent/warrantyContent';
 
 const slideData = [
   {
@@ -65,6 +66,7 @@ const Default = () => {
         onSlideChange={handleSlideChange}
         onSwiper={handleSwiperInstance}
       />
+      <WarrantyContent/>
       <AboutContent />
       {/* Bestsellers Carousel */}
       <ProductBestSellers

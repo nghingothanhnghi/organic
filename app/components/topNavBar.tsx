@@ -36,10 +36,10 @@ const TopNavBar = () => {
                         }
                     >
                         <li className="px-3 py-2 hover:bg-gray-100">
-                            <a href="/language/en">English</a>
+                            <a href="/language/en">TPHCM</a>
                         </li>
                         <li className="px-3 py-2 hover:bg-gray-100">
-                            <a href="/language/vn">Vietnamese</a>
+                            <a href="/language/vn">Ha Noi</a>
                         </li>
                         {/* Add more language options here */}
                     </Dropdown>
@@ -66,11 +66,13 @@ const TopNavBar = () => {
                 <div className="flex items-center space-x-3">
                     {/* Navigation Links */}
                     <div className="flex items-center space-x-3">
-                        <a href="/about" className="text-xs hover:text-gray-400 ">
-                            About
-                        </a>
-                        <a href="/contact" className="text-xs hover:text-gray-400">
-                            Contact
+                        <a href="/contact" className="text-xs text-orange-300 hover:text-orange-400 flex items-center gap-1">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                            </svg>
+
+                            Hotline: +84 906 533 607
                         </a>
                         {/* Add more links as needed */}
                     </div>

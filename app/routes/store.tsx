@@ -54,7 +54,6 @@ const Store = () => {
         description="Browse our products and make your purchase!"
       />
       <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
-
         <ProductFilter onFilterChange={handleFilterChange} />
         <ProductDisplay
           products={products}

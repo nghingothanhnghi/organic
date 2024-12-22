@@ -4,17 +4,16 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Product } from '~/types/product';
 import type { CartItem, CartState } from '~/types/cart';
 import { toast } from 'react-toastify';
-
-// Helper function to update sessionStorage safely
-const updateSessionStorage = (items: CartItem[]) => {
-    if (typeof window !== 'undefined') {  // Check if window is defined (browser environment)
-        sessionStorage.setItem('cartItems', JSON.stringify(items));
-    }
-};
+import { safeSessionStorage } from '~/utils/storage';
 
 // Load cart items from sessionStorage if they exist
 const initialState: CartState = {
-    items: typeof window !== 'undefined' ? JSON.parse(sessionStorage.getItem('cartItems') || '[]') : [],
+    items: safeSessionStorage.getItem('cartItems') ? JSON.parse(safeSessionStorage.getItem('cartItems') || '[]') : [],
+};
+
+// Helper function to update sessionStorage safely
+const updateSessionStorage = (items: CartItem[]) => {
+    safeSessionStorage.setItem('cartItems', JSON.stringify(items));
 };
 
 const cartSlice = createSlice({
@@ -49,9 +48,7 @@ const cartSlice = createSlice({
         },
         clearCart: (state) => {
             state.items = [];
-            if (typeof window !== 'undefined') {  // Check if window is defined (browser environment)
-                sessionStorage.removeItem('cartItems');
-            }
+            safeSessionStorage.removeItem('cartItems');
             toast.error('Cart cleared.');
         },
     },

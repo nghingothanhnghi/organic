@@ -39,7 +39,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
                         value={searchName}
                         onChange={handleSearchChange}
                         placeholder="Enter product name"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="h-10 rounded border-gray-300 text-sm"
                     />
                 </div>
                 <div>
@@ -47,7 +47,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
                     <select
                         value={category}
                         onChange={handleCategoryChange}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="h-10 rounded border-gray-300 text-sm"
                     >
                         <option value="">Select Category</option>
                         <option value="electronics">Electronics</option>
@@ -61,7 +61,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
                     <select
                         value={priceRange}
                         onChange={handlePriceRangeChange}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="h-10 rounded border-gray-300 text-sm"
                     >
                         <option value="">Select Price Range</option>
                         <option value="low">Low</option>
