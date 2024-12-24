@@ -1,9 +1,9 @@
 // routes/orderCheck.tsx
 import type { Route } from "./+types/orderCheck";
 import React, { useEffect, useState } from 'react';
+import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { fetchOrders, setFilters } from "~/features/orderSlice";
-import Hero from "~/components/hero";
 import Breadcrumb from "~/components/breadcrumb";
 import { useTranslation } from "react-i18next";
 import { formatPrice } from "~/utils/formatPrice";
@@ -22,7 +22,7 @@ const OrderCheck = () => {
   const { t } = useTranslation();
   const breadcrumbItems = [
     { label: t("page_title.home"), path: '/' },
-    { label: t("page_title.store"), path: '/products' },
+    { label: t("page_title.store"), path: '/order-check' },
   ];
 
   const dispatch = useAppDispatch();
@@ -40,22 +40,23 @@ const OrderCheck = () => {
 
     // Prevent submission when the search input is empty
     if (!trimmedQuery) {
+      toast.warn("Please enter a search term before searching.")
       console.log("Search query is empty. Please enter a value.");
       return;
     }
-  
+
     // Check if the search query matches the current filter to prevent redundant requests
     if (filters.purchaseOrder === trimmedQuery) {
       console.log("Search query matches current data. Skipping request.");
       return;
     }
-  
+
     const updatedFilters = { ...filters, purchaseOrder: trimmedQuery };
-  
+
     dispatch(setFilters(updatedFilters));
     dispatch(fetchOrders({ page: currentPage, pageSize, filters: updatedFilters }));
   };
-  
+
   // Define actions for buttons
   const handleView = (row: any) => {
     console.log("View button clicked for:", row);
@@ -128,24 +129,28 @@ const OrderCheck = () => {
   return (
     <div className="store-container">
       <Breadcrumb items={breadcrumbItems} />
-      <Hero
-        title="Welcome to the OrderCheck"
-        description="Browse our products and make your purchase!"
-      />
       <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
+        <h1 className="text-2xl font-bold mb-4">Kiểm tra đơn hàng</h1>
         {/* Search Input */}
         <div className="flex space-x-2 justify-center mb-4">
           <input
             type="text"
             value={searchQuery}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearchClick(); // Trigger search on Enter key press
+              }
+            }}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by Purchase Order..."
             className="w-96 h-10 rounded border-gray-300 text-sm"
           />
           <button
             onClick={handleSearchClick}
-            className="px-4 py-2 bg-blue-500 text-white rounded shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          >Search</button>
+            className="px-4 py-2 text-white rounded shadow-sm bg-green-600 hover:bg-green-500"
+          >
+            Kiểm tra
+          </button>
         </div>
 
         {loading &&

@@ -2,11 +2,12 @@
 import React from 'react';
 import ProductThumb from './productThumb';
 import ProductPrice from './productPrice';
+import ProductDiscount from './productDiscount';
 import AddToCartButton from "./addToCartButton";
 import type { ProductCardProps } from '~/types/product';
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-    const { name, price, discount, discountPrice } = product;
+    const { name } = product;
     return (
         <div className="bg-white rounded-lg shadow-lg overflow-hidden transition transform hover:scale-105 hover:shadow-xl group">
             {/* Image Section */}
@@ -16,11 +17,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 <div className="mt-4 absolute bottom-0 left-0 w-full translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                     <AddToCartButton product={product} className=' rounded-none' />
                 </div>
-                <span
-                    className="absolute -right-px -top-px rounded-bl-2lg rounded-tr-2lg bg-rose-600 px-2 py-2 text-xs font-medium uppercase tracking-widest text-white"
-                >
-                    Save 10%
-                </span>
+                {/* Discount Badge */}
+                <ProductDiscount product={product}/>
             </div>
             {/* Content Section */}
             <div className="p-4">

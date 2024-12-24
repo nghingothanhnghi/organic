@@ -1,6 +1,7 @@
 import type { Route } from "./+types/cart";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "~/hooks";
+import Breadcrumb from "~/components/breadcrumb";
 import CartList from "~/components/cartList";
 import StepWizard from "~/components/stepWizard";
 import UserShippingInfo from "~/components/checkoutProcess/userShippingInfo";
@@ -8,8 +9,14 @@ import UserPaymentInfo from "~/components/checkoutProcess/userPaymentInfo";
 import UserConfirmInfo from "~/components/checkoutProcess/userConfirmInfo";
 import CartSummary from "~/components/cartSummary";
 import { submitOrder } from "~/features/checkOutSlice";
+import { useTranslation } from "react-i18next";
 
 const CheckOut = () => {
+    const { t } = useTranslation();
+    const breadcrumbItems = [
+        { label: t("page_title.home"), path: '/' },
+        { label: t("page_title.checkout"), path: '/checkout' },
+      ];
     const [currentStep, setCurrentStep] = useState(0);
     const [isValid, setIsValid] = useState(false);
     const [shippingData, setShippingData] = useState({});
@@ -82,8 +89,9 @@ const CheckOut = () => {
     ];
     return (
         <div className="CheckOut-container">
+            <Breadcrumb items={breadcrumbItems} />
             <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
-                <h1 className="text-2xl font-bold mb-4">CheckOut</h1>
+                <h1 className="text-2xl font-bold mb-4">Các bước thanh toán</h1>
                 <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 lg:gap-8 w-full">
                     <div className="col-span-1 lg:col-span-6 w-full lg:pe-10">
                         <StepWizard
