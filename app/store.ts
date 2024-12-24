@@ -3,6 +3,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 // Import your reducers here
+import pageReducer from "~/features/pageSlice"
 import authReducer from '~/features/authSlice'
 import cartReducer from '~/features/cartSlice'
 import checkoutReducer from '~/features/checkOutSlice'
@@ -12,6 +13,7 @@ import contentReducer from '~/features/contentSlice'
 
 export const store = configureStore({
   reducer: {
+    pages: pageReducer,
     cart: cartReducer, // This will be your cart reducer (you can add more slices here)
     checkout: checkoutReducer,
     orders: orderReducer,
