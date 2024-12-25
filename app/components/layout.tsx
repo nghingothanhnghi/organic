@@ -10,7 +10,14 @@ const Layout = () => {
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
 
-    const { loading } = useAppSelector(state => state.pages); // Access the loading state from Redux
+    const { pages, loading } = useAppSelector(state => state.pages); // Access the loading state from Redux
+
+      // Filter pages by username after fetching the data
+  const filteredPages = pages.filter(page => 
+    page.users_permissions_user?.username === "abc@gmail.com"
+  );
+
+  console.log ("Filter Page by username: ", pages)
 
     // Fetch pages when the Layout component is first mounted
     useEffect(() => {

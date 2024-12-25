@@ -34,6 +34,7 @@ const SwiperLayout: React.FC<SwiperLayoutProps> = ({
 
     return (
         <Swiper
+        direction="horizontal" 
             modules={[Pagination, Scrollbar]}
             pagination={{
                 clickable: true, // Make pagination clickable

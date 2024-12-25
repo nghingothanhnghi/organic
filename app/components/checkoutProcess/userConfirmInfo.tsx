@@ -21,18 +21,12 @@ const UserConfirmInfo: React.FC<UserConfirmInfoProps> = ({ setIsValid, shippingD
         onSubmit: (values) => {
             // Handle form submission (final confirmation of the order)
             console.log(values);
-             // Combine all collected data
-            //  const finalData = {
-            //     ...shippingData,
-            //     ...paymentData,
-            //     ...values, // Contains terms and conditions confirmation
-            // };
-                        // Combine all collected data into one object
-                        const finalData = {
-                            shipping: { ...shippingData },  // Spread shippingData
-                            payment: { ...paymentData },  // Spread paymentData
-                            termsAndConditions: values.termsAndConditions,  // Include terms and conditions confirmation
-                        };
+            // Combine all collected data into one object
+            const finalData = {
+                shipping: { ...shippingData },  // Spread shippingData
+                payment: { ...paymentData },  // Spread paymentData
+                termsAndConditions: values.termsAndConditions,  // Include terms and conditions confirmation
+            };
             onSubmit(finalData); // Call parent's submit function
         },
     });

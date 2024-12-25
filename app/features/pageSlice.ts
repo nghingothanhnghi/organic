@@ -61,7 +61,7 @@ const pageSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchPages.fulfilled, (state, action: PayloadAction<any>) => {
+            .addCase(fetchPages.fulfilled, (state, action) => {
                 state.loading = false;
                 state.pages = action.payload.pages; // Flattened and formatted pages
                 state.pagination = action.payload.pagination;

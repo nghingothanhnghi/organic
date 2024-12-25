@@ -10,6 +10,8 @@ import { formatPrice } from "~/utils/formatPrice";
 import DataGrid from "~/components/dataGrid/dataGrid";
 import ActionButtons from "~/components/dataGrid/actionButton";
 import LoadingComp from "~/components/loadingComp";
+import Modal from "~/components/modal";
+import ShareButton from "~/components/shareButton";
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -35,6 +37,11 @@ const OrderCheck = () => {
   // Local state for the search input
   const [searchQuery, setSearchQuery] = useState<string>('');
 
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState<any | null>(null); // Holds the data of the selected order
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+
   const handleSearchClick = () => {
     const trimmedQuery = searchQuery.trim();
 
@@ -57,8 +64,27 @@ const OrderCheck = () => {
     dispatch(fetchOrders({ page: currentPage, pageSize, filters: updatedFilters }));
   };
 
+  // Modal open and close handlers
+  const openModal = (order: any) => {
+    setSelectedOrder(order);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setIsShareModalOpen(false); // Close both modals
+    setSelectedOrder(null);
+  };
+
+
+  const openShareModal = (order: any) => {
+    setSelectedOrder(order);
+    setIsShareModalOpen(true); // Open the share modal
+  };
+
   // Define actions for buttons
   const handleView = (row: any) => {
+    openModal(row); // Open modal with selected order data
     console.log("View button clicked for:", row);
   };
 
@@ -67,6 +93,7 @@ const OrderCheck = () => {
   };
 
   const handleShare = (row: any) => {
+    openShareModal(row); // Open modal with share options
     console.log("Share button clicked for:", row);
   };
 
@@ -166,6 +193,61 @@ const OrderCheck = () => {
           pagination={true}
           paginationPageSize={pageSize}
           onRowClicked={handleRowClicked}
+          height="200px"
+        />
+        {/* Modal for viewing order details */}
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          title={`Order ID: ${selectedOrder?.id}`}
+          content={
+            <div>
+              <p><strong>Purchase Order:</strong> {selectedOrder?.purchaseOrder}</p>
+              <p><strong>Total Amount:</strong> {formatPrice(selectedOrder?.totalAmount)}</p>
+              <p><strong>Shipping Details:</strong> {selectedOrder?.shippingDetails}</p>
+              <p><strong>Status:</strong> {selectedOrder?.status}</p>
+            </div>
+          }
+          actions={
+            <>
+              <button onClick={closeModal} className="px-4 py-2 bg-red-500 text-white rounded-md mr-2">Close</button>
+              <button onClick={() => alert('Print action')} className="px-4 py-2 bg-blue-500 text-white rounded-md">Print</button>
+            </>
+          }
+        />
+        {/* Modal for sharing */}
+        <Modal
+          isOpen={isShareModalOpen}
+          onClose={closeModal}
+          title={`Share Order ID: ${selectedOrder?.id}`}
+          content={
+            <div>
+              <p><strong>Purchase Order:</strong> {selectedOrder?.purchaseOrder}</p>
+              <p><strong>Total Amount:</strong> {formatPrice(selectedOrder?.totalAmount)}</p>
+              <div className="share-options space-y-2">
+                <ShareButton
+                  platform="messenger"
+                  message={`Check out this order: ${selectedOrder?.purchaseOrder}`}
+                  url={`http://example.com/order/${selectedOrder?.id}`}
+                />
+                <ShareButton
+                  platform="whatsapp"
+                  message={`Check out this order: ${selectedOrder?.purchaseOrder}`}
+                  url={`http://example.com/order/${selectedOrder?.id}`}
+                />
+                <ShareButton
+                  platform="zalo"
+                  message={`Check out this order: ${selectedOrder?.purchaseOrder}`}
+                  url={`http://example.com/order/${selectedOrder?.id}`}
+                />
+              </div>
+            </div>
+          }
+          actions={
+            <>
+              <button onClick={closeModal} className="px-4 py-2 bg-red-500 text-white rounded-md mr-2">Close</button>
+            </>
+          }
         />
       </div>
     </div>

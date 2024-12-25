@@ -2,6 +2,7 @@
 import React, {useEffect} from 'react';
 import { useFormik } from 'formik';
 import { userShippingValidationSchema } from '~/validation/userShippingValidation';
+import LocationSelector from '../locationSelector';
 
 interface UserShippingInfoProps {
     onNext: () => void;
@@ -13,9 +14,13 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
     const formik = useFormik({
         initialValues: {
             name: '',
-            address: '',
             city: '',
             zip: '',
+            country: '',
+            district: '',
+            ward: '',
+            street: '',
+            postalCode: '',
         },
         validationSchema: userShippingValidationSchema,
         onSubmit: (values) => {
@@ -45,7 +50,7 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
                 />
                 {formik.errors.name && <div className="text-red-500 text-xs">{formik.errors.name}</div>}
             </div>
-            <div>
+            {/* <div>
                 <label htmlFor="address" className="block text-sm font-semibold text-gray-700 mb-2">Address</label>
                 <input
                     type="text"
@@ -55,7 +60,15 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
                     className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {formik.errors.address && <div className="text-red-500 text-xs">{formik.errors.address}</div>}
-            </div>
+            </div> */}
+            
+            {/* LocationSelector Component */}
+            <LocationSelector
+                values={formik.values}  // Pass down Formik's values
+                errors={formik.errors}  // Pass down Formik's errors
+                touched={formik.touched} // Pass down Formik's touched
+                handleChange={formik.handleChange} // Pass down Formik's handleChange
+            />
             <div>
                 <label htmlFor="city" className="block text-sm font-semibold text-gray-700 mb-2">City</label>
                 <input
