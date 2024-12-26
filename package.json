@@ -21,6 +21,7 @@
     "i18next": "^24.1.2",
     "i18next-browser-languagedetector": "^8.0.2",
     "i18next-http-backend": "^3.0.1",
+    "imask": "^7.6.1",
     "isbot": "^5.1.17",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

@@ -41,7 +41,7 @@ const UserConfirmInfo: React.FC<UserConfirmInfoProps> = ({ setIsValid, shippingD
             {/* Shipping Information Preview */}
             <div className="border-b pb-7 p-4 mb-4">
                 <h3 className="text-lg font-semibold text-gray-800 mb-3">Shipping Information</h3>
-                <p className='flex justify-between mb-2'><strong>Name:</strong> {shippingData.name}</p>
+                <p className='flex justify-between mb-2'><strong>Full Name:</strong> {shippingData.firstName} {shippingData.lastName}</p>
                 <p className='flex justify-between mb-2'><strong>Address:</strong> {shippingData.address}</p>
                 <p className='flex justify-between mb-2'><strong>City:</strong> {shippingData.city}</p>
                 <p className='flex justify-between mb-2'><strong>Postal Code:</strong> {shippingData.postalCode}</p>

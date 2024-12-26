@@ -8,15 +8,23 @@ interface ModalProps {
   title: string;                 // Modal title
   content: ReactNode;            // Content inside the modal (can be anything like text, form, etc.)
   actions: ReactNode;            // Actions (buttons) that will be displayed in the footer
+  size?: 'small' | 'medium' | 'large'; // Modal size (default is 'medium')
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, actions }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, actions, size = 'medium' }) => {
   // If the modal is not open, return null (don't render anything)
   if (!isOpen) return null;
 
+    // Set a dynamic class for the modal size
+    const modalSizeClasses = {
+      small: 'w-1/3',
+      medium: 'w-3/6',
+      large: 'w-4/5',
+    };
+
   return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg p-8 w-11/12 max-w-md">
+      <div className={`bg-white rounded-lg p-8 ${modalSizeClasses[size] || modalSizeClasses.medium} flex flex-col`}>
         <div className="flex justify-between items-center">
           <h3 className="text-xl font-semibold">{title}</h3>
           <button className="text-gray-500" onClick={onClose}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
@@ -24,7 +32,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, actions 
           </svg>
           </button>
         </div>
-        <div className="mt-4">
+        <div className="flex-grow overflow-y-auto mt-4">
           {content}
         </div>
         <div className="mt-4 flex justify-end">

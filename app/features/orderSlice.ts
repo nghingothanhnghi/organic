@@ -28,6 +28,7 @@ export const fetchOrders = createAsyncThunk<
         id: order.id,
         purchaseOrder: order.attributes.purchaseOrder,
         totalAmount: order.attributes.totalAmount,
+        status: order.attributes.status,
       }));
 
       const pagination: PaginationMeta = response.meta.pagination; // Extract pagination data

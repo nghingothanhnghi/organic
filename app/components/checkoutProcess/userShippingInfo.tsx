@@ -1,8 +1,9 @@
 // pp/components/checkoutProcess/userShippingInfo.tsx
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { userShippingValidationSchema } from '~/validation/userShippingValidation';
 import LocationSelector from '../locationSelector';
+import PhoneNumberInput from '../phoneNumberInput';
 
 interface UserShippingInfoProps {
     onNext: () => void;
@@ -13,13 +14,15 @@ interface UserShippingInfoProps {
 const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid, setShippingData }) => {
     const formik = useFormik({
         initialValues: {
-            name: '',
-            city: '',
-            zip: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            phoneNumber: '+84',
+            street: '',
             country: '',
+            city: '',
             district: '',
             ward: '',
-            street: '',
             postalCode: '',
         },
         validationSchema: userShippingValidationSchema,
@@ -32,36 +35,67 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
         },
     });
 
-        // Set validity when validation changes
-        useEffect(() => {
-            setIsValid(formik.isValid);
-        }, [formik.isValid]);
+    // Set validity when validation changes
+    useEffect(() => {
+        setIsValid(formik.isValid);
+    }, [formik.isValid]);
 
     return (
         <form onSubmit={formik.handleSubmit} className="space-y-6">
-            <div>
-                <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">Name</label>
-                <input
-                    type="text"
-                    name="name"
-                    onChange={formik.handleChange}
-                    value={formik.values.name}
-                    className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                {formik.errors.name && <div className="text-red-500 text-xs">{formik.errors.name}</div>}
+            <div className="grid grid-cols-2 gap-4">
+                <div>
+                    <label htmlFor="firstName" className="block text-sm font-semibold text-gray-700">First Name</label>
+                    <input
+                        type="text"
+                        name="firstName"
+                        onChange={formik.handleChange}
+                        value={formik.values.firstName}
+                        className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${formik.errors.firstName ? 'border-red-500' : ''
+                            }`}
+                    />
+                    {formik.errors.firstName && <div className="text-red-500 text-xs mt-1">{formik.errors.firstName}</div>}
+                </div>
+                <div>
+                    <label htmlFor="lastName" className="block text-sm font-semibold text-gray-700">Last Name</label>
+                    <input
+                        type="text"
+                        name="lastName"
+                        onChange={formik.handleChange}
+                        value={formik.values.lastName}
+                        className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${formik.errors.lastName ? 'border-red-500' : ''
+                            }`}
+                    />
+                    {formik.errors.lastName && <div className="text-red-500 text-xs mt-1">{formik.errors.lastName}</div>}
+                </div>
+
+
+
             </div>
-            {/* <div>
-                <label htmlFor="address" className="block text-sm font-semibold text-gray-700 mb-2">Address</label>
-                <input
-                    type="text"
-                    name="address"
+
+            <div className="grid grid-cols-2 gap-4">
+                <div>
+                    <label htmlFor="email" className="block text-sm font-semibold text-gray-700">Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        onChange={formik.handleChange}
+                        value={formik.values.email}
+                        className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${formik.errors.email ? 'border-red-500' : ''
+                            }`}
+                    />
+                    {formik.errors.email && <div className="text-red-500 text-xs mt-1">{formik.errors.email}</div>}
+                </div>
+
+                {/* Reusable Phone Number Input */}
+                <PhoneNumberInput
+                    name="phoneNumber"
+                    value={formik.values.phoneNumber}
                     onChange={formik.handleChange}
-                    value={formik.values.address}
-                    className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    label="Phone Number"
+                    error={formik.errors.phoneNumber}
                 />
-                {formik.errors.address && <div className="text-red-500 text-xs">{formik.errors.address}</div>}
-            </div> */}
-            
+            </div>
+
             {/* LocationSelector Component */}
             <LocationSelector
                 values={formik.values}  // Pass down Formik's values
@@ -69,28 +103,6 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
                 touched={formik.touched} // Pass down Formik's touched
                 handleChange={formik.handleChange} // Pass down Formik's handleChange
             />
-            <div>
-                <label htmlFor="city" className="block text-sm font-semibold text-gray-700 mb-2">City</label>
-                <input
-                    type="text"
-                    name="city"
-                    onChange={formik.handleChange}
-                    value={formik.values.city}
-                    className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                {formik.errors.city && <div className="text-red-500 text-xs">{formik.errors.city}</div>}
-            </div>
-            <div>
-                <label htmlFor="zip" className="block text-sm font-semibold text-gray-700 mb-2">Zip</label>
-                <input
-                    type="text"
-                    name="zip"
-                    onChange={formik.handleChange}
-                    value={formik.values.zip}
-                    className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                {formik.errors.zip && <div className="text-red-500 text-xs">{formik.errors.zip}</div>}
-            </div>
             <div className="flex justify-end">
                 <button
                     type="submit"
