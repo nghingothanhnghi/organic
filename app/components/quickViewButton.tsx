@@ -7,16 +7,15 @@ import QuantityInput from './quantityInput';
 import ProceedToCheckoutButton from './proceedToCheckoutButton';
 import AddToCartButton from './addToCartButton';
 import type { ProductCardProps } from '~/types/product';
-import { useAppDispatch } from '~/hooks'
-import { addToCart, updateQuantity } from '~/features/cartSlice';
+import { useAppSelector, useAppDispatch } from '~/hooks';
+import { updateQuantity } from '~/features/cartSlice'; // Adjust the path to your slice
 
 interface QuickViewButtonProps {
     product: ProductCardProps['product'];
 }
 
 const QuickViewButton: React.FC<QuickViewButtonProps> = ({ product }) => {
-    const dispatch = useAppDispatch();
-    const { name, description, id } = product;
+    const { name, description } = product;
     const [isQuickViewOpen, setQuickViewOpen] = useState(false);
     const [quantity, setQuantity] = useState(1); // Set initial quantity
 
@@ -44,21 +43,22 @@ const QuickViewButton: React.FC<QuickViewButtonProps> = ({ product }) => {
                 content={
                     <div className='grid grid-cols-1 sm:grid-cols-2 gap-7'>
                         <div className="relative overflow-hidden">
-                        <ProductDiscount product={product}/>
+                            <ProductDiscount product={product} />
                             <ProductThumb product={product} className="object-cover w-full h-full" width={400} height={400} />
                         </div>
                         <div className='sm:col-span-1'>
                             <h4 className="text-lg font-bold">{name}</h4>
-                            <ProductPrice product={product}/>
-                            <QuantityInput 
-                                value={quantity} 
-                                min={1} 
-                                onChange={handleQuantityChange} 
+                            <ProductPrice product={product} />
+                            <QuantityInput
+                                value={quantity}
+                                min={1}
+                                onChange={handleQuantityChange}
                             />
-                                  <AddToCartButton
-                            product={product} 
-                            className="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600"
-                        />
+                            <AddToCartButton
+                                product={product}
+                                className="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600"
+                            />
+                            <ProceedToCheckoutButton closeCart={handleQuickViewClose} />
                             <p className="text-gray-700 mt-2" dangerouslySetInnerHTML={{ __html: description }} />
                         </div>
                     </div>
