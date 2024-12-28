@@ -22,7 +22,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({ taxRate, shippingFee }) => {
     const total = calculateFinalTotal(cartItems, taxRate, shippingFee);
 
     return (
-        <div className="cart-summary p-4 border rounded-md space-y-2">
+        <div className="cart-summary p-4 mt-4 border rounded-md space-y-2">
             {/* Display subtotal */}
             <p className="flex justify-between text-sm font-medium">
                 <span>Subtotal:</span> {formatPrice(subtotal)}

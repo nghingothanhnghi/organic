@@ -40,16 +40,20 @@ const UserConfirmInfo: React.FC<UserConfirmInfoProps> = ({ setIsValid, shippingD
         <form onSubmit={formik.handleSubmit} className="space-y-6">
             {/* Shipping Information Preview */}
             <div className="border-b pb-7 p-4 mb-4">
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">Shipping Information</h3>
+                <h3 className="text-lg font-semibold text-gray-500 mb-3">Shipping Information</h3>
                 <p className='flex justify-between mb-2'><strong>Full Name:</strong> {shippingData.firstName} {shippingData.lastName}</p>
-                <p className='flex justify-between mb-2'><strong>Address:</strong> {shippingData.address}</p>
+                <p className='flex justify-between mb-2'><strong>Street:</strong> {shippingData.address}</p>
+                <p className='flex justify-between mb-2'><strong>Country:</strong> {shippingData.country}</p>
                 <p className='flex justify-between mb-2'><strong>City:</strong> {shippingData.city}</p>
+                <p className='flex justify-between mb-2'><strong>District:</strong> {shippingData.district}</p>
+                <p className='flex justify-between mb-2'><strong>Ward:</strong> {shippingData.ward}</p>
                 <p className='flex justify-between mb-2'><strong>Postal Code:</strong> {shippingData.postalCode}</p>
             </div>
 
             {/* Payment Information Preview */}
             <div className="border-b pb-5 p-4 mb-4">
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">Payment Information</h3>
+                <h3 className="text-lg font-semibold text-gray-500 mb-3">Payment Information</h3>
+                <p className='flex justify-between mb-2'><strong>Payment Method:</strong></p>
                 <p className='flex justify-between mb-2'><strong>Card Number:</strong> **** **** **** {paymentData?.cardNumber?.slice(-4) || 'N/A'}</p>
                 <p className='flex justify-between mb-2'><strong>Expiration Date:</strong> {paymentData.expirationDate}</p>
             </div>

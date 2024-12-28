@@ -15,20 +15,21 @@ interface StepWizardProps {
 }
 
 const StepWizard: React.FC<StepWizardProps> = ({ steps, currentStep, handleNext, handlePrevious }) => {
+    const totalSteps = steps.length;
+    const progressPercentage = ((currentStep + 1) / totalSteps) * 100;
     return (
         <div className="step-wizard">
-            <div className="flex justify-between mb-6 border rounded">
-                {steps.map((step, index) => (
+            <div className="mb-6">
+                <p className="text-xs font-medium text-gray-500">
+                    {currentStep + 1}/{totalSteps} - {steps[currentStep]?.title}
+                </p>
+                <div className="mt-4 overflow-hidden rounded-full bg-gray-200">
                     <div
-                        key={index}
-                        className={`flex-1 text-center transition-all ${index <= currentStep ? 'text-green-600' : 'text-gray-400'}`}
-                    >
-                        <div className="py-2 text-sm font-semibold">{step.title}</div>
-                        {index < currentStep && <div className="h-1 bg-green-600"></div>}
-                    </div>
-                ))}
+                        className="h-2 rounded-full bg-blue-500 transition-all duration-300"
+                        style={{ width: `${progressPercentage}%` }}
+                    ></div>
+                </div>
             </div>
-
             <div className="space-y-6">
                 {steps.map((step, index) => (
                     <div

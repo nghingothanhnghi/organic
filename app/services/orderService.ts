@@ -28,3 +28,19 @@ export const fetchOrdersAPI = async (
   const response = await axiosPrivate.get(`/orders?${params.toString()}`);
   return response.data; // Assuming the API returns the product data
 };
+
+
+export const createOrderAPI = async (orderData: Record<string, any>) => {
+  try {
+    const response = await axiosPrivate.post('/orders', {
+      data: orderData,
+    });
+    return response.data; // Assuming the API returns the created order data
+  } catch (error: any) {
+    // Handle and rethrow errors
+    if (error.response && error.response.data) {
+      throw new Error(error.response.data.message || 'Failed to create order.');
+    }
+    throw error;
+  }
+};

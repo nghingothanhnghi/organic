@@ -6,6 +6,7 @@ import ProductPrice from './productPrice';
 import QuantityInput from './quantityInput';
 import ProceedToCheckoutButton from './proceedToCheckoutButton';
 import AddToCartButton from './addToCartButton';
+import ProductVariantSelector from './productVariantSelector';
 import type { ProductCardProps } from '~/types/product';
 import { useAppSelector, useAppDispatch } from '~/hooks';
 import { updateQuantity } from '~/features/cartSlice'; // Adjust the path to your slice
@@ -15,9 +16,13 @@ interface QuickViewButtonProps {
 }
 
 const QuickViewButton: React.FC<QuickViewButtonProps> = ({ product }) => {
-    const { name, description } = product;
+    const { name, description, variants } = product;
     const [isQuickViewOpen, setQuickViewOpen] = useState(false);
     const [quantity, setQuantity] = useState(1); // Set initial quantity
+
+    const [selectedVariantId, setSelectedVariantId] = useState<number | null>(
+        variants?.find((variant) => variant.isDefault)?.id || null
+    ); // Default to the first variant if available
 
     const handleQuickViewOpen = () => setQuickViewOpen(true);
     const handleQuickViewClose = () => setQuickViewOpen(false);
@@ -27,6 +32,13 @@ const QuickViewButton: React.FC<QuickViewButtonProps> = ({ product }) => {
             setQuantity(newQuantity); // Update quantity in local state
         }
     };
+
+    const handleVariantChange = (variantId: number) => {
+        console.log("Variant changed to:", variantId);
+        setSelectedVariantId(variantId);
+    };
+
+    const selectedVariant = variants?.find((variant) => variant.id === selectedVariantId);
 
     return (
         <>
@@ -48,7 +60,20 @@ const QuickViewButton: React.FC<QuickViewButtonProps> = ({ product }) => {
                         </div>
                         <div className='sm:col-span-1'>
                             <h4 className="text-lg font-bold">{name}</h4>
-                            <ProductPrice product={product} />
+                            <ProductPrice product={product} variant={selectedVariant} />
+                            {variants && variants.length > 0 && (
+                                <div className="mt-4">
+                                    <h5 className="text-sm font-semibold">Select Variant</h5>
+                                    <ProductVariantSelector
+                                        variants={variants}
+                                        selectedVariantId={selectedVariantId}
+                                        onVariantChange={(variantId) => {
+                                            console.log("Variant changed:", variantId); // Debug: Ensure correct variantId is logged
+                                            handleVariantChange(variantId);
+                                        }}
+                                    />
+                                </div>
+                            )}
                             <QuantityInput
                                 value={quantity}
                                 min={1}

@@ -29,6 +29,7 @@ export interface Product {
     productImg: ProductImage[];
     ratings: any[]; // Add a proper type based on your needs
     crossSellProducts?: Partial<Product>[];
+    variants?: ProductVariant[]; 
   }
   
   // Redux state interface
@@ -67,6 +68,7 @@ export interface ProductCardProps {
 // Props for the ProductPrice component
 export interface ProductPriceProps {
   product: Product;
+  variant?: ProductVariant;
   className?: string;
 }
 
@@ -75,6 +77,18 @@ export interface ProductListProps {
     viewMode: "grid" | "list"; // Controls layout
 }
 
+// Variant interface for product variants like color, size, etc.
+export interface ProductVariant {
+  id: number; // Unique identifier for the variant
+  name: string; // Name of the variant (e.g., "Color", "Size")
+  value: string; // Value of the variant (e.g., "Red", "Medium")
+  price?: number; // Optional price if the variant has a different price
+  stock: number; // Stock quantity of the variant
+  image: string | null;
+  media: ProductImage | null;
+  sku?: string; // Optional SKU for the variant
+  isDefault: boolean; // Whether this is the default variant selection
+}
 
 // Props for the Product Display component
 export interface ProductDisplayProps {

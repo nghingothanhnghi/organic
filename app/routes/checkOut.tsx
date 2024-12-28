@@ -1,5 +1,6 @@
 import type { Route } from "./+types/cart";
 import { useState } from "react";
+import { useNavigate } from 'react-router'; // Import useNavigate
 import { useAppDispatch, useAppSelector } from "~/hooks";
 import Breadcrumb from "~/components/breadcrumb";
 import CartList from "~/components/cartList";
@@ -8,15 +9,16 @@ import UserShippingInfo from "~/components/checkoutProcess/userShippingInfo";
 import UserPaymentInfo from "~/components/checkoutProcess/userPaymentInfo";
 import UserConfirmInfo from "~/components/checkoutProcess/userConfirmInfo";
 import CartSummary from "~/components/cartSummary";
-import { submitOrder } from "~/features/checkOutSlice";
+import { submitOrder, clearOrder } from "~/features/checkOutSlice";
 import { useTranslation } from "react-i18next";
 
 const CheckOut = () => {
+    const navigate = useNavigate();
     const { t } = useTranslation();
     const breadcrumbItems = [
         { label: t("page_title.home"), path: '/' },
         { label: t("page_title.checkout"), path: '/checkout' },
-      ];
+    ];
     const [currentStep, setCurrentStep] = useState(0);
     const [isValid, setIsValid] = useState(false);
     const [shippingData, setShippingData] = useState({});
@@ -41,16 +43,23 @@ const CheckOut = () => {
 
     // Define handleFinalSubmit before using it
     const handleFinalSubmit = (finalData: any) => {
-      // Combine all collected data (shipping, payment, and cart items)
-      const finalOrderData = {
-        cartItems, // Include cart items in the final order data
-        ...finalData, // Any additional data
-    };
+        // Combine all collected data (shipping, payment, and cart items)
+        const finalOrderData = {
+            cartItems, // Include cart items in the final order data
+            ...finalData, // Any additional data
+        };
 
-    console.log('Final order submission:', finalOrderData);
+        console.log('Final order submission:', finalOrderData);
 
-    // Dispatch the action to submit the order with all the data
-    dispatch(submitOrder(finalOrderData));
+        // Dispatch the action to submit the order with all the data
+        dispatch(submitOrder(finalOrderData));
+
+        // After the order is successfully placed, clear the cart
+        dispatch(clearOrder());
+
+        // Navigate to the order confirmation page or home page after successful order
+        navigate('/order-confirmation'); // Adjust the path as needed
+
     };
 
     const steps = [

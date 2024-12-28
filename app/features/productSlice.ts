@@ -65,7 +65,27 @@ export const fetchProducts = createAsyncThunk<
           createdAt: crossSell.attributes.createdAt,
           updatedAt: crossSell.attributes.updatedAt,
           slug: crossSell.attributes.slug,
-        })) ?? []
+        })) ?? [],
+        variants: product.attributes.variants?.data?.map((variant: any) => ({
+          id: variant.id,
+          name: variant.attributes.name,
+          price: variant.attributes.price,
+          stock: variant.attributes.stock,
+          image: product.attributes.image,
+          media: variant.attributes.media?.data?.[0] ? { // Flatten to a single image (assuming the first image is the desired one)
+            id: variant.attributes.media.data[0].id,
+            attributes: {
+              name: variant.attributes.media.data[0].attributes.name,
+              url: variant.attributes.media.data[0].attributes.url,
+              formats: variant.attributes.media.data[0].attributes.formats,
+            },
+          } : null, // If there's no media, set it to null
+          published: variant.attributes.published,
+          createdAt: variant.attributes.createdAt,
+          updatedAt: variant.attributes.updatedAt,
+          slug: variant.attributes.slug,
+          isDefault: variant.attributes.isDefault
+        })) ?? [],
       }));
 
       const pagination: PaginationMeta = response.meta.pagination; // Extract pagination data

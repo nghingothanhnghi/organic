@@ -4,8 +4,12 @@ import { formatPrice } from '~/utils/formatPrice';
 
 import type { ProductPriceProps } from '~/types/product';
 
-const ProductPrice: React.FC<ProductPriceProps> = ({ product, className }) => {
-  const { price, discountPrice } = product;
+const ProductPrice: React.FC<ProductPriceProps> = ({ product, className, variant }) => {
+  // const { price, discountPrice } = variant || product;
+
+    // Use the variant's price if available, otherwise fallback to the product's price
+    const price = variant?.price ?? product.price ?? 0; // Ensure a default value for price
+    const discountPrice = product.discountPrice; // Only the product has discountPrice
   return (
     <div className={`mt-3 ${className || ''}`}>
       {discountPrice ? (

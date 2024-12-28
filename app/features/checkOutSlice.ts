@@ -1,9 +1,10 @@
 // app/features/checkOutSlice.ts
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { CartItem } from '~/types/cart';
 import type { Order } from '~/types/order';
 import { toast } from 'react-toastify';
+import { createOrderAPI } from '~/services/orderService';
 
 interface CheckoutState {
     order: Order | null;
@@ -19,45 +20,51 @@ const initialState: CheckoutState = {
     success: false,
 };
 
+// Async thunk for creating an order
+export const createOrder = createAsyncThunk(
+    'checkout/createOrder',
+    async ({ items, shippingDetails }: { items: CartItem[]; shippingDetails: any }, { rejectWithValue }) => {
+        try {
+            const orderData = { items, shippingDetails };
+            const response = await createOrderAPI(orderData);
+            return response;
+        } catch (error: any) {
+            return rejectWithValue(error.message || 'Failed to create order');
+        }
+    }
+);
+
 const checkOutSlice = createSlice({
     name: 'checkout',
     initialState,
     reducers: {
-        // Start checkout process
         startCheckout: (state) => {
             state.loading = true;
             state.error = null;
             state.success = false;
         },
-        
-        // Submit the order
+
         submitOrder: (state, action: PayloadAction<{ items: CartItem[]; shippingDetails: any }>) => {
             state.loading = true;
             state.error = null;
-            // Simulate an API call or a real order submission
-            setTimeout(() => {
-                const { items, shippingDetails } = action.payload;
-                const orderData = {
-                    id: Date.now(), // Example ID, replace with backend response
-                    items,
-                    shippingDetails,
-                    status: 'Pending',
-                };
-                state.order = orderData;
-                state.loading = false;
-                state.success = true;
-                toast.success('Order successfully created!');
-            }, 1000); // Simulating a delay for order submission
+            const { items, shippingDetails } = action.payload;
+            state.order = {
+                id: Date.now(), // Temporary ID for client-side simulation
+                items,
+                shippingDetails,
+                status: 'Pending',
+            };
+            state.loading = false;
+            state.success = true;
+            toast.success('Order successfully created!');
         },
 
-        // Set error in case of failure
         setError: (state, action: PayloadAction<string>) => {
             state.loading = false;
             state.error = action.payload;
             toast.error(action.payload);
         },
 
-        // Clear order (reset the checkout process)
         clearOrder: (state) => {
             state.order = null;
             state.loading = false;
@@ -65,13 +72,36 @@ const checkOutSlice = createSlice({
             state.success = false;
         },
 
-        // Reset checkout state after success
         resetCheckoutState: (state) => {
             state.success = false;
             state.loading = false;
-        }
-    }
+        },
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(createOrder.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(createOrder.fulfilled, (state, action) => {
+                state.loading = false;
+                state.success = true;
+                state.order = action.payload;
+                toast.success('Order successfully created!');
+            })
+            .addCase(createOrder.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
+                toast.error(state.error);
+            });
+    },
 });
 
-export const { startCheckout, submitOrder, setError, clearOrder, resetCheckoutState } = checkOutSlice.actions;
+export const {
+    startCheckout,
+    submitOrder,
+    setError,
+    clearOrder,
+    resetCheckoutState,
+} = checkOutSlice.actions;
 export default checkOutSlice.reducer;
