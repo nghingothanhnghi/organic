@@ -64,7 +64,7 @@ const CheckOut = () => {
 
     const steps = [
         {
-            title: 'Shipping Info',
+            title: t("section_title.view_by_user_shipping_info.title"),
             content: (
                 <UserShippingInfo
                     onNext={() => handleNext()}
@@ -74,7 +74,7 @@ const CheckOut = () => {
             ),
         },
         {
-            title: 'Payment Info',
+            title: t("section_title.view_by_user_payment_info.title"),
             content: (
                 <UserPaymentInfo
                     onNext={() => handleNext()}
@@ -85,7 +85,7 @@ const CheckOut = () => {
             ),
         },
         {
-            title: 'Order Confirmation',
+            title: t("section_title.view_by_user_order_confirmation.title"),
             content: (
                 <UserConfirmInfo
                     setIsValid={setIsValid}

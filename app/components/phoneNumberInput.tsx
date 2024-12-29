@@ -26,10 +26,6 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({ value, onChange, na
         }
     }, []);
 
-    // This change handler will pass the event correctly
-    // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     onChange(e);
-    // };
     // This change handler will pass the event correctly and log the value
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log('Before masking:', e.target.value);

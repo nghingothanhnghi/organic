@@ -5,18 +5,26 @@ const Footer = () => {
     return (
         <footer className="bg-orange-950 text-slate-300 pt-10">
             <div className="container mx-auto px-6 pt-10">
-                {/* Logo */}
-                <div className="flex justify-center lg:justify-start mb-3">
-                    <img src={LogoImage} alt="Logo" className="h-10" />
+                <div className='grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16 mb-8'>
+                    <div className="col-span-2">
+                        {/* Logo */}
+                        <div className="flex justify-center lg:justify-start mb-3">
+                            <img src={LogoImage} alt="Logo" className="h-10" />
+                        </div>
+
+                        {/* Description about Organic */}
+                        <div className="text-center lg:text-start mb-10">
+                            <p className="text-white text-lg font-semibold">Committed to Organic Growth</p>
+                            <p className=" text-sm">
+                                We believe in the power of nature to provide high-quality, eco-friendly products that promote sustainability and health.
+                            </p>
+                        </div>
+                    </div>
+                    <div className="col-span-2 lg:col-span-3 lg:flex lg:items-end">
+
+                    </div>
                 </div>
 
-                {/* Description about Organic */}
-                <div className="text-start mb-10">
-                    <p className="text-white text-lg font-semibold">Committed to Organic Growth</p>
-                    <p className=" text-sm">
-                        We believe in the power of nature to provide high-quality, eco-friendly products that promote sustainability and health.
-                    </p>
-                </div>
 
                 {/* Footer Content */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">

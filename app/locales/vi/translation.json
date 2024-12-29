@@ -183,6 +183,15 @@
         },
         "view_by_accept_payment":{
             "accenpt_payment_title": "Chấp nhận thanh toán"
+        },
+        "view_by_user_shipping_info":{
+            "title": "Người nhận hàng"
+        },
+        "view_by_user_payment_info":{
+            "title": "Thông tin thanh toán"
+        },
+        "view_by_user_order_confirmation":{
+            "title": "Xác nhận đơn hàng"
         }
     },
     "category": {

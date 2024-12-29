@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useTransition } from 'react';
 import axios from 'axios';
 import locationData from '~/mocks/location.json'
+import { useTranslation } from 'react-i18next';
 
 // Assuming your locationData has a structure like this
 interface LocationData {
@@ -39,6 +40,7 @@ interface District {
 }
 
 const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, touched, handleChange }) => {
+  const {t} = useTranslation();
   const [countries, setCountries] = useState<Country[]>([]);
   const [cities, setCities] = useState<City[]>([]);
   const [districts, setDistricts] = useState<District[]>([]);
@@ -100,7 +102,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Country</label>
+        <label className="block text-sm font-medium text-gray-700">{t("select.country.label")}</label>
         <select
           name="country"
           value={values.country || ''}
@@ -109,7 +111,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
             touched.country && errors.country ? 'border-red-500' : ''
           }`}
         >
-          <option value="">Select a country</option>
+          <option value="">{t("select.country.placeholder")}</option>
           {countries.map((country) => (
             <option key={country.code} value={country.code}>
               {country.name}
@@ -121,7 +123,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700">City</label>
+          <label className="block text-sm font-medium text-gray-700">{t("select.city.label")}</label>
           <select
             name="city"
             value={values.city || ''}
@@ -131,7 +133,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
               touched.city && errors.city ? 'border-red-500' : ''
             }`}
           >
-            <option value="">Select a city</option>
+            <option value="">{t("select.country.placeholder")}</option>
             {cities.map((city) => (
               <option key={city.name} value={city.name}>
                 {city.name}
@@ -142,7 +144,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">District</label>
+          <label className="block text-sm font-medium text-gray-700">{t("select.dist.label")}</label>
           <select
             name="district"
             value={values.district || ''}
@@ -151,7 +153,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
               touched.district && errors.district ? 'border-red-500' : ''
             }`}
           >
-            <option value="">Select a district</option>
+            <option value="">{t("select.dist.placeholder")}</option>
             {districts.map((district) => (
               <option key={district.name} value={district.name}>
                 {district.name}
@@ -164,7 +166,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700">Ward</label>
+          <label className="block text-sm font-medium text-gray-700">{t("select.ward.label")}</label>
           <select
             name="ward"
             value={values.ward || ''}
@@ -173,7 +175,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
               touched.ward && errors.ward ? 'border-red-500' : ''
             }`}
           >
-            <option value="">Select a ward</option>
+            <option value="">{t("select.ward.placeholder")}</option>
             {wards.map((ward, index) => (
               <option key={index} value={ward}>
                 {ward}
@@ -184,7 +186,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">Postal Code</label>
+          <label className="block text-sm font-medium text-gray-700">{t("input.postalCode.label")}</label>
           <input
             type="text"
             name="postalCode"

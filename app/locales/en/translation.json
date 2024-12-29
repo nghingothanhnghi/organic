@@ -183,6 +183,15 @@
         },
         "view_by_accept_payment":{
             "accenpt_payment_title": "Payment Partners"
+        },
+        "view_by_user_shipping_info":{
+            "title": "Shipping Info"
+        },
+        "view_by_user_payment_info":{
+            "title": "Payment Info"
+        },
+        "view_by_user_order_confirmation":{
+            "title": "Order Confirmation"
         }
     },
     "category": {
