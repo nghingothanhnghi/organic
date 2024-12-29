@@ -70,6 +70,7 @@ export const fetchProducts = createAsyncThunk<
           id: variant.id,
           name: variant.attributes.name,
           price: variant.attributes.price,
+          discountPrice: variant.attributes.discountPrice,
           stock: variant.attributes.stock,
           image: product.attributes.image,
           media: variant.attributes.media?.data?.[0] ? { // Flatten to a single image (assuming the first image is the desired one)

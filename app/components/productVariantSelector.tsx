@@ -1,4 +1,5 @@
-import React,  {useEffect} from 'react';
+import React, { useEffect } from 'react';
+import ProductVariantThumb from './productVariantThumb';
 import type { ProductVariant } from '../types/product'; // Import type from shared definitions
 
 interface ProductVariantSelectorProps {
@@ -12,40 +13,56 @@ const ProductVariantSelector: React.FC<ProductVariantSelectorProps> = ({
   selectedVariantId,
   onVariantChange,
 }) => {
-  console.log("Variants:", variants); 
+  console.log("Variants:", variants);
   useEffect(() => {
     console.log("Selected variant ID:", selectedVariantId);
   }, [selectedVariantId]);
   return (
     <fieldset className="flex flex-wrap gap-3">
       <legend className="sr-only">Variants</legend>
+      {variants.map((variant) => {
+        const thumbUrl = variant.media?.attributes.formats.thumbnail.url || null;
 
-      {variants.map((variant) => (
-        <label
-          key={variant.id}
-          htmlFor={`variant-${variant.id}`}
-          className={`block size-8 cursor-pointer rounded-full shadow-sm ${
-            selectedVariantId === variant.id
-              ? 'ring-2 ring-black ring-offset-2'
-              : ''
-          }`}
-          style={{ backgroundColor: variant.value }} // Assuming `value` holds a color name or code
-        >
-          <input
-            type="radio"
-            name="variantOption"
-            value={variant.id}
-            id={`variant-${variant.id}`}
-            className="sr-only"
-            checked={selectedVariantId === variant.id}
-            onChange={() => {
-              console.log("Selected:", selectedVariantId, "Variant ID:", variant.id);
-              onVariantChange(variant.id);
-            }}
-          />
-          <span className="sr-only">{variant.name}</span>
-        </label>
-      ))}
+        return (
+          <label
+            key={variant.id}
+            htmlFor={`variant-${variant.id}`}
+            className={`flex items-center justify-center size-7 cursor-pointer rounded-full shadow-sm ${selectedVariantId === variant.id
+                ? 'ring-2 ring-black ring-offset-2'
+                : ''
+              }`}
+          >
+            <input
+              type="radio"
+              name="variantOption"
+              value={variant.id}
+              id={`variant-${variant.id}`}
+              className="sr-only"
+              checked={selectedVariantId === variant.id}
+              onChange={() => onVariantChange(variant.id)}
+            />
+            {thumbUrl ? (
+              // Display the thumbnail using ProductVariantThumb
+              <ProductVariantThumb variant={variant} className="h-8 w-8" />
+            ) : (
+              // Fallback if no image is available
+              <span
+                className='rounded-full'
+                style={{
+                  display: 'block',
+                  width: '24px',
+                  height: '24px',
+                  background: variant.image || '#ccc', // Use color or fallback
+                }}
+              >
+                {/* Accessible name */}
+                <span className="sr-only">{variant.name}</span>
+              </span>
+            )}
+          </label>
+        );
+      })}
+
     </fieldset>
   );
 };

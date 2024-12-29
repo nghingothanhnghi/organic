@@ -83,6 +83,7 @@ export interface ProductVariant {
   name: string; // Name of the variant (e.g., "Color", "Size")
   value: string; // Value of the variant (e.g., "Red", "Medium")
   price?: number; // Optional price if the variant has a different price
+  discountPrice?: number;
   stock: number; // Stock quantity of the variant
   image: string | null;
   media: ProductImage | null;

@@ -9,13 +9,16 @@ import AddToCartButton from './addToCartButton';
 import ProductVariantSelector from './productVariantSelector';
 import type { ProductCardProps } from '~/types/product';
 import { useAppSelector, useAppDispatch } from '~/hooks';
-import { updateQuantity } from '~/features/cartSlice'; // Adjust the path to your slice
+import { addToCart, updateQuantity } from '~/features/cartSlice';
 
 interface QuickViewButtonProps {
     product: ProductCardProps['product'];
 }
 
 const QuickViewButton: React.FC<QuickViewButtonProps> = ({ product }) => {
+
+
+
     const { name, description, variants } = product;
     const [isQuickViewOpen, setQuickViewOpen] = useState(false);
     const [quantity, setQuantity] = useState(1); // Set initial quantity
@@ -62,8 +65,7 @@ const QuickViewButton: React.FC<QuickViewButtonProps> = ({ product }) => {
                             <h4 className="text-lg font-bold">{name}</h4>
                             <ProductPrice product={product} variant={selectedVariant} />
                             {variants && variants.length > 0 && (
-                                <div className="mt-4">
-                                    <h5 className="text-sm font-semibold">Select Variant</h5>
+                                <div className="my-4">
                                     <ProductVariantSelector
                                         variants={variants}
                                         selectedVariantId={selectedVariantId}
@@ -78,10 +80,6 @@ const QuickViewButton: React.FC<QuickViewButtonProps> = ({ product }) => {
                                 value={quantity}
                                 min={1}
                                 onChange={handleQuantityChange}
-                            />
-                            <AddToCartButton
-                                product={product}
-                                className="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600"
                             />
                             <ProceedToCheckoutButton closeCart={handleQuickViewClose} />
                             <p className="text-gray-700 mt-2" dangerouslySetInnerHTML={{ __html: description }} />
