@@ -4,6 +4,10 @@ import type { PaginationMeta } from './pagination';
 
 export interface Order {
     id: number;
+    purchaseOrder: string;
+    createdAt?: string; // ISO Date
+    updatedAt?: string; // ISO Date
+    publishedAt?: string; // ISO Date
     items: CartItem[];
     shippingDetails: any; // Define this type based on your shipping info
     status: string;

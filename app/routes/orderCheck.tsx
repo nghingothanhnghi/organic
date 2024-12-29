@@ -11,6 +11,7 @@ import DataGrid from "~/components/dataGrid/dataGrid";
 import ActionButtons from "~/components/dataGrid/actionButton";
 import LoadingComp from "~/components/loadingComp";
 import Modal from "~/components/modal";
+import OrderProcessStatus from "~/components/orderProcessStatus";
 import ShareButton from "~/components/shareButton";
 
 export function meta({ }: Route.MetaArgs) {
@@ -201,11 +202,18 @@ const OrderCheck = () => {
           onClose={closeModal}
           title={`Order ID: ${selectedOrder?.id}`}
           content={
-            <div>
-              <p><strong>Purchase Order:</strong> {selectedOrder?.purchaseOrder}</p>
-              <p><strong>Total Amount:</strong> {formatPrice(selectedOrder?.totalAmount)}</p>
-              <p><strong>Shipping Details:</strong> {selectedOrder?.shippingDetails}</p>
-              <p><strong>Status:</strong> {selectedOrder?.status}</p>
+            <div className="flex">
+              <div>
+                <p><strong>Purchase Order:</strong> {selectedOrder?.purchaseOrder}</p>
+                <p><strong>Total Amount:</strong> {formatPrice(selectedOrder?.totalAmount)}</p>
+                <p><strong>Shipping Details:</strong> {selectedOrder?.shippingDetails}</p>
+              </div>
+              <div className="flex-initial w-64">
+                <OrderProcessStatus />
+              </div>
+              <div className="flex-initial w-32">
+
+              </div>
             </div>
           }
           actions={
