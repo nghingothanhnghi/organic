@@ -78,3 +78,8 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, className })
 };
 
 export default AddToCartButton;
+
+
+
+
+

@@ -202,18 +202,22 @@ const OrderCheck = () => {
           onClose={closeModal}
           title={`Order ID: ${selectedOrder?.id}`}
           content={
-            <div className="flex">
-              <div>
-                <p><strong>Purchase Order:</strong> {selectedOrder?.purchaseOrder}</p>
-                <p><strong>Total Amount:</strong> {formatPrice(selectedOrder?.totalAmount)}</p>
-                <p><strong>Shipping Details:</strong> {selectedOrder?.shippingDetails}</p>
+            <div className="flex flex-col">
+              <div className="mb-5">
+                <div className="flex">
+                  <div className="flex-auto w-64">
+                    <strong className="block">Purchase Order:</strong> 
+                    {selectedOrder?.purchaseOrder}
+                    </div>
+                  <div className="flex-auto w-14 text-end">
+                    <strong className="block">Total Amount:</strong> 
+                    {formatPrice(selectedOrder?.totalAmount)}
+                   </div>
+                </div>
               </div>
-              <div className="flex-initial w-64">
+              
                 <OrderProcessStatus />
-              </div>
-              <div className="flex-initial w-32">
-
-              </div>
+              
             </div>
           }
           actions={

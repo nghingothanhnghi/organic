@@ -3,7 +3,6 @@ import Modal from './modal'; // Import your Modal component
 import ProductThumb from './productThumb';
 import ProductDiscount from './productDiscount';
 import ProductPrice from './productPrice';
-import QuantityInput from './quantityInput';
 import ProceedToCheckoutButton from './proceedToCheckoutButton';
 import AddToCartButton from './addToCartButton';
 import ProductVariantSelector from './productVariantSelector';
@@ -16,12 +15,8 @@ interface QuickViewButtonProps {
 }
 
 const QuickViewButton: React.FC<QuickViewButtonProps> = ({ product }) => {
-
-
-
     const { name, description, variants } = product;
     const [isQuickViewOpen, setQuickViewOpen] = useState(false);
-    const [quantity, setQuantity] = useState(1); // Set initial quantity
 
     const [selectedVariantId, setSelectedVariantId] = useState<number | null>(
         variants?.find((variant) => variant.isDefault)?.id || null
@@ -29,12 +24,6 @@ const QuickViewButton: React.FC<QuickViewButtonProps> = ({ product }) => {
 
     const handleQuickViewOpen = () => setQuickViewOpen(true);
     const handleQuickViewClose = () => setQuickViewOpen(false);
-
-    const handleQuantityChange = (newQuantity: number) => {
-        if (newQuantity > 0) {
-            setQuantity(newQuantity); // Update quantity in local state
-        }
-    };
 
     const handleVariantChange = (variantId: number) => {
         console.log("Variant changed to:", variantId);
@@ -76,11 +65,12 @@ const QuickViewButton: React.FC<QuickViewButtonProps> = ({ product }) => {
                                     />
                                 </div>
                             )}
-                            <QuantityInput
+                            {/* <QuantityInput
                                 value={quantity}
                                 min={1}
                                 onChange={handleQuantityChange}
-                            />
+                            /> */}
+                            <AddToCartButton product={product}/>
                             <ProceedToCheckoutButton closeCart={handleQuickViewClose} />
                             <p className="text-gray-700 mt-2" dangerouslySetInnerHTML={{ __html: description }} />
                         </div>
