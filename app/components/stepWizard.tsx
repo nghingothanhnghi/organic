@@ -25,7 +25,7 @@ const StepWizard: React.FC<StepWizardProps> = ({ steps, currentStep, handleNext,
                 </p>
                 <div className="mt-4 overflow-hidden rounded-full bg-gray-200">
                     <div
-                        className="h-2 rounded-full bg-blue-500 transition-all duration-300"
+                        className="h-2 rounded-full bg-green-600 transition-all duration-300"
                         style={{ width: `${progressPercentage}%` }}
                     ></div>
                 </div>

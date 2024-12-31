@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "~/hooks";
 import { fetchProducts, setFilters } from '~/features/productSlice';
 import AboutContent from '~/components/cmsContent/aboutContent';
 import WarrantyContent from '~/components/cmsContent/warrantyContent';
+import TestimonialContent from '~/components/cmsContent/testimonialContent';
 
 const slideData = [
   {
@@ -94,6 +95,7 @@ const Default = () => {
         loading={false}
         error={null}
       />
+      <TestimonialContent/>
       <ProductGallery products={products} />
     </div>
   );

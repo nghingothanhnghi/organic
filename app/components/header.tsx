@@ -9,6 +9,7 @@ import WishlistButton from "./wishListButton";
 import CartOffCanvas from "./cartOffCanvas";
 import MobileMenuOffCanvas from "./mobileMenuOffCanvas";
 import TopNavBar from "./topNavBar";
+import MainMenuDesktop from "./mainMenuDesktop";
 import { useTranslation } from "react-i18next";
 
 const Header = () => {
@@ -35,26 +36,7 @@ const Header = () => {
                 </div>
 
                 {/* Centered Navigation Menu */}
-                <nav className="hidden md:flex space-x-6 lg:order-first">
-                    <Link
-                        to="/"
-                        className="text-gray-700 hover:text-gray-900 transition-colors"
-                    >
-                        Home
-                    </Link>
-                    <Link
-                        to="/store"
-                        className="text-gray-700 hover:text-gray-900 transition-colors"
-                    >
-                        Store
-                    </Link>
-                    <Link
-                        to="/about"
-                        className="text-gray-700 hover:text-gray-900 transition-colors"
-                    >
-                        About
-                    </Link>
-                </nav>
+                <MainMenuDesktop/>
 
                 {/* Mobile Toggle Button */}
                 <button

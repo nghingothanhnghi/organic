@@ -21,7 +21,26 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="col-span-2 lg:col-span-3 lg:flex lg:items-end">
+                        <form className="w-full">
+                            <label htmlFor="UserEmail" className="sr-only"> Email </label>
 
+                            <div
+                                className="border border-orange-900 p-2 focus-within:ring sm:flex sm:items-center sm:gap-4"
+                            >
+                                <input
+                                    type="email"
+                                    id="UserEmail"
+                                    placeholder="john@rhcp.com"
+                                    className="w-full border-none focus:border-transparent focus:ring-transparent sm:text-sm"
+                                />
+
+                                <button
+                                    className="mt-1 w-full bg-teal-500 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-none hover:bg-teal-600 sm:mt-0 sm:w-auto sm:shrink-0"
+                                >
+                                    Sign Up
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -64,7 +83,24 @@ const Footer = () => {
 
                 {/* Footer Bottom */}
                 <div className="mt-10 border-t border-orange-900 py-5 text-center">
-                    <p className="text-slate-300 text-sm">© 2024 Company Name. All rights reserved.</p>
+                    <div className="sm:flex sm:justify-between">
+                        <p className="text-xs text-slate-300">&copy; 2022. Company Name. All rights reserved.</p>
+
+                        <ul className="mt-8 flex flex-wrap justify-start gap-4 text-xs sm:mt-0 lg:justify-end">
+                            <li>
+                                <a href="#" className="text-gray-500 transition hover:opacity-75"> Terms & Conditions </a>
+                            </li>
+
+                            <li>
+                                <a href="#" className="text-gray-500 transition hover:opacity-75"> Privacy Policy </a>
+                            </li>
+
+                            <li>
+                                <a href="#" className="text-gray-500 transition hover:opacity-75"> Cookies </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </footer>
