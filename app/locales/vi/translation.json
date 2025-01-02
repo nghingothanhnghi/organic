@@ -108,7 +108,10 @@
         "headerName":{
             "purchaseOrder": "Mã đơn",
             "items": "Sản phẩm",
-            "subTotal": "Tổng tiền",
+            "subTotal": "Tổng tiền hàng",
+            "tax": "Thuế",
+            "discount": "Giảm giá",
+            "shippingFee": "Phí vận chuyển",
             "totalAmount": "Tổng cộng",
             "actions": "Thao tác"
         }
@@ -121,6 +124,7 @@
         "goTo": "Đi đến"
     },
     "language": {
+        "label": "Ngôn ngữ",
         "english": "Tiếng Anh",
         "vietnamese": "Tiếng Việt"
     },
@@ -298,5 +302,10 @@
         "titleRequired": "Tiêu đề không được để trống",
         "messageRequired": "Nội dung được yêu cầu",
         "agreeRequired": "Tôi đồng ý cung cấp thông tin cho Phutungtoyota"
+    },
+    "country": {
+        "VN": "Việt Nam",
+        "US": "Hoa Kỳ",
+        "FR": "Pháp"
     }
 }

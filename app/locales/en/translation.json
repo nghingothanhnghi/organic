@@ -109,6 +109,9 @@
             "purchaseOrder": "Purchase Order",
             "items": "Products",
             "subTotal": "SubTotal",
+            "tax": "Tax",
+            "discount": "Discounted",
+            "shippingFee": "Shipping Fee",
             "totalAmount": "Total",
             "actions": "Actions"
         }
@@ -121,6 +124,7 @@
         "goTo": "Go to"
     },
     "language": {
+        "label": "Language",
         "english": "English",
         "vietnamese": "Vietnamese"
     },
@@ -292,5 +296,10 @@
         "titleRequired": "Title is a required field",
         "messageRequired": "Message is a required field",
         "agreeRequired": "I agree"
+    },
+    "country": {
+        "VN": "Việt Nam",
+        "US": "Hoa Kỳ",
+        "FR": "Pháp"
     }
 }

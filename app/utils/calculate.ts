@@ -35,3 +35,8 @@ export const calculateDiscount = (price: number, discountPrice?: number): number
     if (!discountPrice || discountPrice >= price) return 0; // No discount or invalid discount price
     return Math.round(((price - discountPrice) / price) * 100); // Calculate percentage discount
 };
+
+
+export const calculateFinalPrice = (price: number, discountPrice?: number): number => {
+    return discountPrice && discountPrice < price ? discountPrice : price;
+};

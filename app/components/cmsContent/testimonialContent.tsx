@@ -1,14 +1,23 @@
 // app/components/cmsContent/aboutContent.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import NavSwiperButton from '../navSwiperButton';
+import useResponsive from '~/hooks/useResponsive';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 
 const TestimonialContent = () => {
+    // Get the responsiveness states from the hook
+    const { isMobile, isDesktop } = useResponsive();
+    const [navigationReady, setNavigationReady] = useState(false);
+
+    useEffect(() => {
+      // Allow buttons to render before Swiper initializes
+      setNavigationReady(true);
+    }, [isMobile, isDesktop]);
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
             <div className="mx-auto max-w-[1340px] px-4 py-12 sm:px-6 lg:me-0 lg:py-16 lg:pe-0 lg:ps-8 xl:py-24">
@@ -23,9 +32,13 @@ const TestimonialContent = () => {
                             harum porro optio fugit a culpa sunt id!
                         </p>
 
-                        <div className="hidden lg:mt-8 lg:flex lg:gap-4">
-                            <NavSwiperButton direction="prev" id="prevBtnDesktop" className="custom-class" />
-                            <NavSwiperButton direction="next" id="nextBtnDesktop" className="custom-class" />
+                        <div className={`hidden lg:mt-8 lg:flex lg:gap-4`}>
+                            
+                                <>
+                                    <NavSwiperButton direction="prev" id="prevBtnDesktop" className="custom-class" />
+                                    <NavSwiperButton direction="next" id="nextBtnDesktop" className="custom-class" />
+                                </>
+                            
                         </div>
                     </div>
 
@@ -33,8 +46,8 @@ const TestimonialContent = () => {
                         <Swiper
                             modules={[Navigation]}
                             navigation={{
-                                prevEl: window.innerWidth >= 1024 ? '#prevBtnDesktop' : '#prevBtnMobile',
-                                nextEl: window.innerWidth >= 1024 ? '#nextBtnDesktop' : '#nextBtnMobile',
+                                prevEl: isDesktop ? '#prevBtnDesktop' : '#prevBtnMobile',
+                                nextEl: isDesktop ? '#nextBtnDesktop' : '#nextBtnMobile',
                             }}
                             slidesPerView={2}
                             spaceBetween={20}
@@ -122,9 +135,13 @@ const TestimonialContent = () => {
                     </div>
                 </div>
 
-                <div className="mt-8 flex justify-center gap-4 lg:hidden">
-                    <NavSwiperButton direction="prev" id="prevBtnMobile" className="custom-class" />
-                    <NavSwiperButton direction="next" id="nextBtnMobile" className="custom-class" />
+                <div className={`mt-8 flex justify-center gap-4 lg:hidden ${isMobile ? 'lg:flex' : ''}`}>
+                    {isMobile && (
+                        <>
+                            <NavSwiperButton direction="prev" id="prevBtnMobile" className="custom-class" />
+                            <NavSwiperButton direction="next" id="nextBtnMobile" className="custom-class" />
+                        </>
+                    )}
                 </div>
             </div>
         </section>

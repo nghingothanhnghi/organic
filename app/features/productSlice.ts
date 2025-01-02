@@ -1,13 +1,14 @@
 // app/features/productSlice.ts
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { fetchProductsAPI } from '~/services/productService';
-import type { ProductState, Product} from '~/types/product';
+import { fetchProductsAPI, fetchProductBySlugAPI } from '~/services/productService';
+import type { ProductState, Product } from '~/types/product';
 import type { PaginationMeta } from '~/types/pagination';
 
 // Initial state
 const initialState: ProductState = {
   products: [],
+  product: null,
   loading: false,
   error: null,
   pagination: null, // Initialize meta as null
@@ -97,6 +98,87 @@ export const fetchProducts = createAsyncThunk<
   }
 );
 
+// Async thunk to fetch a product by slug
+export const fetchProductBySlug = createAsyncThunk<
+  Product,
+  string,
+  { rejectValue: string }
+>(
+  'products/fetchProductBySlug',
+  async (slug, { rejectWithValue }) => {
+    try {
+      const response = await fetchProductBySlugAPI(slug);
+      const product: Product = {
+        id: response.id,
+        name: response.attributes.name,
+        description: response.attributes.description,
+        imageUrl: response.attributes.imageUrl,
+        productImg: response.attributes.productImg?.data?.map((img: any) => ({
+          id: img.id,
+          attributes: {
+            name: img.attributes.name,
+            url: img.attributes.url,
+            formats: img.attributes.formats,
+          },
+        })) ?? [], // Fallback to empty array if productImg or productImg.data is null or undefined
+        price: response.attributes.price ?? 0, // Fallback to 0 if price is null or undefined
+        quantity: response.attributes.quantity ?? 0, // Fallback to 0
+        bestseller: response.attributes.bestseller ?? false,
+        discount: response.attributes.discount ?? false,
+        discountPrice: response.attributes.discount_price ?? 0,
+        featured: response.attributes.featured ?? false,
+        productSku: response.attributes.productSku ?? '',
+        availableStartDate: response.attributes.availableStartDate ?? null,
+        availableEndDate: response.attributes.availableEndDate ?? null,
+        store: response.attributes.store ?? null, // Assuming nested store data
+        categories: response.attributes.categories ?? [], // Assuming nested category data
+        brand: response.attributes.brand ?? null, // Assuming nested brand data
+        createdAt: response.attributes.createdAt,
+        updatedAt: response.attributes.updatedAt,
+        publishedAt: response.attributes.publishedAt,
+        slug: response.attributes.slug ?? null,
+        ratings: response.attributes.ratings?.data ?? [],
+        crossSellProducts: response.attributes.crossSellProducts?.data?.map((crossSell: any) => ({
+          id: crossSell.id,
+          name: crossSell.attributes.name,
+          description: crossSell.attributes.description,
+          price: crossSell.attributes.price,
+          imageUrl: crossSell.attributes.imageUrl,
+          published: crossSell.attributes.published,
+          createdAt: crossSell.attributes.createdAt,
+          updatedAt: crossSell.attributes.updatedAt,
+          slug: crossSell.attributes.slug,
+        })) ?? [],
+        variants: response.attributes.variants?.data?.map((variant: any) => ({
+          id: variant.id,
+          name: variant.attributes.name,
+          price: variant.attributes.price,
+          discountPrice: variant.attributes.discountPrice,
+          stock: variant.attributes.stock,
+          image: response.attributes.image,
+          media: variant.attributes.media?.data?.[0] ? { // Flatten to a single image (assuming the first image is the desired one)
+            id: variant.attributes.media.data[0].id,
+            attributes: {
+              name: variant.attributes.media.data[0].attributes.name,
+              url: variant.attributes.media.data[0].attributes.url,
+              formats: variant.attributes.media.data[0].attributes.formats,
+            },
+          } : null, // If there's no media, set it to null
+          published: variant.attributes.published,
+          createdAt: variant.attributes.createdAt,
+          updatedAt: variant.attributes.updatedAt,
+          slug: variant.attributes.slug,
+          isDefault: variant.attributes.isDefault
+        })) ?? [],
+      };
+      return product;
+    } catch (error: any) {
+      return rejectWithValue(error.message || 'Failed to fetch product details');
+    }
+  }
+);
+
+
 // Product slice
 const productSlice = createSlice({
   name: 'products',
@@ -122,6 +204,18 @@ const productSlice = createSlice({
         state.loading = false; // Set loading to false when the request fails
         state.error = action.payload as string; // Store the error message
         toast.error(action.payload || 'Failed to load products');
+      })
+      .addCase(fetchProductBySlug.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchProductBySlug.fulfilled, (state, action) => {
+        state.loading = false;
+        state.product = action.payload;
+      })
+      .addCase(fetchProductBySlug.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+        toast.error(action.payload || 'Failed to fetch product');
       });
   },
 });

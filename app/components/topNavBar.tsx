@@ -44,12 +44,12 @@ const TopNavBar = () => {
                         {/* Add more language options here */}
                     </Dropdown>
                     {/* Language Dropdown */}
-                    <Dropdown buttonLabel="Language">
+                    <Dropdown buttonLabel={t("language.label")}>
                         <li className="px-3 py-2 hover:bg-gray-100">
-                            <button onClick={() => handleLanguageChange('en')}>English</button>
+                            <button onClick={() => handleLanguageChange('en')}>{t("language.english")}</button>
                         </li>
                         <li className="px-3 py-2 hover:bg-gray-100">
-                            <button onClick={() => handleLanguageChange('vi')}>Vietnamese</button>
+                            <button onClick={() => handleLanguageChange('vi')}>{t("language.vietnamese")}</button>
                         </li>
                         {/* Add more language options here */}
                     </Dropdown>

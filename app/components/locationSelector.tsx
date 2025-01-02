@@ -49,13 +49,17 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
   useEffect(() => {
     const fetchCountries = async () => {
       try {
-        const response = await axios.get('https://restcountries.com/v3.1/all');
-        const vietnam = response.data.find((country: any) => country.cca2 === 'VN');
-        if (vietnam) {
-          setCountries([{ name: vietnam.name.common, code: vietnam.cca2 }]);
-        }
+        const response = await axios.get("https://restcountries.com/v3.1/all");
+        const mappedCountries = response.data.map((country: any) => {
+          const code = country.cca2; // Country code, e.g., 'VN', 'US'
+          return {
+            name: t(`country.${code}`, { defaultValue: country.name.common }),
+            code: code,
+          };
+        });
+        setCountries(mappedCountries);
       } catch (error) {
-        console.error('Error fetching countries:', error);
+        console.error("Error fetching countries:", error);
       }
     };
 
@@ -84,6 +88,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
     const selectedDistrict = districts.find((district) => district.name === values.district);
     setWards(selectedDistrict ? selectedDistrict.wards : []);
   }, [values.district, districts]);
+  
 
   return (
     <div className="space-y-4">

@@ -1,3 +1,4 @@
+// app/hooks/useResponsive
 import { useState, useEffect } from 'react';
 
 interface ResponsiveState {
@@ -15,8 +16,8 @@ const useResponsive = (): ResponsiveState => {
     const handleResize = () => {
       const width = window.innerWidth;
       setIsMobile(width <= 991); // Consider screen <= 991px as mobile
-      setIsTablet(width >= 992 && width <= 1199); // Consider screen between 992px to 1199px as tablet
-      setIsDesktop(width >= 1200); // Consider screen >= 1200px as desktop
+      setIsTablet(width >= 640 && width <= 1023); // Consider screen between 992px to 1199px as tablet
+      setIsDesktop(width >= 1024); // Consider screen >= 1200px as desktop
     };
 
     handleResize(); // Initial check

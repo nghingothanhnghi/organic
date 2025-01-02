@@ -5,6 +5,7 @@ import type { Product } from '~/types/product';
 import type { CartItem, CartState } from '~/types/cart';
 import { toast } from 'react-toastify';
 import { safeSessionStorage } from '~/utils/storage';
+import { calculateFinalPrice } from '~/utils/calculate';
 
 // Load cart items from sessionStorage if they exist
 const initialState: CartState = {
@@ -23,7 +24,7 @@ const cartSlice = createSlice({
         addToCart: (state, action: PayloadAction<Product>) => {
             const { id, price, discountPrice, name } = action.payload;
             // Calculate the finalPrice, using discountPrice if available
-            const finalPrice = discountPrice && discountPrice < price ? discountPrice : price;
+            const finalPrice = calculateFinalPrice(price, discountPrice);
             const itemIndex = state.items.findIndex((item) => item.id === id);
             if (itemIndex !== -1) {
                 state.items[itemIndex].quantity += 1;
@@ -36,16 +37,33 @@ const cartSlice = createSlice({
         },
         removeFromCart: (state, action: PayloadAction<number>) => {
             const removedItem = state.items.find((item) => item.id === action.payload);
-            state.items = state.items.filter((item) => item.id !== action.payload);
-            updateSessionStorage(state.items);
+            // state.items = state.items.filter((item) => item.id !== action.payload);
+            // updateSessionStorage(state.items);
+            // if (removedItem) {
+            //     toast.warn(`${removedItem.name} removed from the cart.`);
+            // }
             if (removedItem) {
+                state.items = state.items.filter((item) => item.id !== action.payload);
+                updateSessionStorage(state.items);
                 toast.warn(`${removedItem.name} removed from the cart.`);
+            } else {
+                toast.error('Item not found in the cart.');
             }
         },
         updateQuantity: (state, action: PayloadAction<{ id: number; quantity: number }>) => {
             const itemIndex = state.items.findIndex((item) => item.id === action.payload.id);
+            // if (itemIndex !== -1) {
+            //     state.items[itemIndex].quantity = action.payload.quantity;
+            // }
             if (itemIndex !== -1) {
-                state.items[itemIndex].quantity = action.payload.quantity;
+                if (action.payload.quantity > 0) {
+                    state.items[itemIndex].quantity = action.payload.quantity;
+                    toast.info(`Updated quantity of ${state.items[itemIndex].name} to ${action.payload.quantity}.`);
+                } else {
+                    toast.error('Quantity must be at least 1.');
+                }
+            } else {
+                toast.error('Item not found in the cart.');
             }
             updateSessionStorage(state.items);
         },
@@ -54,8 +72,17 @@ const cartSlice = createSlice({
             safeSessionStorage.removeItem('cartItems');
             toast.error('Cart cleared.');
         },
+        updatePrices: (state, action: PayloadAction<{ id: number; price: number; discountPrice?: number }[]>) => {
+            action.payload.forEach((product) => {
+                const item = state.items.find((item) => item.id === product.id);
+                if (item) {
+                    item.finalPrice = calculateFinalPrice(product.price, product.discountPrice);
+                }
+            });
+            updateSessionStorage(state.items);
+        },
     },
 });
 
-export const { addToCart, removeFromCart, updateQuantity, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, updateQuantity, clearCart, updatePrices } = cartSlice.actions;
 export default cartSlice.reducer;

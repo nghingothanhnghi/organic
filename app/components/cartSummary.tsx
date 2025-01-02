@@ -3,6 +3,7 @@ import React from 'react';
 import { useAppSelector } from '~/hooks';
 import { formatPrice } from '~/utils/formatPrice';
 import { calculateTotal, calculateTax, calculateFinalTotal } from '~/utils/calculate';
+import { useTranslation } from 'react-i18next';
 
 interface CartSummaryProps {
     taxRate: number;
@@ -10,6 +11,7 @@ interface CartSummaryProps {
 }
 
 const CartSummary: React.FC<CartSummaryProps> = ({ taxRate, shippingFee }) => {
+    const {t} = useTranslation();
     const cartItems = useAppSelector(state => state.cart.items); // Access cart items from Redux
 
     // Calculate the subtotal, considering the discountPrice if available
@@ -22,22 +24,22 @@ const CartSummary: React.FC<CartSummaryProps> = ({ taxRate, shippingFee }) => {
     const total = calculateFinalTotal(cartItems, taxRate, shippingFee);
 
     return (
-        <div className="cart-summary p-4 mt-4 border rounded-md space-y-2">
+        <div className="cart-summary bg-gray-100 p-4 mt-4 border rounded-md space-y-2">
             {/* Display subtotal */}
             <p className="flex justify-between text-sm font-medium">
-                <span>Subtotal:</span> {formatPrice(subtotal)}
+                <span>{t("dataGrid.headerName.subTotal")} </span> {formatPrice(subtotal)}
             </p>
             {/* Display tax */}
             <p className="flex justify-between text-sm font-medium">
-                <span>Tax ({taxRate}%):</span> {formatPrice(tax)}
+                <span>{t("dataGrid.headerName.tax")} ({taxRate}%)</span> {formatPrice(tax)}
             </p>
             {/* Display shipping fee */}
             <p className="flex justify-between text-sm font-medium">
-                <span>Shipping Fee:</span> {formatPrice(shippingFee)}
+                <span>{t("dataGrid.headerName.shippingFee")}</span> {formatPrice(shippingFee)}
             </p>
             {/* Display total */}
             <h3 className="flex justify-between text-xl font-semibold">
-                <span>Total:</span> {formatPrice(total)}
+                <span>{t("dataGrid.headerName.totalAmount")}</span> <span className='text-orange-700'>{formatPrice(total)}</span>
             </h3>
         </div>
     );

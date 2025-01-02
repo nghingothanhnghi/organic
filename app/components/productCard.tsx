@@ -1,5 +1,6 @@
 // app/components/ProductCard.tsx
 import React, {useState} from 'react';
+import { Link } from 'react-router';
 import { useAppSelector } from '~/hooks';
 import ProductThumb from './productThumb';
 import ProductPrice from './productPrice';
@@ -11,7 +12,7 @@ import Modal from './modal';
 import type { ProductCardProps } from '~/types/product';
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-    const { name} = product;
+    const { name, slug} = product;
     const cartItems = useAppSelector(state => state.cart.items); // Get cart items from Redux state
     
     // Check if the current product is in the cart
@@ -39,7 +40,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </div>
             {/* Content Section */}
             <div className="p-4">
-                <h3 className="text-sm font-semibold text-gray-900 truncate">{name}</h3>
+                <h3 className="text-sm font-semibold text-gray-900 truncate">
+                <Link to={`/products/${slug}`} className="hover:text-blue-500">
+                        {name}
+                    </Link>
+                </h3>
                 {/* Price */}
                 <ProductPrice product={product} />
             </div>

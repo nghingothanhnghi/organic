@@ -35,6 +35,7 @@ export interface Product {
   // Redux state interface
   export interface ProductState {
     products: Product[]; // Array of Product
+    product: Product | null;
     loading: boolean;
     error: string | null;
     pagination: PaginationMeta | null;
