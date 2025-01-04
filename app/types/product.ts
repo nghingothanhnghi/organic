@@ -27,7 +27,7 @@ export interface Product {
     publishedAt?: string; // ISO Date
     slug?: string | null; // Optional
     productImg: ProductImage[];
-    ratings: any[]; // Add a proper type based on your needs
+    ratings: Rating[]; // Updated to use Rating type
     crossSellProducts?: Partial<Product>[];
     variants?: ProductVariant[]; 
   }
@@ -41,6 +41,20 @@ export interface Product {
     pagination: PaginationMeta | null;
     filters: Record<string, any>;
   }
+
+// Rating interface for each review
+export interface Rating {
+  id: number;
+  attributes: {
+    score: number; // Rating score (e.g., 1-5 stars)
+    reviewText: string; // Review text
+    users_permissions_user: {
+      data: {
+        username: string; // Username of the reviewer
+      };
+    };
+  };
+}
 
   export interface ProductImage {
     id: number;

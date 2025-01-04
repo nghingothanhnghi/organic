@@ -1,3 +1,4 @@
+// app/utils/getImageUrl.ts
 import { IMAGE_API } from "~/constants/apiConstants";
 import type { ProductImage } from "~/types/product";
 

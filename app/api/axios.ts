@@ -30,18 +30,44 @@ const apiPublic = axios.create({
 });
 
 // Add interceptors to include both the Strapi API token and user JWT token
+// axiosPrivate.interceptors.request.use(
+//   (config) => {
+//     // Add Strapi API token from environment variables
+//     const strapiApiToken = import.meta.env.VITE_STRAPI_API_TOKEN;
+//     if (strapiApiToken) {
+//       config.headers['Authorization'] = `Bearer ${strapiApiToken}`;
+//     }
+
+//     // Add user JWT token if available
+//     const userToken = localStorage.getItem('userToken');
+//     if (userToken) {
+//       config.headers['Authorization'] = `Bearer ${userToken}`;
+//     }
+
+//     return config;
+//   },
+//   (error) => {
+//     return Promise.reject(error); // Handle request error
+//   }
+// );
+
+
 axiosPrivate.interceptors.request.use(
   (config) => {
     // Add Strapi API token from environment variables
     const strapiApiToken = import.meta.env.VITE_STRAPI_API_TOKEN;
     if (strapiApiToken) {
+      // Append Strapi API token to the Authorization header
       config.headers['Authorization'] = `Bearer ${strapiApiToken}`;
     }
 
-    // Add user JWT token if available
+    // Add user JWT token if available (append it to the same header)
     const userToken = localStorage.getItem('userToken');
     if (userToken) {
-      config.headers['Authorization'] = `Bearer ${userToken}`;
+      // If there's already an Authorization header, append the JWT token to it
+      config.headers['Authorization'] = config.headers['Authorization']
+        ? `${config.headers['Authorization']} ${userToken}`
+        : `Bearer ${userToken}`;
     }
 
     return config;
@@ -50,6 +76,7 @@ axiosPrivate.interceptors.request.use(
     return Promise.reject(error); // Handle request error
   }
 );
+
 
 // Global error handling for all axios instances
 const handleResponseError = (error: any) => {

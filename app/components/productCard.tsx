@@ -8,11 +8,12 @@ import ProductDiscount from './productDiscount';
 import AddToCartButton from "./addToCartButton";
 import ProceedToCheckoutButton from './proceedToCheckoutButton';
 import QuickViewButton from './quickViewButton';
+import ProductRating from './productRating';
 import Modal from './modal';
 import type { ProductCardProps } from '~/types/product';
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-    const { name, slug} = product;
+    const { name, slug, ratings} = product;
     const cartItems = useAppSelector(state => state.cart.items); // Get cart items from Redux state
     
     // Check if the current product is in the cart
@@ -45,6 +46,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                         {name}
                     </Link>
                 </h3>
+                <ProductRating product={product} />
                 {/* Price */}
                 <ProductPrice product={product} />
             </div>
