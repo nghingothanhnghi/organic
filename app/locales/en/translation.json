@@ -26,7 +26,8 @@
         "loading": "Processing...",
         "call_for_price": "Call now",
         "send": "Send",
-        "check_order": "Check Orders"
+        "check_order": "Check Orders",
+        "send_review": "Send a Review"
     },
     "badge_status":{
         "inStock": "In Stock",

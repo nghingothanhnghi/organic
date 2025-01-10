@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { submitReview } from '~/features/reviewSlice';
+import { submitReview, clearError, clearSuccess } from '~/features/reviewSlice';
 import { userReviewValidationSchema } from '~/validation/userReviewValidation';
 import { useTranslation } from 'react-i18next';
+import useScrollToTarget from '~/hooks/useScrollToTarget';
+import StarIcon from './startIcon';
 
 interface ReviewFormProps {
     productId: number;
@@ -12,31 +14,69 @@ interface ReviewFormProps {
 }
 
 const ProductReviewForm: React.FC<ReviewFormProps> = ({ productId, onSuccess, onError }) => {
+    const { targetRef } = useScrollToTarget();
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const { loading, error } = useAppSelector(state => state.reviews);
+    const { loading, error, success } = useAppSelector(state => state.reviews);
+
+    useEffect(() => {
+        if (success) {
+            if (onSuccess) onSuccess();
+            dispatch(clearSuccess());
+        }
+    }, [success, onSuccess, dispatch]);
+
+    useEffect(() => {
+        if (error) {
+            if (onError) onError(error);
+            dispatch(clearError());
+        }
+    }, [error, onError, dispatch]);
+
+    const [selectedScore, setSelectedScore] = useState<number>(0);
+
+    const { isAuthenticated, user } = useAppSelector(state => state.auth);
+
+    console.log('Auth state:', useAppSelector(state => state.auth));
 
     const formik = useFormik({
         initialValues: {
-            score: '',
+            score: 0,
             reviewText: '',
         },
         validationSchema: userReviewValidationSchema(t), // Use the imported schema
         onSubmit: async (values, { resetForm, setSubmitting }) => {
-            try {
-                await dispatch(
-                    submitReview({
-                        productId,
-                        reviewData: {
-                            score: Number(values.score),
-                            reviewText: values.reviewText,
-                        },
-                    })
-                ).unwrap();
+            console.log('Formik values:', values);
+            console.log('Selected score:', selectedScore);
+            console.log('Authenticated:', isAuthenticated);
+            console.log('User data:', user);
+            // if (!isAuthenticated) {
+            //     // Optionally handle the case when the user is not logged in
+            //     if (onError) {
+            //         onError('Please log in to submit a review.');
+            //     }
+            //     return;
+            // }
 
-                if (onSuccess) {
-                    onSuccess();
+            if (!user || !user.id) {
+                // Handle missing user ID gracefully
+                if (onError) {
+                    onError('User information is missing.');
                 }
+                return;
+            }
+
+            try {
+                // Adjust the structure of the data to match the expected format
+                const reviewData = {
+                    productId,
+                    score: selectedScore,
+                    reviewText: values.reviewText,
+                    userId: user.id, // Assuming `user.id` exists
+                };
+
+                await dispatch(submitReview(reviewData)).unwrap();
+
                 resetForm();
             } catch (error) {
                 console.error(error);
@@ -46,30 +86,41 @@ const ProductReviewForm: React.FC<ReviewFormProps> = ({ productId, onSuccess, on
         },
     });
 
+
+
     return (
         <form onSubmit={formik.handleSubmit} className="space-y-6">
-            <div>
+            <div ref={targetRef}>
                 <label htmlFor="score" className="block text-sm font-semibold text-gray-700">
-                    {t('reviewForm.score.label')}
+                    {t("section_title.view_by-add_review.global_ratings")}
                 </label>
-                <input
-                    type="number"
-                    name="score"
-                    id="score"
-                    onChange={formik.handleChange}
-                    value={formik.values.score}
-                    className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${formik.errors.score ? 'border-red-500' : ''
-                        }`}
-                />
-                {formik.errors.score && <div className="text-red-500 text-xs mt-1">{formik.errors.score}</div>}
+                <div className='flex justify-between'>
+                    <div className="flex space-x-2 mt-1">
+                        {[1, 2, 3, 4, 5].map((score) => (
+                            <StarIcon
+                                key={score}
+                                filled={score <= selectedScore}
+                                half={false}
+                                className="cursor-pointer text-yellow-400"
+                                onClick={() => {
+                                    setSelectedScore(score);
+                                    formik.setFieldValue('score', score);  // Sync Formik with the selected score
+                                }}
+                                readOnly={formik.isSubmitting || formik.isValidating}
+                            />
+                        ))}
+                    </div>
+                    <div className='flex gap-3 text-xs text-gray-500 dark:text-gray-400'>
+                        <span>{t("section_title.view_by-add_review.voted_star")}</span>
+                        <span>{selectedScore} / 5</span>
+                    </div>
+                </div>
             </div>
             <div>
-                <label htmlFor="reviewText" className="block text-sm font-semibold text-gray-700">
-                    {t('reviewForm.reviewText.label')}
-                </label>
                 <textarea
                     name="reviewText"
                     id="reviewText"
+                    placeholder={t("section_title.view_by-add_review.placeholder_message")}
                     rows={4}
                     onChange={formik.handleChange}
                     value={formik.values.reviewText}
@@ -86,8 +137,9 @@ const ProductReviewForm: React.FC<ReviewFormProps> = ({ productId, onSuccess, on
                     disabled={formik.isSubmitting || !formik.isValid}
                     className="py-3 px-6 mt-4 text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-400"
                 >
-                    {t('btn.submit')}
+                    {t('btn.send_review')}
                 </button>
+
             </div>
         </form>
     );

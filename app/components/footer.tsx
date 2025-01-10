@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className="bg-orange-950 text-slate-300 pt-10">
             <div className="container mx-auto px-6 pt-10">
-                <div className='grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16 mb-8'>
+                <div className='grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16 lg:gap-x-40 mb-20'>
                     <div className="col-span-2">
                         {/* Logo */}
                         <div className="flex justify-center lg:justify-start mb-3">
@@ -23,7 +23,6 @@ const Footer = () => {
                     <div className="col-span-2 lg:col-span-3 lg:flex lg:items-end">
                         <form className="w-full">
                             <label htmlFor="UserEmail" className="sr-only"> Email </label>
-
                             <div
                                 className="border border-orange-900 p-2 focus-within:ring sm:flex sm:items-center sm:gap-4"
                             >

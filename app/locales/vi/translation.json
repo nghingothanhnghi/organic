@@ -26,7 +26,8 @@
         "loading": "Đang xử lý...",
         "call_for_price": "Gọi ngay",
         "send": "Gửi",
-        "check_order": "Kiểm tra đơn hàng"
+        "check_order": "Kiểm tra đơn hàng",
+        "send_review": "Gửi đánh giá"
     },
     "badge_status":{
         "inStock": "Còn hàng",

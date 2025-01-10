@@ -2,6 +2,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getProductReviews, submitProductReview } from '../services/reviewService';
 import type { ReviewState } from '~/types/review';
+import { toast } from 'react-toastify';
 
 // Initial state
 const initialState: ReviewState = {
@@ -23,9 +24,16 @@ export const fetchReviews = createAsyncThunk(
 // Submit a new review
 export const submitReview = createAsyncThunk(
   'reviews/submitReview',
-  async ({ productId, reviewData }: { productId: number; reviewData: { score: number; reviewText: string } }) => {
-    const review = await submitProductReview(productId, reviewData);
-    return review;
+  async (reviewData: { productId: number; score: number; reviewText: string; userId: number }, { rejectWithValue }) => {
+    try {
+      const review = await submitProductReview(reviewData.productId, reviewData);
+      return review;
+    } catch (error: any) {
+      if (error.response && error.response.data) {
+        return rejectWithValue(error.response.data.error.message);
+      }
+      return rejectWithValue(error.message || 'Failed to submit review');
+    }
   }
 );
 
@@ -34,11 +42,19 @@ export const submitReview = createAsyncThunk(
 const reviewSlice = createSlice({
   name: 'reviews',
   initialState,
-  reducers: {},
+  reducers: {
+    clearSuccess: (state) => {
+      state.success = null;
+    },
+    clearError: (state) => {
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     // Handle fetchReviews actions
     builder.addCase(fetchReviews.pending, (state) => {
       state.loading = true;
+      toast.info('Loading reviews...');
     });
     builder.addCase(fetchReviews.fulfilled, (state, action) => {
       state.loading = false;
@@ -61,9 +77,12 @@ const reviewSlice = createSlice({
     });
     builder.addCase(submitReview.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.error.message || 'Failed to submit review';
+      state.error = action.payload as string;
+      toast.error(state.error); 
     });
   },
 });
+
+export const { clearSuccess, clearError } = reviewSlice.actions;
 
 export default reviewSlice.reducer;

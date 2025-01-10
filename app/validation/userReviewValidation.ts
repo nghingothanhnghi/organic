@@ -11,3 +11,4 @@ export const userReviewValidationSchema = (t: TFunction) =>
       .required(t('validation.reviewText.required'))
       .min(10, t('validation.reviewText.min')),
   });
+

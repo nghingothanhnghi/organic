@@ -1,12 +1,13 @@
+import { useEffect } from 'react';
 import type { Route } from "./+types/productDetail";
 import { useParams } from 'react-router';
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { useEffect } from 'react';
 import { fetchProductBySlug } from '~/features/productSlice';
 import ProductThumb from "~/components/productThumb";
 import ProductPrice from "~/components/productPrice";
 import ProductReviewForm from "~/components/productReviewForm";
 import ProductRating from "~/components/productRating";
+import { useTranslation } from 'react-i18next';
 
 export function meta({ }: Route.MetaArgs) {
     return [
@@ -16,6 +17,7 @@ export function meta({ }: Route.MetaArgs) {
 }
 
 const ProductDetail = () => {
+    const {t} = useTranslation();
     const { slug } = useParams<{ slug: string }>();
     const dispatch = useAppDispatch();
     const { product, loading, error } = useAppSelector(state => state.products);
@@ -46,7 +48,7 @@ const ProductDetail = () => {
                 <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
                     <div className="shrink-0 max-w-md lg:max-w-lg mx-auto">
                         <div className="columns-2 md:columns-2 gap-4 space-y-4">
-                            <ProductThumb product={product} className="w-full rounded-xl shadow"/>
+                            <ProductThumb product={product} className="w-full rounded-xl shadow" />
                         </div>
                     </div>
 
@@ -56,7 +58,7 @@ const ProductDetail = () => {
                         >
                             {product?.name}
                         </h1>
-                        <ProductRating product={product}/>
+                        <ProductRating product={product} />
                         <div className="mt-4 sm:items-center sm:gap-4 sm:flex">
                             <p
                                 className="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white"
@@ -132,12 +134,11 @@ const ProductDetail = () => {
                             Magic Keyboard or Magic Keyboard with Touch ID.
                         </p>
 
-                {/* Add the ProductReviewForm */}
-                <div className="mt-12">
-                    <h2 className="text-lg font-bold text-gray-900 dark:text-white">Write a Review</h2>
-                    <ProductReviewForm productId={product.id} />
-                </div>
-
+                        {/* Add the ProductReviewForm */}
+                        <div className="mt-12">
+                            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-5">{t("section_title.view_by-add_review.user_review")}</h2>
+                            <ProductReviewForm productId={product.id} />
+                        </div>
                     </div>
                 </div>
             </div>
