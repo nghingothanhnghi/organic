@@ -12,6 +12,7 @@ export default [
       route("store", "routes/store.tsx"), // Store page
       route("products/:slug", "routes/productDetail.tsx"), // Product detail page
       route("cart", "routes/cart.tsx"), // Cart page
+      route("wishlist", "routes/wish.tsx"), // Wish page
       route("checkout", "routes/checkOut.tsx"), // Checkout page
       route("order-check", "routes/orderCheck.tsx"), // Checkout page
     ]),
