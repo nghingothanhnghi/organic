@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { Route } from "./+types/productDetail";
 import { useParams } from 'react-router';
 import { useAppDispatch, useAppSelector } from '~/hooks';
@@ -7,8 +7,12 @@ import ProductThumb from "~/components/productThumb";
 import ProductPrice from "~/components/productPrice";
 import ProductReviewForm from "~/components/productReviewForm";
 import ProductRating from "~/components/productRating";
+import AddToCartButton from '~/components/addToCartButton';
 import AddToWishListButton from '~/components/addToWishListButton';
+import QuantityInput from '~/components/quantityInput';
+import ProceedToCheckoutButton from '~/components/proceedToCheckoutButton';
 import { useTranslation } from 'react-i18next';
+import { stripHtml } from '~/utils/stripHtml';
 
 export function meta({ }: Route.MetaArgs) {
     return [
@@ -18,10 +22,12 @@ export function meta({ }: Route.MetaArgs) {
 }
 
 const ProductDetail = () => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const { slug } = useParams<{ slug: string }>();
     const dispatch = useAppDispatch();
     const { product, loading, error } = useAppSelector(state => state.products);
+    const cartItems = useAppSelector(state => state.cart.items);
+    const [selectedQuantity, setSelectedQuantity] = useState(1);
 
     // If slug is undefined, early return or provide fallback
     if (!slug) {
@@ -68,72 +74,34 @@ const ProductDetail = () => {
                             </p>
                         </div>
 
-                        <div className="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
-                            <AddToWishListButton product={product}/>
-                            <a
-                                href="#"
-                                title=""
-                                className="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                                role="button"
-                            >
-                                <svg
-                                    className="w-5 h-5 -ms-2 me-2"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
-                                    />
-                                </svg>
-                                Add to favorites
-                            </a>
+                        <div className="mt-6 sm:gap-4 sm:flex-start sm:flex sm:mt-8">
+                            {/* Render the quantity input */}
+                            <QuantityInput
+                                value={selectedQuantity}
+                                onChange={setSelectedQuantity}
+                                min={1}
+                            />
+                            {/* Render the AddToCart button with the selected quantity */}
+                            <div className='grid'>
+                                <div className='flex gap-2'>
+                                    <AddToCartButton product={product} quantity={selectedQuantity} />
+                                    <AddToWishListButton product={product} />
+                                </div>
+                                {/* Only display ProceedToCheckoutButton if there are items in the cart */}
+                                {cartItems.length > 0 && (
+                                    <div className="mt-4">
+                                        <ProceedToCheckoutButton closeCart={() => { }} />
+                                    </div>
+                                )}
+                            </div>
 
-                            <a
-                                href="#"
-                                title=""
-                                className="text-white mt-4 sm:mt-0 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center"
-                                role="button"
-                            >
-                                <svg
-                                    className="w-5 h-5 -ms-2 me-2"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
-                                    />
-                                </svg>
-
-                                Add to cart
-                            </a>
                         </div>
+
 
                         <hr className="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
 
                         <p className="mb-6 text-gray-500 dark:text-gray-400">
-                            {product?.description}
-                        </p>
-
-                        <p className="text-gray-500 dark:text-gray-400">
-                            Two Thunderbolt USB 4 ports and up to two USB 3 ports. Ultrafast
-                            Wi-Fi 6 and Bluetooth 5.0 wireless. Color matched Magic Mouse with
-                            Magic Keyboard or Magic Keyboard with Touch ID.
+                            {stripHtml(product.description || '')}
                         </p>
 
                         {/* Add the ProductReviewForm */}

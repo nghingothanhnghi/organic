@@ -6,19 +6,21 @@ import type { Product } from '~/types/product';
 
 interface AddToCartButtonProps {
   product: Product;
+  quantity?: number; // Accept an optional quantity prop
   className?: string; // Optional className prop
 }
 
-const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, className }) => {
+const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, quantity = 1, className }) => {
   const dispatch = useAppDispatch();
-  const cartItems = useAppSelector((state) => state.cart.items); 
+  const cartItems = useAppSelector((state) => state.cart.items);
   const [loading, setLoading] = useState(false);
-  const [quantity, setQuantity] = useState(0);
+  // const [quantity, setQuantity] = useState(0);
+  const [currentQuantity, setCurrentQuantity] = useState(0);
 
   useEffect(() => {
     // Update the quantity from the cart state
     const cartItem = cartItems.find((item) => item.id === product.id);
-    setQuantity(cartItem?.quantity || 0);
+    setCurrentQuantity(cartItem?.quantity || 0);
   }, [cartItems, product.id]);
 
   const handleAddToCart = async () => {
@@ -27,8 +29,10 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, className })
       // Simulate async operation, such as an API call
       await new Promise(resolve => setTimeout(resolve, 1000));
 
-      // Dispatch addToCart with quantity
-      dispatch(addToCart(product));
+      // (A more elegant solution would be to update your action and reducer to accept a quantity.)
+      for (let i = 0; i < quantity; i++) {
+        dispatch(addToCart(product));
+      }
     } catch (error) {
       console.error('Failed to add item to cart:', error);
     } finally {
@@ -39,9 +43,8 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, className })
   return (
     <button
       onClick={handleAddToCart}
-      className={`w-full text-sm bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md ${
-        loading ? 'cursor-not-allowed opacity-50' : 'hover:bg-green-700 hover:shadow-lg'
-      } transition duration-300 ${className || ''}`}
+      className={`w-full text-sm bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md ${loading ? 'cursor-not-allowed opacity-50' : 'hover:bg-green-700 hover:shadow-lg'
+        } transition duration-300 ${className || ''}`}
       disabled={loading} // Disable button while loading
     >
       {loading ? (
@@ -68,8 +71,8 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, className })
           </svg>
           Adding...
         </div>
-      ) : quantity > 0 ? (
-        `(${quantity}) Added to Cart`
+      ) : currentQuantity > 0 ? (
+        `(${currentQuantity}) Added to Cart`
       ) : (
         'Add to Cart'
       )}
