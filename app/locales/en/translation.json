@@ -46,6 +46,10 @@
             "label": "Nhãn hiệu",
             "placeholder": "Chọn nhãn hiệu..."
         },
+        "priceRange":{
+            "label": "Mức giá",
+            "placeholder": "Chọn mức giá..."
+        },
         "country":{
             "label": "Country",
             "placeholder": "Select your country"

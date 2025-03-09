@@ -46,6 +46,10 @@
             "label": "Nhãn hiệu",
             "placeholder": "Chọn nhãn hiệu..."
         },
+        "priceRange":{
+            "label": "Mức giá",
+            "placeholder": "Chọn mức giá..."
+        },
         "country":{
             "label": "Quốc gia",
             "placeholder": "Chọn quốc gia..."
@@ -110,7 +114,7 @@
         },
         "searchByName":{
             "label": "Tìm theo tên",
-            "placeholder": ""
+            "placeholder": "Nhập tên sản phẩm..."
         }
     },
     "dataGrid": {

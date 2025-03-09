@@ -31,7 +31,6 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
 
     return (
         <div className="bg-white p-6 gap-4 mx-auto mb-5">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">Filter Products</h3>
             <div className="flex flex-wrap gap-4 justify-center items-center">
                 {/* Search by Name */}
                 <div>
@@ -40,18 +39,18 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
                         type="text"
                         value={searchName}
                         onChange={handleSearchChange}
-                        placeholder="Enter product name"
+                        placeholder={t("input.searchByName.placeholder")}
                         className="h-10 rounded border-gray-300 text-sm"
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-600 mb-2">Category</label>
+                    <label className="block text-sm font-medium text-gray-600 mb-2">{t("select.category.label")}</label>
                     <select
                         value={category}
                         onChange={handleCategoryChange}
                         className="h-10 rounded border-gray-300 text-sm"
                     >
-                        <option value="">Select Category</option>
+                        <option value="">All</option>
                         <option value="electronics">Electronics</option>
                         <option value="fashion">Fashion</option>
                         {/* Add more categories here */}
@@ -59,13 +58,13 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium text-gray-600 mb-2">Price Range</label>
+                    <label className="block text-sm font-medium text-gray-600 mb-2">{t("select.priceRange.label")}</label>
                     <select
                         value={priceRange}
                         onChange={handlePriceRangeChange}
                         className="h-10 rounded border-gray-300 text-sm"
                     >
-                        <option value="">Select Price Range</option>
+                        <option value="">All</option>
                         <option value="low">Low</option>
                         <option value="medium">Medium</option>
                         <option value="high">High</option>
