@@ -107,6 +107,10 @@
         "password":{
             "label": "Mật khẩu",
             "placeholder": ""  
+        },
+        "searchByName":{
+            "label": "Tìm theo tên",
+            "placeholder": ""
         }
     },
     "dataGrid": {

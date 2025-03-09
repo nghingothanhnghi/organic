@@ -107,6 +107,10 @@
         "password":{
             "label": "Password",
             "placeholder": ""  
+        },
+        "searchByName":{
+            "label": "Search by Name",
+            "placeholder": ""
         }
     },
     "dataGrid": {

@@ -1,11 +1,13 @@
 // components/ProductFilter.tsx
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface ProductFilterProps {
     onFilterChange: (newFilters: Record<string, any>) => void; // Declare the prop type
 }
 
 const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
+    const {t} = useTranslation();
     const [category, setCategory] = useState('');
     const [priceRange, setPriceRange] = useState('');
     const [searchName, setSearchName] = useState('');
@@ -33,7 +35,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
             <div className="flex flex-wrap gap-4 justify-center items-center">
                 {/* Search by Name */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-600 mb-2">Search by Name</label>
+                    <label className="block text-sm font-medium text-gray-600 mb-2">{t("input.searchByName.label")}</label>
                     <input
                         type="text"
                         value={searchName}
