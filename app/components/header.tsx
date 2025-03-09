@@ -66,7 +66,7 @@ const Header = () => {
                 {/* Right Side Buttons */}
                 <div className="hidden md:flex items-center space-x-4">
                     {!shouldHideCartButton && <CartButton onClick={toggleCart} />}
-                    <WishlistButton wishlistCount={3} />
+                    <WishlistButton />
                 </div>
             </div>
             {/* Off-canvas for Cart */}

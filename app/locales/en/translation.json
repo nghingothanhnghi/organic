@@ -64,6 +64,10 @@
         }
     },
     "input":{
+        "fullName":{
+            "label": "Full Name",
+            "placeholder": ""
+        },
         "firstName":{
             "label": "First Name",
             "placeholder": ""

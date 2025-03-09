@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { userConfirmValidationSchema } from '~/validation/userConfirmValidation';
+import { useTranslation } from 'react-i18next';
 
 
 interface UserConfirmInfoProps {
@@ -13,6 +14,7 @@ interface UserConfirmInfoProps {
 
 const UserConfirmInfo: React.FC<UserConfirmInfoProps> = ({ setIsValid, shippingData, paymentData, onSubmit }) => {
     console.log("paymentData form Confirm:", paymentData);
+    const {t} = useTranslation()
     const formik = useFormik({
         initialValues: {
             termsAndConditions: false,
@@ -40,9 +42,9 @@ const UserConfirmInfo: React.FC<UserConfirmInfoProps> = ({ setIsValid, shippingD
         <form onSubmit={formik.handleSubmit} className="space-y-6">
             {/* Shipping Information Preview */}
             <div className="border-b pb-7 p-4 mb-4">
-                <h3 className="text-lg font-semibold text-gray-500 mb-3">Shipping Information</h3>
-                <p className='flex justify-between mb-2'><strong>Full Name:</strong> {shippingData.firstName} {shippingData.lastName}</p>
-                <p className='flex justify-between mb-2'><strong>Street:</strong> {shippingData.address}</p>
+                <h3 className="text-lg font-semibold text-gray-500 mb-3">{t("section_title.view_by_user_shipping_info.title")}</h3>
+                <p className='flex justify-between mb-2'><strong>{t("input.fullName.label")}:</strong> {shippingData.firstName} {shippingData.lastName}</p>
+                <p className='flex justify-between mb-2'><strong>{t("input.address.label")}:</strong> {shippingData.address}</p>
                 <p className='flex justify-between mb-2'><strong>Country:</strong> {shippingData.country}</p>
                 <p className='flex justify-between mb-2'><strong>City:</strong> {shippingData.city}</p>
                 <p className='flex justify-between mb-2'><strong>District:</strong> {shippingData.district}</p>
@@ -52,7 +54,7 @@ const UserConfirmInfo: React.FC<UserConfirmInfoProps> = ({ setIsValid, shippingD
 
             {/* Payment Information Preview */}
             <div className="border-b pb-5 p-4 mb-4">
-                <h3 className="text-lg font-semibold text-gray-500 mb-3">Payment Information</h3>
+                <h3 className="text-lg font-semibold text-gray-500 mb-3">{t("section_title.view_by_user_payment_info.title")}</h3>
                 <p className='flex justify-between mb-2'><strong>Payment Method:</strong></p>
                 <p className='flex justify-between mb-2'><strong>Card Number:</strong> **** **** **** {paymentData?.cardNumber?.slice(-4) || 'N/A'}</p>
                 <p className='flex justify-between mb-2'><strong>Expiration Date:</strong> {paymentData.expirationDate}</p>

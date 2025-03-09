@@ -1,10 +1,12 @@
 import { Link } from 'react-router';
+import { useAppSelector } from '~/hooks';
 
-interface WishlistButtonProps {
-  wishlistCount: number; // The number of items in the wishlist
-}
 
-const WishlistButton: React.FC<WishlistButtonProps> = ({ wishlistCount }) => {
+const WishlistButton: React.FC = () => {
+
+  // Get the wishlist count from the Redux store
+  const wishlistCount = useAppSelector(state => state.wishlist.items.length);
+
   return (
     <Link
       to="/wishlist"

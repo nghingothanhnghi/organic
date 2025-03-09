@@ -7,6 +7,7 @@ import ProductThumb from "~/components/productThumb";
 import ProductPrice from "~/components/productPrice";
 import ProductReviewForm from "~/components/productReviewForm";
 import ProductRating from "~/components/productRating";
+import AddToWishListButton from '~/components/addToWishListButton';
 import { useTranslation } from 'react-i18next';
 
 export function meta({ }: Route.MetaArgs) {
@@ -68,6 +69,7 @@ const ProductDetail = () => {
                         </div>
 
                         <div className="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
+                            <AddToWishListButton product={product}/>
                             <a
                                 href="#"
                                 title=""

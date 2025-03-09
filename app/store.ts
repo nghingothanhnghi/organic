@@ -6,6 +6,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import pageReducer from "~/features/pageSlice"
 import authReducer from '~/features/authSlice'
 import cartReducer from '~/features/cartSlice'
+import wishlistReducer from '~/features/wishlistSlice'
 import checkoutReducer from '~/features/checkOutSlice'
 import orderReducer from "~/features/orderSlice"
 import productReducer from '~/features/productSlice'
@@ -23,7 +24,8 @@ export const store = configureStore({
     products: productReducer, 
     sections: contentReducer,
     auth: authReducer,
-    reviews: reviewReducer, 
+    reviews: reviewReducer,
+    wishlist: wishlistReducer,
   },
 });
 

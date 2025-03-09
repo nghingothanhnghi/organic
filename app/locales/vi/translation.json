@@ -64,6 +64,10 @@
         }
     },
     "input":{
+        "fullName":{
+            "label": "Tên đầy đủ",
+            "placeholder": ""
+        },
         "firstName":{
             "label": "Tên",
             "placeholder": ""
