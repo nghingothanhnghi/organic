@@ -9,6 +9,7 @@ import Hero from "~/components/hero";
 import Breadcrumb from "~/components/breadcrumb";
 import { useTranslation } from "react-i18next";
 
+
 export function meta({ }: Route.MetaArgs) {
   return [
     { title: "Store" },

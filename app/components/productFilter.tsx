@@ -7,13 +7,13 @@ interface ProductFilterProps {
 }
 
 const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
-    const {t} = useTranslation();
-    const [category, setCategory] = useState('');
+    const { t } = useTranslation();
+    const [categories, setCategories] = useState('');
     const [priceRange, setPriceRange] = useState('');
     const [searchName, setSearchName] = useState('');
 
     const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setCategory(event.target.value);
+        setCategories(event.target.value);
     };
 
     const handlePriceRangeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -25,9 +25,13 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
     };
 
     const handleApplyFilters = () => {
+        const filters = { categories, priceRange, name: searchName };
+        console.log("Applying Filters:", filters);
         // Trigger the filter change when the user applies filters
-        onFilterChange({ category, priceRange, name: searchName });
+        onFilterChange({ categories, priceRange, name: searchName });
     };
+
+    
 
     return (
         <div className="bg-white p-6 gap-4 mx-auto mb-5">
@@ -46,13 +50,12 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
                 <div>
                     <label className="block text-sm font-medium text-gray-600 mb-2">{t("select.category.label")}</label>
                     <select
-                        value={category}
+                        value={categories}
                         onChange={handleCategoryChange}
                         className="h-10 rounded border-gray-300 text-sm"
                     >
                         <option value="">All</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="fashion">Fashion</option>
+                        <option value="Thực phẩm hữu cơ">Thực phẩm hữu cơ</option>
                         {/* Add more categories here */}
                     </select>
                 </div>
@@ -76,11 +79,13 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
                         onClick={handleApplyFilters}
                         className="bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-green-700 hover:shadow-lg transition duration-300"
                     >
-                        Apply Filters
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+
                     </button>
                 </div>
             </div>
-
         </div>
     );
 };
