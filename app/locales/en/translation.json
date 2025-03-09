@@ -133,6 +133,11 @@
         "english": "English",
         "vietnamese": "Vietnamese"
     },
+    "location": {
+        "label": "Location",
+        "tphcm": "HoChiMinh City",
+        "hanoi": "HaNoi"
+    },
     "page_title":{
         "home": "Home",
         "store": "Store",

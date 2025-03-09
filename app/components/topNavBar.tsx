@@ -24,7 +24,7 @@ const TopNavBar = () => {
                 <div className="flex items-center space-x-3">
                     {/* Location Dropdown */}
                     <Dropdown
-                        buttonLabel="Location"
+                        buttonLabel={t("location.label")}
                         dropdownClass="left-0 min-w-36"
                         showIcon={true}
                         customIcon={
@@ -36,10 +36,10 @@ const TopNavBar = () => {
                         }
                     >
                         <li className="px-3 py-2 hover:bg-gray-100">
-                            <a href="/language/en">TPHCM</a>
+                            <a href="/language/en">{t("location.tphcm")}</a>
                         </li>
                         <li className="px-3 py-2 hover:bg-gray-100">
-                            <a href="/language/vn">Ha Noi</a>
+                            <a href="/language/vn">{t("location.hanoi")}</a>
                         </li>
                         {/* Add more language options here */}
                     </Dropdown>

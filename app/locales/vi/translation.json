@@ -133,6 +133,11 @@
         "english": "Tiếng Anh",
         "vietnamese": "Tiếng Việt"
     },
+    "location": {
+        "label": "Khu vực",
+        "tphcm": "TPHCM",
+        "hanoi": "Hà Nội"
+    },
     "page_title":{
         "home": "Tranh chủ",
         "store": "Cửa hàng",
