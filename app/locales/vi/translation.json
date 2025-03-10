@@ -27,7 +27,9 @@
         "call_for_price": "Gọi ngay",
         "send": "Gửi",
         "check_order": "Kiểm tra đơn hàng",
-        "send_review": "Gửi đánh giá"
+        "send_review": "Gửi đánh giá",
+        "adding": "Đang thêm...",
+        "added_to_cart": "Trong giỏ"
     },
     "badge_status":{
         "inStock": "Còn hàng",

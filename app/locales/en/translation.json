@@ -27,7 +27,9 @@
         "call_for_price": "Call now",
         "send": "Send",
         "check_order": "Check Orders",
-        "send_review": "Send a Review"
+        "send_review": "Send a Review",
+        "adding": "Adding...",
+        "added_to_cart": "Added to Cart"
     },
     "badge_status":{
         "inStock": "In Stock",

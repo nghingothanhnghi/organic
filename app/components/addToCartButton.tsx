@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { addToCart } from '~/features/cartSlice';
 import type { Product } from '~/types/product';
+import { useTranslation } from 'react-i18next';
 
 interface AddToCartButtonProps {
   product: Product;
@@ -11,6 +12,7 @@ interface AddToCartButtonProps {
 }
 
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, quantity = 1, className }) => {
+  const {t} = useTranslation();
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector((state) => state.cart.items);
   const [loading, setLoading] = useState(false);
@@ -69,12 +71,12 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, quantity = 1
               d="M4 12a8 8 0 018-8v8H4z"
             ></path>
           </svg>
-          Adding...
+          {t("btn.adding")}
         </div>
       ) : currentQuantity > 0 ? (
-        `(${currentQuantity}) Added to Cart`
+        `(${currentQuantity}) ${t("btn.added_to_cart")}`
       ) : (
-        'Add to Cart'
+        (t("btn.add_to_cart"))
       )}
     </button>
   );
