@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import { userPaymentValidationSchema } from '~/validation/userPaymentValidation';
 import MaskedInputDate from '../maskedInputDate';
 import RadioGridSelector from '../radioGridSelector';
+import { useTranslation } from 'react-i18next';
 
 interface UserPaymentInfoProps {
     onNext: () => void;
@@ -13,6 +14,7 @@ interface UserPaymentInfoProps {
 }
 
 const UserPaymentInfo: React.FC<UserPaymentInfoProps> = ({ onNext, handlePrevious, setIsValid, setPaymentData }) => {
+    const {t} = useTranslation();
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string | number>('1'); // Default value is '1' for Cash
 
     const formik = useFormik({
@@ -22,7 +24,7 @@ const UserPaymentInfo: React.FC<UserPaymentInfoProps> = ({ onNext, handlePreviou
             expirationDate: '',
             cvv: '',
         },
-        validationSchema: userPaymentValidationSchema(),
+        validationSchema: userPaymentValidationSchema(t),
         onSubmit: (values) => {
             // Handle form submission
             console.log(values);
