@@ -323,7 +323,11 @@
         "expirationDateFormat": "Expiration date must be in MM/YYYY format",
         "expirationDateRequired": "Expiration date is required",
         "cvvRequired": "CVV is required",
-        "cvvLength": "CVV must be 3 digits"
+        "cvvLength": "CVV must be 3 digits",
+        "reviewScoreMin": "Score must be at least 1.",
+        "reviewScoreMax": "Score cannot exceed 5.",
+        "reviewScoreRequired": "Score is required.",
+        "reviewTextRequired": "Review message is required."
     },
     "country": {
         "VN": "Việt Nam",

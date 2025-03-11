@@ -329,7 +329,11 @@
         "expirationDateFormat": "Ngày hết hạn phải theo định dạng MM/YYYY",
         "expirationDateRequired": "Ngày hết hạn là bắt buộc",
         "cvvRequired": "CVV là bắt buộc",
-        "cvvLength": "CVV phải có 3 chữ số"
+        "cvvLength": "CVV phải có 3 chữ số",
+        "reviewScoreMin": "Điểm đánh giá tối thiểu là 1.",
+        "reviewScoreMax": "Điểm đánh giá không được vượt quá 5.",
+        "reviewScoreRequired": "Điểm đánh giá là bắt buộc.",
+        "reviewTextRequired": "Nội dung đánh giá là bắt buộc."
     },
     "country": {
         "VN": "Việt Nam",

@@ -27,7 +27,7 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
             ward: '',
             postalCode: '',
         },
-        validationSchema: userShippingValidationSchema,
+        validationSchema: userShippingValidationSchema(t),
         onSubmit: (values) => {
             // Handle form submission
             console.log(values);

@@ -1,14 +1,19 @@
 import * as Yup from 'yup';
 import type { TFunction } from 'i18next'; // For localized validation messages
 
-export const userReviewValidationSchema = (t: TFunction) =>
-  Yup.object().shape({
+export const userReviewValidationSchema = (
+  t: (key: string, options?: any) => string
+) =>
+  Yup.object({
     score: Yup.number()
-      .required(t('validation.score.required'))
-      .min(1, t('validation.score.min'))
-      .max(5, t('validation.score.max')),
-    reviewText: Yup.string()
-      .required(t('validation.reviewText.required'))
-      .min(10, t('validation.reviewText.min')),
+      .min(1, t('validation.reviewScoreMin', { defaultValue: 'Score must be at least 1.' }))
+      .max(5, t('validation.reviewScoreMax', { defaultValue: 'Score cannot exceed 5.' }))
+      .required(t('validation.reviewScoreRequired', { defaultValue: 'Score is required.' })),
+    reviewText: Yup.string().required(
+      t('validation.reviewTextRequired', { defaultValue: 'Review message is required.' })
+    ),
   });
+
+
+
 
