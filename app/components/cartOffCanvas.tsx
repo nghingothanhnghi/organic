@@ -17,23 +17,18 @@ const CartOffCanvas: React.FC<CartOffCanvasProps> = ({
   toggleCart,
   closeCart,
 }) => {
-  const {t} = useTranslation();
-  
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const cartItems = useAppSelector((state) => state.cart.items); // Get cart items from Redux
 
   const isCartEmpty = cartItems.length === 0; // Check if the cart is empty
 
-  
 
   const handleNavigateToStore = () => {
     closeCart(); // Close the cart before navigating
     navigate("/store"); // Adjust the path based on your routing setup
   };
-  
-
-
-
 
   return (
     <>
@@ -86,7 +81,7 @@ const CartOffCanvas: React.FC<CartOffCanvasProps> = ({
         {/* Footer */}
         {!isCartEmpty && (
           <div className="sticky bottom-0 p-3">
-            <CartSummary taxRate={10} shippingFee={15} />
+            <CartSummary taxRate={10} shippingFee={15} className="mb-3" />
             <ProceedToCheckoutButton closeCart={closeCart} />
           </div>
         )}
