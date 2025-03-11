@@ -5,22 +5,12 @@ import CartList from "~/components/cartList";
 import CartSummary from "~/components/cartSummary";
 import ProceedToCheckoutButton from "~/components/proceedToCheckoutButton";
 import { useTranslation } from "react-i18next";
+import EmptyState from "~/components/emptyState";
 
 const Cart = () => {
   const { t } = useTranslation();
   const cartItems = useAppSelector(state => state.cart.items);
 
-  // If the cart is empty, show an empty cart message.
-  if (!cartItems || cartItems.length === 0) {
-    return (
-      <div className="cart-container">
-        <div className="container mx-auto flex flex-col items-center justify-center py-4 px-6">
-          <h1 className="text-2xl font-bold mb-4">{t("page_title.cart")}</h1>
-          <p className="text-gray-500">{t("info.cart.message_01") || "Your cart is empty."}</p>
-        </div>
-      </div>
-    );
-  }
 
   // Example values; adjust as needed.
   const taxRate = 10; // 10%
@@ -37,7 +27,7 @@ const Cart = () => {
           <div className="col-span-1 lg:col-span-4 w-full">
             <CartSummary taxRate={taxRate} shippingFee={shippingFee} />
             <div className="mt-6">
-              <ProceedToCheckoutButton closeCart={() => {}} />
+              <ProceedToCheckoutButton closeCart={() => { }} />
             </div>
           </div>
         </div>

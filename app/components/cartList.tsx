@@ -8,6 +8,7 @@ import ProductPrice from './productPrice';
 import { calculateSubtotal } from '~/utils/calculate';
 import { formatPrice } from '~/utils/formatPrice';
 import { useTranslation } from 'react-i18next';
+import EmptyState from './emptyState';
 
 const CartList: React.FC = () => {
     const { t } = useTranslation();
@@ -29,12 +30,20 @@ const CartList: React.FC = () => {
 
     if (!cartItems || cartItems.length === 0) {
         return (
-            <div className="text-center py-10">
-                <p className="text-gray-600">{t("info.cart.empty", "Your cart is empty.")}</p>
-                <Link to="/" className="text-blue-500 underline">
-                    {t("btn.continueShopping", "Continue Shopping")}
-                </Link>
-            </div>
+            // <div className="text-center py-10">
+            //     <p className="text-gray-600">{t("info.cart.empty", "Your cart is empty.")}</p>
+            //     <Link to="/" className="text-blue-500 underline">
+            //         {t("btn.continueShopping", "Continue Shopping")}
+            //     </Link>
+            // </div>
+            <EmptyState
+                messageKey="info.cart.empty"
+                fallbackMessage="Your cart is empty."
+                image="/assets/empty-cart.png"
+                link="/"
+                linkTextKey="btn.continueShopping"
+                fallbackLinkText="Continue Shopping"
+            />
         );
     }
 

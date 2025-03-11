@@ -5,8 +5,8 @@ import ProductThumb from '~/components/productThumb';
 import ProductPrice from '~/components/productPrice';
 import AddToCartButton from './addToCartButton';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router';
 import { removeFromWishlist } from '~/features/wishlistSlice';
+import EmptyState from './emptyState';
 
 const WishList: React.FC = () => {
     const { t } = useTranslation();
@@ -18,12 +18,14 @@ const WishList: React.FC = () => {
     // If wishlist is empty, render a message.
     if (!wishlistItems || wishlistItems.length === 0) {
         return (
-            <div className="text-center py-10">
-                <p className="text-gray-600">Your wishlist is empty.</p>
-                <Link to="/" className="text-blue-500 underline">
-                    Continue Shopping
-                </Link>
-            </div>
+            <EmptyState
+                messageKey="info.cart.empty"
+                fallbackMessage="Your wishlist is empty."
+                image="/assets/empty-cart.png"
+                link="/"
+                linkTextKey="btn.continueShopping"
+                fallbackLinkText="Continue Shopping"
+            />
         );
     }
 
