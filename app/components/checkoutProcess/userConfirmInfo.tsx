@@ -45,19 +45,19 @@ const UserConfirmInfo: React.FC<UserConfirmInfoProps> = ({ setIsValid, shippingD
                 <h3 className="text-lg font-semibold text-gray-500 mb-3">{t("section_title.view_by_user_shipping_info.title")}</h3>
                 <p className='flex justify-between mb-2'><strong>{t("input.fullName.label")}:</strong> {shippingData.firstName} {shippingData.lastName}</p>
                 <p className='flex justify-between mb-2'><strong>{t("input.address.label")}:</strong> {shippingData.address}</p>
-                <p className='flex justify-between mb-2'><strong>Country:</strong> {shippingData.country}</p>
-                <p className='flex justify-between mb-2'><strong>City:</strong> {shippingData.city}</p>
-                <p className='flex justify-between mb-2'><strong>District:</strong> {shippingData.district}</p>
-                <p className='flex justify-between mb-2'><strong>Ward:</strong> {shippingData.ward}</p>
-                <p className='flex justify-between mb-2'><strong>Postal Code:</strong> {shippingData.postalCode}</p>
+                <p className='flex justify-between mb-2'><strong>{t("select.country.label")}:</strong> {shippingData.country}</p>
+                <p className='flex justify-between mb-2'><strong>{t("select.city.label")}:</strong> {shippingData.city}</p>
+                <p className='flex justify-between mb-2'><strong>{t("select.dist.label")}:</strong> {shippingData.district}</p>
+                <p className='flex justify-between mb-2'><strong>{t("select.ward.label")}:</strong> {shippingData.ward}</p>
+                <p className='flex justify-between mb-2'><strong>{t("input.postalCode.label")}:</strong> {shippingData.postalCode}</p>
             </div>
 
             {/* Payment Information Preview */}
             <div className="border-b pb-5 p-4 mb-4">
                 <h3 className="text-lg font-semibold text-gray-500 mb-3">{t("section_title.view_by_user_payment_info.title")}</h3>
-                <p className='flex justify-between mb-2'><strong>Payment Method:</strong> {paymentData?.paymentMethod === '2' ? 'Credit Card' : 'Cash'}</p>
-                <p className='flex justify-between mb-2'><strong>Card Number:</strong> **** **** **** {paymentData?.cardNumber?.slice(-4) || 'N/A'}</p>
-                <p className='flex justify-between mb-2'><strong>Expiration Date:</strong> {paymentData.expirationDate}</p>
+                <p className='flex justify-between mb-2'><strong>{t("input.payment_method.label")}:</strong> {paymentData?.paymentMethod === '2' ? 'Credit Card' : 'Cash'}</p>
+                <p className='flex justify-between mb-2'><strong>{t("input.card_number.label")}:</strong> **** **** **** {paymentData?.cardNumber?.slice(-4) || 'N/A'}</p>
+                <p className='flex justify-between mb-2'><strong>{t("input.expired_date.label")}:</strong> {paymentData.expirationDate}</p>
             </div>
             <div className="flex items-center">
                 <input
@@ -80,7 +80,7 @@ const UserConfirmInfo: React.FC<UserConfirmInfoProps> = ({ setIsValid, shippingD
                     type="submit"
                     className="py-3 px-6 mt-4  rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
                 >
-                    Confirm Order
+                    {t("btn.confirm_order")}
                 </button>
             </div>
         </form>

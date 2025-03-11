@@ -116,13 +116,13 @@ const UserPaymentInfo: React.FC<UserPaymentInfoProps> = ({ onNext, handlePreviou
                     onClick={handlePrevious} // Call the handlePrevious function
                     className="py-3 px-6 rounded-md bg-gray-400 text-white hover:bg-gray-500"
                 >
-                    Previous
+                    {t("btn.previous")}
                 </button>
                 <button
                     type="submit"
                     className="py-3 px-6  text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                    Next
+                    {t("btn.next")}
                 </button>
             </div>
         </form>

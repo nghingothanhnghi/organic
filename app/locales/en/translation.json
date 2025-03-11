@@ -29,7 +29,8 @@
         "check_order": "Check Orders",
         "send_review": "Send a Review",
         "adding": "Adding...",
-        "added_to_cart": "Added to Cart"
+        "added_to_cart": "Added to Cart",
+        "confirm_order": "Confirm Order"
     },
     "badge_status":{
         "inStock": "In Stock",
@@ -116,6 +117,22 @@
         },
         "searchByName":{
             "label": "Search by Name",
+            "placeholder": ""
+        },
+        "payment_method":{
+            "label": "Pay by",
+            "placeholder": ""
+        },
+        "card_number":{
+            "label": "Card Number",
+            "placeholder": ""
+        },
+        "expired_date":{
+            "label": "Expiration Date",
+            "placeholder": ""
+        },
+        "cvv_length":{
+            "label": "CVV",
             "placeholder": ""
         }
     },

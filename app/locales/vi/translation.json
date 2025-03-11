@@ -29,7 +29,8 @@
         "check_order": "Kiểm tra đơn hàng",
         "send_review": "Gửi đánh giá",
         "adding": "Đang thêm...",
-        "added_to_cart": "Trong giỏ"
+        "added_to_cart": "Trong giỏ",
+        "confirm_order": "Thanh toán"
     },
     "badge_status":{
         "inStock": "Còn hàng",
@@ -117,6 +118,22 @@
         "searchByName":{
             "label": "Tìm theo tên",
             "placeholder": "Nhập tên sản phẩm..."
+        },
+        "payment_method":{
+            "label": "Thanh toán bằng",
+            "placeholder": ""
+        },
+        "card_number":{
+            "label": "Số thẻ",
+            "placeholder": ""
+        },
+        "expired_date":{
+            "label": "Expiration Date",
+            "placeholder": ""
+        },
+        "cvv_length":{
+            "label": "CVV",
+            "placeholder": ""
         }
     },
     "dataGrid": {
