@@ -22,7 +22,7 @@ const UserPaymentInfo: React.FC<UserPaymentInfoProps> = ({ onNext, handlePreviou
             expirationDate: '',
             cvv: '',
         },
-        validationSchema: userPaymentValidationSchema,
+        validationSchema: userPaymentValidationSchema(),
         onSubmit: (values) => {
             // Handle form submission
             console.log(values);
@@ -31,6 +31,7 @@ const UserPaymentInfo: React.FC<UserPaymentInfoProps> = ({ onNext, handlePreviou
             onNext(); // Move to the next step
         },
     });
+
 
     // Update isValid based on formik's validation state
     useEffect(() => {

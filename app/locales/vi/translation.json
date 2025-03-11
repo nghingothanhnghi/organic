@@ -152,7 +152,7 @@
         "home": "Tranh chủ",
         "store": "Cửa hàng",
         "product": "Sản phẩm",
-        "checkout": "Thanh toán",
+        "checkout": "Các bước thanh toán",
         "cart": "Giỏ hàng",
         "wishlist": "Danh sách yêu thích",
         "post": "Bài viết",
@@ -321,7 +321,15 @@
         "passwordUnMatchingRequired": "Mật khẩu không khớp?",
         "titleRequired": "Tiêu đề không được để trống",
         "messageRequired": "Nội dung được yêu cầu",
-        "agreeRequired": "Tôi đồng ý cung cấp thông tin cho Phutungtoyota"
+        "agreeRequired": "Tôi đồng ý cung cấp thông tin cho Phutungtoyota",
+        "paymentMethodRequired": "Phương thức thanh toán là bắt buộc",
+        "onlyNumbersAllowed": "Chỉ cho phép nhập số",
+        "cardNumberRequired": "Số thẻ là bắt buộc",
+        "cardNumberLength": "Số thẻ phải có 16 chữ số",
+        "expirationDateFormat": "Ngày hết hạn phải theo định dạng MM/YYYY",
+        "expirationDateRequired": "Ngày hết hạn là bắt buộc",
+        "cvvRequired": "CVV là bắt buộc",
+        "cvvLength": "CVV phải có 3 chữ số"
     },
     "country": {
         "VN": "Việt Nam",

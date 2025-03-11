@@ -315,7 +315,15 @@
         "passwordUnMatchingRequired": "Password not matching?",
         "titleRequired": "Title is a required field",
         "messageRequired": "Message is a required field",
-        "agreeRequired": "I agree"
+        "agreeRequired": "I agree",
+        "paymentMethodRequired": "Payment method is required",
+        "onlyNumbersAllowed": "Only numbers are allowed",
+        "cardNumberRequired": "Card number is required",
+        "cardNumberLength": "Card number must be 16 digits",
+        "expirationDateFormat": "Expiration date must be in MM/YYYY format",
+        "expirationDateRequired": "Expiration date is required",
+        "cvvRequired": "CVV is required",
+        "cvvLength": "CVV must be 3 digits"
     },
     "country": {
         "VN": "Việt Nam",
