@@ -17,6 +17,7 @@ const UserPaymentInfo: React.FC<UserPaymentInfoProps> = ({ onNext, handlePreviou
 
     const formik = useFormik({
         initialValues: {
+            paymentMethod: selectedPaymentMethod,
             cardNumber: '',
             expirationDate: '',
             cvv: '',
@@ -37,8 +38,14 @@ const UserPaymentInfo: React.FC<UserPaymentInfoProps> = ({ onNext, handlePreviou
     }, [formik.isValid, formik.dirty, setIsValid]);
 
     const handlePaymentMethodChange = (value: string | number) => {
-        console.log("Selected Payment Method:", value); 
+        console.log("Selected Payment Method:", value);
         setSelectedPaymentMethod(value); // Update payment method
+        formik.setFieldValue("paymentMethod", value);
+
+        // Reset form fields when switching to Cash
+        if (value === '1') {
+            formik.setValues({ paymentMethod: '1', cardNumber: '', expirationDate: '', cvv: '' });
+        }
     };
 
     // Payment method options for radio grid

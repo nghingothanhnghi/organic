@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router';
+import { useLocation, Link } from 'react-router';
 import { useAppSelector, useAppDispatch } from '~/hooks';
 import { updateQuantity, removeFromCart } from '~/features/cartSlice'; // Adjust the path to your slice
 import QuantityInput from './quantityInput';
@@ -10,7 +10,7 @@ import { formatPrice } from '~/utils/formatPrice';
 import { useTranslation } from 'react-i18next';
 
 const CartList: React.FC = () => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const cartItems = useAppSelector(state => state.cart.items);
     const location = useLocation();
@@ -26,47 +26,55 @@ const CartList: React.FC = () => {
     };
     // Check if the current path is '/checkout'
     const isCheckoutPage = location.pathname === '/checkout';
+
+    if (!cartItems || cartItems.length === 0) {
+        return (
+            <div className="text-center py-10">
+                <p className="text-gray-600">{t("info.cart.empty", "Your cart is empty.")}</p>
+                <Link to="/" className="text-blue-500 underline">
+                    {t("btn.continueShopping", "Continue Shopping")}
+                </Link>
+            </div>
+        );
+    }
+
     return (
         <div className="cart-list">
-            {cartItems.length > 0 ? (
-                <div className="cart-items space-y-4">
-                    {cartItems.map((item) => (
-                        <div key={item.id} className="flex justify-between border p-4 rounded-md shadow-sm">
-                            <div className="flex space-x-4">
-                                <ProductThumb product={item} className='w-16 h-16 object-cover rounded-md'/>
-                                <div className='flex-column space-y-1'>
-                                    <h3 className="text-sm font-medium">
-                                     {item.name} {isCheckoutPage && (<sup className='text-gray-500'>x{item.quantity}</sup>)}
-                                    </h3>
-                                    <ProductPrice product={item} className='text-xs'/>
-                                    {!isCheckoutPage && (
-                                        <>
-                                            <QuantityInput
-                                                value={item.quantity}
-                                                min={1}
-                                                onChange={(quantity) => handleQuantityChange(item.id, quantity)}
-                                            />
-                                            <button
-                                                onClick={() => handleRemoveItem(item.id)}
-                                                className="text-red-500 hover:text-red-700 text-sm"
-                                            >
-                                                {t("btn.remove")}
-                                            </button>
-                                        </>
-                                    )}
-                                </div>
-                            </div>
-                            <div>
-                                <p className="text-sm font-semibold">
-                                {formatPrice(calculateSubtotal(item.discountPrice || item.price, item.quantity))}
-                                </p>
+            <div className="cart-items space-y-4">
+                {cartItems.map((item) => (
+                    <div key={item.id} className="flex justify-between border p-4 rounded-md shadow-sm">
+                        <div className="flex space-x-4">
+                            <ProductThumb product={item} className='w-16 h-16 object-cover rounded-md' />
+                            <div className='flex-column space-y-1'>
+                                <h3 className="text-sm font-medium">
+                                    {item.name} {isCheckoutPage && (<sup className='text-gray-500'>x{item.quantity}</sup>)}
+                                </h3>
+                                <ProductPrice product={item} className='text-xs' />
+                                {!isCheckoutPage && (
+                                    <>
+                                        <QuantityInput
+                                            value={item.quantity}
+                                            min={1}
+                                            onChange={(quantity) => handleQuantityChange(item.id, quantity)}
+                                        />
+                                        <button
+                                            onClick={() => handleRemoveItem(item.id)}
+                                            className="text-red-500 hover:text-red-700 text-sm"
+                                        >
+                                            {t("btn.remove")}
+                                        </button>
+                                    </>
+                                )}
                             </div>
                         </div>
-                    ))}
-                </div>
-            ) : (
-                <p className="text-gray-500">{t("info.cart.message_01")}</p>
-            )}
+                        <div>
+                            <p className="text-sm font-semibold">
+                                {formatPrice(calculateSubtotal(item.discountPrice || item.price, item.quantity))}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

@@ -112,7 +112,7 @@ const CheckOut = () => {
                     </div>
                     <div className="col-span-1 lg:col-span-4 w-full">
                         <CartList />
-                        <CartSummary taxRate={0} shippingFee={0} />
+                        <CartSummary taxRate={0} shippingFee={0} className="mt-4" />
                     </div>
                 </div>
             </div>

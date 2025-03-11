@@ -8,9 +8,10 @@ import { useTranslation } from 'react-i18next';
 interface CartSummaryProps {
     taxRate: number;
     shippingFee: number;
+    className?: string;
 }
 
-const CartSummary: React.FC<CartSummaryProps> = ({ taxRate, shippingFee }) => {
+const CartSummary: React.FC<CartSummaryProps> = ({ taxRate, shippingFee, className }) => {
     const {t} = useTranslation();
     const cartItems = useAppSelector(state => state.cart.items); // Access cart items from Redux
 
@@ -24,7 +25,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({ taxRate, shippingFee }) => {
     const total = calculateFinalTotal(cartItems, taxRate, shippingFee);
 
     return (
-        <div className="cart-summary bg-gray-100 p-4 mt-4 border rounded-md space-y-2">
+        <div className={`cart-summary bg-gray-100 p-4 border rounded-md space-y-2 ${className || ''}`}>
             {/* Display subtotal */}
             <p className="flex justify-between text-sm font-medium">
                 <span>{t("dataGrid.headerName.subTotal")} </span> {formatPrice(subtotal)}
