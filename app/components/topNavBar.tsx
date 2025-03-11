@@ -5,6 +5,7 @@ import Dropdown from "./dropdown";
 import UserProfileDropdown from "./userProfileDropdown";
 import { useAppSelector } from "~/hooks";
 import { useTranslation } from "react-i18next";
+import { safeSessionStorage } from "~/utils/storage";
 const TopNavBar = () => {
     const { t, i18n } = useTranslation();
 
@@ -14,6 +15,7 @@ const TopNavBar = () => {
 
     const handleLanguageChange = (lang: string) => {
         i18n.changeLanguage(lang); // Change language on selection
+        safeSessionStorage.setItem("language", lang); // Use session storage safely
     };
 
 
