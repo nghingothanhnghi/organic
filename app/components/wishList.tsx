@@ -22,6 +22,7 @@ const WishList: React.FC = () => {
                 messageKey="info.cart.empty"
                 fallbackMessage="Your wishlist is empty."
                 image="/assets/empty-cart.png"
+                lottieSrc="https://lottie.host/embed/35e4c536-4034-4737-a2cc-2852b01d2b4b/lL86Lcve9X.lottie"
                 link="/"
                 linkTextKey="btn.continueShopping"
                 fallbackLinkText="Continue Shopping"
