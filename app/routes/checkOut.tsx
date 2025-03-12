@@ -9,7 +9,7 @@ import UserShippingInfo from "~/components/checkoutProcess/userShippingInfo";
 import UserPaymentInfo from "~/components/checkoutProcess/userPaymentInfo";
 import UserConfirmInfo from "~/components/checkoutProcess/userConfirmInfo";
 import CartSummary from "~/components/cartSummary";
-import { submitOrder, clearOrder } from "~/features/checkOutSlice";
+import { submitOrder, createOrder, clearOrder } from "~/features/checkOutSlice";
 import { useTranslation } from "react-i18next";
 
 const CheckOut = () => {
@@ -42,23 +42,45 @@ const CheckOut = () => {
     };
 
     // Define handleFinalSubmit before using it
-    const handleFinalSubmit = (finalData: any) => {
-        // Combine all collected data (shipping, payment, and cart items)
+    const handleFinalSubmit = async () => {
+        // Ensure the order structure matches the expected format
         const finalOrderData = {
-            cartItems, // Include cart items in the final order data
-            ...finalData, // Any additional data
+            // id: Date.now(), // Temporary ID for frontend usage
+            // purchaseOrder: `PO-${Date.now()}`, // Generate a purchase order number
+            items: cartItems, // Ensure this matches the expected `items` array
+            shippingDetails: shippingData,
+            paymentDetails: paymentData,
+            // status: 'Pending',
         };
 
         console.log('Final order submission:', finalOrderData);
 
         // Dispatch the action to submit the order with all the data
-        dispatch(submitOrder(finalOrderData));
+        // dispatch(submitOrder(finalOrderData));
 
-        // After the order is successfully placed, clear the cart
-        dispatch(clearOrder());
+        // // After the order is successfully placed, clear the cart
+        // dispatch(clearOrder());
 
-        // Navigate to the order confirmation page or home page after successful order
-        navigate('/order-confirmation'); // Adjust the path as needed
+        // // Navigate to the order confirmation page or home page after successful order
+        // navigate('/order-confirmation'); // Adjust the path as needed
+
+        try {
+            // Dispatch the action to create the order via the backend API
+            const resultAction = await dispatch(createOrder(finalOrderData));
+    
+            if (createOrder.fulfilled.match(resultAction)) {
+                // If order creation is successful, clear the cart and navigate
+                dispatch(clearOrder());
+                navigate('/order-confirmation'); // Adjust the path as needed
+            } else {
+                // toast.error(t('error.order_creation_failed')); // Display error message
+            }
+        } catch (error) {
+            console.error('Order submission failed:', error);
+            // toast.error(t('error.unexpected_error'));
+        }
+
+
 
     };
 

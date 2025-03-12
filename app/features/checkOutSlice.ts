@@ -23,9 +23,47 @@ const initialState: CheckoutState = {
 // Async thunk for creating an order
 export const createOrder = createAsyncThunk(
     'checkout/createOrder',
-    async ({ items, shippingDetails }: { items: CartItem[]; shippingDetails: any }, { rejectWithValue }) => {
+    async ({ items, shippingDetails, paymentDetails }: {
+        items: CartItem[];
+        shippingDetails: any;
+        paymentDetails: any;
+    }, { rejectWithValue }) => {
         try {
-            const orderData = { items, shippingDetails };
+            // const orderData = { items, shippingDetails, paymentDetails };
+            console.log("🟢 createOrder thunk called with:", { items, shippingDetails, paymentDetails });
+            // Transform data to match Strapi API format
+            const orderData = {
+                totalAmount: items.reduce((sum, item) => sum + item.price * item.quantity, 0),
+                tax: 0, // Calculate tax if applicable
+                subTotal: items.reduce((sum, item) => sum + item.price * item.quantity, 0), // Adjust as needed
+                currency: "VND", // Example: hardcoded, or get from store settings
+                notes: shippingDetails.notes || "",
+                token: paymentDetails.transactionToken || null,
+                purchaseOrder: "", // Strapi field, assign dynamically if needed
+                status: "Pending", // Default status
+                items: items.map(item => ({
+                    product: item.id, 
+                    quantity: item.quantity,
+                    price: item.price
+                })),
+                user: shippingDetails.userId || null,
+                receivedCash: paymentDetails.amountPaid || 0,
+                shippingFee: paymentDetails.deliveryFee || 0,
+                qrCodeData: paymentDetails.qrData || "",
+                qrCodeUrl: paymentDetails.qrLink || "",
+                balance: paymentDetails.remainingBalance || 0,
+                customer: shippingDetails.customerId || null,
+                paymentMethod: paymentDetails.paymentMode || null,
+                receipt: paymentDetails.receiptId || null,
+                store: shippingDetails.storeId || null,
+                shipment: shippingDetails.shipmentId || null,
+                orderType: shippingDetails.typeOfOrder || 0,
+                guestCheckout: shippingDetails.isGuestCheckout || false
+            };
+
+            // **LOG THE TRANSFORMED DATA BEFORE SENDING IT**
+            console.log("🚀 Transformed Order Data:", JSON.stringify(orderData, null, 2));
+
             const response = await createOrderAPI(orderData);
             return response;
         } catch (error: any) {
@@ -53,6 +91,7 @@ const checkOutSlice = createSlice({
                 items,
                 shippingDetails,
                 status: 'Pending',
+                purchaseOrder: "",
             };
             state.loading = false;
             state.success = true;
@@ -87,6 +126,10 @@ const checkOutSlice = createSlice({
                 state.loading = false;
                 state.success = true;
                 state.order = action.payload;
+                // state.order = {
+                //     ...action.payload,
+                //     purchaseOrder: action.payload.purchaseOrder || "", // Ensure it exists
+                // };
                 toast.success('Order successfully created!');
             })
             .addCase(createOrder.rejected, (state, action) => {
