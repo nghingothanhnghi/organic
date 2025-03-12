@@ -30,7 +30,8 @@
         "send_review": "Send a Review",
         "adding": "Adding...",
         "added_to_cart": "Added to Cart",
-        "confirm_order": "Confirm Order"
+        "confirm_order": "Confirm Order",
+        "search": "Search"
     },
     "badge_status":{
         "inStock": "In Stock",
