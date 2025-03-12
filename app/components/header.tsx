@@ -30,14 +30,6 @@ const Header = () => {
         <header className="bg-gray-100 border-b border-gray-300">
             {isDesktop && <TopNavBar />}
             <div className="container mx-auto flex items-center justify-between py-4 px-6">
-                {/* Brand */}
-                <div className="text-2xl font-bold">
-                    <Link to="/"><img src={LogoImage} width={100} height={40} className="img-fluid" /></Link>
-                </div>
-
-                {/* Centered Navigation Menu */}
-                <MainMenuDesktop/>
-
                 {/* Mobile Toggle Button */}
                 <button
                     className="md:hidden text-gray-700 focus:outline-none"
@@ -62,9 +54,16 @@ const Header = () => {
                         />
                     </svg>
                 </button>
+                {/* Brand */}
+                <div className="text-2xl font-bold">
+                    <Link to="/"><img src={LogoImage} width={100} height={40} className="img-fluid" /></Link>
+                </div>
+
+                {/* Centered Navigation Menu */}
+                <MainMenuDesktop />
 
                 {/* Right Side Buttons */}
-                <div className="hidden md:flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
                     {!shouldHideCartButton && <CartButton onClick={toggleCart} />}
                     <WishlistButton />
                 </div>

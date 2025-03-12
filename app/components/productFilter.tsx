@@ -1,6 +1,7 @@
 // components/ProductFilter.tsx
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import useResponsive from '~/hooks/useResponsive';
 
 interface ProductFilterProps {
     onFilterChange: (newFilters: Record<string, any>) => void; // Declare the prop type
@@ -8,6 +9,7 @@ interface ProductFilterProps {
 
 const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
     const { t } = useTranslation();
+    const { isMobile, isTablet, isDesktop } = useResponsive();
     const [categories, setCategories] = useState('');
     const [priceRange, setPriceRange] = useState('');
     const [searchName, setSearchName] = useState('');
@@ -30,8 +32,6 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
         // Trigger the filter change when the user applies filters
         onFilterChange({ categories, priceRange, name: searchName });
     };
-
-    
 
     return (
         <div className="bg-white p-6 gap-4 mx-auto mb-5">

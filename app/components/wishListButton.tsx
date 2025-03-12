@@ -10,7 +10,7 @@ const WishlistButton: React.FC = () => {
   return (
     <Link
       to="/wishlist"
-      className="relative text-gray-700 hover:text-gray-900 transition-colors"
+      className="relative text-gray-700 hover:text-gray-900 hover:bg-gray-200 transition-colors rounded-full p-2"
     >
       {/* Wishlist Icon */}
       <svg
@@ -19,7 +19,7 @@ const WishlistButton: React.FC = () => {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="size-6"
+        className="size-5"
       >
         <path
           strokeLinecap="round"
