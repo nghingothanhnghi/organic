@@ -30,12 +30,6 @@ const CartList: React.FC = () => {
 
     if (!cartItems || cartItems.length === 0) {
         return (
-            // <div className="text-center py-10">
-            //     <p className="text-gray-600">{t("info.cart.empty", "Your cart is empty.")}</p>
-            //     <Link to="/" className="text-blue-500 underline">
-            //         {t("btn.continueShopping", "Continue Shopping")}
-            //     </Link>
-            // </div>
             <EmptyState
                 messageKey="info.cart.empty"
                 fallbackMessage="Your cart is empty."
