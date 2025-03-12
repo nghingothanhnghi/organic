@@ -1,5 +1,5 @@
 // app/components/ProductCard.tsx
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router';
 import { useAppSelector } from '~/hooks';
 import ProductThumb from './productThumb';
@@ -13,9 +13,9 @@ import Modal from './modal';
 import type { ProductCardProps } from '~/types/product';
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-    const { name, slug, ratings} = product;
+    const { name, slug, ratings } = product;
     const cartItems = useAppSelector(state => state.cart.items); // Get cart items from Redux state
-    
+
     // Check if the current product is in the cart
     const isItemInCart = cartItems.some((item) => item.id === product.id); // Use `name` or another unique property
 
@@ -34,7 +34,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     {isItemInCart && (
                         <ProceedToCheckoutButton closeCart={closeCart} />
                     )}
-                     <QuickViewButton product={product} />
+                    <QuickViewButton product={product} />
                 </div>
                 {/* Discount Badge */}
                 <ProductDiscount product={product} />
@@ -42,13 +42,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             {/* Content Section */}
             <div className="p-4">
                 <h3 className="text-sm font-semibold text-gray-900 truncate">
-                <Link to={`/products/${slug}`} className="hover:text-blue-500">
+                    <Link to={`/products/${slug}`} className="hover:text-blue-500">
                         {name}
                     </Link>
                 </h3>
-                <ProductRating product={product} />
+                <ProductRating product={product} singleStarView={true} />
                 {/* Price */}
-                <ProductPrice product={product} />
+                <ProductPrice product={product} className='mt-2' />
             </div>
         </div>
     );

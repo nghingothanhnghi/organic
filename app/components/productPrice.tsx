@@ -21,12 +21,12 @@ const ProductPrice: React.FC<ProductPriceProps> = ({ product, className, variant
   }
 
   return (
-    <div className={`mt-3 ${className || ''}`}>
+    <div className={`${className || ''}`}>
       {discountPrice ? (
         // If there's a discount, display original price with a strikethrough and the discount price
-        <div className='flex flex-col'>
-          <span className="line-through text-gray-400">{formatPrice(price)}</span>
+        <div className='flex flex-col lg:flex-row lg:gap-5'>
           <span className="text-lime-700">{formatPrice(discountPrice)}</span>
+          <span className="line-through text-gray-400 font-normal">{formatPrice(price)}</span>
         </div>
       ) : (
         // If there's no discount, simply display the original price in the discount color
