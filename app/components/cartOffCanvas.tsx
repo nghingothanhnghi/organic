@@ -49,7 +49,7 @@ const CartOffCanvas: React.FC<CartOffCanvasProps> = ({
           </div>
         </div>
         {/* Cart Content */}
-        <div className="flex-1 overflow-y-scroll">
+        <div className="flex-1 overflow-y-scroll p-3">
           {isCartEmpty ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-10">

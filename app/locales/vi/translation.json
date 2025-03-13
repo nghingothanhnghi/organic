@@ -156,11 +156,13 @@
         }
     },
     "paging":{
+        "showing": "Xem",
         "pageSize": "Xem",
         "to": "đến",
         "of": "của",
         "page": "Trang",
-        "goTo": "Đi đến"
+        "goTo": "Đi đến",
+        "results": "kết quả"
     },
     "language": {
         "label": "Ngôn ngữ",

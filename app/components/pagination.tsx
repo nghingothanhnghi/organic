@@ -1,8 +1,10 @@
 // app/components/pagination.tsx
 import React from 'react';
 import type { PaginationProps } from '~/types/pagination';
+import { useTranslation } from 'react-i18next';
 
 const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
+    const {t} = useTranslation();
     return (
         <div className="flex items-center justify-center space-x-4 py-4 my-10">
             <button
@@ -17,7 +19,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
             </button>
             <span className="text-gray-700 font-semibold">
-                Page {currentPage} of {totalPages}
+            {t("paging.page")} {currentPage} / {totalPages}
             </span>
             <button
                 className={`px-4 py-2 bg-green-500 text-white rounded-md flex items-center justify-center disabled:bg-gray-300 disabled:cursor-not-allowed transition duration-200 ${currentPage === totalPages ? 'cursor-not-allowed' : 'hover:bg-green-600'

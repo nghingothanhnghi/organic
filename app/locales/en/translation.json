@@ -156,11 +156,13 @@
         }
     },
     "paging":{
+        "showing": "Showing",
         "pageSize": "Page size",
         "to": "to",
         "of": "of",
         "page": "Page",
-        "goTo": "Go to"
+        "goTo": "Go to",
+        "results": "results"
     },
     "language": {
         "label": "Language",
