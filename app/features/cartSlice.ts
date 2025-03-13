@@ -6,6 +6,7 @@ import type { CartItem, CartState } from '~/types/cart';
 import { toast } from 'react-toastify';
 import { safeSessionStorage } from '~/utils/storage';
 import { calculateFinalPrice } from '~/utils/calculate';
+import i18n from 'i18next';
 
 // Load cart items from sessionStorage if they exist
 const initialState: CartState = {
@@ -28,20 +29,15 @@ const cartSlice = createSlice({
             const itemIndex = state.items.findIndex((item) => item.id === id);
             if (itemIndex !== -1) {
                 state.items[itemIndex].quantity += 1;
-                toast.info(`Increased quantity of ${name} in the cart.`);
+                toast.info(i18n.t('info.cart.message_02', { name }));
             } else {
                 state.items.push({ ...action.payload, quantity: 1, finalPrice });
-                toast.success(`${name} added to the cart.`);
+                toast.success(i18n.t('success.cart.message_03', { name }));
             }
             updateSessionStorage(state.items);
         },
         removeFromCart: (state, action: PayloadAction<number>) => {
             const removedItem = state.items.find((item) => item.id === action.payload);
-            // state.items = state.items.filter((item) => item.id !== action.payload);
-            // updateSessionStorage(state.items);
-            // if (removedItem) {
-            //     toast.warn(`${removedItem.name} removed from the cart.`);
-            // }
             if (removedItem) {
                 state.items = state.items.filter((item) => item.id !== action.payload);
                 updateSessionStorage(state.items);

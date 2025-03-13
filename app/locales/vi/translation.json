@@ -272,7 +272,8 @@
             "message_02": "Đánh giá"
         },
         "cart": {
-            "message_01": "Giỏ hàng của bạn đang trống!"
+            "message_01": "Giỏ hàng của bạn đang trống!",
+            "message_02": "Đã tăng số lượng {{name}} trong giỏ hàng."
         },
         "wishlist": {
             "message_01": "Yêu thích của bạn đang trống!"
@@ -317,8 +318,8 @@
         },
         "cart":{
             "message_01": "{{itemName}} đã thêm vào giỏ!",
-            "message_02": "{{itemName}} đã xóa trong giỏ hàng!"
-            
+            "message_02": "{{itemName}} đã xóa trong giỏ hàng!",
+            "message_03": "{{name}} đã được thêm vào giỏ hàng."
         },
         "wishlist":{
             "message_01": "{{itemName}} đã thêm vào mục yêu thích!",
