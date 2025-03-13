@@ -266,7 +266,8 @@
             "message_02": "Không tìm thấy bài viết."
         },
         "review": {
-            "message_01": "Chưa có bình luận nào."
+            "message_01": "Chưa có bình luận nào.",
+            "message_02": "Đánh giá"
         },
         "cart": {
             "message_01": "Giỏ hàng của bạn đang trống!"

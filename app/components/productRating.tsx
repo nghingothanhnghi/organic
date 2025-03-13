@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Product } from '../types/product'; // Adjust the import as needed
 import StarIcon from './startIcon';
+import { useTranslation } from 'react-i18next';
 
 
 interface ProductRatingProps {
@@ -9,6 +10,7 @@ interface ProductRatingProps {
 }
 
 const ProductRating: React.FC<ProductRatingProps> = ({ product, singleStarView = false }) => {
+  const {t} = useTranslation();
   // Calculate the average rating (if ratings exist)
   const ratings = product.ratings || [];
   const totalRatings = ratings.length;
@@ -20,16 +22,18 @@ const ProductRating: React.FC<ProductRatingProps> = ({ product, singleStarView =
   if (singleStarView) {
     return (
       <div className="flex items-center gap-2 mt-1">
-        <StarIcon
-          filled={averageRating >= 1}
-          half={averageRating >= 0.5 && averageRating < 1}
-          className="w-4 h-4 text-yellow-300"
-        />
-        <p className="text-xs font-medium leading-none text-gray-500 dark:text-gray-400">
-          ({averageRating.toFixed(1)})
-        </p>
-        <span className="text-xs font-medium leading-none text-gray-900 dark:text-white">
-          {totalRatings} Reviews
+        <div className='flex items-center gap-1'>
+          <StarIcon
+            filled={averageRating >= 1}
+            half={averageRating >= 0.5 && averageRating < 1}
+            className="w-4 h-4 text-yellow-300"
+          />
+          <span className="text-xs font-normal text-gray-400 dark:text-gray-400">
+            ({averageRating.toFixed(1)})
+          </span>
+        </div>
+        <span className="text-xs text-gray-400 font-normal dark:text-gray-400">
+          {totalRatings} {t("info.review.message_02")}
         </span>
       </div>
     );
@@ -61,13 +65,12 @@ const ProductRating: React.FC<ProductRatingProps> = ({ product, singleStarView =
           .map((_, index) => (
             <StarIcon key={index + fullStars} filled={false} half={false} className="w-4 h-4 text-yellow-300" />
           ))}
+        <span className="text-xs font-normaltext-gray-400 dark:text-gray-400">
+          ({averageRating.toFixed(1)})
+        </span>
       </div>
-
-      <p className="text-xs font-medium leading-none text-gray-500 dark:text-gray-400">
-        ({averageRating.toFixed(1)})
-      </p>
-      <span className="text-xs font-medium leading-none text-gray-900 dark:text-white">
-        {totalRatings} Reviews
+      <span className="text-xs text-gray-400 font-normal dark:text-gray-400">
+        {totalRatings} {t("info.review.message_02")}
       </span>
     </div>
   );

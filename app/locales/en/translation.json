@@ -266,7 +266,8 @@
             "message_02": "Article not found."
         },
         "review": {
-            "message_01": "No reviews yet."
+            "message_01": "No reviews yet.",
+            "message_02": "Reviews(s)"
         },
         "cart": {
             "message_01": "Your cart is empty!"

@@ -112,12 +112,12 @@ const OrderCheck = () => {
     {
       headerName: t("dataGrid.headerName.purchaseOrder"),
       field: "purchaseOrder",
-      sortable: true,
+      sortable: false,
       filter: false,
       flex:1
     },
     {
-      headerName: "Items",
+      headerName: t("dataGrid.headerName.items"),
       field: "items",
       cellRenderer: (params: any) => {
         if (!params.value || !Array.isArray(params.value)) return "-";
@@ -133,7 +133,7 @@ const OrderCheck = () => {
       headerName: t("dataGrid.headerName.totalAmount"),
       field: "totalAmount",
       valueFormatter: (params: any) => formatPrice(params.value),
-      sortable: true,
+      sortable: false,
       filter: false,
       resizable: false,
     },
