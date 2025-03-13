@@ -31,7 +31,8 @@
         "adding": "Đang thêm...",
         "added_to_cart": "Trong giỏ",
         "confirm_order": "Thanh toán",
-        "search": "Tìm"
+        "search": "Tìm",
+        "continue_shopping": "Đi đến cửa hàng"
     },
     "badge_status":{
         "inStock": "Còn hàng",
@@ -264,6 +265,9 @@
         },
         "cart": {
             "message_01": "Giỏ hàng của bạn đang trống!"
+        },
+        "wishlist": {
+            "message_01": "Yêu thích của bạn đang trống!"
         }
     },
     "error": {

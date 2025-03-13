@@ -39,25 +39,15 @@ const CartOffCanvas: React.FC<CartOffCanvasProps> = ({
       >
         {/* Header */}
         <div className="flex justify-between p-4 sticky top-0">
-          <div className="font-bold text-lg">Your Cart</div>
-          <button onClick={toggleCart} className="text-gray-700">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+          <div className="flex items-center space-x-3">
+            <button onClick={toggleCart} className="text-gray-700 hover:text-gray-900 hover:bg-gray-200 transition-colors rounded-full p-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+            <div className="font-bold text-lg">Your Cart</div>
+          </div>
         </div>
-
         {/* Cart Content */}
         <div className="flex-1 overflow-y-scroll">
           {isCartEmpty ? (
@@ -68,9 +58,12 @@ const CartOffCanvas: React.FC<CartOffCanvasProps> = ({
               <p className="text-gray-800 text-md font-semibold mb-4">{t("info.cart.message_01")}</p>
               <button
                 onClick={handleNavigateToStore}
-                className="mt-4 px-4 py-2 text-white rounded-md bg-gradient-to-r from-sky-500 from-10% to-emerald-500 to-90% hover:from-emerald-500 hover:to-sky-500"
+                className="mt-4 flex items-center justify-center text-sm font-semibold px-4 py-2 text-white rounded-lg shadow-md hover:shadow-lg bg-gradient-to-r from-sky-500 from-10% to-emerald-500 to-90% hover:from-emerald-500 hover:to-sky-500 transition duration-300"
               >
-                Browse Store
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 me-2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
+                </svg>
+                {t("btn.continue_shopping")}
               </button>
             </div>
           ) : (

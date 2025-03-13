@@ -31,7 +31,8 @@
         "adding": "Adding...",
         "added_to_cart": "Added to Cart",
         "confirm_order": "Confirm Order",
-        "search": "Search"
+        "search": "Search",
+        "continue_shopping": "Continue Shopping"
     },
     "badge_status":{
         "inStock": "In Stock",
@@ -264,6 +265,9 @@
         },
         "cart": {
             "message_01": "Your cart is empty!"
+        },
+        "wishlist": {
+            "message_01": "Your wishlist is empty!"
         }
     },
     "error": {

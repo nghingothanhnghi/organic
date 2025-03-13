@@ -31,12 +31,12 @@ const CartList: React.FC = () => {
     if (!cartItems || cartItems.length === 0) {
         return (
             <EmptyState
-                messageKey="info.cart.empty"
+                messageKey="info.cart.message_01"
                 fallbackMessage="Your cart is empty."
                 image="/assets/empty-cart.png"
                 lottieSrc="https://lottie.host/embed/35e4c536-4034-4737-a2cc-2852b01d2b4b/lL86Lcve9X.lottie"
                 link="/"
-                linkTextKey="btn.continueShopping"
+                linkTextKey="btn.continue_shopping"
                 fallbackLinkText="Continue Shopping"
             />
         );

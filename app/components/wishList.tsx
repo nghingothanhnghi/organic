@@ -19,12 +19,12 @@ const WishList: React.FC = () => {
     if (!wishlistItems || wishlistItems.length === 0) {
         return (
             <EmptyState
-                messageKey="info.cart.empty"
+                messageKey="info.wishlist.message_01"
                 fallbackMessage="Your wishlist is empty."
                 image="/assets/empty-cart.png"
                 lottieSrc="https://lottie.host/embed/35e4c536-4034-4737-a2cc-2852b01d2b4b/lL86Lcve9X.lottie"
                 link="/"
-                linkTextKey="btn.continueShopping"
+                linkTextKey="btn.continue_shopping"
                 fallbackLinkText="Continue Shopping"
             />
         );
