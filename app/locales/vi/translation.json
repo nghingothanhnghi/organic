@@ -307,6 +307,10 @@
         }
     },
     "success": {
+        "auth":{
+            "message_01": "Bạn đã thoát đăng nhập",
+            "message_02": "Đăng nhập thành công!"
+        },
         "order":{
             "message_01": "Đơn hàng đã hoàn thành!",
             "message_02": ""

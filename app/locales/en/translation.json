@@ -302,6 +302,10 @@
         }
     },
     "success": {
+        "auth":{
+            "message_01": "Logged out successfully",
+            "message_02": "Login successful!"
+        },       
         "order":{
             "message_01": "Order placed successfully!",
             "message_02": ""

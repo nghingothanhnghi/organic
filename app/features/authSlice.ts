@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import i18n from 'i18next';
 import type { AuthResponse, ForgotPasswordResponse, AuthState } from '~/types/user';
 import {
     loginService,
@@ -77,7 +78,7 @@ const authSlice = createSlice({
             state.user = null;
             safeSessionStorage.removeItem('user');
             safeSessionStorage.removeItem('userToken');
-            toast.info('Logged out successfully');
+            toast.info(i18n.t('success.auth.message_01'));
         },
     },
     extraReducers: (builder) => {
@@ -95,8 +96,7 @@ const authSlice = createSlice({
                 // Store user and token in sessionStorage
                 safeSessionStorage.setItem('user', JSON.stringify(action.payload.user));
                 safeSessionStorage.setItem('userToken', action.payload.jwt);
-
-                toast.success('Login successful!');
+                toast.success(i18n.t('success.auth.message_02'));
             })
             .addCase(login.rejected, (state, action) => {
                 state.loading = false;
