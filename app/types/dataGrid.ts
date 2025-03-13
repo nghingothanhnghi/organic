@@ -9,6 +9,8 @@ export interface DataGridProps {
     onRowClicked?: (event: any) => void;
     height?: string;
     theme?: string;
+    lottieSrc?: string; // ✅ New: Lottie animation URL (optional)
+    image?: string; // ✅ New: Image URL (optional)
 }
 
 export interface ActionButtonsProps {

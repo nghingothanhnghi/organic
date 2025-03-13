@@ -101,34 +101,35 @@ const OrderCheck = () => {
   // Columns definition
   const columnDefs = [
     {
-      headerName: "Order ID",
-      field: "id",
-      sortable: true,
-      filter: true
-    },
-    {
-      headerName: "Purchase Order",
+      headerName: t("dataGrid.headerName.purchaseOrder"),
       field: "purchaseOrder",
       sortable: true,
-      filter: true,
-      flex: 2
+      filter: false,
     },
     {
-      headerName: "Total Amount",
+      headerName: "Items",
+      field: "items",
+      cellRenderer: (params: any) => {
+        if (!params.value || !Array.isArray(params.value)) return "-";
+        return params.value.map((item: any) => 
+          `${item.name} (x${item.lineQuantity}) - ${formatPrice(item.lineAmount)}`
+        ).join('');
+      },
+      sortable: false, 
+      filter: false,
+    },
+    {
+      headerName: t("dataGrid.headerName.totalAmount"),
       field: "totalAmount",
       valueFormatter: (params: any) => formatPrice(params.value),
       sortable: true,
-      filter: true
+      filter: false,
     },
     {
-      headerName: "Shipping Details",
-      field: "shippingDetails", sortable: true, filter: true
-    },
-    {
-      headerName: "Status",
+      headerName: t("dataGrid.headerName.status"),
       field: "status",
       sortable: true,
-      filter: true
+      filter: false,
     },
     {
       headerName: t("dataGrid.headerName.actions"),
@@ -170,7 +171,7 @@ const OrderCheck = () => {
               }
             }}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search by Purchase Order..."
+            placeholder={t("input.search_purchase_order.placeholder")}
             className="w-96 h-10 rounded border-gray-300 text-sm"
           />
           <button
@@ -194,7 +195,9 @@ const OrderCheck = () => {
           pagination={true}
           paginationPageSize={pageSize}
           onRowClicked={handleRowClicked}
-          height="200px"
+          height="300px"
+          lottieSrc="https://lottie.host/embed/35e4c536-4034-4737-a2cc-2852b01d2b4b/lL86Lcve9X.lottie"
+          image="/assets/empty-cart.png"
         />
         {/* Modal for viewing order details */}
         <Modal
@@ -230,6 +233,7 @@ const OrderCheck = () => {
         {/* Modal for sharing */}
         <Modal
           isOpen={isShareModalOpen}
+          size="small"
           onClose={closeModal}
           title={`Share Order ID: ${selectedOrder?.id}`}
           content={

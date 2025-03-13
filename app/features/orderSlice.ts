@@ -32,6 +32,13 @@ export const fetchOrders = createAsyncThunk<
         createdAt: order.attributes.createdAt,
         updatedAt: order.attributes.updatedAt,
         publishedAt: order.attributes.publishedAt,
+        items: order.attributes.items?.map((item: any) => ({
+          id: item.id,
+          name: item.attributes.name,
+          price: item.attributes.price,
+          lineQuantity: item.quantity, // Move quantity outside of attributes       
+          lineAmount: item.amount, // Move amount outside of attributes
+        })) ?? [], // Ensure fallback empty array for items
       }));
 
       const pagination: PaginationMeta = response.meta.pagination; // Extract pagination data

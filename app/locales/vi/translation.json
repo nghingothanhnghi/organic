@@ -73,6 +73,10 @@
         }
     },
     "input":{
+        "search_purchase_order":{
+            "label": "Tìm bằng mã đơn hàng",
+            "placeholder": "Nhập mã đơn hàng..."
+        },
         "fullName":{
             "label": "Tên đầy đủ",
             "placeholder": ""
@@ -147,7 +151,8 @@
             "discount": "Giảm giá",
             "shippingFee": "Phí vận chuyển",
             "totalAmount": "Tổng cộng",
-            "actions": "Thao tác"
+            "actions": "Thao tác",
+            "status": "Trạng thái"
         }
     },
     "paging":{

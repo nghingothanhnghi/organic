@@ -30,33 +30,36 @@ const Header = () => {
         <header className="bg-gray-100 border-b border-gray-300">
             {isDesktop && <TopNavBar />}
             <div className="container mx-auto flex items-center justify-between py-4 px-6">
-                {/* Mobile Toggle Button */}
-                <button
-                    className="md:hidden text-gray-700 focus:outline-none"
-                    onClick={toggleMenu}
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
+
+                <div className="flex items-center space-x-2">
+                    {/* Mobile Toggle Button */}
+                    <button
+                        className="md:hidden text-gray-700 focus:outline-none"
+                        onClick={toggleMenu}
                     >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d={
-                                isMenuOpen
-                                    ? "M6 18L18 6M6 6l12 12" // Close icon (X)
-                                    : "M4 6h16M4 12h16m-7 6h7" // Hamburger icon
-                            }
-                        />
-                    </svg>
-                </button>
-                {/* Brand */}
-                <div className="text-2xl font-bold">
-                    <Link to="/"><img src={LogoImage} width={100} height={40} className="img-fluid" /></Link>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d={
+                                    isMenuOpen
+                                        ? "M6 18L18 6M6 6l12 12" // Close icon (X)
+                                        : "M4 6h16M4 12h16m-7 6h7" // Hamburger icon
+                                }
+                            />
+                        </svg>
+                    </button>
+                    {/* Brand */}
+                    <div className="text-2xl font-bold">
+                        <Link to="/"><img src={LogoImage} width={100} height={40} className="img-fluid" /></Link>
+                    </div>
                 </div>
 
                 {/* Centered Navigation Menu */}

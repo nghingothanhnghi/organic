@@ -26,6 +26,7 @@ export const fetchOrdersAPI = async (
   });
 
   const response = await axiosPrivate.get(`/orders?${params.toString()}`);
+  console.log("📦 Order API Response:", response.data);
   return response.data; // Assuming the API returns the product data
 };
 

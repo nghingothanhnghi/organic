@@ -36,8 +36,6 @@ const EmptyState: React.FC<EmptyStateProps> = ({
             ) : image ? (
                 <img src={image} alt="Empty State" className="mx-auto mb-4 w-40 h-40 object-contain" />
             ) : null}
-            {/* {image && <img src={image} alt="Empty State" className="mx-auto mb-4 w-40 h-40 object-contain" />}
-            <iframe src="https://lottie.host/embed/35e4c536-4034-4737-a2cc-2852b01d2b4b/lL86Lcve9X.lottie"></iframe> */}
             <p className="text-gray-600 mb-8">{t(messageKey, fallbackMessage)}</p>
             {link && (
                 <div className="flex items-center justify-center space-x-3">

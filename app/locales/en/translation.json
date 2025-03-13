@@ -73,6 +73,10 @@
         }
     },
     "input":{
+        "search_purchase_order":{
+            "label": "Search with purchase order code",
+            "placeholder": "Typing your Purchase Order Code..."
+        },
         "fullName":{
             "label": "Full Name",
             "placeholder": ""
@@ -147,7 +151,8 @@
             "discount": "Discounted",
             "shippingFee": "Shipping Fee",
             "totalAmount": "Total",
-            "actions": "Actions"
+            "actions": "Actions",
+            "status": "Status"
         }
     },
     "paging":{
