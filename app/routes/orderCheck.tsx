@@ -101,10 +101,20 @@ const OrderCheck = () => {
   // Columns definition
   const columnDefs = [
     {
+      headerName: t("dataGrid.headerName.status"),
+      field: "status",
+      sortable: false,
+      filter: false,
+      width: 150, // Set a fixed width for the status column
+      cellStyle: { textAlign: "center" }, // Center the text if needed
+      resizable: false, 
+    },
+    {
       headerName: t("dataGrid.headerName.purchaseOrder"),
       field: "purchaseOrder",
       sortable: true,
       filter: false,
+      flex:1
     },
     {
       headerName: "Items",
@@ -117,6 +127,7 @@ const OrderCheck = () => {
       },
       sortable: false, 
       filter: false,
+      flex: 1
     },
     {
       headerName: t("dataGrid.headerName.totalAmount"),
@@ -124,12 +135,7 @@ const OrderCheck = () => {
       valueFormatter: (params: any) => formatPrice(params.value),
       sortable: true,
       filter: false,
-    },
-    {
-      headerName: t("dataGrid.headerName.status"),
-      field: "status",
-      sortable: true,
-      filter: false,
+      resizable: false,
     },
     {
       headerName: t("dataGrid.headerName.actions"),
