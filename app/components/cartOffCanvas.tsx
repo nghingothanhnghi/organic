@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 import { useAppSelector } from "~/hooks";
 import CartList from "./cartList";
 import CartSummary from "./cartSummary";
@@ -39,13 +39,13 @@ const CartOffCanvas: React.FC<CartOffCanvasProps> = ({
       >
         {/* Header */}
         <div className="flex justify-between p-4 sticky top-0">
-          <div className="flex items-center space-x-3">
+          <div className="flex w-full items-center justify-between space-x-3">
             <button onClick={toggleCart} className="text-gray-700 hover:text-gray-900 hover:bg-gray-200 transition-colors rounded-full p-2">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
               </svg>
             </button>
-            <div className="font-bold text-lg">Your Cart</div>
+            {/* <div className="font-bold text-lg">Your Cart</div> */}
           </div>
         </div>
         {/* Cart Content */}
