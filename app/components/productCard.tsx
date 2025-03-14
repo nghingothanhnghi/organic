@@ -46,9 +46,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                         {name}
                     </Link>
                 </h3>
-                <ProductRating product={product} singleStarView={true} />
+                
                 {/* Price */}
                 <ProductPrice product={product} className='mt-2 text-sm' />
+                <ProductRating product={product} singleStarView={true} />
             </div>
         </div>
     );

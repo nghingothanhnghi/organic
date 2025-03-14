@@ -182,7 +182,8 @@
         "cart": "Cart",
         "wishlist": "WishList",
         "post": "Post",
-        "profile": "Account"
+        "profile": "Account",
+        "order_check": "Order Checking"
     },
     "section_title":{
         "view_by_info": "Infomation",

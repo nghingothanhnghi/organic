@@ -15,7 +15,7 @@ const ProductList: React.FC<ProductListProps> = ({ searchResults, viewMode }) =>
             </div>
         ))
     ) : (
-        <p className="text-center text-gray-500">No products found.</p>
+        <div className="mx-auto text-center text-gray-500">No products found.</div>
     );
 
     return (

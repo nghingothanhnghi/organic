@@ -25,7 +25,7 @@ const OrderCheck = () => {
   const { t } = useTranslation();
   const breadcrumbItems = [
     { label: t("page_title.home"), path: '/' },
-    { label: t("page_title.store"), path: '/order-check' },
+    { label: t("page_title.order_check"), path: '/order-check' },
   ];
 
   const dispatch = useAppDispatch();

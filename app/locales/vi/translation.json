@@ -182,7 +182,8 @@
         "cart": "Giỏ hàng",
         "wishlist": "Danh sách yêu thích",
         "post": "Bài viết",
-        "profile": "Tài khoản"
+        "profile": "Tài khoản",
+        "order_check": "Kiểm tra đơn hàng"
     },
     "section_title":{
         "view_by_info": "Thông tin",
