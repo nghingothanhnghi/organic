@@ -13,6 +13,7 @@ import productReducer from '~/features/productSlice'
 import contentReducer from '~/features/contentSlice'
 import menuReducer from '~/features/menuSlice'
 import reviewReducer from '~/features/reviewSlice';
+import articleReducer from '~/features/articleSlice';
 
 export const store = configureStore({
   reducer: {
@@ -26,6 +27,7 @@ export const store = configureStore({
     auth: authReducer,
     reviews: reviewReducer,
     wishlist: wishlistReducer,
+    articles: articleReducer
   },
 });
 
