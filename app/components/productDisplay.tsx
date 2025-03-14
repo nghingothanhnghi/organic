@@ -4,6 +4,7 @@ import type { ProductDisplayProps } from "~/types/product";
 import ProductList from "./productList";
 import Pagination from "./pagination";
 import PaginationSummary from "./paginationSummary";
+import EmptyState from "./emptyState";
 
 const ProductDisplay: React.FC<ProductDisplayProps> = ({
   products,

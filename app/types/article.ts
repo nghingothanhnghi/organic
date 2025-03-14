@@ -4,50 +4,54 @@ import type { PaginationMeta } from "./pagination";
 
 // Article interface for the Redux state (matching the state in productSlice)
 export interface Article {
-    id: number;
-    title: string;
-    description: string;
-    createdAt?: string; // ISO Date
-    updatedAt?: string; // ISO Date
-    publishedAt?: string; // ISO Date
-    slug?: string | null; // Optional
-    media: ArticleImage[];
-  }
-  
-  // Redux state interface
-  export interface ArticleState {
-    articles: Article[]; // Array of Article
-    article: Article | null;
-    loading: boolean;
-    error: string | null;
-    pagination: PaginationMeta | null;
-    filters: Record<string, any>;
-  }
+  id: number;
+  title: string;
+  description: string;
+  createdAt?: string; // ISO Date
+  updatedAt?: string; // ISO Date
+  publishedAt?: string; // ISO Date
+  slug?: string | null; // Optional
+  media: ArticleImage[];
+  imageUrl?: string
+}
 
-  export interface ArticleImage {
-    id: number;
-    attributes: {
-      name: string;
-      url: string;
-      formats: {
-        thumbnail: {
-          url: string;
-          width: number;
-          height: number;
-        };
-        small: {
-          url: string;
-          width: number;
-          height: number;
-        };
+// Redux state interface
+export interface ArticleState {
+  articles: Article[]; // Array of Article
+  article: Article | null;
+  loading: boolean;
+  error: string | null;
+  pagination: PaginationMeta | null;
+  filters: Record<string, any>;
+}
+
+export interface ArticleImage {
+  id: number;
+  attributes: {
+    name: string;
+    url: string;
+    formats: {
+      thumbnail: {
+        url: string;
+        width: number;
+        height: number;
+      };
+      small: {
+        url: string;
+        width: number;
+        height: number;
       };
     };
-  }
+  };
+}
 
+export interface ArticleCardProps {
+  article: Article; // Expect the whole product object
+}
 
 export interface ArticleListProps {
-    searchResults: Article[]; // Array of articles
-    viewMode: "grid" | "list"; // Controls layout
+  searchResults: Article[]; // Array of articles
+  viewMode: "grid" | "list"; // Controls layout
 }
 
 // Props for the Article Display component

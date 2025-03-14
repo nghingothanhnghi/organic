@@ -14,15 +14,6 @@ interface ProductThumbProps {
 const ProductThumb: React.FC<ProductThumbProps> = ({ product, className = "mb-3 img-fluid", width, height }) => {
   const { t } = useTranslation();
 
-  // // Check if productImg exists and is an array of images
-  // const productImg: ProductImage | null = product.productImg?.length > 0
-  //   ? product.productImg[0] // Use the first image from productImg array
-  //   : null;
-
-  // // If productImg exists, try to get the URL for the small format
-  // const imageUrl = productImg
-  //   ? getImageUrl(productImg, 'small') // Pass the ProductImage object to get the small format image URL
-  //   : (product.imageUrl && product.imageUrl.trim() !== "" ? product.imageUrl : EmptyImageIcon);
 
    // Handle the case where product is null
    if (!product) {

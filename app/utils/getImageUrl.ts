@@ -1,11 +1,12 @@
 // app/utils/getImageUrl.ts
 import { IMAGE_API } from "~/constants/apiConstants";
 import type { ProductImage } from "~/types/product";
+import type { ArticleImage } from "~/types/article";
 
 type Format = 'thumbnail' | 'small';  // Define valid format types
 
 export const getImageUrl = (
-  media: ProductImage | null,  // Updated type to ProductImage or null
+  media: ProductImage | ArticleImage | null,  // Updated type to ProductImage or null
   format: Format = 'small',  // Use 'Format' type here
   baseUrl = IMAGE_API
 ): string => {

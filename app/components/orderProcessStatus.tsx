@@ -5,7 +5,13 @@ import { useAppDispatch, useAppSelector } from '~/hooks';
 import { fetchOrders } from '~/features/orderSlice';
 import { formatDateTime } from '~/utils/formatDateTime';
 
-const OrderProcessStatus = () => {
+interface OrderProcessStatusProps {
+    useRelative?: boolean;
+    formatType?: "12-hour" | "24-hour";
+  }
+  
+
+  const OrderProcessStatus: React.FC<OrderProcessStatusProps> = ({ useRelative = false, formatType = "24-hour" }) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { orders, loading, error, filters } = useAppSelector(state => state.orders);
@@ -48,7 +54,8 @@ const OrderProcessStatus = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
-                            {order.updatedAt ? formatDateTime(order.updatedAt) : 'No update date available'}
+                            {order.updatedAt ? formatDateTime(order.updatedAt, useRelative, formatType) : 'No update date available'}
+
                         </time>
                     </li>
                 ))}
