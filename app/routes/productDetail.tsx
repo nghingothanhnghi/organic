@@ -55,7 +55,6 @@ const ProductDetail = () => {
                             <ProductThumb product={product} className="w-full rounded-xl shadow" />
                         </div>
                     </div>
-
                     <div className="mt-6 sm:mt-8 lg:mt-0">
                         <h1
                             className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"
@@ -76,16 +75,10 @@ const ProductDetail = () => {
                             setSelectedQuantity={setSelectedQuantity}
                             cartItems={cartItems}
                         />
-
-
-
-
                         <hr className="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
-
                         <p className="mb-6 text-gray-500 dark:text-gray-400">
                             {stripHtml(product.description || '')}
                         </p>
-
                         {/* Add the ProductReviewForm */}
                         <div className="mt-12">
                             <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-5">{t("section_title.view_by-add_review.user_review")}</h2>
