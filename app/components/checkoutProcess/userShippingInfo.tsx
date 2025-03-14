@@ -13,7 +13,7 @@ interface UserShippingInfoProps {
 }
 
 const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid, setShippingData }) => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const formik = useFormik({
         initialValues: {
             firstName: '',
@@ -44,8 +44,8 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
 
     return (
         <form onSubmit={formik.handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-2 gap-4">
-                <div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="col-span-1 sm:col-span-1">
                     <label htmlFor="firstName" className="block text-sm font-semibold text-gray-700">{t("input.firstName.label")}</label>
                     <input
                         type="text"
@@ -57,7 +57,7 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
                     />
                     {formik.errors.firstName && <div className="text-red-500 text-xs mt-1">{formik.errors.firstName}</div>}
                 </div>
-                <div>
+                <div className="col-span-1">
                     <label htmlFor="lastName" className="block text-sm font-semibold text-gray-700">{t("input.lastName.label")}</label>
                     <input
                         type="text"
@@ -70,8 +70,8 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
                     {formik.errors.lastName && <div className="text-red-500 text-xs mt-1">{formik.errors.lastName}</div>}
                 </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-                <div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="col-span-1 sm:col-span-1">
                     <label htmlFor="email" className="block text-sm font-semibold text-gray-700">Email</label>
                     <input
                         type="email"
@@ -84,13 +84,15 @@ const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid,
                     {formik.errors.email && <div className="text-red-500 text-xs mt-1">{formik.errors.email}</div>}
                 </div>
                 {/* Reusable Phone Number Input */}
-                <PhoneNumberInput
-                    name="phoneNumber"
-                    value={formik.values.phoneNumber}
-                    onChange={formik.handleChange}
-                    label={t("input.phone.label")}
-                    error={formik.errors.phoneNumber}
-                />
+                <div className="col-span-1">
+                    <PhoneNumberInput
+                        name="phoneNumber"
+                        value={formik.values.phoneNumber}
+                        onChange={formik.handleChange}
+                        label={t("input.phone.label")}
+                        error={formik.errors.phoneNumber}
+                    />
+                </div>
             </div>
             {/* LocationSelector Component */}
             <LocationSelector

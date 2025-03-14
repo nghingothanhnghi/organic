@@ -2,12 +2,14 @@
 import React from 'react';
 import { useAppSelector } from '~/hooks';  // Assuming you use Redux for cart state
 import { useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 interface ProceedToCheckoutButtonProps {
     closeCart: () => void; // Function to close the cart sidebar
 }
 
 const ProceedToCheckoutButton: React.FC<ProceedToCheckoutButtonProps> = ({ closeCart }) => {
+    const {t} = useTranslation();
     const navigate = useNavigate();
     const cartItems = useAppSelector(state => state.cart.items);
 
@@ -27,7 +29,7 @@ const ProceedToCheckoutButton: React.FC<ProceedToCheckoutButtonProps> = ({ close
             onClick={handleProceedToCheckout}
             className="w-full rounded-lg px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:from-pink-500 hover:to-orange-500"
         >
-            Proceed to Checkout
+            {t("btn.proceed_to_checkout")}
         </button>
     );
 };
