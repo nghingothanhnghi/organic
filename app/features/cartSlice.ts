@@ -41,32 +41,29 @@ const cartSlice = createSlice({
             if (removedItem) {
                 state.items = state.items.filter((item) => item.id !== action.payload);
                 updateSessionStorage(state.items);
-                toast.warn(`${removedItem.name} removed from the cart.`);
+                toast.warn(i18n.t('warning.cart.message_01', { name: removedItem.name }));
             } else {
-                toast.error('Item not found in the cart.');
+                toast.error(i18n.t('error.cart.message_01'));
             }
         },
         updateQuantity: (state, action: PayloadAction<{ id: number; quantity: number }>) => {
             const itemIndex = state.items.findIndex((item) => item.id === action.payload.id);
-            // if (itemIndex !== -1) {
-            //     state.items[itemIndex].quantity = action.payload.quantity;
-            // }
             if (itemIndex !== -1) {
                 if (action.payload.quantity > 0) {
                     state.items[itemIndex].quantity = action.payload.quantity;
-                    toast.info(`Updated quantity of ${state.items[itemIndex].name} to ${action.payload.quantity}.`);
+                    toast.info(i18n.t('info.cart.message_03', { name: state.items[itemIndex].name, quantity: action.payload.quantity }));
                 } else {
-                    toast.error('Quantity must be at least 1.');
+                    toast.error(i18n.t('error.cart.message_02'));
                 }
             } else {
-                toast.error('Item not found in the cart.');
+                toast.error(i18n.t('error.cart.message_01'));
             }
             updateSessionStorage(state.items);
         },
         clearCart: (state) => {
             state.items = [];
             safeSessionStorage.removeItem('cartItems');
-            toast.error('Cart cleared.');
+            toast.error(i18n.t('error.cart.message_03'));
         },
         updatePrices: (state, action: PayloadAction<{ id: number; price: number; discountPrice?: number }[]>) => {
             action.payload.forEach((product) => {

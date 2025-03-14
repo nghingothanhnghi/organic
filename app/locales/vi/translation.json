@@ -273,13 +273,24 @@
         },
         "cart": {
             "message_01": "Giỏ hàng của bạn đang trống!",
-            "message_02": "Đã tăng số lượng {{name}} trong giỏ hàng."
+            "message_02": "Đã tăng số lượng {{name}} trong giỏ hàng.",
+            "message_03": "Đã cập nhật số lượng {{name}} thành {{quantity}}."
         },
         "wishlist": {
             "message_01": "Yêu thích của bạn đang trống!"
         }
     },
+    "warning": {
+        "cart":{
+            "message_01": "{{name}} đã bị xóa khỏi giỏ hàng."
+        }
+    },
     "error": {
+        "cart": {
+            "message_01": "Không tìm thấy sản phẩm trong giỏ hàng.",
+            "message_02": "Số lượng phải ít nhất là 1.",
+            "message_03": "Giỏ hàng đã được làm trống."
+        },
         "order":{
             "message_01": "Đơn hàng không thể hoàn thành. Vui lòng liên hệ",
             "message_02": "Lỗi: {{error}}",

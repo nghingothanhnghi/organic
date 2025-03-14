@@ -273,13 +273,24 @@
         },
         "cart": {
             "message_01": "Your cart is empty!",
-            "message_02": "Increased quantity of {{name}} in the cart."
+            "message_02": "Increased quantity of {{name}} in the cart.",
+            "message_03": "Updated quantity of {{name}} to {{quantity}}."
         },
         "wishlist": {
             "message_01": "Your wishlist is empty!"
         }
     },
+    "warning": {
+        "cart":{
+            "message_01": "{{name}} removed from the cart."
+        }
+    },
     "error": {
+        "cart": {
+            "message_01": "Item not found in the cart.",
+            "message_02": "Quantity must be at least 1.",
+            "message_03": "Cart cleared."
+        },
         "order":{
             "message_01": "Failed to create order",
             "message_02": "Error: {{error}}",

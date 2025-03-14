@@ -21,7 +21,7 @@ const Store = () => {
   const { t } = useTranslation();
   const breadcrumbItems = [
     { label: t("page_title.home"), path: '/' },
-    { label: t("page_title.store"), path: '/products' },
+    { label: t("page_title.store"), path: '/store' },
   ];
   const dispatch = useAppDispatch();
   const { products, loading, error, pagination, filters } = useAppSelector(state => state.products);

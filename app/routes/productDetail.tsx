@@ -7,10 +7,7 @@ import ProductThumb from "~/components/productThumb";
 import ProductPrice from "~/components/productPrice";
 import ProductReviewForm from "~/components/productReviewForm";
 import ProductRating from "~/components/productRating";
-import AddToCartButton from '~/components/addToCartButton';
-import AddToWishListButton from '~/components/addToWishListButton';
-import QuantityInput from '~/components/quantityInput';
-import ProceedToCheckoutButton from '~/components/proceedToCheckoutButton';
+import ProductActions from '~/components/productActions';
 import { useTranslation } from 'react-i18next';
 import { stripHtml } from '~/utils/stripHtml';
 
@@ -73,29 +70,14 @@ const ProductDetail = () => {
                                 <ProductPrice product={product!} />
                             </p>
                         </div>
+                        <ProductActions
+                            product={product}
+                            selectedQuantity={selectedQuantity}
+                            setSelectedQuantity={setSelectedQuantity}
+                            cartItems={cartItems}
+                        />
 
-                        <div className="mt-6 sm:gap-4 sm:flex-start sm:flex sm:mt-8">
-                            {/* Render the quantity input */}
-                            <QuantityInput
-                                value={selectedQuantity}
-                                onChange={setSelectedQuantity}
-                                min={1}
-                            />
-                            {/* Render the AddToCart button with the selected quantity */}
-                            <div className='grid'>
-                                <div className='flex gap-2'>
-                                    <AddToCartButton product={product} quantity={selectedQuantity} />
-                                    <AddToWishListButton product={product} />
-                                </div>
-                                {/* Only display ProceedToCheckoutButton if there are items in the cart */}
-                                {cartItems.length > 0 && (
-                                    <div className="mt-4">
-                                        <ProceedToCheckoutButton closeCart={() => { }} />
-                                    </div>
-                                )}
-                            </div>
 
-                        </div>
 
 
                         <hr className="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
