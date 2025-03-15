@@ -29,7 +29,8 @@ const Articles = () => {
   return (
     <div className="store-container">
       <Breadcrumb items={breadcrumbItems} />
-      <div className="container mx-auto max-w-full lg:max-w-7xl flex-column items-center justify-between py-4 px-6">
+      <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
+      <h1 className="text-2xl font-bold mb-4">Bài viết</h1>
         <ArticleDisplay
           articles={articles}
           pagination={pagination}
@@ -38,7 +39,7 @@ const Articles = () => {
           onPageChange={handlePageChange}
           loading={loading}
           error={error}
-          viewMode="grid"
+          viewMode="list"
         />
       </div>
     </div>

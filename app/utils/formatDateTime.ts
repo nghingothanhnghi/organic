@@ -1,5 +1,7 @@
-import moment from "moment";
-
+import moment from "moment/min/moment-with-locales";
+import "moment/locale/vi"; // Import Vietnamese locale
+import "moment/locale/en-gb"; // Import English (or use "en" if needed)
+import { useTranslation } from "react-i18next"; // Import i18next
 /**
  * Formats a date string based on `useRelative` and `formatType`.
  * 
@@ -11,16 +13,19 @@ import moment from "moment";
 export const formatDateTime = (
   dateString: string, 
   useRelative = false, 
-  formatType: "12-hour" | "24-hour" = "24-hour"
+  formatType: "12-hour" | "24-hour" = "24-hour",
+  locale: string = "vi" // Default to English
 ): string => {
   const date = moment(dateString);
   
   if (!date.isValid()) {
-    return "Invalid date"; // Handle invalid dates
+    return locale === "vi" ? "Ngày không hợp lệ" : "Invalid date"; // Handle invalid dates
   }
 
+  date.locale(locale || "vi"); // Ensure locale is set dynamically, fallback to Vietnamese
+
   if (useRelative) {
-    return date.fromNow(); // "6 months ago"
+    return date.fromNow(); // Example: "5 tháng trước" (Vietnamese), "5 months ago" (English)
   }
 
   // Switchable absolute format
