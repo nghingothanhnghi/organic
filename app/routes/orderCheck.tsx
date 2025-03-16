@@ -182,7 +182,7 @@ const OrderCheck = () => {
           />
           <button
             onClick={handleSearchClick}
-            className="px-4 py-2 text-white rounded shadow-sm bg-green-600 hover:bg-green-500"
+            className="px-4 py-2 text-white rounded shadow-md hover:shadow-lg bg-orange-900 hover:bg-orange-800"
           >
             Kiểm tra
           </button>
