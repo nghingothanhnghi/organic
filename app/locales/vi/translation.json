@@ -32,7 +32,8 @@
         "added_to_cart": "Trong giỏ",
         "confirm_order": "Thanh toán",
         "search": "Tìm",
-        "continue_shopping": "Đi đến cửa hàng"
+        "continue_shopping": "Đi đến cửa hàng",
+        "quick_view": "Xem nhanh"
     },
     "badge_status":{
         "inStock": "Còn hàng",
@@ -45,7 +46,11 @@
     "select":{
         "category":{
             "label": "Danh mục",
-            "placeholder": "Chọn danh mục..."
+            "placeholder": "Chọn danh mục...",
+            "options": {
+                "all_category": "Tất cả",
+                "organic_food": "Thực phẩm hữu cơ"
+            }
         },
         "brand":{
             "label": "Nhãn hiệu",
@@ -53,7 +58,12 @@
         },
         "priceRange":{
             "label": "Mức giá",
-            "placeholder": "Chọn mức giá..."
+            "placeholder": "Chọn mức giá...",
+            "options": {
+                "all_price": "Tất cả",
+                "best_price": "Giá tốt nhất",
+                "lowest_price": "Giá thấp nhất"
+            }
         },
         "country":{
             "label": "Quốc gia",

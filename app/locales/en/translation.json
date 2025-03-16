@@ -32,7 +32,8 @@
         "added_to_cart": "Added to Cart",
         "confirm_order": "Confirm Order",
         "search": "Search",
-        "continue_shopping": "Continue Shopping"
+        "continue_shopping": "Continue Shopping",
+        "quick_view": "Quick View"
     },
     "badge_status":{
         "inStock": "In Stock",
@@ -45,7 +46,11 @@
     "select":{
         "category":{
             "label": "Danh mục",
-            "placeholder": "Chọn danh mục..."
+            "placeholder": "Chọn danh mục...",
+            "options": {
+                "all_category": "All",
+                "organic_food": "Organic"
+            }
         },
         "brand":{
             "label": "Nhãn hiệu",
@@ -53,7 +58,12 @@
         },
         "priceRange":{
             "label": "Mức giá",
-            "placeholder": "Chọn mức giá..."
+            "placeholder": "Chọn mức giá...",
+            "options": {
+                "all_price": "All",
+                "best_price": "Best price",
+                "lowest_price": "Lowest price"
+            }
         },
         "country":{
             "label": "Country",

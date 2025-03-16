@@ -107,25 +107,25 @@ const OrderCheck = () => {
       filter: false,
       width: 150, // Set a fixed width for the status column
       cellStyle: { textAlign: "center" }, // Center the text if needed
-      resizable: false, 
+      resizable: false,
     },
     {
       headerName: t("dataGrid.headerName.purchaseOrder"),
       field: "purchaseOrder",
       sortable: false,
       filter: false,
-      flex:1
+      flex: 1
     },
     {
       headerName: t("dataGrid.headerName.items"),
       field: "items",
       cellRenderer: (params: any) => {
         if (!params.value || !Array.isArray(params.value)) return "-";
-        return params.value.map((item: any) => 
+        return params.value.map((item: any) =>
           `${item.name} (x${item.lineQuantity}) - ${formatPrice(item.lineAmount)}`
         ).join('');
       },
-      sortable: false, 
+      sortable: false,
       filter: false,
       flex: 1
     },
@@ -209,24 +209,28 @@ const OrderCheck = () => {
         <Modal
           isOpen={isModalOpen}
           onClose={closeModal}
-          title={`Order ID: ${selectedOrder?.id}`}
+          title={
+            <>
+              <div className="flex">
+                <div className="flex-auto w-64">
+                  <strong className="block text-xs text-gray-500 dark:text-gray-400">Purchase Order:</strong>
+                  {selectedOrder?.purchaseOrder}
+                </div>
+                <div className="flex-auto w-14 text-end">
+                  <strong className="block text-xs text-gray-500 dark:text-gray-400">Total Amount:</strong>
+                  {formatPrice(selectedOrder?.totalAmount)}
+                </div>
+              </div>
+            </>
+          }
           content={
             <div className="flex flex-col">
               <div className="mb-5">
-                <div className="flex">
-                  <div className="flex-auto w-64">
-                    <strong className="block">Purchase Order:</strong> 
-                    {selectedOrder?.purchaseOrder}
-                    </div>
-                  <div className="flex-auto w-14 text-end">
-                    <strong className="block">Total Amount:</strong> 
-                    {formatPrice(selectedOrder?.totalAmount)}
-                   </div>
-                </div>
+
               </div>
-              
-                <OrderProcessStatus />
-              
+
+              <OrderProcessStatus />
+
             </div>
           }
           actions={
@@ -241,11 +245,22 @@ const OrderCheck = () => {
           isOpen={isShareModalOpen}
           size="small"
           onClose={closeModal}
-          title={`Share Order ID: ${selectedOrder?.id}`}
+          title={
+            <>
+              <div className="flex">
+                <div className="flex-auto w-64">
+                  <strong className="block text-xs text-gray-500 dark:text-gray-400">Purchase Order:</strong>
+                  {selectedOrder?.purchaseOrder}
+                </div>
+                <div className="flex-auto w-14 text-end">
+                  <strong className="block text-xs text-gray-500 dark:text-gray-400">Total Amount:</strong>
+                  {formatPrice(selectedOrder?.totalAmount)}
+                </div>
+              </div>
+            </>
+          }
           content={
             <div>
-              <p><strong>Purchase Order:</strong> {selectedOrder?.purchaseOrder}</p>
-              <p><strong>Total Amount:</strong> {formatPrice(selectedOrder?.totalAmount)}</p>
               <div className="share-options space-y-2">
                 <ShareButton
                   platform="messenger"

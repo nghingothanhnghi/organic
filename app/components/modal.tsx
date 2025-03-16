@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 interface ModalProps {
   isOpen: boolean;               // Whether the modal is open or not
   onClose: () => void;           // Function to close the modal
-  title?: string;                // Modal title
+  title?: ReactNode;                // Modal title
   content: ReactNode;            // Content inside the modal (can be anything like text, form, etc.)
   actions: ReactNode;            // Actions (buttons) that will be displayed in the footer
   size?: 'small' | 'medium' | 'large'; // Modal size (default is 'medium')
@@ -41,7 +41,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, actions,
       // className={`bg-white rounded-lg p-8 ${modalSizeClasses[size] || modalSizeClasses.medium} flex flex-col`}
       >
         <div className="flex justify-between items-center">
-          <h3 className="text-xl font-semibold">{title || '\u00A0'}</h3>
+          <div>{title || '\u00A0'}</div>
           <button className="text-gray-500" onClick={onClose}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
           </svg>

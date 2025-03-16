@@ -166,17 +166,16 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
                     <div>
                         <label className="block text-sm font-medium text-gray-600 mb-2">{t("select.category.label")}</label>
                         <select value={categories} onChange={handleCategoryChange} className="h-10 rounded border-gray-300 text-sm">
-                            <option value="">All</option>
-                            <option value="Thực phẩm hữu cơ">Thực phẩm hữu cơ</option>
+                            <option value="">{t("select.category.options.all_category")}</option>
+                            <option value="Thực phẩm hữu cơ">{t("select.category.options.organic_food")}</option>
                         </select>
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-600 mb-2">{t("select.priceRange.label")}</label>
                         <select value={priceRange} onChange={handlePriceRangeChange} className="h-10 rounded border-gray-300 text-sm">
-                            <option value="">All</option>
-                            <option value="low">Low</option>
-                            <option value="medium">Medium</option>
-                            <option value="high">High</option>
+                            <option value="">{t("select.priceRange.options.all_price")}</option>
+                            <option value="best">{t("select.priceRange.options.best_price")}</option>
+                            <option value="low">{t("select.priceRange.options.lowest_price")}</option>
                         </select>
                     </div>
                     <div className="flex justify-between mt-6">
