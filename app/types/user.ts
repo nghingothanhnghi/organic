@@ -6,6 +6,7 @@ export interface User {
     createdAt: string;
     updatedAt: string;
     firstName: string;
+    lastName: string;
     // Add any other fields returned by your backend for the user
 }
 

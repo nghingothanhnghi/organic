@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router";
+import { useAppSelector, useAppDispatch } from "~/hooks";
+import { fetchMainMenu } from "~/features/menuSlice";
+import UserProfileMobileMenu from "./userProfileMobileMenu";
 
 interface MobileMenuOffCanvasProps {
   isOpen: boolean;
@@ -7,47 +10,49 @@ interface MobileMenuOffCanvasProps {
 }
 
 const MobileMenuOffCanvas: React.FC<MobileMenuOffCanvasProps> = ({ isOpen, toggleMenu }) => {
+  const dispatch = useAppDispatch();
+  const { data: menu, loading, error } = useAppSelector(state => state.menu);
+
+  // Fetch menu data when the component mounts
+  useEffect(() => {
+    dispatch(fetchMainMenu());
+  }, [dispatch]);
   return (
     <>
       {/* Mobile Navigation Off-canvas */}
       <nav
-        className={`fixed top-0 left-0 h-full w-64 bg-gray-100 shadow-lg transform transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:hidden z-50`}
+        className={`fixed top-0 left-0 h-full w-96 bg-gray-100 shadow-lg transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"
+          } md:hidden z-50`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-4 border-b border-gray-300">
-          <div className="text-lg font-bold">Menu</div>
-          <button onClick={toggleMenu} className="text-gray-700">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+        <div className="flex items-center justify-between space-x-2 px-4 py-4 border-b border-gray-300">
+          <button onClick={toggleMenu} className="text-gray-700 hover:text-gray-900 hover:bg-gray-200 transition-colors rounded-full p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
             </svg>
           </button>
+          <UserProfileMobileMenu isOpen={isOpen} toggleMenu={toggleMenu} />
         </div>
 
         {/* Menu Links */}
         <ul className="flex flex-col items-start space-y-4 mt-4 px-4">
-          <li>
-            <Link to="/" className="text-gray-700 hover:text-gray-900 transition-colors" onClick={toggleMenu}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/store" className="text-gray-700 hover:text-gray-900 transition-colors" onClick={toggleMenu}>
-              Store
-            </Link>
-          </li>
-          <li>
-            <Link to="/about" className="text-gray-700 hover:text-gray-900 transition-colors" onClick={toggleMenu}>
-              About
-            </Link>
-          </li>
+          {loading ? (
+            <p className="text-gray-500">Loading...</p>
+          ) : error ? (
+            <p className="text-red-500">Error: {error}</p>
+          ) : (
+            menu.map((item) => (
+              <li key={item.id}>
+                <Link
+                  to={item.__component === "menu.menu-link" && item.url ? item.url : "/"}
+                  className="text-gray-700 hover:text-gray-900 transition-colors"
+                  onClick={toggleMenu} // Close menu on click
+                >
+                  {item.title}
+                </Link>
+              </li>
+            ))
+          )}
         </ul>
       </nav>
 
