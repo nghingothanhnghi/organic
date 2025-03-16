@@ -38,7 +38,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="overflow-x-hidden">
         <Provider store={store}> {/* Wrap the app with the Redux provider */}
           <I18nextProvider i18n={i18n}> {/* Wrap with I18nextProvider for translation support */}
             {children}
