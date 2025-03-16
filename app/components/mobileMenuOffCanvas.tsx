@@ -21,7 +21,7 @@ const MobileMenuOffCanvas: React.FC<MobileMenuOffCanvasProps> = ({ isOpen, toggl
     <>
       {/* Mobile Navigation Off-canvas */}
       <nav
-        className={`fixed flex flex-col top-0 left-0 h-full w-96 bg-gray-100 shadow-lg transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed flex flex-col top-0 left-0 h-full w-80 bg-gray-100 shadow-lg transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"
           } md:hidden z-50`}
       >
         {/* Header */}
