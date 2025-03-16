@@ -1,6 +1,7 @@
 // app/components/Footer.tsx
 import React from 'react';
 import LogoImage from "~/assets/logo.png";
+import SupportSection from './footerSection/supportSection';
 const Footer = () => {
     return (
         <footer className="bg-orange-950 text-slate-300 pt-10">
@@ -58,16 +59,7 @@ const Footer = () => {
                     </div>
 
                     {/* Column 2 */}
-                    <div>
-                        <h4 className="text-white font-semibold text-sm mb-3">Support</h4>
-                        <ul>
-                            <li><a href="#" className="text-slate-300 hover:text-orange-900 text-sm">Help Center</a></li>
-                            <li><a href="#" className="text-slate-300 hover:bg-orange-900 text-sm">Privacy Policy</a></li>
-                            <li><a href="#" className="text-slate-300 hover:bg-orange-900 text-sm">Terms of Service</a></li>
-                            <li><a href="#" className="text-slate-300 hover:bg-orange-900 text-sm">Returns & Exchanges</a></li>
-                        </ul>
-                    </div>
-
+                    <SupportSection/>
                     {/* Column 3 */}
                     <div>
                         <h4 className="text-white font-semibold text-sm mb-3">Follow Us</h4>
