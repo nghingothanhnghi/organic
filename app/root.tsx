@@ -14,6 +14,7 @@ import { I18nextProvider } from 'react-i18next'; // Import I18nextProvider
 import i18n from './i18n'; // Your i18next instance
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
+import useResponsive from "./hooks/useResponsive";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -30,6 +31,7 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const { isMobile } = useResponsive();
   return (
     <html lang="en">
       <head>
@@ -44,7 +46,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             {children}
           </I18nextProvider>
           <ToastContainer
-            position="bottom-left"
+            position={isMobile ? "top-center" : "bottom-left"}
             autoClose={5000}
             hideProgressBar={true}
             newestOnTop={false}
@@ -54,6 +56,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             draggable
             pauseOnHover={true}
             theme="dark"
+            toastClassName={isMobile ? "w-full max-w-[95%] mx-auto mt-2" : ""}
           />
         </Provider>
         <ScrollRestoration />
