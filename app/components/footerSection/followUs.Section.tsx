@@ -2,7 +2,7 @@ import React from 'react';
 
 const FollowUsSection: React.FC = () => {
   return (
-    <div>
+    <div className='mt-8 sm:mt-0'>
       <h4 className="hidden sm:block text-white font-semibold text-sm mb-3">Follow Us</h4>
       <ul className="flex justify-center sm:justify-start space-x-4">
         <li>
