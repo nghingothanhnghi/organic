@@ -54,7 +54,9 @@ const CollapseItem: React.FC<CollapseProps> = ({
                 )}
             </h4>
             {/* Conditionally render the children based on the isActive state */}
-            <div className={`overflow-hidden transform origin-top transition-transform duration-300 ${currentIsActive ? 'scale-y-100' : 'scale-y-0'}`}
+            <div 
+            // className={`overflow-hidden transform origin-top transition-transform duration-300 ${currentIsActive ? 'scale-y-100' : 'scale-y-0'}`}
+            className={`overflow-hidden transition-all duration-300 ${currentIsActive ? 'max-h-96' : 'max-h-0'}`}
             >
                 {children}
             </div>

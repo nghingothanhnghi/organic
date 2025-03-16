@@ -1,7 +1,9 @@
 // app/components/Footer.tsx
 import React from 'react';
 import LogoImage from "~/assets/logo.png";
+import CompanySection from './footerSection/companySection';
 import SupportSection from './footerSection/supportSection';
+import FollowUsSection from './footerSection/followUs.Section';
 const Footer = () => {
     return (
         <footer className="bg-orange-950 text-slate-300 pt-10">
@@ -46,48 +48,34 @@ const Footer = () => {
 
 
                 {/* Footer Content */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8 mb-10">
                     {/* Column 1 */}
-                    <div>
-                        <h4 className="text-white font-semibold text-sm mb-3">Company</h4>
-                        <ul>
-                            <li><a href="#" className="text-slate-300 hover:bg-orange-900 text-sm">About Us</a></li>
-                            <li><a href="#" className="text-slate-300 hover:bg-orange-900 text-sm">Careers</a></li>
-                            <li><a href="#" className="text-slate-300 hover:bg-orange-900 text-sm">Press</a></li>
-                            <li><a href="#" className="text-slate-300 hover:bg-orange-900 text-sm">Contact</a></li>
-                        </ul>
-                    </div>
-
+                    <CompanySection/>
                     {/* Column 2 */}
-                    <SupportSection/>
+                    <SupportSection />
                     {/* Column 3 */}
-                    <div>
-                        <h4 className="text-white font-semibold text-sm mb-3">Follow Us</h4>
-                        <ul>
-                            <li><a href="#" className="text-slate-300 hover:bg-orange-900 text-sm">Facebook</a></li>
-                            <li><a href="#" className="text-slate-300 hover:bg-orange-900 text-sm">Twitter</a></li>
-                            <li><a href="#" className="text-slate-300 hover:bg-orange-900 text-sm">Instagram</a></li>
-                            <li><a href="#" className="text-slate-300 hover:bg-orange-900 text-sm">LinkedIn</a></li>
-                        </ul>
-                    </div>
+                    <FollowUsSection/>
                 </div>
 
                 {/* Footer Bottom */}
                 <div className="mt-10 border-t border-orange-900 py-5 text-center">
                     <div className="sm:flex sm:justify-between">
                         <p className="text-xs text-slate-300">&copy; 2022. Company Name. All rights reserved.</p>
-
-                        <ul className="mt-8 flex flex-wrap justify-start gap-4 text-xs sm:mt-0 lg:justify-end">
+                        <ul className="mt-3 sm:mt-0 flex flex-wrap justify-center gap-4 text-xs sm:justify-start lg:justify-end">
                             <li>
-                                <a href="#" className="text-gray-500 transition hover:opacity-75"> Terms & Conditions </a>
+                                <a href="#" className="text-gray-500 transition hover:opacity-75">
+                                    Terms & Conditions
+                                </a>
                             </li>
-
                             <li>
-                                <a href="#" className="text-gray-500 transition hover:opacity-75"> Privacy Policy </a>
+                                <a href="#" className="text-gray-500 transition hover:opacity-75">
+                                    Privacy Policy
+                                </a>
                             </li>
-
                             <li>
-                                <a href="#" className="text-gray-500 transition hover:opacity-75"> Cookies </a>
+                                <a href="#" className="text-gray-500 transition hover:opacity-75">
+                                    Cookies
+                                </a>
                             </li>
                         </ul>
                     </div>
