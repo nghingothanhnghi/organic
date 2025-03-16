@@ -20,4 +20,5 @@ export default [
     route("about", "routes/about.tsx"),
     route("login", "routes/login.tsx"),
     route("dashboard", "routes/dashboard.tsx"),
+    route("admin", "routes/adminPage.tsx"), // Admin route added here
   ] satisfies RouteConfig;

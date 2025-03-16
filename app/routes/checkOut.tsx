@@ -1,4 +1,4 @@
-import type { Route } from "./+types/cart";
+import type { Route } from "./+types/checkOut";
 import { useState } from "react";
 import { useNavigate } from 'react-router'; // Import useNavigate
 import { useAppDispatch, useAppSelector } from "~/hooks";
