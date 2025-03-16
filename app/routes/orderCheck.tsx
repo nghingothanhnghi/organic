@@ -225,12 +225,7 @@ const OrderCheck = () => {
           }
           content={
             <div className="flex flex-col">
-              <div className="mb-5">
-
-              </div>
-
               <OrderProcessStatus />
-
             </div>
           }
           actions={
@@ -260,23 +255,26 @@ const OrderCheck = () => {
             </>
           }
           content={
-            <div>
-              <div className="share-options space-y-2">
-                <ShareButton
-                  platform="messenger"
-                  message={`Check out this order: ${selectedOrder?.purchaseOrder}`}
-                  url={`http://example.com/order/${selectedOrder?.id}`}
-                />
-                <ShareButton
-                  platform="whatsapp"
-                  message={`Check out this order: ${selectedOrder?.purchaseOrder}`}
-                  url={`http://example.com/order/${selectedOrder?.id}`}
-                />
-                <ShareButton
-                  platform="zalo"
-                  message={`Check out this order: ${selectedOrder?.purchaseOrder}`}
-                  url={`http://example.com/order/${selectedOrder?.id}`}
-                />
+            <div className="flex flex-col">
+              <div className="flex items-center space-x-3">
+                <label className="text-xs text-gray-500 dark:text-gray-400">Chia sẻ</label>
+                <div className="share-options inline-flex gap-3 rounded-md shadow-xs">
+                  <ShareButton
+                    platform="messenger"
+                    message={`Check out this order: ${selectedOrder?.purchaseOrder}`}
+                    url={`http://example.com/order/${selectedOrder?.id}`}
+                  />
+                  <ShareButton
+                    platform="whatsapp"
+                    message={`Check out this order: ${selectedOrder?.purchaseOrder}`}
+                    url={`http://example.com/order/${selectedOrder?.id}`}
+                  />
+                  <ShareButton
+                    platform="zalo"
+                    message={`Check out this order: ${selectedOrder?.purchaseOrder}`}
+                    url={`http://example.com/order/${selectedOrder?.id}`}
+                  />
+                </div>
               </div>
             </div>
           }
