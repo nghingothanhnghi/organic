@@ -70,7 +70,7 @@ const SwiperLayout: React.FC<SwiperLayoutProps> = ({
                         <div>
                         <h2 className='text-2xl md:text-3xl font-bold text-lime-900'>{slide.title}</h2>
                         <p className='text-sm md:text-xl mt-4 text-yellow-950'>{slide.description}</p>
-                        <button className="mt-4 px-4 py-2 text-white rounded-md bg-gradient-to-r from-sky-500 from-10% to-emerald-500 to-90% hover:from-emerald-500 hover:to-sky-500">
+                        <button className="mt-4 px-4 py-2 text-white rounded-md bg-orange-900 hover:bg-orange-800">
                             {slide.buttonText}
                         </button>
                         </div>
