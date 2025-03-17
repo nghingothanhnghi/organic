@@ -13,16 +13,29 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ products }) => {
     setLoadedImages(prev => new Set(prev.add(id)));
   };
 
-  const images = products.flatMap((product) =>
-    product.productImg.map((image) => ({
+  // const images = products.flatMap((product) =>
+  //   product.productImg.map((image) => ({
+  //     id: image.id,
+  //     alt: image.attributes.name || 'Product image',
+  //     src: getImageUrl(image, 'small'),
+  //   }))
+  // );
+
+  const images = products
+  .filter(product => product.productImg && product.productImg.length > 0) // Ensure product has images
+  .flatMap(product =>
+    product.productImg.map(image => ({
       id: image.id,
-      alt: image.attributes.name || 'Product image',
+      alt: image.attributes?.name || 'Product image',
       src: getImageUrl(image, 'small'),
     }))
   );
 
+// If no images, return null (nothing will be rendered)
+if (images.length === 0) return null;
+
   return (
-    <div className="mx-auto py-10 grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-8">
+    <section className="mx-auto py-10 grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-8">
        {images.map((image, index) => (
         <div key={`${image.id}-${index}`} className="relative">
           {/* Placeholder spinner while image is loading */}
@@ -51,7 +64,7 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ products }) => {
           />
         </div>
       ))}
-    </div>
+    </section>
   );
 };
 

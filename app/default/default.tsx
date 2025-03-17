@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import HeroHomeContent from '~/components/cmsContent/heroHomeContent';
 import SwiperLayout from "~/components/swiperLayout";
 import ProductGallery from "~/components/productGallery";
 import ProductFeatured from '~/components/productFeatured';
@@ -60,13 +61,14 @@ const Default = () => {
 
   return (
     <div>
-      <SwiperLayout
+      <HeroHomeContent/>
+      {/* <SwiperLayout
         slides={slideData}
         spaceBetween={30}
         slidesPerView={2}
         onSlideChange={handleSlideChange}
         onSwiper={handleSwiperInstance}
-      />
+      /> */}
       <WarrantyContent/>
       <AboutContent />
       {/* Bestsellers Carousel */}
