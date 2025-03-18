@@ -33,7 +33,8 @@
         "confirm_order": "Thanh toán",
         "search": "Tìm",
         "continue_shopping": "Đi đến cửa hàng",
-        "quick_view": "Xem nhanh"
+        "quick_view": "Xem nhanh",
+        "learn_more": "Xem thêm"
     },
     "badge_status":{
         "inStock": "Còn hàng",

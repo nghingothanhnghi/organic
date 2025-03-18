@@ -3,10 +3,12 @@
 import React, { useEffect } from 'react';
 import SwiperLayout from '../swiperLayout';
 import { useAppDispatch, useAppSelector } from '~/hooks';
+import { useTranslation } from 'react-i18next';
 import { fetchBanners } from '~/features/bannerSlice';
 import { DEFAULT_CUSTOMER_ID } from '~/constants/apiConstants';
 
 const HeroHomeContent = () => {
+    const {t} = useTranslation();
     const dispatch = useAppDispatch();
     const { banners, loading: bannersLoading, error: bannersError } = useAppSelector(state => state.banners);
 
@@ -24,6 +26,14 @@ const HeroHomeContent = () => {
         console.log('Swiper instance:', swiper);
     };
 
+    const defaultBackgrounds = [
+        'linear-gradient(to right, #C6EBC9, #f1ffd8)',
+        'linear-gradient(to right, #FFD700, #FFA500)',
+        'linear-gradient(to right, #87CEEB, #4682B4)',
+        'linear-gradient(to right, #FFB6C1, #FF69B4)',
+        'linear-gradient(to right, #98FB98, #32CD32)'
+    ];
+
     return (
         <SwiperLayout
             slides={
@@ -31,11 +41,11 @@ const HeroHomeContent = () => {
                     ? [{ title: 'Loading...', description: '', buttonText: '', background: '#f1fff4' }]
                     : bannersError
                         ? [{ title: 'Error loading banners', description: bannersError, buttonText: '', background: '#ffdddd' }]
-                        : banners.map(banner => ({
-                            title: banner.attributes.title || 'No Title',
-                            description: banner.attributes.description || '',
-                            buttonText: banner.attributes.buttonText || 'Learn More',
-                            background: banner.attributes.imageUrl || 'linear-gradient(to right, #C6EBC9, #f1ffd8)',
+                        : banners.map((banner, index) => ({
+                            title: banner.bannerTitle || 'No Title',
+                            description: banner.bannerDescription || '',
+                            buttonText: t('btn.learn_more'), // No buttonText in your banner data
+                            background: banner.bannerImageURI || defaultBackgrounds[index % defaultBackgrounds.length],
                         }))
             }
             spaceBetween={30}

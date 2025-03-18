@@ -34,7 +34,7 @@ const SwiperLayout: React.FC<SwiperLayoutProps> = ({
 
     return (
         <Swiper
-        direction="horizontal" 
+            direction="horizontal"
             modules={[Pagination, Scrollbar]}
             pagination={{
                 clickable: true, // Make pagination clickable
@@ -50,7 +50,7 @@ const SwiperLayout: React.FC<SwiperLayoutProps> = ({
                 640: { slidesPerView: 1, spaceBetween: 1 },    // Show 1 slide for screens >= 640px
                 768: { slidesPerView: 2, spaceBetween: 1 },    // Show 1 slides for screens >= 768px
                 1024: { slidesPerView: 2, spaceBetween: 1 },   // Show 2 slides for screens >= 1024px
-              }}
+            }}
         >
             {slides.map((slide, index) => (
                 <SwiperSlide key={index}>
@@ -67,12 +67,12 @@ const SwiperLayout: React.FC<SwiperLayoutProps> = ({
                             minHeight: '400px',
                         }}
                     >
-                        <div>
-                        <h2 className='text-2xl md:text-3xl font-bold text-lime-900'>{slide.title}</h2>
-                        <p className='text-sm md:text-xl mt-4 text-yellow-950'>{slide.description}</p>
-                        <button className="mt-4 px-4 py-2 text-white rounded-md bg-orange-900 hover:bg-orange-800">
-                            {slide.buttonText}
-                        </button>
+                        <div className='mx-auto w-full max-w-full md:max-w-[300px]'>
+                            <h2 className='text-2xl md:text-3xl font-bold text-lime-900 dark:text-neutral-50'>{slide.title}</h2>
+                            <p className='text-sm md:text-xl mt-4 text-yellow-950'>{slide.description}</p>
+                            <button className="mt-8 px-4 py-2 text-white bg-orange-900 hover:bg-orange-800 rounded-lg shadow-md hover:shadow-lg">
+                                {slide.buttonText}
+                            </button>
                         </div>
                     </div>
                 </SwiperSlide>

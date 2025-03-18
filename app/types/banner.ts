@@ -2,11 +2,12 @@
 // Define a Banner type
 export interface Banner {
     id: number;
-    attributes: {
-      title?: string;
-      imageUrl?: string;
-      [key: string]: any; // Extendable attributes
-    };
+    bannerTitle?: string;
+    bannerUrl?: string;
+    bannerDescription?: string;
+    bannerImageURI?: string;
+    createdAt?: string;
+    updatedAt?: string;
   }
 
   // Define BannerState type
