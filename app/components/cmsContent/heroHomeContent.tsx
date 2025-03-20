@@ -5,10 +5,11 @@ import SwiperLayout from '../swiperLayout';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { useTranslation } from 'react-i18next';
 import { fetchBanners } from '~/features/bannerSlice';
+import LoadingErrorWrapper from '../LoadingErrorWrapper';
 import { DEFAULT_CUSTOMER_ID } from '~/constants/apiConstants';
 
 const HeroHomeContent = () => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const { banners, loading: bannersLoading, error: bannersError } = useAppSelector(state => state.banners);
 
@@ -35,24 +36,26 @@ const HeroHomeContent = () => {
     ];
 
     return (
-        <SwiperLayout
-            slides={
-                bannersLoading
-                    ? [{ title: 'Loading...', description: '', buttonText: '', background: '#f1fff4' }]
-                    : bannersError
-                        ? [{ title: 'Error loading banners', description: bannersError, buttonText: '', background: '#ffdddd' }]
-                        : banners.map((banner, index) => ({
-                            title: banner.bannerTitle || 'No Title',
-                            description: banner.bannerDescription || '',
-                            buttonText: t('btn.learn_more'), // No buttonText in your banner data
-                            background: banner.bannerImageURI || defaultBackgrounds[index % defaultBackgrounds.length],
-                        }))
-            }
-            spaceBetween={30}
-            slidesPerView={2}
-            onSlideChange={handleSlideChange}
-            onSwiper={handleSwiperInstance}
-        />
+        <LoadingErrorWrapper loading={bannersLoading} error={bannersError}>
+            <SwiperLayout
+                slides={
+                    bannersLoading
+                        ? [{ title: 'Loading...', description: '', buttonText: '', background: '#f1fff4' }]
+                        : bannersError
+                            ? [{ title: 'Error loading banners', description: bannersError, buttonText: '', background: '#ffdddd' }]
+                            : banners.map((banner, index) => ({
+                                title: banner.bannerTitle || 'No Title',
+                                description: banner.bannerDescription || '',
+                                buttonText: t('btn.learn_more'), // No buttonText in your banner data
+                                background: banner.bannerImageURI || defaultBackgrounds[index % defaultBackgrounds.length],
+                            }))
+                }
+                spaceBetween={30}
+                slidesPerView={2}
+                onSlideChange={handleSlideChange}
+                onSwiper={handleSwiperInstance}
+            />
+        </LoadingErrorWrapper>
     );
 };
 

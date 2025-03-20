@@ -3,25 +3,19 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { fetchContent } from '~/features/contentSlice';
+import LoadingErrorWrapper from '../LoadingErrorWrapper';
 
 const AboutContent = () => {
-    const dispatch = useAppDispatch();
-    const { sections, loading, error } = useAppSelector(state => state.sections);
-  
-    useEffect(() => {
-      // Fetch content on component mount
-      dispatch(fetchContent({ page: 1, pageSize: 1, filters: { category: '' } }));
-    }, [dispatch]);
-  
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-  
-    if (error) {
-      return <div>Error: {error}</div>;
-    }
-  
-    return (
+  const dispatch = useAppDispatch();
+  const { sections, loading, error } = useAppSelector(state => state.sections);
+
+  useEffect(() => {
+    // Fetch content on component mount
+    dispatch(fetchContent({ page: 1, pageSize: 1, filters: { category: '' } }));
+  }, [dispatch]);
+
+  return (
+    <LoadingErrorWrapper loading={loading} error={error}>
       <section className="bg-white dark:bg-gray-900">
         <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
           <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
@@ -31,16 +25,16 @@ const AboutContent = () => {
                   {section.heading}
                 </h2>
                 <p className="mb-4">This is dynamic content for the section with ID: {section.id}</p>
-                              {/* Filter and display link with id: 1 */}
-              {section.links
-                .filter(link => link.id === 1)
-                .map((link) => (
-                  <div key={link.id}>
-                    <h3>{link.name}</h3>
-                    <p>{link.description || "No description available."}</p>
-                    {link.url && <a href={link.url} target="_blank" rel="noopener noreferrer">Visit Link</a>}
-                  </div>
-                ))}
+                {/* Filter and display link with id: 1 */}
+                {section.links
+                  .filter(link => link.id === 1)
+                  .map((link) => (
+                    <div key={link.id}>
+                      <h3>{link.name}</h3>
+                      <p>{link.description || "No description available."}</p>
+                      {link.url && <a href={link.url} target="_blank" rel="noopener noreferrer">Visit Link</a>}
+                    </div>
+                  ))}
               </div>
             ))}
           </div>
@@ -58,7 +52,9 @@ const AboutContent = () => {
           </div>
         </div>
       </section>
-    );
-  };
+    </LoadingErrorWrapper>
+
+  );
+};
 
 export default AboutContent;

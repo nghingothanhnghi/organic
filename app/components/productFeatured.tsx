@@ -35,11 +35,11 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
               spaceBetween: 15,
             },
             640: {
-              slidesPerView: 2, // For small screens
+              slidesPerView: 3, // For small screens
               spaceBetween: 5,
             },
             768: {
-              slidesPerView: 2, // For medium screens
+              slidesPerView: 3, // For medium screens
               spaceBetween: 10,
             },
             1024: {

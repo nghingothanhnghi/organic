@@ -5,7 +5,6 @@ import CartList from "~/components/cartList";
 import CartSummary from "~/components/cartSummary";
 import ProceedToCheckoutButton from "~/components/proceedToCheckoutButton";
 import { useTranslation } from "react-i18next";
-import EmptyState from "~/components/emptyState";
 
 const Cart = () => {
   const { t } = useTranslation();
