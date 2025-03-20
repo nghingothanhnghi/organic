@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { login } from '~/features/authSlice';
 import { useAppDispatch, useAppSelector } from '~/hooks';
+import { useTranslation } from 'react-i18next';
 import { loginValidationSchema } from '~/validation/userInfo';
 
 const LoginForm = () => {
+  const {t} = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector(state => state.auth);
@@ -27,8 +29,8 @@ const LoginForm = () => {
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">Login</h2>
+      <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md mx-4 sm:mx-0">
+        <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">{t("page_title.login")}</h2>
         <Formik
           initialValues={initialValues}
           validationSchema={loginValidationSchema}
@@ -61,7 +63,7 @@ const LoginForm = () => {
                   htmlFor="password"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Password
+                  {t("input.password.label")}
                 </label>
                 <Field
                   id="password"
@@ -79,13 +81,13 @@ const LoginForm = () => {
               <button
                 type="submit"
                 disabled={loading || isSubmitting}
-                className={`w-full py-2 px-4 text-white font-bold rounded-md ${
+                className={`w-full text-sm text-white font-semibold py-3 px-4 rounded-lg shadow-md ${
                   loading || isSubmitting
-                    ? 'bg-indigo-300 cursor-not-allowed'
-                    : 'bg-indigo-500 hover:bg-indigo-600'
+                    ? 'bg-green-200 cursor-not-allowed'
+                    : 'bg-green-600 hover:bg-green-700'
                 }`}
               >
-                {loading ? 'Logging in...' : 'Login'}
+                {loading ? t("btn.loggingIn") : t("btn.login")}
               </button>
 
               {error && (

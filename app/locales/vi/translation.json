@@ -18,6 +18,7 @@
         "cancel": "Thoát",
         "sign_up": "Đăng ký",
         "login": "Đăng nhập",
+        "loggingIn": "Đang đăng nhập...",
         "next": "Tiếp tục",
         "previous": "Quay lại",
         "proceed_to_checkout": "Thanh toán ngay",
@@ -209,7 +210,8 @@
         "wishlist": "Danh sách yêu thích",
         "post": "Bài viết",
         "profile": "Tài khoản",
-        "order_check": "Kiểm tra đơn hàng"
+        "order_check": "Kiểm tra đơn hàng",
+        "login": "Đăng nhập"
     },
     "section_title":{
         "view_by_info": "Thông tin",

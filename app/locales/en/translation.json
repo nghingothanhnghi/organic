@@ -18,6 +18,7 @@
         "cancel": "Thoát",
         "sign_up": "Sign Up",
         "login": "Log In",
+        "loggingIn": "Logging in...",
         "next": "Next",
         "previous": "Previous",
         "proceed_to_checkout": "Checkout",
@@ -209,7 +210,8 @@
         "wishlist": "WishList",
         "post": "Post",
         "profile": "Account",
-        "order_check": "Order Checking"
+        "order_check": "Order Checking",
+        "login": "Login"
     },
     "section_title":{
         "view_by_info": "Infomation",
