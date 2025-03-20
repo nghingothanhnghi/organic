@@ -41,15 +41,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </div>
             {/* Content Section */}
             <div className="p-4">
-                <h3 className="text-sm font-semibold text-gray-900 truncate">
-                    <Link to={`/products/${slug}`} className="hover:text-blue-500">
-                        {name}
-                    </Link>
-                </h3>
-                
-                {/* Price */}
-                <ProductPrice product={product} className='mt-2 text-sm' />
+                <Link
+                    to={`/products/${slug}`}
+                    className="text-sm font-semibold text-gray-900  hover:text-blue-500"
+                >
+                    <div className='truncate'>{name}</div>
+                </Link>
                 <ProductRating product={product} singleStarView={true} />
+                <ProductPrice product={product} className='mt-2 text-sm' />
             </div>
         </div>
     );

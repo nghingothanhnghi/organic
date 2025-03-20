@@ -9,10 +9,14 @@ import UserShippingInfo from "~/components/checkoutProcess/userShippingInfo";
 import UserPaymentInfo from "~/components/checkoutProcess/userPaymentInfo";
 import UserConfirmInfo from "~/components/checkoutProcess/userConfirmInfo";
 import CartSummary from "~/components/cartSummary";
+import useResponsive from "~/hooks/useResponsive";
+import useToggleClass from "~/hooks/useToggleClass";
 import { submitOrder, createOrder, clearOrder } from "~/features/checkOutSlice";
 import { useTranslation } from "react-i18next";
 
 const CheckOut = () => {
+    const { isMobile } = useResponsive();
+    const { isActive, toggleClass } = useToggleClass(false, "cart-container");
     const navigate = useNavigate();
     const { t } = useTranslation();
     const breadcrumbItems = [
@@ -45,8 +49,6 @@ const CheckOut = () => {
     const handleFinalSubmit = async () => {
         // Ensure the order structure matches the expected format
         const finalOrderData = {
-            // id: Date.now(), // Temporary ID for frontend usage
-            // purchaseOrder: `PO-${Date.now()}`, // Generate a purchase order number
             items: cartItems, // Ensure this matches the expected `items` array
             shippingDetails: shippingData,
             paymentDetails: paymentData,
@@ -55,19 +57,10 @@ const CheckOut = () => {
 
         console.log('Final order submission:', finalOrderData);
 
-        // Dispatch the action to submit the order with all the data
-        // dispatch(submitOrder(finalOrderData));
-
-        // // After the order is successfully placed, clear the cart
-        // dispatch(clearOrder());
-
-        // // Navigate to the order confirmation page or home page after successful order
-        // navigate('/order-confirmation'); // Adjust the path as needed
-
         try {
             // Dispatch the action to create the order via the backend API
             const resultAction = await dispatch(createOrder(finalOrderData));
-    
+
             if (createOrder.fulfilled.match(resultAction)) {
                 // If order creation is successful, clear the cart and navigate
                 dispatch(clearOrder());
@@ -122,7 +115,19 @@ const CheckOut = () => {
         <div className="CheckOut-container">
             <Breadcrumb items={breadcrumbItems} />
             <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
-                <h1 className="text-lg lg:text-2xl font-bold mb-4">{t("page_title.checkout")}</h1>
+                <div className="flex justify-between">
+                    <h1 className="text-lg lg:text-2xl font-bold mb-4">{t("page_title.checkout")}</h1>
+                    {/* Toggle Button for Mobile */}
+                    {isMobile && (
+                        <button
+                            onClick={toggleClass}
+                            className="text-sm px-4 py-2 rounded-lg shadow-md"
+                        >
+                            {isActive ? "Hide Cart" : "Show Cart"}
+                        </button>
+                    )}
+                </div>
+
                 <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 lg:gap-8 w-full">
                     <div className="col-span-1 lg:col-span-6 w-full lg:pe-10">
                         <StepWizard
@@ -132,7 +137,11 @@ const CheckOut = () => {
                             handlePrevious={handlePrevious}
                         />
                     </div>
-                    <div className="col-span-1 lg:col-span-4 w-full">
+                    <div
+                        className={`cart-container col-span-1 lg:col-span-4 w-full 
+                        ${isMobile ? "order-first p-4" : ""} 
+                        ${isMobile && !isActive ? "hidden" : ""}`}
+                    >
                         <CartList />
                         <CartSummary taxRate={0} shippingFee={0} className="mt-4" />
                     </div>
