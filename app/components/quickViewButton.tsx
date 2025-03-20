@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from './modal'; // Import your Modal component
 import ProductThumb from './productThumb';
 import ProductRating from './productRating';
@@ -21,9 +21,14 @@ const QuickViewButton: React.FC<QuickViewButtonProps> = ({ product }) => {
     const cartItems = useAppSelector(state => state.cart.items); // Get cart items from Redux
     const [selectedQuantity, setSelectedQuantity] = useState(1);
 
-    const [selectedVariantId, setSelectedVariantId] = useState<number | null>(
-        variants?.find((variant) => variant.isDefault)?.id || null
-    ); // Default to the first variant if available
+    const [selectedVariantId, setSelectedVariantId] = useState<number | null>(null);
+
+    useEffect(() => {
+        if (variants?.length) {
+            const defaultVariant = variants.find(variant => variant.isDefault);
+            setSelectedVariantId(defaultVariant ? defaultVariant.id : variants[0].id);
+        }
+    }, [variants]); // Runs when `variants` change
 
     const handleQuickViewOpen = () => setQuickViewOpen(true);
     const handleQuickViewClose = () => setQuickViewOpen(false);

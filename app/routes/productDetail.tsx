@@ -8,6 +8,7 @@ import ProductPrice from "~/components/productPrice";
 import ProductReviewForm from "~/components/productReviewForm";
 import ProductRating from "~/components/productRating";
 import ProductActions from '~/components/productActions';
+import ProductVariantSelector from '~/components/productVariantSelector';
 import { useTranslation } from 'react-i18next';
 import { stripHtml } from '~/utils/stripHtml';
 
@@ -25,6 +26,22 @@ const ProductDetail = () => {
     const { product, loading, error } = useAppSelector(state => state.products);
     const cartItems = useAppSelector(state => state.cart.items);
     const [selectedQuantity, setSelectedQuantity] = useState(1);
+    // Default to the first variant or the isDefault variant
+    const [selectedVariantId, setSelectedVariantId] = useState<number | null>(null);
+
+    // Set default variant once product is available
+    useEffect(() => {
+        if (product?.variants?.length) {
+            const defaultVariant = product.variants.find(v => v.isDefault) || product.variants[0];
+            setSelectedVariantId(defaultVariant?.id || null);
+        }
+    }, [product]); // Runs when product is updated
+
+    const handleVariantChange = (variantId: number) => {
+        setSelectedVariantId(variantId);
+    };
+
+    const selectedVariant = product?.variants?.find((variant) => variant.id === selectedVariantId);
 
     // If slug is undefined, early return or provide fallback
     if (!slug) {
@@ -36,7 +53,6 @@ const ProductDetail = () => {
     }, [dispatch, slug]);
 
 
-
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
 
@@ -45,6 +61,7 @@ const ProductDetail = () => {
     if (!product) {
         return <p>Product not found</p>;
     }
+
 
     return (
         <section className="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
@@ -66,9 +83,19 @@ const ProductDetail = () => {
                             <p
                                 className="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white"
                             >
-                                <ProductPrice product={product!} />
+                                <ProductPrice product={product!} variant={selectedVariant} />
                             </p>
                         </div>
+                        {product?.variants && product.variants.length > 0 && (
+                            <div className="my-4">
+                                <ProductVariantSelector
+                                    variants={product.variants}
+                                    selectedVariantId={selectedVariantId}
+                                    onVariantChange={handleVariantChange}
+                                />
+                            </div>
+                        )}
+
                         <ProductActions
                             product={product}
                             selectedQuantity={selectedQuantity}
