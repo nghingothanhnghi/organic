@@ -4,17 +4,18 @@ import LogoImage from "~/assets/logo.png";
 import CompanySection from './footerSection/companySection';
 import SupportSection from './footerSection/supportSection';
 import FollowUsSection from './footerSection/followUs.Section';
+import SubcribeSection from './footerSection/subcribeSection';
 const Footer = () => {
     return (
         <footer className="bg-orange-950 text-slate-300 pt-10">
             <div className="container mx-auto px-3 pt-10 sm:px-6">
-                <div className='grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16 lg:gap-x-40 mb-20'>
-                    <div className="col-span-2">
+                {/* Footer Content */}
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4 gap-5 sm:gap-8 mb-10">
+                    <div className="lg:pe-10">
                         {/* Logo */}
                         <div className="flex justify-center lg:justify-start mb-3">
                             <img src={LogoImage} alt="Logo" className="h-10" />
                         </div>
-
                         {/* Description about Organic */}
                         <div className="text-center lg:text-start mb-10">
                             <p className="text-white text-lg font-semibold mb-3">Committed to Organic Growth</p>
@@ -23,38 +24,15 @@ const Footer = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="col-span-2 lg:col-span-3 lg:flex lg:items-end">
-                        <form className="w-full">
-                            <label htmlFor="UserEmail" className="sr-only"> Email </label>
-                            <div
-                                className="border border-orange-900 p-2 focus-within:ring sm:flex sm:items-center sm:gap-4"
-                            >
-                                <input
-                                    type="email"
-                                    id="UserEmail"
-                                    placeholder="john@rhcp.com"
-                                    className="w-full border-none focus:border-transparent focus:ring-transparent sm:text-sm"
-                                />
-
-                                <button
-                                    className="mt-1 w-full px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-none bg-orange-900 hover:bg-orange-800 sm:mt-0 sm:w-auto sm:shrink-0"
-                                >
-                                    Sign Up
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-
-                {/* Footer Content */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8 mb-10">
                     {/* Column 1 */}
-                    <CompanySection/>
+                    <CompanySection />
                     {/* Column 2 */}
                     <SupportSection />
                     {/* Column 3 */}
-                    <FollowUsSection/>
+                    <div>
+                        <FollowUsSection />
+                        <SubcribeSection />
+                    </div>
                 </div>
 
                 {/* Footer Bottom */}
