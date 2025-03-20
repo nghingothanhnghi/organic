@@ -15,14 +15,15 @@ const ProductPrice: React.FC<ProductPriceProps> = ({ product, className, variant
   const price = (variant && variant.price) ?? product.price ?? 0; // Fallback to 0 if price is missing
   const discountPrice = product.discountPrice; // Only the product has discountPrice
 
-  // Do not render the price if it is 0
-  if (price === 0) {
-    return null; // Or you can return <span>Price not available</span> if you want to show a message
-  }
 
   return (
     <div className={`${className || ''}`}>
-      {discountPrice ? (
+      {price === 0 ? (
+        // Show a "Free" badge if price is 0 or missing
+        <span className="bg-green-100 text-green-900 text-xs font-semibold px-2 py-1 rounded">
+          Free
+        </span>
+      ) : discountPrice ? (
         // If there's a discount, display original price with a strikethrough and the discount price
         <div className='flex flex-col lg:flex-row lg:gap-2'>
           <span className="text-lime-700">{formatPrice(discountPrice)}</span>

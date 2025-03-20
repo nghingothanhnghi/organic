@@ -6,9 +6,10 @@ import { useTranslation } from 'react-i18next';
 
 interface ProceedToCheckoutButtonProps {
     closeCart: () => void; // Function to close the cart sidebar
+    rounded?: boolean;
 }
 
-const ProceedToCheckoutButton: React.FC<ProceedToCheckoutButtonProps> = ({ closeCart }) => {
+const ProceedToCheckoutButton: React.FC<ProceedToCheckoutButtonProps> = ({ closeCart, rounded = true }) => {
     const {t} = useTranslation();
     const navigate = useNavigate();
     const cartItems = useAppSelector(state => state.cart.items);
@@ -27,7 +28,10 @@ const ProceedToCheckoutButton: React.FC<ProceedToCheckoutButtonProps> = ({ close
     return (
         <button
             onClick={handleProceedToCheckout}
-            className="w-full rounded-lg px-4 py-2 text-sm font-semibold text-white shadow-md hover:shadow-lg bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hover:from-pink-500 hover:to-orange-500"
+            className={`w-full px-4 py-2 text-sm font-semibold text-white shadow-md hover:shadow-lg 
+                bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% 
+                hover:from-pink-500 hover:to-orange-500 
+                ${rounded ? "rounded-lg" : "rounded-none"}`} // Dynamically apply rounded styles
         >
             {t("btn.proceed_to_checkout")}
         </button>

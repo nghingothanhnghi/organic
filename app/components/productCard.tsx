@@ -32,7 +32,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 <div className="mt-4 absolute bottom-0 left-0 w-full translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                     <AddToCartButton product={product} className=' rounded-none' />
                     {isItemInCart && (
-                        <ProceedToCheckoutButton closeCart={closeCart} />
+                        <ProceedToCheckoutButton closeCart={closeCart} rounded={false} />
                     )}
                     <QuickViewButton product={product} />
                 </div>
