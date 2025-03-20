@@ -9,9 +9,10 @@ interface CartSummaryProps {
     taxRate: number;
     shippingFee: number;
     className?: string;
+    onTotalChange?: (total: number) => void;
 }
 
-const CartSummary: React.FC<CartSummaryProps> = ({ taxRate, shippingFee, className }) => {
+const CartSummary: React.FC<CartSummaryProps> = ({ taxRate, shippingFee, className, onTotalChange }) => {
     const {t} = useTranslation();
     const cartItems = useAppSelector(state => state.cart.items); // Access cart items from Redux
 
@@ -23,6 +24,14 @@ const CartSummary: React.FC<CartSummaryProps> = ({ taxRate, shippingFee, classNa
 
     // Calculate final total considering the tax and shipping fee
     const total = calculateFinalTotal(cartItems, taxRate, shippingFee);
+
+    
+    // Pass total to parent when component renders
+    React.useEffect(() => {
+        if (onTotalChange) {
+            onTotalChange(total);
+        }
+    }, [total, onTotalChange]); // Run whenever total changes
 
     return (
         <div className={`cart-summary bg-gray-100 p-4 border rounded-md space-y-2 ${className || ''}`}>

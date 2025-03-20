@@ -11,12 +11,14 @@ import UserConfirmInfo from "~/components/checkoutProcess/userConfirmInfo";
 import CartSummary from "~/components/cartSummary";
 import useResponsive from "~/hooks/useResponsive";
 import useToggleClass from "~/hooks/useToggleClass";
+import { formatPrice } from "~/utils/formatPrice";
 import { submitOrder, createOrder, clearOrder } from "~/features/checkOutSlice";
 import { useTranslation } from "react-i18next";
 
 const CheckOut = () => {
     const { isMobile } = useResponsive();
     const { isActive, toggleClass } = useToggleClass(false, "cart-container");
+    const [total, setTotal] = useState(0);
     const navigate = useNavigate();
     const { t } = useTranslation();
     const breadcrumbItems = [
@@ -121,9 +123,13 @@ const CheckOut = () => {
                     {isMobile && (
                         <button
                             onClick={toggleClass}
-                            className="text-sm px-4 py-2 rounded-lg shadow-md"
+                            className="text-sm flex items-center gap-2 px-4 py-2 rounded-lg shadow-md"
                         >
-                            {isActive ? "Hide Cart" : "Show Cart"}
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                            </svg>
+                            <span className="font-semibold text-orange-700">{formatPrice(total)}</span>
+                            {/* {isActive ? "Hide Cart" : "Show Cart"} */}
                         </button>
                     )}
                 </div>
@@ -143,7 +149,7 @@ const CheckOut = () => {
                         ${isMobile && !isActive ? "hidden" : ""}`}
                     >
                         <CartList />
-                        <CartSummary taxRate={0} shippingFee={0} className="mt-4" />
+                        <CartSummary taxRate={0} shippingFee={0} className="mt-4" onTotalChange={setTotal} />
                     </div>
                 </div>
             </div>
