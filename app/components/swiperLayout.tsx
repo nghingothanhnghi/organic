@@ -67,8 +67,8 @@ const SwiperLayout: React.FC<SwiperLayoutProps> = ({
                             minHeight: '400px',
                         }}
                     >
-                        <div className='mx-auto w-full max-w-full md:max-w-[300px]'>
-                            <h2 className='text-2xl md:text-3xl font-bold text-lime-900 dark:text-neutral-50'>{slide.title}</h2>
+                        <div className='mx-auto w-full max-w-full md:max-w-[400px]'>
+                            <h2 className='text-2xl md:text-4xl font-bold text-lime-900 dark:text-neutral-50'>{slide.title}</h2>
                             <p className='text-sm md:text-xl mt-4 text-yellow-950'>{slide.description}</p>
                             <button className="mt-8 px-4 py-2 text-white bg-orange-900 hover:bg-orange-800 rounded-lg shadow-md hover:shadow-lg">
                                 {slide.buttonText}
