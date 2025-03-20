@@ -5,9 +5,17 @@ import { calculateDiscount } from '~/utils/calculate';
 
 interface ProductDiscountProps {
     product: Product; // Expect the whole product object
+    className?: string;
+    positionClass?: string; 
+    paddingClass?: string; 
 }
 
-const ProductDiscount: React.FC<ProductDiscountProps> = ({ product }) => {
+const ProductDiscount: React.FC<ProductDiscountProps> = ({ 
+    product, 
+    className='', 
+    positionClass,
+    paddingClass
+ }) => {
     const { price, discount, discountPrice } = product;
 
     if (!discount || !discountPrice) return null; // If no discount, return null
@@ -17,7 +25,13 @@ const ProductDiscount: React.FC<ProductDiscountProps> = ({ product }) => {
 
     return (
 
-        <span className="absolute -right-px -top-px rounded-bl-2lg rounded-tr-2lg bg-rose-600 px-2 py-2 text-xs font-medium uppercase tracking-widest text-white">
+        <span 
+        className={`rounded-bl-2lg rounded-tr-2lg bg-rose-600 
+            text-xs font-medium uppercase tracking-widest text-white
+            ${positionClass || "absolute -right-px -top-px"} 
+            ${paddingClass || "px-2 py-2"} 
+            ${className}`}
+        >
             -{discountPercentage}% Off
         </span>
     );

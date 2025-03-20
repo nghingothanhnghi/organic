@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './modal'; // Import your Modal component
 import ProductThumb from './productThumb';
+import ProductRating from './productRating';
 import ProductDiscount from './productDiscount';
 import ProductPrice from './productPrice';
 import ProductVariantSelector from './productVariantSelector';
@@ -14,7 +15,7 @@ interface QuickViewButtonProps {
 }
 
 const QuickViewButton: React.FC<QuickViewButtonProps> = ({ product }) => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const { name, description, variants } = product;
     const [isQuickViewOpen, setQuickViewOpen] = useState(false);
     const cartItems = useAppSelector(state => state.cart.items); // Get cart items from Redux
@@ -47,18 +48,20 @@ const QuickViewButton: React.FC<QuickViewButtonProps> = ({ product }) => {
                 onClose={handleQuickViewClose}
                 title={
                     <div>
-                    <h2 className="text-lg font-bold">{name}</h2>
-                    <ProductPrice product={product} variant={selectedVariant} />
-                </div>
+                        <h2 className="text-lg font-bold">{name}</h2>       
+                        <div className='flex gap-5'>
+                            <ProductRating product={product} singleStarView={true} />
+                            <ProductPrice product={product} variant={selectedVariant} />
+                            <ProductDiscount product={product} positionClass="relative" paddingClass="px-2 py-1" />
+                        </div>
+                    </div>
                 }
                 content={
                     <div className='grid grid-cols-1 sm:grid-cols-2 gap-7'>
                         <div className="relative overflow-hidden">
-                            <ProductDiscount product={product} />
                             <ProductThumb product={product} className="object-cover w-full h-full" width={400} height={400} />
                         </div>
                         <div className='sm:col-span-1'>
-                            <ProductPrice product={product} variant={selectedVariant} />
                             {variants && variants.length > 0 && (
                                 <div className="my-4">
                                     <ProductVariantSelector
@@ -71,9 +74,7 @@ const QuickViewButton: React.FC<QuickViewButtonProps> = ({ product }) => {
                                     />
                                 </div>
                             )}
-                            {/* <AddToCartButton product={product}/>
-                            <ProceedToCheckoutButton closeCart={handleQuickViewClose} /> */}
-                                                        <ProductActions
+                            <ProductActions
                                 product={product}
                                 selectedQuantity={selectedQuantity}
                                 setSelectedQuantity={setSelectedQuantity}
