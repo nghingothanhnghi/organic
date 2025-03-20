@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+import { useTranslation } from 'react-i18next';
 
 // Register all Community features
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -20,6 +21,7 @@ const DataGrid: React.FC<DataGridProps> = ({
   lottieSrc, // Lottie animation URL
   image, // Fallback image URL
 }) => {
+  const {t} = useTranslation();
   const defaultColDef = useMemo(() => ({
     sortable: true,
     filter: true,
@@ -37,9 +39,23 @@ const noRowsOverlay = `
       ? `<img src="${image}" alt="Empty State" class="mx-auto mb-4 w-40 h-40 object-contain" />`
       : ""
   }
-  <p className="text-gray-600 mb-8">No matching results</p>
+  <p className="text-gray-600 mb-8">${t("dataGrid.bodyName.no_matching_results")}</p>
 </div>
 `;
+
+  // Custom pagination text
+  const localeText = useMemo(() => ({
+    page: t("dataGrid.pagination.page"),
+    to: t("dataGrid.pagination.to"),
+    of: t("dataGrid.pagination.of"),
+    next: t("dataGrid.pagination.next"),
+    previous: t("dataGrid.pagination.previous"),
+    last: t("dataGrid.pagination.last"),
+    first: t("dataGrid.pagination.first"),
+    loadingOoo: t("dataGrid.pagination.loading"),
+    pageSize: t("dataGrid.pagination.pageSize"),
+    rowPerPage: t("dataGrid.pagination.rowPerPage")
+  }), [t]);
 
   return (
     <div className={`${theme} w-full`} style={{ height }}>
@@ -51,6 +67,7 @@ const noRowsOverlay = `
         paginationPageSize={paginationPageSize}
         onRowClicked={onRowClicked}
         overlayNoRowsTemplate={noRowsOverlay}
+        localeText={localeText} 
       />
     </div>
   );

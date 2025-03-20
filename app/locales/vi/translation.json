@@ -164,6 +164,21 @@
             "totalAmount": "Tổng cộng",
             "actions": "Thao tác",
             "status": "Trạng thái"
+        },
+        "bodyName":{
+            "no_matching_results": "Không có kết quả phù hợp"
+        },
+        "pagination":{
+            "to": "đến",
+            "of": "của",
+            "page": "trang",
+            "next": "Tiếp theo",
+            "previous": "Trước",
+            "last": "Cuối cùng",
+            "first": "Đầu tiên",
+            "loading": "Đang tải...",
+            "pageSizeSelector": "Xem",
+            "rowPerPage": "Hiển thị {{count}} dòng trên mỗi trang"
         }
     },
     "paging":{

@@ -20,7 +20,7 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
           dicta incidunt est ipsam, officia dolor fugit natus?
         </p>
       </div>
-      <div className='container mx-auto flex items-center justify-between py-4 px-6'>
+      <div className='container mx-auto flex items-center justify-between p-3 sm:py-4 sm:px-6'>
         {/* Swiper Component to display featured products */}
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}

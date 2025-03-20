@@ -24,13 +24,6 @@ const Default = () => {
     }));
   }, [dispatch]);
 
-  const handleSlideChange = () => {
-    console.log('Slide changed');
-  };
-
-  const handleSwiperInstance = (swiper: any) => {
-    console.log('Swiper instance:', swiper);
-  };
 
   return (
     <div>

@@ -164,6 +164,21 @@
             "totalAmount": "Total",
             "actions": "Actions",
             "status": "Status"
+        },
+        "bodyName":{
+            "no_matching_results": "No matching results"
+        },
+        "pagination":{
+            "to": "to",
+            "of": "of",
+            "page": "page",
+            "next": "Next",
+            "previous": "Previous",
+            "last": "Last",
+            "first": "First",
+            "loading": "Loading...",
+            "pageSizeSelector": "Page Size:",
+            "rowPerPage": "Show {{count}} rows per page"
         }
     },
     "paging":{
