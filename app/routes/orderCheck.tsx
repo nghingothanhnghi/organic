@@ -164,7 +164,7 @@ const OrderCheck = () => {
   return (
     <div className="store-container">
       <Breadcrumb items={breadcrumbItems} />
-      <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
+      <div className="container mx-auto flex-column items-center justify-between p-3 sm:py-4 sm:px-6">
         <h1 className="text-2xl font-bold mb-4">{t("page_title.order_check")}</h1>
         {/* Search Input */}
         <div className="flex space-x-2 justify-center mb-4">

@@ -13,14 +13,14 @@ type BreadcrumbProps = {
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
     return (
         <nav aria-label="breadcrumb">
-            <div className='container mx-auto flex items-center justify-between py-1 px-6'>
-                <ol className="flex space-x-2 text-xs text-gray-700">
+            <div className='container mx-auto flex items-center justify-between py-1 px-3 sm:px-6'>
+                <ol className="flex space-x-2 text-xs text-gray-500">
                     {items.map((item, index) => (
                         <li key={index} className="flex items-center">
                             {item.path ? (
                                 <Link
                                     to={item.path}
-                                    className="text-gray-700 hover:text-gray-900 transition-colors"
+                                    className="text-gray-500 hover:text-gray-900 transition-colors"
                                 >
                                     {item.label}
                                 </Link>

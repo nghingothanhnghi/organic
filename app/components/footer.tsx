@@ -7,7 +7,7 @@ import FollowUsSection from './footerSection/followUs.Section';
 const Footer = () => {
     return (
         <footer className="bg-orange-950 text-slate-300 pt-10">
-            <div className="container mx-auto px-6 pt-10">
+            <div className="container mx-auto px-3 pt-10 sm:px-6">
                 <div className='grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16 lg:gap-x-40 mb-20'>
                     <div className="col-span-2">
                         {/* Logo */}
