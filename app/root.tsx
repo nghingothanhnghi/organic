@@ -31,7 +31,7 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { isMobile } = useResponsive();
+  
   return (
     <html lang="en">
       <head>
@@ -46,7 +46,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             {children}
           </I18nextProvider>
           <ToastContainer
-            position={isMobile ? "top-center" : "bottom-left"}
+            position="bottom-left"
             autoClose={5000}
             hideProgressBar={true}
             newestOnTop={false}
@@ -56,7 +56,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             draggable
             pauseOnHover={true}
             theme="dark"
-            toastClassName={isMobile ? "w-full max-w-[95%] mx-auto mt-2" : ""}
+            toastClassName="w-full sm:max-w-[95%] mx-auto mt-2"
           />
         </Provider>
         <ScrollRestoration />
