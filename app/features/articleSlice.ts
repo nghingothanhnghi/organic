@@ -1,7 +1,7 @@
 // app/features/articleSlice.ts
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { fetchArticlesAPI } from '~/services/articleService';
+import { fetchArticlesAPI, fetchArticleBySlugAPI } from '~/services/articleService';
 import type { ArticleState, Article } from '~/types/article';
 import type { PaginationMeta } from '~/types/pagination';
 
@@ -53,6 +53,47 @@ export const fetchArticles = createAsyncThunk<
   }
 );
 
+// ✅ Async thunk to fetch a single article by slug
+export const fetchArticleBySlug = createAsyncThunk<
+  Article,
+  string,
+  { rejectValue: string }
+>(
+  'articles/fetchArticleBySlug',
+  async (slug, { rejectWithValue }) => {
+    try {
+      const response = await fetchArticleBySlugAPI(slug);
+      if (!response) {
+        return rejectWithValue('Article not found');
+      }
+
+      const article: Article = {
+        id: response.id,
+        title: response.attributes.title,
+        description: response.attributes.description,
+        imageUrl: response.attributes.imageUrl,
+        media: response.attributes.media?.data?.map((img: any) => ({
+          id: img.id,
+          attributes: {
+            name: img.attributes.name,
+            url: img.attributes.url,
+            formats: img.attributes.formats,
+          },
+        })) ?? [],
+        createdAt: response.attributes.createdAt,
+        updatedAt: response.attributes.updatedAt,
+        publishedAt: response.attributes.publishedAt,
+        slug: response.attributes.slug ?? null,
+      };
+
+      return article;
+    } catch (error: any) {
+      return rejectWithValue(error.message || 'Failed to load article');
+    }
+  }
+);
+
+
 // Product slice
 const articleSlice = createSlice({
   name: 'articles',
@@ -79,6 +120,20 @@ const articleSlice = createSlice({
         state.error = action.payload as string; // Store the error message
         toast.error(action.payload || 'Failed to load articles');
       })
+      // ✅ Handle fetchArticleBySlug
+      .addCase(fetchArticleBySlug.pending, (state) => {
+        state.loading = true;
+        state.article = null; // Clear previous article
+      })
+      .addCase(fetchArticleBySlug.fulfilled, (state, action) => {
+        state.loading = false;
+        state.article = action.payload;
+      })
+      .addCase(fetchArticleBySlug.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+        toast.error(action.payload || 'Failed to load article');
+      });
   },
 });
 

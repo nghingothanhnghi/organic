@@ -47,7 +47,7 @@ const UserProfileMobileMenu: React.FC<UserProfileMobileMenuProps> = ({ isOpen, t
                     <div className="flex gap-3">
                         <Link
                             to="/login"
-                            className="w-1/2 text-center bg-blue-600 text-white py-2 rounded-md"
+                            className="w-1/2 text-center bg-green-600 hover:bg-green-500 text-white py-2 rounded-md"
                             onClick={toggleMenu}
                         >
                            {t("btn.login")}

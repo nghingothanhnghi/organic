@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router";
 import ArticleThumb from "./articleThumb";
+import PublishedDate from "./publishedDate";
 import type { ArticleCardProps } from "~/types/article"
 import { formatDateTime } from "~/utils/formatDateTime";
 import { useTranslation } from "react-i18next"; // Import i18next
@@ -35,7 +36,8 @@ const ArticleCard: React.FC<ExtendedArticleCardProps> = ({ article, viewMode }) 
           <ArticleThumb article={article} className="object-cover w-full h-full rounded-lg" width={400} height={400}/>
         </div>
         <div className="p-4">
-        <time className="text-xs text-gray-400">{publishedAt ? formatDateTime(publishedAt, true, "24-hour", i18n.language || "vi") : "N/A"}</time>
+        <PublishedDate date={publishedAt} />
+        {/* <time className="text-xs text-gray-400">{publishedAt ? formatDateTime(publishedAt, true, "24-hour", i18n.language || "vi") : "N/A"}</time> */}
           <h3 className="text-lg font-semibold text-gray-900 truncate">
             <Link to={`/articles/${slug}`} className="hover:text-blue-500">
               {title}

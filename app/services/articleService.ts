@@ -31,6 +31,16 @@ export const fetchArticlesAPI = async (
   });
   
   const response = await axiosPrivate.get(`/posts?${params.toString()}`);
-  console.log("📦 Order API Response:", response.data);
+  console.log("📦 Articles API Response:", response.data);
   return response.data; // Assuming the API returns the product data
+};
+
+
+// ✅ Fetch single article by Slug (NEW FUNCTION)
+export const fetchArticleBySlugAPI = async (slug: string) => {
+  const response = await axiosPrivate.get(
+    `/posts?filters[slug][$eq]=${slug}&populate=deep`
+  );
+  console.log("📝 Article Detail by Slug API Response:", response.data);
+  return response.data?.data?.[0] || null; // Return first article matching slug
 };
