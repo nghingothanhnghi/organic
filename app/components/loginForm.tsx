@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { login } from '~/features/authSlice';
@@ -8,7 +8,7 @@ import { loginValidationSchema } from '~/validation/userInfo';
 import FacebookLoginButton from './facebookLoginButton';
 
 const LoginForm = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { loading, error, isAuthenticated } = useAppSelector(state => state.auth);
@@ -26,7 +26,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (values: typeof initialValues) => {
     try {
-      const response =  await dispatch(login(values)).unwrap(); // Using .unwrap() to handle rejected promises
+      const response = await dispatch(login(values)).unwrap(); // Using .unwrap() to handle rejected promises
       console.log('Login successful:', response); // Debug
       navigate('/dashboard');
     } catch (err) {
@@ -88,11 +88,10 @@ const LoginForm = () => {
               <button
                 type="submit"
                 disabled={loading || isSubmitting}
-                className={`w-full text-sm text-white font-semibold py-3 px-4 rounded-lg shadow-md ${
-                  loading || isSubmitting
-                    ? 'bg-green-200 cursor-not-allowed'
-                    : 'bg-green-600 hover:bg-green-700'
-                }`}
+                className={`w-full text-sm text-white font-semibold py-3 px-4 rounded-lg shadow-md ${loading || isSubmitting
+                  ? 'bg-green-200 cursor-not-allowed'
+                  : 'bg-green-600 hover:bg-green-700'
+                  }`}
               >
                 {loading ? t("btn.loggingIn") : t("btn.login")}
               </button>
@@ -105,8 +104,19 @@ const LoginForm = () => {
             </Form>
           )}
         </Formik>
-        <div className="flex justify-center mt-4">
-          <FacebookLoginButton />
+        <div className="w-full max-w-md mx-auto mt-4">
+          {/* ✅ Divider with text in the center */}
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="bg-white px-2 text-gray-500">Login with</span>
+            </div>
+          </div>
+          <div className='flex justify-center'>
+            <FacebookLoginButton />
+          </div>
         </div>
       </div>
     </div>

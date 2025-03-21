@@ -10,6 +10,7 @@ declare module 'react-facebook-login' {
         cssClass?: string;
         icon?: string;
         textButton?: string;
+        render?: (renderProps: { onClick: () => void }) => JSX.Element;
     }
 
     const ReactFacebookLogin: React.FC<ReactFacebookLoginProps>;
