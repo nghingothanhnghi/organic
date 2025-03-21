@@ -36,7 +36,7 @@ const LoginForm = () => {
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md mx-4 sm:mx-0">
+      <div className="bg-white shadow-md rounded-2xl p-10 w-full max-w-md mx-4 sm:mx-0">
         <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">{t("page_title.login")}</h2>
         <Formik
           initialValues={initialValues}
@@ -111,7 +111,7 @@ const LoginForm = () => {
               <div className="w-full border-t border-gray-300"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="bg-white px-2 text-gray-500">Login with</span>
+              <span className="bg-white px-2 text-gray-500">{t("section_title.view_by_another_auth")}</span>
             </div>
           </div>
           <div className='flex justify-center'>

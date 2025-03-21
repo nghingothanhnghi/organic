@@ -214,6 +214,7 @@
         "login": "Login"
     },
     "section_title":{
+        "view_by_another_auth": "Login with",
         "view_by_info": "Infomation",
         "view_by_go-to": "Go to?",
         "view_by_categories": "View by Categories",

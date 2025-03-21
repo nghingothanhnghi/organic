@@ -20,7 +20,7 @@ const ArticleDetail = () => {
     const { t } = useTranslation();
     const { slug } = useParams<{ slug: string }>();
     const dispatch = useAppDispatch();
-    const {articles, article, loading, error } = useAppSelector(state => state.articles);
+    const { articles, article, loading, error } = useAppSelector(state => state.articles);
 
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const ArticleDetail = () => {
         dispatch(fetchArticles({ page: 1, pageSize: 10 })); // Fetch articles list
     }, [dispatch]);
 
-          // ✅ Ensure articles are available before searching
+    // ✅ Ensure articles are available before searching
     const currentIndex = articles?.findIndex(a => a.slug === slug) ?? -1;
     const previousArticle = currentIndex > 0 ? articles[currentIndex - 1] : null;
     const nextArticle = currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null;
@@ -50,8 +50,26 @@ const ArticleDetail = () => {
                             {article?.title}
                         </h1>
 
-                        <PublishedDate date={article?.publishedAt} />
+                        
+                        <div className="flex items-center gap-4 mt-10">
+                            <img
+                                alt=""
+                                src="https://images.unsplash.com/photo-1614644147724-2d4785d69962?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80"
+                                className="size-16 rounded-full object-cover"
+                            />
 
+                            <div>
+                                <h3 className="text-lg font-medium ">Claire Mac</h3>
+
+                                <div className="flow-root">
+                                    <ul className="-m-1 flex flex-wrap">
+                                        <li className="p-1 leading-none">
+                                            <PublishedDate date={article?.publishedAt} />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         {/* Divider */}
                         <hr className="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
 
