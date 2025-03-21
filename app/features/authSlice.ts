@@ -14,7 +14,8 @@ import { safeSessionStorage } from '~/utils/storage';
 const initialState: AuthState = {
     user: safeSessionStorage.getItem('user') ? JSON.parse(safeSessionStorage.getItem('user')!) : null,
     token: safeSessionStorage.getItem('userToken') || null,
-    isAuthenticated: false,
+    // isAuthenticated: false,
+    isAuthenticated: !!safeSessionStorage.getItem('userToken'), // ✅ Check token existence
     loading: false,
     error: null,
 };

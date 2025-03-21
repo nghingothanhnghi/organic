@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useNavigate } from 'react-router';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { login } from '~/features/authSlice';
@@ -11,7 +11,13 @@ const LoginForm = () => {
   const {t} = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { loading, error } = useAppSelector(state => state.auth);
+  const { loading, error, isAuthenticated } = useAppSelector(state => state.auth);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard'); // ✅ Redirect if already logged in
+    }
+  }, [isAuthenticated, navigate]);
 
   const initialValues = {
     email: '',

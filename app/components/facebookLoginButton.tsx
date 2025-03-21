@@ -1,5 +1,6 @@
 //app/components/facebookLoginButton.tsx
 import React from 'react';
+import { useNavigate } from 'react-router';
 import FacebookLogin from 'react-facebook-login';
 import { useAppDispatch } from '~/hooks';
 import { loginWithFacebook } from '~/features/authSlice';
@@ -7,10 +8,12 @@ import { FACEBOOK_APP_ID } from '~/constants/apiConstants';
 
 const FacebookLoginButton: React.FC = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate(); 
 
     const responseFacebook = (response: any) => {
         if (response.accessToken) {
             dispatch(loginWithFacebook(response.accessToken));
+            navigate('/dashboard'); // ✅ Navigate after success
         } else {
             console.error("Facebook login failed:", response);
         }
