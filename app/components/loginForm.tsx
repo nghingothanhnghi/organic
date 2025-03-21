@@ -5,6 +5,7 @@ import { login } from '~/features/authSlice';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { useTranslation } from 'react-i18next';
 import { loginValidationSchema } from '~/validation/userInfo';
+import FacebookLoginButton from './facebookLoginButton';
 
 const LoginForm = () => {
   const {t} = useTranslation();
@@ -98,6 +99,9 @@ const LoginForm = () => {
             </Form>
           )}
         </Formik>
+        <div className="flex justify-center mt-4">
+          <FacebookLoginButton />
+        </div>
       </div>
     </div>
   );
