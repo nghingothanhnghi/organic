@@ -7,6 +7,7 @@ import {
     registerService,
     refreshTokenService,
     forgotPasswordService,
+    loginWithFacebookService
 } from '~/services/authService';
 import { safeSessionStorage } from '~/utils/storage';
 
@@ -64,6 +65,20 @@ export const forgotPassword = createAsyncThunk<ForgotPasswordResponse, string>(
             return response.data;
         } catch (error: any) {
             return rejectWithValue(error.response?.data?.message || 'Failed to send reset email');
+        }
+    }
+);
+
+
+// ✅ Add Facebook login thunk
+export const loginWithFacebook = createAsyncThunk(
+    'auth/loginWithFacebook',
+    async (accessToken: string, { rejectWithValue }) => {
+        try {
+            const response = await loginWithFacebookService(accessToken);
+            return response;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data?.message || 'Facebook login failed');
         }
     }
 );
@@ -129,6 +144,24 @@ const authSlice = createSlice({
                 toast.success(action.payload.message);
             })
             .addCase(forgotPassword.rejected, (state, action) => {
+                state.error = action.payload as string;
+                toast.error(action.payload as string);
+            })
+            .addCase(loginWithFacebook.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(loginWithFacebook.fulfilled, (state, action) => {
+                state.loading = false;
+                state.isAuthenticated = true;
+                state.token = action.payload.jwt;
+                state.user = action.payload.user;
+                safeSessionStorage.setItem('user', JSON.stringify(action.payload.user));
+                safeSessionStorage.setItem('userToken', action.payload.jwt);
+                toast.success('Facebook login successful');
+            })
+            .addCase(loginWithFacebook.rejected, (state, action) => {
+                state.loading = false;
                 state.error = action.payload as string;
                 toast.error(action.payload as string);
             });
