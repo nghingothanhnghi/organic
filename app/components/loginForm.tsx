@@ -5,7 +5,7 @@ import { login } from '~/features/authSlice';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { useTranslation } from 'react-i18next';
 import { loginValidationSchema } from '~/validation/userInfo';
-import FacebookLoginButton from './facebookLoginButton';
+import FacebookCustomLoginButton from './facebookCustomLoginButton';
 
 const LoginForm = () => {
   const { t } = useTranslation();
@@ -115,7 +115,7 @@ const LoginForm = () => {
             </div>
           </div>
           <div className='flex justify-center'>
-            <FacebookLoginButton />
+            <FacebookCustomLoginButton />
           </div>
         </div>
       </div>
