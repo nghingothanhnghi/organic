@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -6,10 +6,27 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/pagination';
 import type { ProductDisplayProps, Product } from '~/types/product'; // Import types
 import ProductCard from './productCard'; // Import ProductCard
+import NavSwiperButton from './navSwiperButton';
 
 const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
+  const [swiperInstance, setSwiperInstance] = useState<any>(null);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
   // Filter featured products
   const featuredProducts = products.filter((product: Product) => product.featured);
+
+  useEffect(() => {
+    if (swiperInstance) {
+      setIsBeginning(swiperInstance.isBeginning);
+      setIsEnd(swiperInstance.isEnd);
+
+      swiperInstance.on('slideChange', () => {
+        setIsBeginning(swiperInstance.isBeginning);
+        setIsEnd(swiperInstance.isEnd);
+      });
+    }
+  }, [swiperInstance]);
+
 
   return (
     <section className="featured-products lg:py-16">
@@ -24,11 +41,13 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
         {/* Swiper Component to display featured products */}
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
+          onSwiper={setSwiperInstance}
           spaceBetween={10}
           slidesPerView={3}
-          loop={true}
-          pagination={{ clickable: true }}
-          navigation
+          navigation={{
+            prevEl: '#prevBtnDesktop',
+            nextEl: '#nextBtnDesktop',
+          }}
           breakpoints={{
             320: {
               slidesPerView: 2, // For small screens
@@ -59,6 +78,10 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
           )}
         </Swiper>
       </div>
+      <div className="mt-8 flex justify-center gap-4 mb-10">
+          <NavSwiperButton direction="prev" id='prevBtnDesktop' disabled={isBeginning} />
+          <NavSwiperButton direction="next" id='nextBtnDesktop' disabled={isEnd}/>
+        </div>
     </section>
   );
 };
