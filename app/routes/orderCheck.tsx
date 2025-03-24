@@ -164,7 +164,7 @@ const OrderCheck = () => {
   return (
     <div className="store-container">
       <Breadcrumb items={breadcrumbItems} />
-      <div className="container mx-auto flex-column items-center justify-between p-3 sm:py-4 sm:px-6">
+      <div className="max-w-screen-xl mx-auto flex-column items-center justify-between p-3 sm:py-4 sm:px-6">
         <h1 className="text-2xl font-bold mb-4">{t("page_title.order_check")}</h1>
         {/* Search Input */}
         <div className="flex space-x-2 justify-center mb-4">
@@ -184,7 +184,9 @@ const OrderCheck = () => {
             onClick={handleSearchClick}
             className="px-4 py-2 text-white rounded shadow-md hover:shadow-lg bg-orange-900 hover:bg-orange-800"
           >
-            Kiểm tra
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
           </button>
         </div>
 

@@ -21,7 +21,7 @@ const TopNavBar = () => {
 
     return (
         <div className="bg-orange-950 text-white py-2">
-            <div className="container mx-auto flex items-center justify-between px-6">
+            <div className="max-w-screen-xl mx-auto flex items-center justify-between px-6">
                 {/* Left Column - Check Order Link */}
                 <div className="flex items-center space-x-3">
                     {/* Location Dropdown */}

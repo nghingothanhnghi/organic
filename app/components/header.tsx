@@ -29,7 +29,7 @@ const Header = () => {
     return (
         <header className="bg-gray-100 border-b border-gray-300">
             {isDesktop && <TopNavBar />}
-            <div className="container mx-auto flex items-center justify-between p-3 sm:py-4 sm:px-6">
+            <div className="max-w-screen-xl mx-auto flex items-center justify-between p-3 sm:py-4 sm:px-6">
 
                 <div className="flex items-center space-x-2">
                     {/* Mobile Toggle Button */}

@@ -116,7 +116,7 @@ const CheckOut = () => {
     return (
         <div className="CheckOut-container">
             <Breadcrumb items={breadcrumbItems} />
-            <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
+            <div className="max-w-screen-xl mx-auto flex-column items-center justify-between py-4 px-6">
                 <div className="flex justify-between">
                     <h1 className="text-lg lg:text-2xl font-bold mb-4">{t("page_title.checkout")}</h1>
                     {/* Toggle Button for Mobile */}

@@ -8,7 +8,7 @@ const Wish = () => {
   const { t } = useTranslation()
   return (
     <div className="wishlist-container">
-      <div className="container mx-auto flex-column items-center justify-between py-4 px-6">
+      <div className="max-w-screen-xl mx-auto flex-column items-center justify-between py-4 px-6">
         <h1 className="text-2xl font-bold mb-4">{t("page_title.wishlist")}</h1>
         <WishList />
       </div>
