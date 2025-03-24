@@ -21,7 +21,7 @@ const AboutContent = () => {
           <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
             {sections.map((section) => (
               <div key={section.id}>
-                <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                <h2 className="text-3xl font-bold tracking-tight text-orange-800 sm:text-4xl">
                   {section.heading}
                 </h2>
                 <p className="mb-4">This is dynamic content for the section with ID: {section.id}</p>

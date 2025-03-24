@@ -75,7 +75,7 @@ const CartOffCanvas: React.FC<CartOffCanvasProps> = ({
 
         {/* Footer */}
         {!isCartEmpty && (
-          <div className="sticky bottom-0 p-3">
+          <div className="sticky bottom-0 p-2 lg:p-3">
             <CartSummary taxRate={10} shippingFee={15} className="mb-3" />
             <ProceedToCheckoutButton closeCart={closeCart} />
             <Link to="/cart" className="w-full flex items-center justify-center gap-2 mt-3 text-sm font-semibold px-4 py-2 text-gray-400 rounded-lg transition-colors duration-300 hover:text-gray-800 hover:bg-gray-200">
