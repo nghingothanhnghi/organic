@@ -8,7 +8,7 @@ import SubcribeSection from './footerSection/subcribeSection';
 const Footer = () => {
     return (
         <footer className="bg-orange-950 text-slate-300 pt-10">
-            <div className="container mx-auto px-3 pt-10 sm:px-6">
+            <div className="max-w-screen-xl mx-auto px-3 pt-10 sm:px-6">
                 {/* Footer Content */}
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4 gap-5 sm:gap-8 mb-10">
                     <div className="lg:pe-10">

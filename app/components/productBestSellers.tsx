@@ -27,10 +27,10 @@ const ProductBestSellers = ({ products, viewMode }: ProductDisplayProps) => {
           hợp với người già, có bệnh mãn tính với tim mạch, tiểu đường...
         </p>
       </div>
-      <div className="container mx-auto flex items-center justify-between p-3 sm:py-4 sm:px-6">
+      <div className="mx-auto max-w-screen-xl flex items-center justify-between p-3 sm:py-4 sm:px-6">
         {/* Swiper Component to display bestseller products */}
         <Swiper
-          className="w-full"
+          className="w-full py-5"
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           spaceBetween={10}
           slidesPerView={3}

@@ -42,7 +42,7 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
           ngừa không khí, bụi ô nhiễm, tia OV trực tiếp
         </p>
       </div>
-      <div className="container mx-auto flex items-center justify-between p-3 sm:py-4 sm:px-6">
+      <div className="max-w-screen-xl mx-auto flex items-center justify-between p-3 sm:py-4 sm:px-6">
         {/* Swiper Component to display featured products */}
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -71,6 +71,7 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
               spaceBetween: 15,
             },
           }}
+          className="py-5"
         >
           {featuredProducts.length > 0 ? (
             featuredProducts.map((product: Product) => (
