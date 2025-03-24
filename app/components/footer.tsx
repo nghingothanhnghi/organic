@@ -18,7 +18,7 @@ const Footer = () => {
                         </div>
                         {/* Description about Organic */}
                         <div className="text-center lg:text-start mb-10">
-                            <p className="text-white text-lg font-semibold mb-3">Committed to Organic Growth</p>
+                            <p className="text-white text-lg font-semibold mb-3">Organic Ltd,</p>
                             <p className=" text-sm">
                                 We believe in the power of nature to provide high-quality, eco-friendly products that promote sustainability and health.
                             </p>
