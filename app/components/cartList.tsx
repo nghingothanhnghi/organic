@@ -46,7 +46,7 @@ const CartList: React.FC = () => {
         <div className="cart-list">
             <div className="cart-items space-y-4">
                 {cartItems.map((item) => (
-                    <div key={item.id} className="flex justify-between border p-4 rounded-md shadow-sm">
+                    <div key={item.id} className="flex justify-between p-4 rounded-md bg-white shadow-sm">
                         <div className="flex space-x-4">
                             <ProductThumb product={item} className='w-16 h-16 object-cover rounded-md' />
                             <div className='flex-column space-y-1'>

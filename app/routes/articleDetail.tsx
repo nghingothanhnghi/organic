@@ -45,12 +45,12 @@ const ArticleDetail = () => {
                 <section className="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
                     <div className="max-w-3xl mx-auto px-4 lg:px-0">
                         <h1
-                            className="text-xl sm:text-4xl md:text-6xl font-semibold text-gray-900 dark:text-white"
+                            className="text-xl sm:text-4xl md:text-6xl font-semibold text-orange-800 dark:text-white"
                         >
                             {article?.title}
                         </h1>
 
-                        
+
                         <div className="flex items-center gap-4 mt-10">
                             <img
                                 alt=""
@@ -77,10 +77,11 @@ const ArticleDetail = () => {
                         <div className="w-full mb-8"> {/* Ensures full width */}
                             <ArticleThumb article={article} className="w-full rounded-xl shadow" />
                         </div>
+                        <div
+                            className="prose prose-lg dark:prose-invert max-w-none"
+                            dangerouslySetInnerHTML={{ __html: article.description || '' }}
+                        />
 
-                        <p className="mb-6 text-gray-500 dark:text-gray-400">
-                            {stripHtml(article.description || '')}
-                        </p>
 
 
                         <div className='w-full my-5'>
@@ -90,7 +91,7 @@ const ArticleDetail = () => {
                                     className='flex flex-col items-start p-4'
                                 >
                                     <small className='block'> ⬅ </small>
-                                    <h5 className=''>{previousArticle.title}</h5>
+                                    <h5 className='text-xl'>{previousArticle.title}</h5>
                                 </Link>
                             )}
                             {nextArticle && (
@@ -99,7 +100,7 @@ const ArticleDetail = () => {
                                     className='flex flex-col items-end p-4'
                                 >
                                     <small className='blockd'> ➡ </small>
-                                    <h5 className=''>{nextArticle.title}</h5>
+                                    <h5 className='text-xl'>{nextArticle.title}</h5>
                                 </Link>
                             )}
                         </div>

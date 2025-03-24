@@ -35,7 +35,8 @@
         "search": "Search",
         "continue_shopping": "Continue Shopping",
         "quick_view": "Quick View",
-        "learn_more": "Learn More"
+        "learn_more": "Learn More",
+        "go_to_cart": "Go to cart"
     },
     "badge_status":{
         "inStock": "In Stock",

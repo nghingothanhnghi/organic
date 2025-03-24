@@ -35,7 +35,8 @@
         "search": "Tìm",
         "continue_shopping": "Đi đến cửa hàng",
         "quick_view": "Xem nhanh",
-        "learn_more": "Xem thêm"
+        "learn_more": "Xem thêm",
+        "go_to_cart": "Đi đến giỏ hàng?"
     },
     "badge_status":{
         "inStock": "Còn hàng",

@@ -50,7 +50,7 @@ const CartOffCanvas: React.FC<CartOffCanvasProps> = ({
           </div>
         </div>
         {/* Cart Content */}
-        <div className="flex-1 overflow-y-scroll p-3">
+        <div className="flex-1 overflow-y-scroll p-2 lg:p-3 bg-gray-100">
           {isCartEmpty ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
               <img src={IconCartEmpty} width={64} className="mb-1" />
@@ -78,6 +78,12 @@ const CartOffCanvas: React.FC<CartOffCanvasProps> = ({
           <div className="sticky bottom-0 p-3">
             <CartSummary taxRate={10} shippingFee={15} className="mb-3" />
             <ProceedToCheckoutButton closeCart={closeCart} />
+            <Link to="/cart" className="w-full flex items-center justify-center gap-2 mt-3 text-sm font-semibold px-4 py-2 text-gray-400 rounded-lg transition-colors duration-300 hover:text-gray-800 hover:bg-gray-200">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+            </svg>
+              {t("btn.go_to_cart")}
+            </Link>
           </div>
         )}
       </div>

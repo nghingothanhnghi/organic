@@ -33,7 +33,7 @@ const ArticleCard: React.FC<ExtendedArticleCardProps> = ({ article, viewMode }) 
             : "lg:max-w-full lg:flex border border-gray-300 rounded-lg"
           }`}
           >
-          <ArticleThumb article={article} className="object-cover w-full h-full rounded-lg" width={400} height={400}/>
+          <ArticleThumb article={article} className="object-cover w-full h-full rounded-lg" />
         </div>
         <div className="p-4">
         <PublishedDate date={publishedAt} />
