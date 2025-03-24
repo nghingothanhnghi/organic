@@ -1,43 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/scrollbar';
-import 'swiper/css/pagination';
-import type { ProductDisplayProps, Product } from '~/types/product'; // Import types
-import ProductCard from './productCard'; // Import ProductCard
-import NavSwiperButton from './navSwiperButton';
+import React, { useState, useEffect } from "react";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/scrollbar";
+import "swiper/css/pagination";
+import type { ProductDisplayProps, Product } from "~/types/product"; // Import types
+import ProductCard from "./productCard"; // Import ProductCard
+import NavSwiperButton from "./navSwiperButton";
+import EmptyState from "./emptyState";
+import IconProductEmpty from "~/assets/empty-item.png";
 
 const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
   const [swiperInstance, setSwiperInstance] = useState<any>(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   // Filter featured products
-  const featuredProducts = products.filter((product: Product) => product.featured);
+  const featuredProducts = products.filter(
+    (product: Product) => product.featured
+  );
 
   useEffect(() => {
     if (swiperInstance) {
       setIsBeginning(swiperInstance.isBeginning);
       setIsEnd(swiperInstance.isEnd);
 
-      swiperInstance.on('slideChange', () => {
+      swiperInstance.on("slideChange", () => {
         setIsBeginning(swiperInstance.isBeginning);
         setIsEnd(swiperInstance.isEnd);
       });
     }
   }, [swiperInstance]);
 
-
   return (
     <section className="featured-products lg:py-16">
-      <div className='mb-10 text-center'>
-        <h2 className="text-3xl font-bold">Featured Products</h2>
-        <p className="mx-auto mt-4 max-w-md text-gray-500">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque praesentium cumque iure
-          dicta incidunt est ipsam, officia dolor fugit natus?
+      <div className="mb-10 text-center">
+        <h2 className="text-3xl font-bold tracking-tight text-orange-800 sm:text-4xl">
+          Sản phẩm tốt cho phụ nữ
+        </h2>
+        <p className="mx-auto max-w-md mt-8 text-orange-950">
+          Phục hồi, chống lão hóa da mặt, giúp bạn có làn da khỏe mạnh. Ngăn
+          ngừa không khí, bụi ô nhiễm, tia OV trực tiếp
         </p>
       </div>
-      <div className='container mx-auto flex items-center justify-between p-3 sm:py-4 sm:px-6'>
+      <div className="container mx-auto flex items-center justify-between p-3 sm:py-4 sm:px-6">
         {/* Swiper Component to display featured products */}
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -45,8 +50,8 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
           spaceBetween={10}
           slidesPerView={3}
           navigation={{
-            prevEl: '#prevBtnDesktop',
-            nextEl: '#nextBtnDesktop',
+            prevEl: "#prevBtnDesktop",
+            nextEl: "#nextBtnDesktop",
           }}
           breakpoints={{
             320: {
@@ -74,14 +79,29 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
               </SwiperSlide>
             ))
           ) : (
-            <p className="text-center text-gray-500">No featured products available at the moment.</p>
+            <EmptyState
+              messageKey="empty.bestsellers"
+              fallbackMessage="No featured products available at the moment."
+              image={IconProductEmpty}
+              link=""
+              linkTextKey=""
+              fallbackLinkText=""
+            />
           )}
         </Swiper>
       </div>
-      <div className="mt-8 flex justify-center gap-4 mb-10">
-          <NavSwiperButton direction="prev" id='prevBtnDesktop' disabled={isBeginning} />
-          <NavSwiperButton direction="next" id='nextBtnDesktop' disabled={isEnd}/>
-        </div>
+      <div className="lg:mt-10 flex justify-center gap-4 mb-10">
+        <NavSwiperButton
+          direction="prev"
+          id="prevBtnDesktop"
+          disabled={isBeginning}
+        />
+        <NavSwiperButton
+          direction="next"
+          id="nextBtnDesktop"
+          disabled={isEnd}
+        />
+      </div>
     </section>
   );
 };
