@@ -26,7 +26,7 @@ const Default = () => {
 
 
   return (
-    <div>
+    <div className='overflow-hidden'>
       <HeroHomeContent/>
       <WarrantyContent/>
       <AboutContent />
