@@ -9,7 +9,7 @@ const CmsManagementEmbed: React.FC = () => {
         title="CMS Management"
         className="w-full h-full border-none"
         allowFullScreen
-        sandbox='allow-scripts allow-same-origin'
+        sandbox="allow-forms allow-top-navigation allow-same-origin"
       ></iframe>
     </div>
   );
