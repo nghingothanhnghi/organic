@@ -32,8 +32,8 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
   }, [swiperInstance]);
 
   return (
-    <section className="featured-products lg:py-16 ">
-      <div className="mb-10 text-center">
+    <section className="featured-products py-16 ">
+      <div className="px-10 mb-10 text-center">
         <h2 className="text-3xl font-bold tracking-tight text-orange-800 sm:text-4xl">
           Sản phẩm tốt cho phụ nữ
         </h2>

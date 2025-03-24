@@ -17,8 +17,8 @@ const ProductBestSellers = ({ products, viewMode }: ProductDisplayProps) => {
   );
 
   return (
-    <section className="bestseller-products lg:py-16 bg-gray-50 dark:bg-gray-900">
-      <div className="mb-10 text-center">
+    <section className="bestseller-products py-16 bg-gray-50 dark:bg-gray-900">
+      <div className="px-10 mb-10 text-center">
         <h2 className="text-3xl font-bold tracking-tight text-orange-800 sm:text-4xl">
           Chuyên gia khuyên dùng
         </h2>
