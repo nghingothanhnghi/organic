@@ -70,12 +70,12 @@ const TestimonialContent = () => {
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="mx-auto max-w-[1340px] px-4 py-12 sm:px-6 lg:me-0 lg:py-16 lg:pe-0 lg:ps-8 xl:py-24">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:items-center lg:gap-16">
-          <div className="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:items-center lg:gap-16">
+          <div className="max-w-xl px-10 lg:px-0 text-center ltr:sm:text-left rtl:sm:text-right">
             <h2 className="text-3xl font-bold tracking-tight text-orange-800 sm:text-4xl">
               Sức khỏe là nền tảng của thành công...
             </h2>
-            <p className="mt-8 text-orange-950">
+            <p className="text-lg leading-8 mt-8 text-orange-950">
               Đối với organic, trách nhiệm với cộng đồng luôn là nền tảng cho sự
               phát triển bền vững.
             </p>
@@ -99,7 +99,7 @@ const TestimonialContent = () => {
             </div>
           </div>
 
-          <div className="-mx-6 lg:col-span-2 lg:mx-0">
+          <div className="-mx-6 px-10 lg:col-span-2 lg:mx-0">
             <div className="relative">
               {/* Left Shadow */}
               {!isBeginning && (

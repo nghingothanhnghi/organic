@@ -22,7 +22,7 @@ const ProductBestSellers = ({ products, viewMode }: ProductDisplayProps) => {
         <h2 className="text-3xl font-bold tracking-tight text-orange-800 sm:text-4xl">
           Chuyên gia khuyên dùng
         </h2>
-        <p className="mx-auto max-w-md mt-8 text-orange-950">
+        <p className="mx-auto max-w-md mt-8 text-orange-950 text-lg leading-8">
           Không hóa chất, hoàn toàn tự nhiên, không sử dụng chất bảo quản. Phù
           hợp với người già, có bệnh mãn tính với tim mạch, tiểu đường...
         </p>
