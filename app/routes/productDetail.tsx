@@ -66,7 +66,7 @@ const ProductDetail = () => {
                             </div>
                             <div className="mt-6 sm:mt-8 lg:mt-0">
                                 <h1
-                                    className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"
+                                    className="text-xl font-semibold text-gray-900  dark:text-white"
                                 >
                                     {product?.name}
                                 </h1>
