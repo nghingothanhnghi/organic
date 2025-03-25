@@ -8,6 +8,8 @@ export default defineConfig(({ mode }) => {
   // Load environment variables based on the mode (e.g., development or production)
   const env = loadEnv(mode, process.cwd());
 
+  console.log("Loaded environment variables:", env);
+
   return {
     css: {
       postcss: {
