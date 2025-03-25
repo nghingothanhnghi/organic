@@ -179,7 +179,7 @@
             "last": "Cuối cùng",
             "first": "Đầu tiên",
             "loading": "Đang tải...",
-            "pageSizeSelector": "Xem",
+            "pageSize": "Xem",
             "rowPerPage": "Hiển thị {{count}} dòng trên mỗi trang"
         }
     },

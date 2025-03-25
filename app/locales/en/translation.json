@@ -179,7 +179,7 @@
             "last": "Last",
             "first": "First",
             "loading": "Loading...",
-            "pageSizeSelector": "Page Size:",
+            "pageSize": "Page Size:",
             "rowPerPage": "Show {{count}} rows per page"
         }
     },
