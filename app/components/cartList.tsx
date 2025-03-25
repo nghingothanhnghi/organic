@@ -54,6 +54,7 @@ const CartList: React.FC = () => {
                                     {item.name} {isCheckoutPage && (<sup className='text-gray-500'>x{item.quantity}</sup>)}
                                 </h3>
                                 <ProductPrice product={item} className='text-xs' />
+                                
                                 {!isCheckoutPage && (
                                     <>
                                         <QuantityInput
