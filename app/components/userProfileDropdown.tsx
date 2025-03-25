@@ -29,7 +29,13 @@ const UserProfileDropdown: React.FC = () => {
                 className="flex items-center space-x-2 cursor-pointer py-1 px-2 rounded hover:bg-orange-800"
                 onClick={toggleClass}
             >
-                <span className="font-semibold text-xs">{user?.firstName}</span>
+
+                <img
+                    alt=""
+                    src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    className="inline-block size-4 rounded-full ring-2 ring-white"
+                />
+
                 <span className={`dropdown-icon text-gray-200 text-xs transition-transform transform ${isActive ? 'rotate-180' : ''}`}>
                     <svg xmlns="http://www.w3.org/2000/svg" width={8} height={8} viewBox="0 0 24 24" fill="currentColor"
                     >
