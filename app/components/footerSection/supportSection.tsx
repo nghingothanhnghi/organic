@@ -4,7 +4,7 @@ import CollapseItem from '../collapseItem';
 const SupportSection: React.FC = () => {
   return (
     <CollapseItem title="Support" targetClass="support-collapse">
-      <ul>
+      <ul className='space-y-2'>
         <li>
           <a href="#" className="text-slate-300 hover:text-orange-900 text-sm">
             Help Center

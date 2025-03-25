@@ -30,7 +30,7 @@ const ArticleCard: React.FC<ExtendedArticleCardProps> = ({ article, viewMode }) 
           className={`${
             viewMode === "grid" 
             ? "relative w-full h-56 bg-gray-200 overflow-hidden" 
-            : "lg:max-w-full lg:flex border border-gray-300 rounded-lg"
+            : "lg:max-w-full lg:w-48 flex-shrink-0 border border-gray-300 rounded-lg"
           }`}
           >
           <ArticleThumb article={article} className="object-cover w-full h-full rounded-lg" />
@@ -43,7 +43,7 @@ const ArticleCard: React.FC<ExtendedArticleCardProps> = ({ article, viewMode }) 
               {title}
             </Link>
           </h3>
-          <p className="mt-5 line-clamp-3 text-sm text-gray-600">{description}</p>      
+          <p className="mt-5 line-clamp-3 text-gray-600 leading-8">{description}</p>      
         </div>
       </div>
     );

@@ -70,7 +70,7 @@ const ProductDetail = () => {
                                 >
                                     {product?.name}
                                 </h1>
-                                <ProductRating product={product} />
+                                <ProductRating product={product} singleStarView={true}/>
                                 <div className="mt-4 sm:items-center sm:gap-4 sm:flex">
                                     <p
                                         className="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white"

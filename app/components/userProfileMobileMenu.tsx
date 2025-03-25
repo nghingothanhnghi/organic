@@ -29,17 +29,18 @@ const UserProfileMobileMenu: React.FC<UserProfileMobileMenuProps> = ({ isOpen, t
 
                     <div className="flex items-center gap-3">
                         <img
-                            alt="User Avatar"
-                            className="w-10 h-10 rounded-full"
+                            alt=""
+                            src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                            className="w-10 h-10 rounded-full ring-2 ring-white"
                         />
                         <div>
                             <p className="text-gray-900 font-medium">{user.firstName} {user.lastName}</p>
-                            <p className="text-gray-600 text-sm">{user.email}</p>
+                            <div className="text-gray-600 text-sm truncate">{user.email}</div>
                             <button
                                 onClick={handleLogout}
                                 className="w-full text-left text-red-500 hover:text-red-700 py-2"
                             >
-                                Logout
+                                {t('btn.logout')}
                             </button>
                         </div>
                     </div>
