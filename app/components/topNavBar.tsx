@@ -16,6 +16,7 @@ const TopNavBar = () => {
     const handleLanguageChange = (lang: string) => {
         i18n.changeLanguage(lang); // Change language on selection
         safeSessionStorage.setItem("language", lang); // Use session storage safely
+        window.location.reload(); // Reload the page
     };
 
 

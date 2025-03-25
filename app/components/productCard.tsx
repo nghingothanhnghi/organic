@@ -24,7 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         console.log("Close cart sidebar");
     };
     return (
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden transition transform hover:scale-105 hover:shadow-xl group">
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden transition transform hover:scale-105 group">
             {/* Image Section */}
             <div className="relative w-full h-56 bg-gray-200 overflow-hidden">
                 <ProductThumb product={product} className="object-cover w-full h-full" width={400} height={400} />

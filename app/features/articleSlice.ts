@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { fetchArticlesAPI, fetchArticleBySlugAPI } from '~/services/articleService';
 import type { ArticleState, Article } from '~/types/article';
 import type { PaginationMeta } from '~/types/pagination';
+import { DEFAULT_CUSTOMER_ID } from '~/constants/apiConstants';
 
 // Initial state
 const initialState: ArticleState = {
