@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { stripHtml } from '~/utils/stripHtml';
 import ArticleThumb from '~/components/article/articleThumb';
 import PublishedDate from '~/components/article/publishedDate';
+import SocialShare from '~/components/socialShare';
 
 export function meta({ }: Route.MetaArgs) {
     return [
@@ -67,6 +68,7 @@ const ArticleDetail = () => {
                                             <PublishedDate date={article?.publishedAt} />
                                         </li>
                                     </ul>
+
                                 </div>
                             </div>
                         </div>
@@ -81,6 +83,8 @@ const ArticleDetail = () => {
                             className="prose prose-lg dark:prose-invert max-w-none"
                             dangerouslySetInnerHTML={{ __html: article.description || '' }}
                         />
+
+                        <SocialShare url={window.location.origin + `/articles/${slug}`} title={article?.title} description={article?.description} />
 
 
 
