@@ -36,7 +36,7 @@ const MainMenuDesktop = () => {
             {/* Render Dropdown Menu */}
             {item.__component === 'menu.dropdown' && (
               <div
-                className="relative flex items-center space-x-1 cursor-pointer"
+                className="flex items-center space-x-1 cursor-pointer"
                 onMouseEnter={() => setOpenDropdown(item.id)}
                 onMouseLeave={() => setOpenDropdown(null)}
               >
@@ -50,10 +50,12 @@ const MainMenuDesktop = () => {
 
                 {/* Dropdown Menu */}
                 {openDropdown === item.id && (
-                  <div className="absolute pb-2 left-0 mt-2 w-48 bg-white shadow-lg rounded-md z-10">
+                  <div 
+                  className="absolute right-0 mt-2 w-48 bg-white text-gray-700 shadow-lg rounded-lg z-10 transition-all duration-300 ease-in-out"
+                  >
                     {item.sections?.data.map((section) => (
-                      <div key={section.id} className="p-2 border-b last:border-none">
-                        <span className="block text-gray-600 hover:text-gray-800">
+                      <div key={section.id} className="border-b last:border-none">
+                        <span className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
                           {section.attributes.heading}
                         </span>
                       </div>

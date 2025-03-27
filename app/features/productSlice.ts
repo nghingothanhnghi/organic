@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { fetchProductsAPI, fetchProductBySlugAPI } from '~/services/productService';
 import type { ProductState, Product } from '~/types/product';
 import type { PaginationMeta } from '~/types/pagination';
+import { DEFAULT_CUSTOMER_ID } from '~/constants/apiConstants';
 
 // Initial state
 const initialState: ProductState = {
@@ -24,6 +25,7 @@ export const fetchProducts = createAsyncThunk<
   'products/fetchProducts', // Action name
   async ({ page, pageSize, filters = {} }, { rejectWithValue }) => {
     try {
+      
       const response = await fetchProductsAPI(page, pageSize, filters); // Call the service function
       // Extract and flatten the data from the response
       const products: Product[] = response.data.map((product: any) => ({
