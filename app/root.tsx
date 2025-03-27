@@ -12,7 +12,7 @@ import { I18nextProvider } from 'react-i18next'; // Import I18nextProvider
 import i18n from './i18n'; // Your i18next instance
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
-import ClientToast from "./components/ClientToast";
+import ClientToast from "./components/clientToast";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
