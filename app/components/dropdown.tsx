@@ -49,11 +49,11 @@ const Dropdown: React.FC<DropdownProps> = ({
                     <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                 </svg>
             </button>
-            {isActive && (
-                <div className={`${dropdownClass} dropdown absolute right-0 bg-white text-black rounded-md shadow-lg z-10`}>
-                    <ul className="py-1">{children}</ul>
-                </div>
-            )}
+            <div
+                className={`${dropdownClass} dropdown absolute right-0 mt-2 w-48 bg-white text-gray-700 shadow-lg rounded-lg z-10 transition-all duration-300 ease-in-out ${isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
+            >
+                <ul className="py-1">{children}</ul>
+            </div>
         </div>
     );
 };
