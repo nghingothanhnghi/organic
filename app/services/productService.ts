@@ -11,12 +11,15 @@ export const fetchProductsAPI = async (
   pageSize: number,
   // filters: Record<string, any> = {},
   filters: Filters = {},
-  customerId: string = DEFAULT_CUSTOMER_ID
+  customerId: string = DEFAULT_CUSTOMER_ID,
+  locale: string = "vi" // Default locale
 ) => {
   const params = new URLSearchParams({
     'populate': 'deep',
     'pagination[page]': page.toString(),
     'pagination[pageSize]': pageSize.toString(),
+    'sort': 'price:ASC', // Default sorting
+    'locale': locale, // Localization support
   });
 
    // Build the `$and` array for filters

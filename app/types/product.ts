@@ -10,6 +10,7 @@ export interface Product {
     name: string;
     description: string;
     imageUrl: string;
+    locale: string;
     price: number;
     quantity: number;
     bestseller: boolean,

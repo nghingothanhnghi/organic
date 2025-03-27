@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import { fetchProductsAPI, fetchProductBySlugAPI } from '~/services/productService';
 import type { ProductState, Product } from '~/types/product';
 import type { PaginationMeta } from '~/types/pagination';
-import { DEFAULT_CUSTOMER_ID } from '~/constants/apiConstants';
 
 // Initial state
 const initialState: ProductState = {
@@ -32,6 +31,7 @@ export const fetchProducts = createAsyncThunk<
         id: product.id,
         name: product.attributes.name,
         description: product.attributes.description,
+        locale: product.attributes.locale ?? 'vi',
         imageUrl: product.attributes.imageUrl,
         productImg: product.attributes.productImg?.data?.map((img: any) => ({
           id: img.id,
@@ -51,8 +51,15 @@ export const fetchProducts = createAsyncThunk<
         availableStartDate: product.attributes.availableStartDate ?? null,
         availableEndDate: product.attributes.availableEndDate ?? null,
         store: product.attributes.store ?? null, // Assuming nested store data
-        categories: product.attributes.categories ?? [], // Assuming nested category data
-        brand: product.attributes.brand ?? null, // Assuming nested brand data
+        // categories: product.attributes.categories ?? [], // Assuming nested category data
+        // brand: product.attributes.brand ?? null, // Assuming nested brand data
+        categories: product.attributes.categories?.data?.map((cat: any) => ({
+          id: cat.id,
+          name: cat.attributes.name,
+        })) ?? [],
+        brand: product.attributes.brand?.data
+          ? { id: product.attributes.brand.data.id, name: product.attributes.brand.data.attributes.name }
+          : null,
         createdAt: product.attributes.createdAt,
         updatedAt: product.attributes.updatedAt,
         publishedAt: product.attributes.publishedAt,
@@ -114,6 +121,7 @@ export const fetchProductBySlug = createAsyncThunk<
         id: response.id,
         name: response.attributes.name,
         description: response.attributes.description,
+        locale: response.attributes.locale ?? 'default-locale', 
         imageUrl: response.attributes.imageUrl,
         productImg: response.attributes.productImg?.data?.map((img: any) => ({
           id: img.id,
@@ -190,6 +198,9 @@ const productSlice = createSlice({
     setFilters: (state, action) => {
       state.filters = action.payload; // Update filters with the payload
     },
+    clearProduct: (state) => {
+      state.product = null; // Clear the product state
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -222,6 +233,6 @@ const productSlice = createSlice({
   },
 });
 
-export const { setFilters } = productSlice.actions; // Export the setFilters action
+export const { setFilters, clearProduct } = productSlice.actions; // Export the setFilters action
 
 export default productSlice.reducer;

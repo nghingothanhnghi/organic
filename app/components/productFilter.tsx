@@ -9,7 +9,7 @@ interface ProductFilterProps {
 }
 
 const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const { isMobile, isTablet, isDesktop } = useResponsive();
     const [categories, setCategories] = useState('');
     const [priceRange, setPriceRange] = useState('');
@@ -36,7 +36,12 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
     };
 
     const handleApplyFilters = () => {
-        const filters = { categories, priceRange, name: searchName };
+        const filters = { 
+            categories, 
+            priceRange, 
+            name: searchName,
+        
+        };
         console.log("Applying Filters:", filters);
         // Trigger the filter change when the user applies filters
         onFilterChange(filters);
@@ -85,10 +90,9 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
                                     <label className="block text-sm font-medium text-gray-600 mb-2">{t("select.priceRange.label")}</label>
                                     <select value={priceRange} onChange={handlePriceRangeChange} 
                                     className="h-10 rounded border-gray-300 text-sm w-full">
-                                        <option value="">All</option>
-                                        <option value="low">Low</option>
-                                        <option value="medium">Medium</option>
-                                        <option value="high">High</option>
+                                        <option value="">{t("select.priceRange.options.all_price")}</option>
+                                        <option value="highest">{t("select.priceRange.options.best_price")}</option>
+                                        <option value="lowest">{t("select.priceRange.options.lowest_price")}</option>
                                     </select>
                                 </div>
                             </div>
@@ -125,8 +129,8 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
                         <label className="block text-sm font-medium text-gray-600 mb-2">{t("select.priceRange.label")}</label>
                         <select value={priceRange} onChange={handlePriceRangeChange} className="h-10 rounded border-gray-300 text-sm">
                             <option value="">{t("select.priceRange.options.all_price")}</option>
-                            <option value="best">{t("select.priceRange.options.best_price")}</option>
-                            <option value="low">{t("select.priceRange.options.lowest_price")}</option>
+                            <option value="highest">{t("select.priceRange.options.best_price")}</option>
+                            <option value="lowest">{t("select.priceRange.options.lowest_price")}</option>
                         </select>
                     </div>
                     <div className="flex justify-between mt-6">
