@@ -26,13 +26,20 @@ export const fetchProductsAPI = async (
     if (typeof value === "string" && value.trim() !== "") {
       if (key === "categories") {
         andFilters.push({ categories: { name: { $eq: value } } });
-      } else {
+      } 
+      // Ensure 'name' is handled correctly
+      else if (key === "name") {
+        andFilters.push({ name: { $contains: value } }); // Add this line
+      } 
+      else {
         andFilters.push({ [key]: { $contains: value } });
       }
     }
   });
 
   andFilters.push({ users_permissions_user: { username: { $eq: customerId } } });
+
+  console.log("Built Filters:", JSON.stringify(andFilters, null, 2));
 
   // Add `$and` filters safely
   if (andFilters.length > 0) {
