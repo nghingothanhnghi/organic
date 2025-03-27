@@ -1,6 +1,7 @@
 // app/components/Footer.tsx
 import React from 'react';
 import LogoImage from "~/assets/logo.png";
+import ContactSection from './footerSection/contactSection';
 import CompanySection from './footerSection/companySection';
 import SupportSection from './footerSection/supportSection';
 import FollowUsSection from './footerSection/followUs.Section';
@@ -17,12 +18,7 @@ const Footer = () => {
                             <img src={LogoImage} alt="Logo" className="h-10" />
                         </div>
                         {/* Description about Organic */}
-                        <div className="text-center lg:text-start mb-10">
-                            <p className="text-white text-lg font-semibold mb-3">Organic Ltd,</p>
-                            <p className=" text-sm">
-                                We believe in the power of nature to provide high-quality, eco-friendly products that promote sustainability and health.
-                            </p>
-                        </div>
+                        <ContactSection/>
                     </div>
                     {/* Column 1 */}
                     <CompanySection />

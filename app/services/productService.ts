@@ -2,11 +2,15 @@
 import { axiosPrivate } from "~/api/axios";
 import { DEFAULT_CUSTOMER_ID } from "~/constants/apiConstants";
 
+// Define a proper type for filters
+type Filters = Record<string, string>;
+
 // Service function to fetch products from the API
 export const fetchProductsAPI = async (
   page: number,
   pageSize: number,
-  filters: Record<string, any> = {},
+  // filters: Record<string, any> = {},
+  filters: Filters = {},
   customerId: string = DEFAULT_CUSTOMER_ID
 ) => {
   const params = new URLSearchParams({
@@ -15,15 +19,41 @@ export const fetchProductsAPI = async (
     'pagination[pageSize]': pageSize.toString(),
   });
 
-  // Convert filters into query parameters (only if they have values)
+   // Build the `$and` array for filters
+  const andFilters: Record<string, any>[] = [];
+
   Object.entries(filters).forEach(([key, value]) => {
-    if (value && value.trim() !== "") { // <-- Check if value is not empty
-      params.append(`filters[${key}][$contains]`, value.toString());
+    if (typeof value === "string" && value.trim() !== "") {
+      if (key === "categories") {
+        andFilters.push({ categories: { name: { $eq: value } } });
+      } else {
+        andFilters.push({ [key]: { $contains: value } });
+      }
     }
   });
 
-  // Add customer filter
-  params.append('filters[$and][0][users_permissions_user][username][$eq]', customerId);
+  andFilters.push({ users_permissions_user: { username: { $eq: customerId } } });
+
+  // Add `$and` filters safely
+  if (andFilters.length > 0) {
+    andFilters.forEach((filter, index) => {
+      Object.entries(filter).forEach(([key, condition]) => {
+        if (typeof condition === "object" && condition !== null) {
+          Object.entries(condition).forEach(([subKey, subValue]) => {
+            if (typeof subValue === "object" && subValue !== null) {
+              Object.entries(subValue).forEach(([operator, value]) => {
+                params.append(
+                  `filters[$and][${index}][${key}][${subKey}][${operator}]`,
+                  String(value)
+                );
+              });
+            }
+          });
+        }
+      });
+    });
+  }
+
 
   // Decode and log the request URL and parameters in a cleaner format
   const requestUrl = `/products?${params.toString()}`;
