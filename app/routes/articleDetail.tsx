@@ -40,6 +40,7 @@ const ArticleDetail = () => {
     const previousArticle = currentIndex > 0 ? articles[currentIndex - 1] : null;
     const nextArticle = currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null;
 
+
     return (
         <LoadingErrorWrapper loading={loading} error={error}>
             {article ? (
@@ -83,27 +84,38 @@ const ArticleDetail = () => {
                             className="prose prose-lg dark:prose-invert max-w-none"
                             dangerouslySetInnerHTML={{ __html: article.description || '' }}
                         />
-
-                        <SocialShare url={window.location.origin + `/articles/${slug}`} title={article?.title} description={article?.description} />
-
-
+                        {/* Divider at the bottom */}
+                        <hr className="my-10 border-gray-300 dark:border-gray-700" />
+                        <SocialShare
+                            url={window.location.origin + `/articles/${slug}`}
+                            title={article?.title}
+                            description={article?.description}
+                            position="fixed right-center"
+                            direction="col"
+                        />
 
                         <div className='w-full my-5'>
                             {previousArticle && (
                                 <Link
                                     to={`/articles/${previousArticle.slug}`}
-                                    className='flex flex-col items-start p-4'
+                                    className='flex flex-col space-y-2 items-start p-4'
                                 >
-                                    <small className='block'> ⬅ </small>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+                                    </svg>
+
                                     <h5 className='text-xl'>{previousArticle.title}</h5>
                                 </Link>
                             )}
                             {nextArticle && (
                                 <Link
                                     to={`/articles/${nextArticle.slug}`}
-                                    className='flex flex-col items-end p-4'
+                                    className='flex flex-col space-y-2 items-end p-4'
                                 >
-                                    <small className='blockd'> ➡ </small>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                                    </svg>
+
                                     <h5 className='text-xl'>{nextArticle.title}</h5>
                                 </Link>
                             )}
