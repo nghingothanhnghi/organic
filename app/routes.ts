@@ -16,6 +16,7 @@ export default [
       route("cart", "routes/cart.tsx"), // Cart page
       route("wishlist", "routes/wish.tsx"), // Wish page
       route("checkout", "routes/checkOut.tsx"), // Checkout page
+      route("order-confirmation", "routes/orderConfirmation.tsx"), // Order Confirmation page
       route("order-check", "routes/orderCheck.tsx"), // Order check page
     ]),
     route("about", "routes/about.tsx"),

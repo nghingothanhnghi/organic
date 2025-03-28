@@ -10,6 +10,7 @@ export interface Order {
     publishedAt?: string; // ISO Date
     items: CartItem[];
     shippingDetails: any; // Define this type based on your shipping info
+    paymentDetails: any;
     status: string;
 }
 
