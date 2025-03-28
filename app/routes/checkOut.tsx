@@ -12,7 +12,7 @@ import CartSummary from "~/components/cartSummary";
 import useResponsive from "~/hooks/useResponsive";
 import useToggleClass from "~/hooks/useToggleClass";
 import { formatPrice } from "~/utils/formatPrice";
-import { submitOrder, createOrder, clearOrder } from "~/features/checkOutSlice";
+import { createOrder, clearOrder } from "~/features/checkOutSlice";
 import { useTranslation } from "react-i18next";
 
 const CheckOut = () => {
@@ -57,7 +57,7 @@ const CheckOut = () => {
             // status: 'Pending',
         };
 
-        console.log('Final order submission:', finalOrderData);
+        console.log('Submitting checkout data:', JSON.stringify(finalOrderData, null, 2));
 
         try {
             // Dispatch the action to create the order via the backend API
@@ -74,8 +74,6 @@ const CheckOut = () => {
             console.error('Order submission failed:', error);
             // toast.error(t('error.unexpected_error'));
         }
-
-
 
     };
 
