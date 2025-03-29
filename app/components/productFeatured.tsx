@@ -45,10 +45,12 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
       <div className="max-w-screen-xl mx-auto flex items-center justify-between p-3 sm:py-4 sm:px-6">
         {/* Swiper Component to display featured products */}
         <Swiper
+          className="w-full py-5"
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           onSwiper={setSwiperInstance}
           spaceBetween={10}
           slidesPerView={3}
+          centeredSlides={true}
           navigation={{
             prevEl: "#prevBtnDesktop",
             nextEl: "#nextBtnDesktop",
@@ -71,7 +73,7 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
               spaceBetween: 15,
             },
           }}
-          className="py-5"
+
         >
           {featuredProducts.length > 0 ? (
             featuredProducts.map((product: Product) => (
