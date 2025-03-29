@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import type { ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -15,14 +15,25 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, actions, size = 'medium', fullWidth = false, fullHeight = false, position = 'center'  }) => {
+  
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsAnimating(true);
+    } else {
+      setTimeout(() => setIsAnimating(false), 300); // Wait for animation before removing from DOM
+    }
+  }, [isOpen]);
+  
   // If the modal is not open, return null (don't render anything)
-  if (!isOpen) return null;
+  if (!isOpen && !isAnimating) return null;
 
     // Set a dynamic class for the modal size
     const modalSizeClasses = {
-      small: 'w-1/3',
-      medium: 'w-3/6',
-      large: 'w-4/5',
+      small: 'sm:w-1/3 w-full',   // 100% on mobile, 1/3 on small screens
+      medium: 'sm:w-3/6 w-full',  // 100% on mobile, 3/6 on small screens
+      large: 'sm:w-4/5 w-full',   // 100% on mobile, 4/5 on small screens
     };
 
       // Positioning logic
@@ -32,9 +43,18 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, actions,
   };
 
   return ReactDOM.createPortal(
-    <div className={`fixed inset-0 z-50 flex justify-center ${positionClasses[position] || positionClasses.center} bg-black bg-opacity-50`}>
+    <div className={`fixed inset-0 z-50 flex justify-center 
+    ${positionClasses[position] || positionClasses.center} bg-black bg-opacity-50
+    transition-opacity duration-300 ${
+        isOpen ? 'opacity-100' : 'opacity-0'
+      }
+    `}
+    >
       <div
-      className={`bg-white rounded-lg p-8 flex flex-col 
+      className={`bg-white rounded-lg p-8 flex flex-col
+        transition-all duration-300 transform ${
+          isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+        } 
         ${fullWidth ? 'w-full max-w-4/5' : modalSizeClasses[size] || modalSizeClasses.medium} 
         ${fullHeight ? 'h-screen' : 'max-h-[90vh]'} 
         overflow-y-auto`} 
