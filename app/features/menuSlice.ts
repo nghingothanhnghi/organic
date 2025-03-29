@@ -18,43 +18,77 @@ const initialState: MenuState = {
 };
 
 // Async thunk to fetch and process the menu
+// export const fetchMainMenu = createAsyncThunk(
+//   'menu/fetchMainMenu',
+//   async (): Promise<MainMenuItem[]> => {
+//     // Fetch menu data using the service
+//     const response: MainMenuResponse = await getMainMenuAPI();
+
+//     // Process the menu response
+//     const rawMenu = response.data.attributes.mainMenuItems;
+
+//     // Map the menu items to their corresponding types
+//     return rawMenu.map((item) => {
+//       if (item.__component === 'menu.menu-link') {
+//         // Handle menu link
+//         const linkItem = item as MenuLink;
+//         return {
+//           ...linkItem,
+//           url: linkItem.url || '', // Ensure URL is always a string
+//         };
+//       } else if (item.__component === 'menu.dropdown') {
+//         // Handle dropdown menu
+//         const dropdownItem = item as DropdownMenu;
+//         return {
+//           ...dropdownItem,
+//           sections: {
+//             data: dropdownItem.sections?.data?.map((section) => ({
+//               ...section,
+//               attributes: {
+//                 ...section.attributes,
+//               },
+//             })),
+//           },
+//         };
+//       }
+//       return item; // Return as-is for unsupported components
+//     });
+//   }
+// );
+
 export const fetchMainMenu = createAsyncThunk(
   'menu/fetchMainMenu',
   async (): Promise<MainMenuItem[]> => {
-    // Fetch menu data using the service
     const response: MainMenuResponse = await getMainMenuAPI();
-
-    // Process the menu response
     const rawMenu = response.data.attributes.mainMenuItems;
 
-    // Map the menu items to their corresponding types
     return rawMenu.map((item) => {
-      if (item.__component === 'menu.menu-link') {
-        // Handle menu link
-        const linkItem = item as MenuLink;
+      if (item.__component === "menu.menu-link") {
         return {
-          ...linkItem,
-          url: linkItem.url || '', // Ensure URL is always a string
-        };
-      } else if (item.__component === 'menu.dropdown') {
-        // Handle dropdown menu
-        const dropdownItem = item as DropdownMenu;
+          ...item,
+          url: item.url || "", // Ensure URL is always a string
+        } as MenuLink;
+      } else if (item.__component === "menu.dropdown") {
         return {
-          ...dropdownItem,
+          ...item,
           sections: {
-            data: dropdownItem.sections.data.map((section) => ({
-              ...section,
+            data: item.sections?.data?.map((section) => ({
+              id: section.id,
               attributes: {
-                ...section.attributes,
+                heading: section.attributes.heading,
+                createdAt: section.attributes.createdAt,
+                updatedAt: section.attributes.updatedAt,
+                url: section.attributes.url,
               },
-            })),
+            })) || [], // Ensure sections exist
           },
-        };
+        } as DropdownMenu;
       }
-      return item; // Return as-is for unsupported components
+      return item as MainMenuItem;
     });
   }
 );
+
 
 const menuSlice = createSlice({
   name: 'menu',

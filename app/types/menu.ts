@@ -3,6 +3,7 @@ export interface SectionAttributes {
     heading: string;
     createdAt: string;
     updatedAt: string;
+    url: string | null;
   }
   
   export interface Section {
