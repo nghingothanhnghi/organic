@@ -37,7 +37,7 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
         <h2 className="text-3xl font-bold tracking-tight text-orange-800 sm:text-4xl">
           Sản phẩm tốt cho phụ nữ
         </h2>
-        <p className="mx-auto max-w-md mt-8 text-orange-950 text-lg leading-8">
+        <p className="mx-auto max-w-md mt-8 text-lg leading-relaxed text-gray-700">
           Phục hồi, chống lão hóa da mặt, giúp bạn có làn da khỏe mạnh. Ngăn
           ngừa không khí, bụi ô nhiễm, tia OV trực tiếp
         </p>

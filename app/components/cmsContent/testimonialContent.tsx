@@ -75,7 +75,7 @@ const TestimonialContent = () => {
             <h2 className="text-3xl font-bold tracking-tight text-orange-800 sm:text-4xl">
               Sức khỏe là nền tảng của thành công...
             </h2>
-            <p className="text-lg leading-8 mt-8 text-orange-950">
+            <p className="text-lg mt-8 leading-relaxed text-gray-700">
               Đối với organic, trách nhiệm với cộng đồng luôn là nền tảng cho sự
               phát triển bền vững.
             </p>
@@ -127,7 +127,7 @@ const TestimonialContent = () => {
                             (_, i) => (
                               <svg
                                 key={i}
-                                className="size-5"
+                                className="size-5 text-yellow-300"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                               >
@@ -138,7 +138,7 @@ const TestimonialContent = () => {
                         </div>
 
                         <div className="mt-4">
-                          <p className="text-2xl font-bold text-rose-600 sm:text-3xl">
+                          <p className="text-2xl font-bold text-orange-950 sm:text-3xl">
                             {testimonial.name}
                           </p>
                           <p className="mt-4 leading-relaxed text-gray-700">

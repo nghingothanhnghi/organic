@@ -200,7 +200,7 @@ const OrderCheck = () => {
         <DataGrid
           rowData={orders}
           columnDefs={columnDefs}
-          pagination={true}
+          pagination={false}
           paginationPageSize={pageSize}
           onRowClicked={handleRowClicked}
           height="300px"
