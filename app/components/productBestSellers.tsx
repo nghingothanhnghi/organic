@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -9,15 +9,26 @@ import type { ProductDisplayProps, Product } from "~/types/product"; // Import t
 import ProductCard from "./productCard";
 import EmptyState from "./emptyState";
 import IconProductEmpty from "~/assets/empty-item.png";
+import BubbleBackground from "./backgroundAnim/bubbleBackground";
 
 const ProductBestSellers = ({ products, viewMode }: ProductDisplayProps) => {
+  const [progress, setProgress] = useState(0);
   // Filter bestseller products
   const bestsellerProducts = products.filter(
     (product: Product) => product.bestseller
   );
 
   return (
-    <section className="bestseller-products py-16 bg-gray-50 dark:bg-gray-900">
+    <section className="bestseller-products py-16 bg-gray-50 dark:bg-gray-900 relative">
+      <BubbleBackground
+        backgroundColor="bg-gray-50"
+        bubbleColor="bg-gray-300"
+        bubbleCount={30}
+        minSize={15}
+        maxSize={50}
+        minDuration={4}
+        maxDuration={8}
+      />
       <div className="px-10 mb-10 text-center">
         <h2 className="text-3xl font-bold tracking-tight text-orange-800 sm:text-4xl">
           Chuyên gia khuyên dùng
@@ -27,16 +38,15 @@ const ProductBestSellers = ({ products, viewMode }: ProductDisplayProps) => {
           hợp với người già, có bệnh mãn tính với tim mạch, tiểu đường...
         </p>
       </div>
+
       <div className="mx-auto max-w-screen-xl flex items-center justify-between p-3 sm:py-4 sm:px-6">
         {/* Swiper Component to display bestseller products */}
         <Swiper
           className="w-full py-5"
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           spaceBetween={10}
-          slidesPerView={3}
-          centeredSlides={true}
-          loop={true}
-          pagination={{ clickable: true }}
+          slidesPerView={5}
+          pagination={{ type: "progressbar", clickable: true }}
           navigation={false}
           breakpoints={{
             320: {
@@ -75,6 +85,15 @@ const ProductBestSellers = ({ products, viewMode }: ProductDisplayProps) => {
             />
           )}
         </Swiper>
+      </div>
+      {/* Centered Progress Bar with Max Width 100px */}
+      <div className="w-full flex justify-center my-4">
+        <div className="relative w-full max-w-[100px] h-1 bg-gray-300 rounded overflow-hidden">
+          <div
+            className="h-full bg-orange-600 transition-all duration-300"
+            style={{ width: `${progress * 100}%` }}
+          />
+        </div>
       </div>
     </section>
   );

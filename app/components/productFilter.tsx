@@ -36,13 +36,24 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
     };
 
     const handleApplyFilters = () => {
-        const filters = { 
-            categories, 
-            priceRange, 
+        const filters = {
+            categories,
+            priceRange,
             name: searchName,
-        
+
         };
         console.log("Applying Filters:", filters);
+
+        // Update browser URL parameters
+        const params = new URLSearchParams();
+
+        if (categories) params.set("category", categories);
+        if (priceRange) params.set("price", priceRange);
+        if (searchName) params.set("name", searchName);
+
+        const newUrl = `${window.location.pathname}?${params.toString()}`;
+        window.history.pushState({}, "", newUrl);
+
         // Trigger the filter change when the user applies filters
         onFilterChange(filters);
         setIsModalOpen(false);
@@ -88,8 +99,8 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-600 mb-2">{t("select.priceRange.label")}</label>
-                                    <select value={priceRange} onChange={handlePriceRangeChange} 
-                                    className="h-10 rounded border-gray-300 text-sm w-full">
+                                    <select value={priceRange} onChange={handlePriceRangeChange}
+                                        className="h-10 rounded border-gray-300 text-sm w-full">
                                         <option value="">{t("select.priceRange.options.all_price")}</option>
                                         <option value="highest">{t("select.priceRange.options.best_price")}</option>
                                         <option value="lowest">{t("select.priceRange.options.lowest_price")}</option>
@@ -98,9 +109,9 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilterChange }) => {
                             </div>
                         }
                         actions={
-                            <button 
-                            onClick={handleApplyFilters} 
-                            className="bg-green-600 w-full text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-green-700 transition duration-300">
+                            <button
+                                onClick={handleApplyFilters}
+                                className="bg-green-600 w-full text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-green-700 transition duration-300">
                                 {t("btn.search")}
                             </button>
                         }
