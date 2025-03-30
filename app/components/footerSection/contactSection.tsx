@@ -2,9 +2,8 @@ import React from 'react';
 
 const ContactSection: React.FC = () => {
     return (
-        <div className="text-white text-sm text-center lg:text-start mb-10">
+        <div className="hidden lg:block text-white text-sm text-center lg:text-start mb-10">
             <h4 className="text-lg font-bold mb-4">Organic Ltd,</h4>
-
             <div className="mb-4">
                 <h5 className="font-semibold">Address:</h5>
                 <p>Linh Đông, Ho Chi Minh City, Vietnam</p>
