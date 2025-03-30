@@ -37,7 +37,7 @@ const ProductBestSellers = ({ products, viewMode }: ProductDisplayProps) => {
           centeredSlides={true}
           loop={true}
           pagination={{ clickable: true }}
-          navigation
+          navigation={false}
           breakpoints={{
             320: {
               slidesPerView: 2, // For small screens

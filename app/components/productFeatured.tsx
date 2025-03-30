@@ -49,11 +49,11 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           onSwiper={setSwiperInstance}
           spaceBetween={10}
-          slidesPerView={3}
-          centeredSlides={true}
+          slidesPerView={5}
+          // centeredSlides={true}
           navigation={{
-            prevEl: "#prevBtnDesktop",
-            nextEl: "#nextBtnDesktop",
+            prevEl: "#prevBtnFeaturedDesktop",
+            nextEl: "#nextBtnFeaturedDesktop",
           }}
           breakpoints={{
             320: {
@@ -96,12 +96,12 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
       <div className="lg:mt-10 flex justify-center gap-4 mb-10">
         <NavSwiperButton
           direction="prev"
-          id="prevBtnDesktop"
+          id="prevBtnFeaturedDesktop"
           disabled={isBeginning}
         />
         <NavSwiperButton
           direction="next"
-          id="nextBtnDesktop"
+          id="nextBtnFeaturedDesktop"
           disabled={isEnd}
         />
       </div>
