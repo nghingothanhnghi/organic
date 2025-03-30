@@ -42,12 +42,6 @@ interface Testimonial {
 const TestimonialContent = () => {
   // Get the responsiveness states from the hook
   const { isMobile, isDesktop } = useResponsive();
-  // const [navigationReady, setNavigationReady] = useState(false);
-
-  // useEffect(() => {
-  //     // Allow buttons to render before Swiper initializes
-  //     setNavigationReady(true);
-  // }, [isMobile, isDesktop]);
 
   // Swiper state management
   const [swiperInstance, setSwiperInstance] = useState<any>(null);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -13,10 +13,32 @@ import BubbleBackground from "./backgroundAnim/bubbleBackground";
 
 const ProductBestSellers = ({ products, viewMode }: ProductDisplayProps) => {
   const [progress, setProgress] = useState(0);
+  // Swiper state management
+  const [swiperInstance, setSwiperInstance] = useState<any>(null);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
   // Filter bestseller products
   const bestsellerProducts = products.filter(
     (product: Product) => product.bestseller
   );
+  useEffect(() => {
+    if (swiperInstance) {
+      setIsBeginning(swiperInstance.isBeginning);
+      setIsEnd(swiperInstance.isEnd);
+
+      // Listen to slide change and update progress
+      swiperInstance.on("slideChange", () => {
+        setIsBeginning(swiperInstance.isBeginning);
+        setIsEnd(swiperInstance.isEnd);
+        setProgress(swiperInstance.progress); // Update progress bar
+      });
+
+      swiperInstance.on("progress", (swiper: { progress: React.SetStateAction<number>; }) => {
+        setProgress(swiper.progress); // Ensure smooth progress tracking
+      });
+    }
+  }, [swiperInstance]);
+
 
   return (
     <section className="bestseller-products py-16 bg-gray-50 dark:bg-gray-900 relative">
@@ -39,14 +61,21 @@ const ProductBestSellers = ({ products, viewMode }: ProductDisplayProps) => {
         </p>
       </div>
 
-      <div className="mx-auto max-w-screen-xl flex items-center justify-between p-3 sm:py-4 sm:px-6">
+      <div className="relative mx-auto max-w-screen-xl flex items-center justify-between p-3 sm:py-4 sm:px-6">
+        {/* Left Shadow */}
+        {!isBeginning && (
+          <div className="absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent pointer-events-none z-10"></div>
+        )}
         {/* Swiper Component to display bestseller products */}
         <Swiper
           className="w-full py-5"
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           spaceBetween={10}
           slidesPerView={5}
-          pagination={{ type: "progressbar", clickable: true }}
+          pagination={false}
+          onSwiper={setSwiperInstance} // Store instance in state
+          onSlideChange={(swiper) => setProgress(swiper.progress)} // Track progress
+          onProgress={(swiper) => setProgress(swiper.progress)} // Ensure smooth updates
           navigation={false}
           breakpoints={{
             320: {
@@ -85,12 +114,16 @@ const ProductBestSellers = ({ products, viewMode }: ProductDisplayProps) => {
             />
           )}
         </Swiper>
+        {/* Right Shadow */}
+        {!isEnd && (
+          <div className="absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent pointer-events-none z-10"></div>
+        )}
       </div>
       {/* Centered Progress Bar with Max Width 100px */}
       <div className="w-full flex justify-center my-4">
         <div className="relative w-full max-w-[100px] h-1 bg-gray-300 rounded overflow-hidden">
           <div
-            className="h-full bg-orange-600 transition-all duration-300"
+            className="h-full bg-lime-900 transition-all duration-300"
             style={{ width: `${progress * 100}%` }}
           />
         </div>
