@@ -16,8 +16,8 @@ const NavSwiperButton: React.FC<NavButtonProps> = ({ direction, className, style
       id={id}
       onClick={onClick}
       aria-label={`${isNext ? 'Next' : 'Previous'} slide`}
-      className={`rounded-full border border-rose-600 p-3 text-rose-600 transition 
-        hover:bg-rose-600 hover:text-white ${className} 
+      className={`rounded-full border border-lime-900 p-3 text-lime-900 transition 
+        hover:bg-lime-900 hover:text-white ${className} 
         ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`} // Disable styling
       style={style}
       disabled={disabled} // Apply the disabled prop
