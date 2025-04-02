@@ -20,11 +20,11 @@ export function meta({ }: Route.MetaArgs) {
 
 const Store = () => {
   const { t } = useTranslation();
+  const location = useLocation();
   const breadcrumbItems = [
     { label: t("page_title.home"), path: '/' },
     { label: t("page_title.store"), path: '/store' },
   ];
-  const queryParams = new URLSearchParams(location.search);
   const dispatch = useAppDispatch();
   const { products, loading, error, pagination, filters } = useAppSelector(state => state.products);
   const [currentPage, setCurrentPage] = useState(1);

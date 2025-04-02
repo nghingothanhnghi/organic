@@ -1,5 +1,5 @@
 import type { Route } from "./+types/checkOut";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router'; // Import useNavigate
 import { useAppDispatch, useAppSelector } from "~/hooks";
 import Breadcrumb from "~/components/breadcrumb";
@@ -32,8 +32,23 @@ const CheckOut = () => {
 
     // Get cart items from the Redux store
     const cartItems = useAppSelector((state) => state.cart.items);
+    const { loading, error, isAuthenticated, user } = useAppSelector(state => state.auth);
 
     const dispatch = useAppDispatch();
+
+    
+    // Auto-fill shipping info if the user is logged in
+    useEffect(() => {
+        if (isAuthenticated && user) {
+            // Adjust the properties below to match your user's data structure
+            setShippingData({
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email
+                // Add any other prefilled fields here
+            });
+        }
+    }, [isAuthenticated, user]);
 
     const handleNext = () => {
         if (isValid && currentStep < steps.length - 1) {
@@ -85,6 +100,7 @@ const CheckOut = () => {
                     onNext={() => handleNext()}
                     setIsValid={setIsValid}
                     setShippingData={setShippingData} // Pass the setter for shipping data
+                    shippingData={shippingData} // This prop allows the component to prefill the form fields
                 />
             ),
         },

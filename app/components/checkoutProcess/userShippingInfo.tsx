@@ -6,27 +6,42 @@ import LocationSelector from '../locationSelector';
 import PhoneNumberInput from '../phoneNumberInput';
 import { useTranslation } from 'react-i18next';
 
+interface ShippingData {
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phoneNumber?: string;
+    street?: string;
+    country?: string;
+    city?: string;
+    district?: string;
+    ward?: string;
+    postalCode?: string;
+}
+
 interface UserShippingInfoProps {
     onNext: () => void;
     setShippingData: (data: any) => void; // Setter function to update shipping data
     setIsValid: (isValid: boolean) => void;
+    shippingData?: ShippingData; // Optional prefilled shipping data
 }
 
-const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid, setShippingData }) => {
+const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid, setShippingData, shippingData = {} }) => {
     const { t } = useTranslation();
     const formik = useFormik({
         initialValues: {
-            firstName: '',
-            lastName: '',
-            email: '',
-            phoneNumber: '+84',
-            street: '',
-            country: '',
-            city: '',
-            district: '',
-            ward: '',
-            postalCode: '',
+            firstName: shippingData.firstName || '',
+            lastName: shippingData.lastName || '',
+            email: shippingData.email || '',
+            phoneNumber: shippingData.phoneNumber || '+84',
+            street: shippingData.street || '',
+            country: shippingData.country || '',
+            city: shippingData.city || '',
+            district: shippingData.district || '',
+            ward: shippingData.ward || '',
+            postalCode: shippingData.postalCode || '',
         },
+        enableReinitialize: true, // Reinitialize form when shippingData changes
         validationSchema: userShippingValidationSchema(t),
         onSubmit: (values) => {
             // Handle form submission
