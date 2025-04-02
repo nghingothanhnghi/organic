@@ -399,6 +399,7 @@
         "postalCodeRequired": "Mã bưu chính là bắt buộc",
         "passwordRequired": "Mật khẩu bắt buộc",
         "passwordUnMatchingRequired": "Mật khẩu không khớp?",
+        "passwordMinLength": "Mật khẩu phải có ít nhất 8 ký tự.",
         "titleRequired": "Tiêu đề không được để trống",
         "messageRequired": "Nội dung được yêu cầu",
         "agreeRequired": "Tôi đồng ý cung cấp thông tin cho Phutungtoyota",

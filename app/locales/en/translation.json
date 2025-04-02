@@ -394,6 +394,7 @@
         "postalCodeRequired": "Postal Code is required",
         "passwordRequired": "Password is required",
         "passwordUnMatchingRequired": "Password not matching?",
+        "passwordMinLength": "Password must be at least 8 characters long.",
         "titleRequired": "Title is a required field",
         "messageRequired": "Message is a required field",
         "agreeRequired": "I agree",

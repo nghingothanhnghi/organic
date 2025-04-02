@@ -6,7 +6,7 @@ export const loginValidationSchema = (
 ) =>
   Yup.object({
     email: Yup.string()
-      .email(t('validation.invalidEmailFormat'))
+      .email(t('validation.invalidEmail'))
       .required(t('validation.emailRequired')),
     password: Yup.string()
       .min(6, t('validation.passwordMinLength'))
