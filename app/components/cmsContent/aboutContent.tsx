@@ -24,7 +24,7 @@ const AboutContent = () => {
                 <h2 className="text-3xl font-bold tracking-tight text-orange-800 sm:text-4xl">
                   {section.heading}
                 </h2>
-                <p className="mb-4 text-lg leading-8">This is dynamic content for the section with ID: {section.id}</p>
+                <p className="mb-4 text-lg mt-8 leading-relaxed text-gray-700">This is dynamic content for the section with ID: {section.id}</p>
                 {/* Filter and display link with id: 1 */}
                 {section.links
                   .filter(link => link.id === 1)

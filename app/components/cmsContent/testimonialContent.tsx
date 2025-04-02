@@ -13,20 +13,23 @@ import "swiper/css/navigation";
 const testimonials = [
   {
     id: 1,
-    name: "John Doe",
-    quote: "This product changed my life! Highly recommend it to everyone.",
+    title: "Chất lượng 5 sao",
+    name: "Minh Hoa, Bình Chánh",
+    quote: "Tôi có mua chén dùng để ươm thủy canh. Sản phẩm rất tốt, thân thiện với môi trường.,",
     rating: 5,
   },
   {
     id: 2,
-    name: "Jane Smith",
-    quote: "Absolutely love the quality and service. Five stars!",
+    title: "Bộ trồng thủy canh quá ưng ý!",
+    name: "Chị Như, Củ Chi",
+    quote: "Hệ thống trồng thủy canh tại nhà rất gọn, dễ di chuyển, tôi có thể tự lắp đặt qua hướng dẫn của đội ngủ organic. Cho 5 sao shop",
     rating: 5,
   },
   {
     id: 3,
-    name: "Alice Johnson",
-    quote: "Amazing experience! I will be coming back for sure.",
+    title: "Cám ơn shop",
+    name: "Chị Như, Củ Chi",
+    quote: "Hệ thống trồng thủy canh đơn giản, giá chấp nhận được.",
     rating: 4,
   },
 ];
@@ -108,10 +111,10 @@ const TestimonialContent = () => {
                 }}
                 slidesPerView={isMobile ? 1 : 2}
                 spaceBetween={20}
-                className="py-5"
+                className="py-5 items-stretch"
               >
                 {testimonials.map((testimonial) => (
-                  <SwiperSlide key={testimonial.id}>
+                  <SwiperSlide key={testimonial.id} className="flex h-full">
                     <blockquote className="flex h-full flex-col justify-between bg-white rounded-lg  p-6 shadow-md sm:p-8 lg:p-12">
                       <div>
                         <div className="flex gap-0.5 text-green-500">
@@ -133,7 +136,7 @@ const TestimonialContent = () => {
 
                         <div className="mt-4">
                           <p className="text-2xl font-bold text-orange-950 sm:text-3xl">
-                            {testimonial.name}
+                            {testimonial.title}
                           </p>
                           <p className="mt-4 leading-relaxed text-gray-700">
                             {testimonial.quote}

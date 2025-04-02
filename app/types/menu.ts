@@ -7,6 +7,7 @@ export interface SectionAttributes {
   }
   
   export interface Section {
+    url: string;
     id: number;
     attributes: SectionAttributes;
   }

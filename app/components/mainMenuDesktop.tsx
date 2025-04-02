@@ -16,7 +16,7 @@ const MainMenuDesktop = () => {
 
 
   return (
-    <nav className="hidden md:flex space-x-6 lg:order-first">
+    <nav className="hidden md:flex md:items-center space-x-6 lg:order-first">
       {loading ? (
         [...Array(4)].map((_, index) => (
           <div key={index} className="h-6 w-24 bg-gray-200 rounded animate-pulse"></div>
@@ -28,7 +28,7 @@ const MainMenuDesktop = () => {
           <div key={item.id} className="relative">
             {/* Render Normal Menu Link */}
             {item.__component === 'menu.menu-link' && (
-              <Link to={item.url || '/'} className="text-gray-700 hover:text-gray-900 transition-colors">
+              <Link to={item.url || '/'} className=" text-gray-700 font-semibold hover:text-gray-900 transition-colors">
                 {item.title}
               </Link>
             )}
@@ -40,7 +40,7 @@ const MainMenuDesktop = () => {
                 onMouseEnter={() => setOpenDropdown(item.id)}
                 onMouseLeave={() => setOpenDropdown(null)}
               >
-                <span className="text-gray-700 hover:text-gray-900 transition-colors">
+                <span className=" text-gray-700 font-semibold hover:text-gray-900 transition-colors">
                   {item.title}
                 </span>
 
@@ -50,15 +50,19 @@ const MainMenuDesktop = () => {
 
                 {/* Dropdown Menu */}
                 {openDropdown === item.id && (
-                  <div 
-                  className="absolute right-0 mt-2 w-48 bg-white text-gray-700 shadow-lg rounded-lg z-10 transition-all duration-300 ease-in-out"
+                  <div
+                    className="py-1 absolute right-0 top-6 w-48 bg-white text-gray-700 shadow-lg rounded-lg z-10 transition-all duration-300 ease-in-out"
                   >
                     {item.sections?.data.map((section) => (
-                      <div key={section.id} className="border-b last:border-none">
-                        <span className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                      <Link
+                        key={section.id}
+                        to={`/store?category=${encodeURIComponent(section.attributes.heading)}`}
+                        className="border-b last:border-none"
+                      >
+                        <span className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
                           {section.attributes.heading}
                         </span>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 )}
