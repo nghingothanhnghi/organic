@@ -24,9 +24,10 @@ interface UserShippingInfoProps {
     setShippingData: (data: any) => void; // Setter function to update shipping data
     setIsValid: (isValid: boolean) => void;
     shippingData?: ShippingData; // Optional prefilled shipping data
+    isGuest: boolean; // Add isGuest prop
 }
 
-const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid, setShippingData, shippingData = {} }) => {
+const UserShippingInfo: React.FC<UserShippingInfoProps> = ({ onNext, setIsValid, setShippingData, shippingData = {}, isGuest }) => {
     const { t } = useTranslation();
     const formik = useFormik({
         initialValues: {

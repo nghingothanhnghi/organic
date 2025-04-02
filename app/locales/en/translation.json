@@ -309,6 +309,9 @@
         },
         "wishlist": {
             "message_01": "Your wishlist is empty!"
+        },
+        "checkout":{
+            "message_01": "You can proceed with guest checkout without creating an account."
         }
     },
     "warning": {

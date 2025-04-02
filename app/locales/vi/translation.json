@@ -309,6 +309,9 @@
         },
         "wishlist": {
             "message_01": "Yêu thích của bạn đang trống!"
+        },
+        "checkout":{
+            "message_01": "Bạn có thể tiếp tục thanh toán với tư cách khách mà không cần tạo tài khoản."
         }
     },
     "warning": {

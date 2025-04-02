@@ -2,6 +2,7 @@
 export interface User {
     id: number;
     username: string;
+    phoneNumber: string;
     email: string;
     createdAt: string;
     updatedAt: string;

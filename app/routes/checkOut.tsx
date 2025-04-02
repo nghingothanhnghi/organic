@@ -29,6 +29,7 @@ const CheckOut = () => {
     const [isValid, setIsValid] = useState(false);
     const [shippingData, setShippingData] = useState({});
     const [paymentData, setPaymentData] = useState({});
+    const [isGuest, setIsGuest] = useState(true); // Default to guest mode
 
     // Get cart items from the Redux store
     const cartItems = useAppSelector((state) => state.cart.items);
@@ -36,7 +37,7 @@ const CheckOut = () => {
 
     const dispatch = useAppDispatch();
 
-    
+
     // Auto-fill shipping info if the user is logged in
     useEffect(() => {
         if (isAuthenticated && user) {
@@ -44,9 +45,15 @@ const CheckOut = () => {
             setShippingData({
                 firstName: user.firstName,
                 lastName: user.lastName,
-                email: user.email
+                email: user.email,
+                phoneNumber: user.phoneNumber
                 // Add any other prefilled fields here
             });
+            setIsGuest(false); // Switch to logged-in mode
+        } else {
+            // If the user is logged out, ensure the data is cleared
+            setShippingData({});
+            setIsGuest(true); // Reset to guest mode
         }
     }, [isAuthenticated, user]);
 
@@ -64,6 +71,7 @@ const CheckOut = () => {
 
     // Define handleFinalSubmit before using it
     const handleFinalSubmit = async () => {
+
         // Ensure the order structure matches the expected format
         const finalOrderData = {
             items: cartItems, // Ensure this matches the expected `items` array
@@ -101,6 +109,7 @@ const CheckOut = () => {
                     setIsValid={setIsValid}
                     setShippingData={setShippingData} // Pass the setter for shipping data
                     shippingData={shippingData} // This prop allows the component to prefill the form fields
+                    isGuest={isGuest} // Pass the isGuest prop to the UserShippingInfo component
                 />
             ),
         },
@@ -155,6 +164,29 @@ const CheckOut = () => {
                     )}
                 </div>
 
+                {/* Show alert if user is not logged in */}
+                {!isAuthenticated && (
+                    <div className="p-4 mb-4 text-yellow-800 bg-yellow-100 border border-yellow-300 rounded-md">
+                        <div className="flex justify-between items-center">
+                            <div className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    id="guestCheckout"
+                                    checked={isGuest}
+                                    onChange={() => {
+                                        if (!isAuthenticated) {
+                                            navigate("/login");
+                                        } else {
+                                            setIsGuest(!isGuest);
+                                        }
+                                    }}
+                                    className="mr-2"
+                                />
+                                <label htmlFor="guestCheckout" className="text-sm">{t("info.checkout.message_01")}</label>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 lg:gap-8 w-full">
                     <div className="col-span-1 lg:col-span-6 w-full lg:pe-10">
                         <StepWizard

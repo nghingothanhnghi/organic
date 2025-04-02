@@ -12,6 +12,7 @@ interface PhoneNumberInputProps {
 
 const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({ value, onChange, name, label, error }) => {
     const phoneInputRef = useRef<HTMLInputElement>(null);
+    // const maskRef = useRef<InstanceType<typeof IMask.InputMask> | null>(null);
 
     // Apply phone number mask when the component mounts
     useEffect(() => {
