@@ -93,7 +93,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
   return (
     <div className="space-y-4">
       <div>
-        <label className="block text-sm font-medium text-gray-700">{t("input.address.label")}</label>
+        <label className="block text-sm font-semibold text-gray-700">{t("input.address.label")}</label>
         <input
           type="text"
           name="street"
@@ -110,7 +110,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
 
       <div className="grid grid-cols-2 gap-4">
       <div>
-        <label className="block text-sm font-medium text-gray-700">{t("select.country.label")}</label>
+        <label className="block text-sm font-semibold text-gray-700">{t("select.country.label")}</label>
         <select
           name="country"
           value={values.country || ''}
@@ -129,7 +129,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
         {touched.country && errors.country && <p className="text-red-500 text-xs mt-1">{errors.country}</p>}
       </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">{t("select.city.label")}</label>
+          <label className="block text-sm font-semibold text-gray-700">{t("select.city.label")}</label>
           <select
             name="city"
             value={values.city || ''}
@@ -154,7 +154,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
 
       <div className="grid grid-cols-2 gap-4">
       <div>
-          <label className="block text-sm font-medium text-gray-700">{t("select.dist.label")}</label>
+          <label className="block text-sm font-semibold text-gray-700">{t("select.dist.label")}</label>
           <select
             name="district"
             value={values.district || ''}
@@ -173,7 +173,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
           {touched.district && errors.district && <p className="text-red-500 text-xs mt-1">{errors.district}</p>}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">{t("select.ward.label")}</label>
+          <label className="block text-sm font-semibold text-gray-700">{t("select.ward.label")}</label>
           <select
             name="ward"
             value={values.ward || ''}
@@ -193,7 +193,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ values, errors, tou
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">{t("input.postalCode.label")}</label>
+          <label className="block text-sm font-semibold text-gray-700">{t("input.postalCode.label")}</label>
           <input
             type="text"
             name="postalCode"
