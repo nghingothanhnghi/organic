@@ -53,8 +53,8 @@ const UserPaymentInfo: React.FC<UserPaymentInfoProps> = ({ onNext, handlePreviou
 
     // Payment method options for radio grid
     const paymentOptions = [
-        { id: '1', label: 'Cash', value: "1" },       // value is a string
-        { id: '2', label: 'Credit Card', value: "2" }    // value is a number
+        { id: '1', label: (t('paymentMethods.cash')), value: "1" },       // value is a string
+        { id: '2', label: (t('paymentMethods.creditCard')), value: "2" }    // value is a number
     ];
 
     return (

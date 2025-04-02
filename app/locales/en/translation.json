@@ -284,6 +284,10 @@
             "message_02": "Find by car name,.."
         }
     },
+    "paymentMethods": {
+        "cash": "Cash",
+        "creditCard": "Credit Card"
+    },
     "info": {
         "order":{
             "message_01": "🧐 No orders found."

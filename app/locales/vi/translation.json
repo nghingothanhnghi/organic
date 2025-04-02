@@ -284,6 +284,10 @@
             "message_02": "Tìm theo tên xe."
         }
     },
+    "paymentMethods": {
+        "cash": "Tiền mặt",
+        "creditCard": "Thẻ tín dụng"
+    },
     "info": {
         "order":{
             "message_01": "🧐 Đơn hàng không tìm thấy. Vui lòng quay lại sau."
