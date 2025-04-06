@@ -12,12 +12,6 @@ const Layout = () => {
 
     const { pages, loading } = useAppSelector(state => state.pages); // Access the loading state from Redux
 
-      // Filter pages by username after fetching the data
-  const filteredPages = pages.filter(page => 
-    page.users_permissions_user?.username === "abc@gmail.com"
-  );
-
-  console.log ("Filter Page by username: ", pages)
 
     // Fetch pages when the Layout component is first mounted
     useEffect(() => {
@@ -27,9 +21,9 @@ const Layout = () => {
     // Determine if a route transition is in progress
     const isNavigationLoading = navigation.state === "loading";
     const isLoading = isNavigationLoading || loading;  // Show loading if navigation or pages fetching is in progress
-    
+
     return (
-        <div>
+        <>
             <Header />
             {isLoading && (
                 <div className="fixed inset-0 flex justify-center items-center bg-white bg-opacity-50 z-50">
@@ -40,7 +34,7 @@ const Layout = () => {
                 <Outlet />
             </main>
             <Footer />
-        </div>
+        </>
     );
 };
 

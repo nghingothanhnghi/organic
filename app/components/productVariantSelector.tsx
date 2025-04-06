@@ -27,10 +27,11 @@ const ProductVariantSelector: React.FC<ProductVariantSelectorProps> = ({
           <label
             key={variant.id}
             htmlFor={`variant-${variant.id}`}
-            className={`flex items-center justify-center size-7 cursor-pointer rounded-full shadow-sm ${selectedVariantId === variant.id
-                ? 'ring-2 ring-black ring-offset-2'
-                : ''
-              }`}
+            className={`flex items-center justify-center cursor-pointer rounded-full shadow-sm 
+              ${variant.name ? 'px-2 py-2' : 'size-7'}
+              ${selectedVariantId === variant.id
+                ? 'ring-2 ring-black ring-offset-2' : ''}
+              `}
           >
             <input
               type="radio"
@@ -50,13 +51,19 @@ const ProductVariantSelector: React.FC<ProductVariantSelectorProps> = ({
                 className='rounded-full'
                 style={{
                   display: 'block',
-                  width: '24px',
-                  height: '24px',
+                  // width: '24px',
+                  // height: '24px',
                   background: variant.image || '#ccc', // Use color or fallback
                 }}
               >
                 {/* Accessible name */}
                 <span className="sr-only">{variant.name}</span>
+              </span>
+            )}
+            {/* Display name if it exists */}
+            {variant.name && (
+              <span className="text-center text-gray-700 dark:text-gray-200">
+                {variant.name}
               </span>
             )}
           </label>

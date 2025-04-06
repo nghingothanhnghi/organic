@@ -70,13 +70,13 @@ const ProductDetail = () => {
                                 >
                                     {product?.name}
                                 </h1>
-                                <ProductRating product={product} singleStarView={true}/>
+                                <ProductRating product={product} singleStarView={true} />
                                 <div className="mt-4 sm:items-center sm:gap-4 sm:flex">
-                                    <p
+                                    <div
                                         className="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white"
                                     >
                                         <ProductPrice product={product!} variant={selectedVariant} />
-                                    </p>
+                                    </div>
                                 </div>
                                 {product?.variants && product.variants.length > 0 && (
                                     <div className="my-4">
