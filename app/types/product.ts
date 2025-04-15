@@ -30,7 +30,8 @@ export interface Product {
     productImg: ProductImage[];
     ratings: Rating[]; // Updated to use Rating type
     crossSellProducts?: Partial<Product>[];
-    variants?: ProductVariant[]; 
+    variants?: ProductVariant[];
+    averageRating?: number;
   }
   
   // Redux state interface

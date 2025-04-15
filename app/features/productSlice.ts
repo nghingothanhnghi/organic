@@ -121,7 +121,8 @@ export const fetchProductBySlug = createAsyncThunk<
         id: response.id,
         name: response.attributes.name,
         description: response.attributes.description,
-        locale: response.attributes.locale ?? 'default-locale', 
+        locale: response.attributes.locale ?? 'vi', 
+        averageRating: response.attributes.averageRating,
         imageUrl: response.attributes.imageUrl,
         productImg: response.attributes.productImg?.data?.map((img: any) => ({
           id: img.id,

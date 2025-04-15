@@ -9,13 +9,14 @@ import ProductReviewForm from "~/components/productReviewForm";
 import ProductRating from "~/components/productRating";
 import ProductActions from '~/components/productActions';
 import ProductVariantSelector from '~/components/productVariantSelector';
+import ProductReviewSummary from '~/components/productReviewSummary';
 import LoadingErrorWrapper from '~/components/LoadingErrorWrapper';
 import { useTranslation } from 'react-i18next';
 import { stripHtml } from '~/utils/stripHtml';
 
 export function meta({ }: Route.MetaArgs) {
     return [
-        { title: "Deatil" },
+        { title: "Detail" },
         { name: "description", content: "Welcome to React Router!" },
     ];
 }
@@ -98,6 +99,7 @@ const ProductDetail = () => {
                                 <p className="mb-6 text-gray-500 dark:text-gray-400">
                                     {stripHtml(product.description || '')}
                                 </p>
+                                <ProductReviewSummary product={product} />
                                 {/* Add the ProductReviewForm */}
                                 <div className="mt-12">
                                     <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-5">{t("section_title.view_by-add_review.user_review")}</h2>
