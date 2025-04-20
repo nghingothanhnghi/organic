@@ -7,20 +7,20 @@ import { fetchStores, setFilters } from '~/features/storeSlice';
 interface LocationSearchModalProps {
     isOpen: boolean;
     onClose: () => void;
-    selectedCity: string | null;
+    selectedState: string | null;
 }
 
-const LocationSearchModal: React.FC<LocationSearchModalProps> = ({ isOpen, onClose, selectedCity }) => {
+const LocationSearchModal: React.FC<LocationSearchModalProps> = ({ isOpen, onClose, selectedState }) => {
     const [searchQuery, setSearchQuery] = useState("");
     const dispatch = useAppDispatch();
     const { stores, loading, error } = useAppSelector(state => state.stores);
 
     useEffect(() => {
-        if (selectedCity) {
-            dispatch(setFilters({ city: selectedCity }));
-            dispatch(fetchStores({ city: selectedCity }));
+        if (selectedState) {
+            dispatch(setFilters({ state: selectedState })); // Update filter to use state
+            dispatch(fetchStores({ state: selectedState })); // Update fetchStores to use state
         }
-    }, [selectedCity, dispatch]);
+    }, [selectedState, dispatch]);
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(event.target.value);
@@ -28,8 +28,13 @@ const LocationSearchModal: React.FC<LocationSearchModalProps> = ({ isOpen, onClo
 
     const getFilteredResults = () => {
         return stores.filter(store => {
-            const fullAddress = `${store.attributes.address}, ${store.attributes.district}, ${store.attributes.state}`;
-            return fullAddress.toLowerCase().includes(searchQuery.toLowerCase());
+            const { address, district, state } = store.attributes;
+            const fullAddress = `${address}, ${district}, ${state}`;
+            return (
+                address.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                district.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                fullAddress.toLowerCase().includes(searchQuery.toLowerCase())
+            );
         });
     };
 
@@ -37,7 +42,7 @@ const LocationSearchModal: React.FC<LocationSearchModalProps> = ({ isOpen, onClo
         <Modal
             isOpen={isOpen}
             onClose={onClose}
-            title={selectedCity}
+            title={selectedState}
             size="small"
             content={
                 <div>
@@ -46,7 +51,7 @@ const LocationSearchModal: React.FC<LocationSearchModalProps> = ({ isOpen, onClo
                         placeholder="Search..."
                         value={searchQuery}
                         onChange={handleSearchChange}
-                        className="w-full p-2 mb-4 border rounded"
+                        className="w-full h-10 rounded border-gray-300 text-sm"
                     />
                     {loading && <div>Loading...</div>}
                     {error && <div>Error: {error}</div>}

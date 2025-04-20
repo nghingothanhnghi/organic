@@ -136,7 +136,7 @@ const TopNavBar = () => {
             <LocationSearchModal
                 isOpen={isModalOpen}
                 onClose={closeModal}
-                selectedCity={selectedCity}
+                selectedState={selectedCity}
             />
         </div>
     );
