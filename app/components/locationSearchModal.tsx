@@ -28,7 +28,7 @@ const LocationSearchModal: React.FC<LocationSearchModalProps> = ({ isOpen, onClo
 
     const getFilteredResults = () => {
         return stores.filter(store => {
-            const { address, district, state } = store.attributes;
+            const { address, district, state } = store;
             const fullAddress = `${address}, ${district}, ${state}`;
             return (
                 address.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -57,8 +57,14 @@ const LocationSearchModal: React.FC<LocationSearchModalProps> = ({ isOpen, onClo
                     {error && <div>Error: {error}</div>}
                     <div className="mt-4">
                         {getFilteredResults().map((store, index) => (
-                            <div key={index} className="p-2 border-b">
-                                {store.attributes.storeName} - {store.attributes.address}
+                            <div key={index} className="flex items-center p-4 border-b border-gray-200 hover:bg-gray-100 transition-colors cursor-pointer">
+                                <div className="flex-shrink-0 w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center mr-4">
+                                    <i className="fas fa-map-marker-alt"></i> {/* FontAwesome icon */}
+                                </div>
+                                <div>
+                                    <div className="font-bold text-lg text-gray-800">{store.storeName}</div>
+                                    <div className="text-sm text-gray-600">{store.address}</div>
+                                </div>
                             </div>
                         ))}
                     </div>

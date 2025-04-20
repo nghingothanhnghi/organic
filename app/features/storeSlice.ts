@@ -1,9 +1,25 @@
 // app/features/storeSlice.ts
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchStoresAPI } from '~/services/storeService';
+import type { Product } from '~/types/product'; // Import the Product type
+
+
+interface Store {
+    id: number;
+    customerId: string;
+    storeName: string;
+    storeStatus: boolean;
+    createdAt: string;
+    updatedAt: string;
+    address: string; // New field
+    state: string;   // New field
+    district: string; // New field
+    items: Product[]; // Use Product type for items
+    // Add other fields as necessary
+}
 
 interface StoreState {
-    stores: any[];
+    stores: Store[];
     loading: boolean;
     error: string | null;
     filters: Record<string, any>;
@@ -18,7 +34,7 @@ const initialState: StoreState = {
 
 // Async thunk to fetch stores from the API
 export const fetchStores = createAsyncThunk<
-    any[],
+    Store[],
     Record<string, any>,
     { rejectValue: string }
 >(
@@ -26,7 +42,28 @@ export const fetchStores = createAsyncThunk<
     async (filters, { rejectWithValue }) => {
         try {
             const response = await fetchStoresAPI(filters);
-            return response.data;
+            // Flatten the data structure
+            const stores: Store[] = response.data.map((store: any) => ({
+                id: store.id,
+                customerId: store.attributes.customerId,
+                storeName: store.attributes.storeName,
+                storeStatus: store.attributes.storeStatus,
+                createdAt: store.attributes.createdAt,
+                updatedAt: store.attributes.updatedAt,
+                address: store.attributes.address, // Map new field
+                state: store.attributes.state,     // Map new field
+                district: store.attributes.district, // Map new field
+                items: store.attributes.items.data.map((item: any) => ({
+                    id: item.id,
+                    name: item.attributes.name,
+                    description: item.attributes.description,
+                    price: item.attributes.price,
+                    imageUrl: item.attributes.imageUrl,
+                    // Add other fields as necessary
+                })),
+                // Add other fields as necessary
+            }));
+            return stores;
         } catch (error: any) {
             return rejectWithValue(error.message || 'Failed to load stores');
         }
