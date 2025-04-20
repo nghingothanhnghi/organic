@@ -1,11 +1,14 @@
 // app/components/topNavBar.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router";
 import Dropdown from "./dropdown";
 import UserProfileDropdown from "./userProfileDropdown";
-import { useAppSelector } from "~/hooks";
+import { useAppDispatch, useAppSelector } from "~/hooks";
 import { useTranslation } from "react-i18next";
 import { safeSessionStorage } from "~/utils/storage";
+import { fetchStores, setFilters } from '~/features/storeSlice';
+import Modal from "./modal";
+
 const TopNavBar = () => {
     const { t, i18n } = useTranslation();
 
@@ -13,10 +16,45 @@ const TopNavBar = () => {
     const user = useAppSelector(state => state.auth.user); // Replace with your actual state shape if needed
 
 
+    // State to manage modal visibility and selected location
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedCity, setSelectedCity] = useState<string | null>(null);
+    const [searchQuery, setSearchQuery] = useState("");
+    const dispatch = useAppDispatch();
+    const { stores, loading, error } = useAppSelector(state => state.stores);
+
     const handleLanguageChange = (lang: string) => {
         i18n.changeLanguage(lang); // Change language on selection
         safeSessionStorage.setItem("language", lang); // Use session storage safely
         window.location.reload(); // Reload the page
+    };
+
+    useEffect(() => {
+        if (selectedCity) {
+            dispatch(setFilters({ city: selectedCity }));
+            dispatch(fetchStores({ city: selectedCity }));
+        }
+    }, [selectedCity, dispatch]);
+
+    const handleLocationClick = (city: string) => {
+        setSelectedCity(city);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedCity(null);
+    };
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const getFilteredResults = () => {
+        return stores.filter(store => {
+            const fullAddress = `${store.attributes.address}, ${store.attributes.district}, ${store.attributes.state}`;
+            return fullAddress.toLowerCase().includes(searchQuery.toLowerCase());
+        });
     };
 
 
@@ -38,11 +76,11 @@ const TopNavBar = () => {
 
                         }
                     >
-                        <li className="px-3 py-2 hover:bg-gray-100">
-                            <a href="/language/en">{t("location.tphcm")}</a>
+                        <li className="px-3 py-2 hover:bg-gray-100" onClick={() => handleLocationClick(t("location.tphcm"))}>
+                            {t("location.tphcm")}
                         </li>
-                        <li className="px-3 py-2 hover:bg-gray-100">
-                            <a href="/language/vn">{t("location.hanoi")}</a>
+                        <li className="px-3 py-2 hover:bg-gray-100" onClick={() => handleLocationClick(t("location.hanoi"))}>
+                            {t("location.hanoi")}
                         </li>
                         {/* Add more language options here */}
                     </Dropdown>
@@ -114,6 +152,37 @@ const TopNavBar = () => {
                     )}
                 </div>
             </div>
+            {/* Modal for displaying location details */}
+            <Modal
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                title={selectedCity}
+                content={
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                            className="w-full p-2 mb-4 border rounded"
+                        />
+                        {loading && <div>Loading...</div>}
+                        {error && <div>Error: {error}</div>}
+                        <div className="mt-4">
+                            {getFilteredResults().map((store, index) => (
+                                <div key={index} className="p-2 border-b">
+                                    {store.attributes.storeName} - {store.attributes.address}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                }
+                actions={
+                    <button onClick={closeModal} className="px-4 py-2 bg-blue-500 text-white rounded">
+                        Close
+                    </button>
+                }
+            />
         </div>
     );
 };
