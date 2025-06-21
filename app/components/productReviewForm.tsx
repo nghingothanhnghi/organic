@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '~/hooks';
 import { submitReview, clearError, clearSuccess } from '~/features/reviewSlice';
 import { userReviewValidationSchema } from '~/validation/userReviewValidation';
 import { useTranslation } from 'react-i18next';
+import { toast } from "react-toastify";
 import useScrollToTarget from '~/hooks/useScrollToTarget';
 import StarIcon from './startIcon';
 
@@ -20,10 +21,11 @@ const ProductReviewForm: React.FC<ReviewFormProps> = ({ productId, onSuccess, on
     const { loading, error, success } = useAppSelector(state => state.reviews);
 
     useEffect(() => {
-        if (success) {
-            if (onSuccess) onSuccess();
-            dispatch(clearSuccess());
-        }
+    if (success) {
+        toast.success(t('success.review.message_01') || 'Đánh giá của bạn đã được gửi thành công!');
+        if (onSuccess) onSuccess();
+        dispatch(clearSuccess());
+    }
     }, [success, onSuccess, dispatch]);
 
     useEffect(() => {
@@ -50,15 +52,17 @@ const ProductReviewForm: React.FC<ReviewFormProps> = ({ productId, onSuccess, on
             console.log('Selected score:', selectedScore);
             console.log('Authenticated:', isAuthenticated);
             console.log('User data:', user);
-            // if (!isAuthenticated) {
-            //     // Optionally handle the case when the user is not logged in
-            //     if (onError) {
-            //         onError('Please log in to submit a review.');
-            //     }
-            //     return;
-            // }
+            if (!isAuthenticated) {
+                toast.error(t('error.review.message_01') || 'Please log in to submit a review.');
+                // Optionally handle the case when the user is not logged in
+                if (onError) {
+                    onError('Please log in to submit a review.');
+                }
+                return;
+            }
 
             if (!user || !user.id) {
+                toast.error(t('error.user_info_missing') || 'User information is missing.');
                 // Handle missing user ID gracefully
                 if (onError) {
                     onError('User information is missing.');
@@ -79,6 +83,7 @@ const ProductReviewForm: React.FC<ReviewFormProps> = ({ productId, onSuccess, on
 
                 resetForm();
             } catch (error) {
+                toast.error(t('error.review.message_03') || 'Failed to submit review.');
                 console.error(error);
             } finally {
                 setSubmitting(false);

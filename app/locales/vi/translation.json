@@ -345,7 +345,7 @@
             "message_01": "Tin nhắn của quý khách không thể gửi. Vui lòng gọi hotline để hỗ trợ. Xin cám ơn!"
         },
         "review": {
-            "message_01": "😢 Bạn phải đăng nhập để có thể gửi đánh giá về sản phẩm.",
+            "message_01": " Bạn phải đăng nhập để có thể gửi đánh giá về sản phẩm. 😢",
             "message_02": "🌟 Vui lòng đánh sao bình chọn.",
             "message_03": "😢 Đánh giá không thể gửi. Vui lòng thử lại",
             "message_04": "Bạn không thể gửi đánh giá thêm nữa. Chúng tôi đã nhận được đánh giá hữu ích cho sản phẩm này!"

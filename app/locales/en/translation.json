@@ -345,7 +345,7 @@
             "message_01": "Tin nhắn của quý khách không thể gửi. Vui lòng gọi hotline để hỗ trợ. Xin cám ơn!"
         },
         "review": {
-            "message_01": "😢 You must be logged in to submit a review.",
+            "message_01": "You must be logged in to submit a review. 😢",
             "message_02": "🌟 Please rate something.",
             "message_03": "😢 Review could not be submitted. Please try again.",
             "message_04": "You have already submitted a rating for this product."

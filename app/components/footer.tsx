@@ -11,8 +11,8 @@ const Footer = () => {
         <footer className="bg-orange-950 text-slate-300 pt-10">
             <div className="max-w-screen-xl mx-auto px-3 pt-10 sm:px-6">
                 {/* Footer Content */}
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-5 gap-5 sm:gap-8 mb-10">
-                    <div className="lg:col-span-2 lg:pe-10">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:flex gap-5 sm:gap-8 mb-10">
+                    <div className="lg:w-2/5 lg:pe-10">
                         {/* Logo */}
                         <div className="flex justify-center lg:justify-start mb-3">
                             <img src={LogoImage} alt="Logo" className="h-10" />
@@ -21,13 +21,13 @@ const Footer = () => {
                         <ContactSection />
                     </div>
                     {/* Remaining Columns (3 equal columns on lg) */}
-                    <div className="lg:col-span-1">
+                    <div className="lg:w-1/6">
                         <CompanySection />
                     </div>
-                    <div className="lg:col-span-1">
+                    <div className="lg:w-1/6">
                         <SupportSection />
                     </div>
-                    <div className="lg:col-span-1">
+                    <div className="lg:w-1/3">
                         <FollowUsSection />
                         <SubcribeSection />
                     </div>
