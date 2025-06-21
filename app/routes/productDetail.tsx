@@ -10,6 +10,7 @@ import ProductRating from "~/components/productRating";
 import ProductActions from '~/components/productActions';
 import ProductVariantSelector from '~/components/productVariantSelector';
 import ProductReviewSummary from '~/components/productReviewSummary';
+import ProductReviewResultList from '~/components/productReviewResultList';
 import LoadingErrorWrapper from '~/components/LoadingErrorWrapper';
 import { useTranslation } from 'react-i18next';
 import { stripHtml } from '~/utils/stripHtml';
@@ -100,6 +101,12 @@ const ProductDetail = () => {
                                     {stripHtml(product.description || '')}
                                 </p>
                                 <ProductReviewSummary product={product} />
+
+
+                                {/* Render review list */}
+                                <div className="mt-10">
+                                    <ProductReviewResultList reviews={product.ratings} />
+                                </div>
                                 {/* Add the ProductReviewForm */}
                                 <div className="mt-12">
                                     <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-5">{t("section_title.view_by-add_review.user_review")}</h2>
