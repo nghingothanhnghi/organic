@@ -55,6 +55,11 @@ const ProductDetail = () => {
         dispatch(fetchProductBySlug(slug));
     }, [dispatch, slug]);
 
+    // Function to refresh product data after review submission
+    const handleReviewSubmitted = () => {
+        dispatch(fetchProductBySlug(slug));
+    };
+
     return (
         <LoadingErrorWrapper loading={loading} error={error}>
             {product ? (
@@ -105,12 +110,15 @@ const ProductDetail = () => {
 
                                 {/* Render review list */}
                                 <div className="mt-10">
-                                    <ProductReviewResultList reviews={product.ratings} />
+                                    <ProductReviewResultList ratings={product.ratings} />
                                 </div>
                                 {/* Add the ProductReviewForm */}
                                 <div className="mt-12">
                                     <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-5">{t("section_title.view_by-add_review.user_review")}</h2>
-                                    <ProductReviewForm productId={product.id} />
+                                    <ProductReviewForm 
+                                        productId={product.id} 
+                                        onReviewSubmitted={handleReviewSubmitted}
+                                    />
                                 </div>
                             </div>
                         </div>

@@ -12,21 +12,26 @@ interface ReviewFormProps {
     productId: number;
     onSuccess?: () => void; // Optional callback for success
     onError?: (error: string) => void; // Optional callback for errors
+    onReviewSubmitted?: () => void; // Callback to refresh product data
 }
 
-const ProductReviewForm: React.FC<ReviewFormProps> = ({ productId, onSuccess, onError }) => {
+const ProductReviewForm: React.FC<ReviewFormProps> = ({ productId, onSuccess, onError, onReviewSubmitted }) => {
     const { targetRef } = useScrollToTarget();
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
+    const { isAuthenticated, user } = useAppSelector(state => state.auth);
+    console.log('Auth state:', useAppSelector(state => state.auth));
+
     const { loading, error, success } = useAppSelector(state => state.reviews);
 
     useEffect(() => {
-    if (success) {
-        toast.success(t('success.review.message_01') || 'Đánh giá của bạn đã được gửi thành công!');
-        if (onSuccess) onSuccess();
-        dispatch(clearSuccess());
-    }
-    }, [success, onSuccess, dispatch]);
+        if (success) {
+            toast.success(t('success.review.message_01') || 'Đánh giá của bạn đã được gửi thành công!');
+            if (onSuccess) onSuccess();
+            if (onReviewSubmitted) onReviewSubmitted(); // Refresh product data
+            dispatch(clearSuccess());
+        }
+    }, [success, onSuccess, onReviewSubmitted, dispatch]);
 
     useEffect(() => {
         if (error) {
@@ -36,10 +41,6 @@ const ProductReviewForm: React.FC<ReviewFormProps> = ({ productId, onSuccess, on
     }, [error, onError, dispatch]);
 
     const [selectedScore, setSelectedScore] = useState<number>(0);
-
-    const { isAuthenticated, user } = useAppSelector(state => state.auth);
-
-    console.log('Auth state:', useAppSelector(state => state.auth));
 
     const formik = useFormik({
         initialValues: {
@@ -82,6 +83,7 @@ const ProductReviewForm: React.FC<ReviewFormProps> = ({ productId, onSuccess, on
                 await dispatch(submitReview(reviewData)).unwrap();
 
                 resetForm();
+                setSelectedScore(0); // Reset the star rating
             } catch (error) {
                 toast.error(t('error.review.message_03') || 'Failed to submit review.');
                 console.error(error);
@@ -142,7 +144,33 @@ const ProductReviewForm: React.FC<ReviewFormProps> = ({ productId, onSuccess, on
                     disabled={formik.isSubmitting || !formik.isValid}
                     className="py-3 px-6 mt-4 text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-400"
                 >
-                    {t('btn.send_review')}
+                    {formik.isSubmitting ? (
+                        <div className="flex items-center gap-2">
+                            <svg
+                                className="animate-spin h-5 w-5 text-white"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                            >
+                                <circle
+                                    className="opacity-25"
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    strokeWidth="4"
+                                ></circle>
+                                <path
+                                    className="opacity-75"
+                                    fill="currentColor"
+                                    d="M4 12a8 8 0 018-8v4l3.5-3.5L12 0v4a8 8 0 018 8h-4l3.5 3.5L20 12h-4a8 8 0 01-8 8v-4l-3.5 3.5L4 12z"
+                                ></path>
+                            </svg>
+                            <span>{t('btn.sending') || 'Đang gửi...'}</span>
+                        </div>
+                    ) : (
+                        t('btn.send_review')
+                    )}
                 </button>
 
             </div>

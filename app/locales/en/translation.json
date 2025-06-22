@@ -260,7 +260,10 @@
             "placeholder_message": "Write your review here..."
         },
         "view_by_reviews_list":{
-            "review_title": "Comments"
+            "review_title": "Comments",
+            "reviewed_by": "Reviewed by",
+            "review_helpful": "Was it helpful to you?",
+            "review_verified": "Verified"
         },
         "view_by_accept_payment":{
             "accenpt_payment_title": "Payment Partners"

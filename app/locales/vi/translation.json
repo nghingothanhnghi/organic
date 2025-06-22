@@ -260,7 +260,10 @@
             "placeholder_message": "Viết đánh giá của bạn về sản phẩm..."
         },
         "view_by_reviews_list":{
-            "review_title": "Bình luận"
+            "review_title": "Bình luận",
+            "reviewed_by": "Góp ý từ",
+            "review_helpful": "Bạn thấy hữu ích chứ?",
+            "review_verified": "Đã xác minh"
         },
         "view_by_accept_payment":{
             "accenpt_payment_title": "Chấp nhận thanh toán"

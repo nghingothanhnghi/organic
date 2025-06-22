@@ -1,7 +1,6 @@
 import moment from "moment/min/moment-with-locales";
 import "moment/locale/vi"; // Import Vietnamese locale
 import "moment/locale/en-gb"; // Import English (or use "en" if needed)
-import { useTranslation } from "react-i18next"; // Import i18next
 /**
  * Formats a date string based on `useRelative` and `formatType`.
  * 

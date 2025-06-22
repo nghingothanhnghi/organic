@@ -48,12 +48,19 @@ export interface Product {
 export interface Rating {
   id: number;
   attributes: {
+    createdAt?: string;
     score: number; // Rating score (e.g., 1-5 stars)
     reviewText: string; // Review text
     users_permissions_user: {
-      data: {
-        username: string; // Username of the reviewer
-      };
+      // data: {
+      //   username: string; // Username of the reviewer
+      // };
+        data: {
+        id: number;
+        attributes: {
+          username: string;
+        };
+      } | null; // Allow null in case user was deleted
     };
   };
 }

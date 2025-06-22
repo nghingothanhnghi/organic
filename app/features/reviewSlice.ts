@@ -73,6 +73,7 @@ const reviewSlice = createSlice({
     builder.addCase(submitReview.fulfilled, (state, action) => {
       state.loading = false;
       state.reviews.push(action.payload); // Add the new review to the reviews list
+      state.success = 'Review submitted successfully';
       state.error = null;
     });
     builder.addCase(submitReview.rejected, (state, action) => {
