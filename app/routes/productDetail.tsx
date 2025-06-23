@@ -97,6 +97,7 @@ const ProductDetail = () => {
 
                                 <ProductActions
                                     product={product}
+                                    selectedVariant={selectedVariant}
                                     selectedQuantity={selectedQuantity}
                                     setSelectedQuantity={setSelectedQuantity}
                                     cartItems={cartItems}

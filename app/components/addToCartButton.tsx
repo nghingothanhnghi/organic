@@ -2,18 +2,20 @@
 import React, { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { addToCart } from '~/features/cartSlice';
-import type { Product} from '~/types/product';
+import type { Product, ProductVariant} from '~/types/product';
 import { useTranslation } from 'react-i18next';
 
 interface AddToCartButtonProps {
   product: Product;
   quantity?: number; // Accept an optional quantity prop
+  variant?: ProductVariant;
   className?: string; // Optional className prop
 }
 
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({ 
   product, 
-  quantity = 1, 
+  quantity = 1,
+  variant, 
   className 
 }) => {
   const {t} = useTranslation();
@@ -23,26 +25,45 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   // const [quantity, setQuantity] = useState(0);
   const [currentQuantity, setCurrentQuantity] = useState(0);
 
-  useEffect(() => {
-    // Update the quantity from the cart state
-    const cartItem = cartItems.find((item) => item.id === product.id);
+  // useEffect(() => {
+  //   // Update the quantity from the cart state
+  //   const cartItem = cartItems.find((item) => item.id === product.id);
+  //   setCurrentQuantity(cartItem?.quantity || 0);
+  // }, [cartItems, product.id]);
+
+    useEffect(() => {
+    const cartItem = cartItems.find((item) => item.id === (variant?.id || product.id));
     setCurrentQuantity(cartItem?.quantity || 0);
-  }, [cartItems, product.id]);
+  }, [cartItems, product.id, variant?.id]);
 
-  const handleAddToCart = async () => {
-    setLoading(true); // Start loading spinner
+  // const handleAddToCart = async () => {
+  //   setLoading(true); // Start loading spinner
+  //   try {
+  //     // Simulate async operation, such as an API call
+  //     await new Promise(resolve => setTimeout(resolve, 1000));
+
+  //     // (A more elegant solution would be to update your action and reducer to accept a quantity.)
+  //     for (let i = 0; i < quantity; i++) {
+  //       dispatch(addToCart(product));
+  //     }
+  //   } catch (error) {
+  //     console.error('Failed to add item to cart:', error);
+  //   } finally {
+  //     setLoading(false); // Stop loading spinner
+  //   }
+  // };
+
+    const handleAddToCart = async () => {
+    setLoading(true);
     try {
-      // Simulate async operation, such as an API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-
-      // (A more elegant solution would be to update your action and reducer to accept a quantity.)
       for (let i = 0; i < quantity; i++) {
-        dispatch(addToCart(product));
+        dispatch(addToCart({ ...product, ...(variant ? { ...variant } : {}) }));
       }
     } catch (error) {
       console.error('Failed to add item to cart:', error);
     } finally {
-      setLoading(false); // Stop loading spinner
+      setLoading(false);
     }
   };
 

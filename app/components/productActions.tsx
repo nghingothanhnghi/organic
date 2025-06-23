@@ -11,10 +11,12 @@ interface ProductActionsProps {
   selectedQuantity: number;
   setSelectedQuantity: (value: number) => void;
   cartItems: Product[]; // Assuming cart contains Product objects
+  selectedVariant?: ProductVariant;
 }
 
 const ProductActions: React.FC<ProductActionsProps> = ({
   product,
+  selectedVariant,
   selectedQuantity,
   setSelectedQuantity,
   cartItems
@@ -35,7 +37,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({
       {/* Cart & Wishlist Actions */}
       <div className="grid w-full md:w-auto">
         <div className="flex gap-2">
-          <AddToCartButton product={product} quantity={selectedQuantity} />
+          <AddToCartButton product={product} variant={selectedVariant} quantity={selectedQuantity} />
           <AddToWishListButton product={product} />
         </div>
 
