@@ -3,6 +3,7 @@ import type { Store } from "./store";
 import type { Category } from "./category";
 import type { Brand } from "./brand";
 import type { PaginationMeta } from "./pagination";
+import type { User } from "./user";
 
 // Product interface for the Redux state (matching the state in productSlice)
 export interface Product {
@@ -52,15 +53,7 @@ export interface Rating {
     score: number; // Rating score (e.g., 1-5 stars)
     reviewText: string; // Review text
     users_permissions_user: {
-      // data: {
-      //   username: string; // Username of the reviewer
-      // };
-        data: {
-        id: number;
-        attributes: {
-          username: string;
-        };
-      } | null; // Allow null in case user was deleted
+      data: User | null;
     };
   };
 }

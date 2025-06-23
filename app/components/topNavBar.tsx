@@ -56,10 +56,10 @@ const TopNavBar = () => {
 
                         }
                     >
-                        <li className="px-3 py-2 hover:bg-gray-100" onClick={() => handleLocationClick(t("location.tphcm"))}>
+                        <li className="px-3 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleLocationClick(t("location.tphcm"))}>
                             {t("location.tphcm")}
                         </li>
-                        <li className="px-3 py-2 hover:bg-gray-100" onClick={() => handleLocationClick(t("location.hanoi"))}>
+                        <li className="px-3 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleLocationClick(t("location.hanoi"))}>
                             {t("location.hanoi")}
                         </li>
                         {/* Add more language options here */}
@@ -75,10 +75,10 @@ const TopNavBar = () => {
 
                         }
                     >
-                        <li className="px-3 py-2 hover:bg-gray-100">
+                        <li className="px-3 py-2 hover:bg-gray-100 cursor-pointer">
                             <button onClick={() => handleLanguageChange('en')}>{t("language.english")}</button>
                         </li>
-                        <li className="px-3 py-2 hover:bg-gray-100">
+                        <li className="px-3 py-2 hover:bg-gray-100 cursor-pointer">
                             <button onClick={() => handleLanguageChange('vi')}>{t("language.vietnamese")}</button>
                         </li>
                         {/* Add more language options here */}
