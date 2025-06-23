@@ -284,7 +284,8 @@
     "placeholder_message":{
         "search":{
             "message_01": "Không tìm thấy sản phẩm phù hợp.",
-            "message_02": "Tìm theo tên xe."
+            "message_02": "Tìm theo tên xe.",
+            "message_03": "Tìm theo tên, địa chỉ hoặc quận/huyện..."
         }
     },
     "paymentMethods": {

@@ -4,6 +4,7 @@ import Modal from "./modal";
 import { useAppDispatch, useAppSelector } from "~/hooks";
 import { fetchStores, setFilters } from '~/features/storeSlice';
 import LoadingErrorWrapper from "./LoadingErrorWrapper";
+import { useTranslation } from "react-i18next";
 
 interface LocationSearchModalProps {
     isOpen: boolean;
@@ -12,6 +13,7 @@ interface LocationSearchModalProps {
 }
 
 const LocationSearchModal: React.FC<LocationSearchModalProps> = ({ isOpen, onClose, selectedState }) => {
+    const { t } = useTranslation();
     const [searchQuery, setSearchQuery] = useState("");
     const [isSearching, setIsSearching] = useState(false);
     const dispatch = useAppDispatch();
@@ -59,7 +61,7 @@ const LocationSearchModal: React.FC<LocationSearchModalProps> = ({ isOpen, onClo
                     <div className="relative">
                         <input
                             type="text"
-                            placeholder="Search..."
+                            placeholder={t("placeholder_message.search.message_03")}
                             value={searchQuery}
                             onChange={handleSearchChange}
                             className="w-full h-10 rounded border-gray-300 text-sm"
@@ -125,8 +127,8 @@ const LocationSearchModal: React.FC<LocationSearchModalProps> = ({ isOpen, onClo
                 </div>
             }
             actions={
-                <button onClick={onClose} className="px-4 py-2 bg-blue-500 text-white rounded">
-                    Close
+                <button onClick={onClose} className="px-4 py-2 text-white rounded shadow-md hover:shadow-lg bg-orange-900 hover:bg-orange-800">
+                    {t("btn.cancel")}
                 </button>
             }
         />

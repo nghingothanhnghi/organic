@@ -70,7 +70,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content, actions,
         <div className="flex-grow overflow-y-auto mt-4">
           {content}
         </div>
-        <div className="mt-4 flex justify-end">
+        <div className="mt-8 flex justify-center">
           {actions}
         </div>
       </div>

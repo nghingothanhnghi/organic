@@ -284,7 +284,8 @@
     "placeholder_message":{
         "search":{
             "message_01": "No matching products found.",
-            "message_02": "Find by car name,.."
+            "message_02": "Find by car name,..",
+            "message_03": "Search by name, address, or district..."
         }
     },
     "paymentMethods": {
