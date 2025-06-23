@@ -16,7 +16,7 @@ const MainMenuDesktop = () => {
 
 
   return (
-    <nav className="hidden md:flex md:items-center space-x-6 lg:order-first">
+    <nav className="hidden md:flex md:items-center space-x-6">
       {loading ? (
         [...Array(4)].map((_, index) => (
           <div key={index} className="h-6 w-24 bg-gray-200 rounded animate-pulse"></div>

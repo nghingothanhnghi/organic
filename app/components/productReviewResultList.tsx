@@ -141,8 +141,8 @@ const ProductReviewResultList: React.FC<ProductReviewResultListProps> = ({ ratin
 
               <div className="mt-4 min-w-0 flex-1 space-y-4 sm:mt-0">
                 <p className="text-base font-normal text-gray-500 dark:text-gray-400"> {reviewText}</p>
-                <div className="flex items-center gap-4">
-                  <p className="text-xs font-medium text-gray-500 dark:text-gray-400"> {t('section_title.view_by_reviews_list.review_helpful')} </p>
+                <div className="lg:flex items-center gap-4">
+                  <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-3 lg:mb-0 text-center lg:text-start"> {t('section_title.view_by_reviews_list.review_helpful')} </p>
                   <RadioGridSelector
                     name={`helpful-${id}`}
                     options={helpfulOptions}
