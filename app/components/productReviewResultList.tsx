@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StarIcon } from '@heroicons/react/20/solid';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import RadioGridSelector from './radioGridSelector';
 import { useTranslation } from 'react-i18next';
 import { formatDateTime } from '~/utils/formatDateTime';
@@ -41,8 +41,10 @@ const ProductReviewResultList: React.FC<ProductReviewResultListProps> = ({ ratin
           console.log('User Data:', users_permissions_user);
 
           const formattedDate = formatDateTime(createdAt ?? new Date().toISOString(), true, "24-hour", "vi");
-          const username = users_permissions_user?.data?.attributes?.username || 'Anonymous';
-          // const username = users_permissions_user?.data?.attributes?.username || 'Anonymous';
+          const username = users_permissions_user?.data?.attributes?.username ?? 'Anonymous';
+
+console.log('username in review:', username);
+
           const selectedValue = helpfulSelections[id];
 
           const helpfulOptions = [

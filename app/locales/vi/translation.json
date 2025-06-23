@@ -261,7 +261,7 @@
         },
         "view_by_reviews_list":{
             "review_title": "Bình luận",
-            "reviewed_by": "Góp ý từ",
+            "reviewed_by": "Góp ý từ {{name}}",
             "review_helpful": "Bạn thấy hữu ích chứ?",
             "review_verified": "Đã xác minh"
         },

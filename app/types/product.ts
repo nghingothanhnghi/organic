@@ -53,7 +53,10 @@ export interface Rating {
     score: number; // Rating score (e.g., 1-5 stars)
     reviewText: string; // Review text
     users_permissions_user: {
-      data: User | null;
+      data: {
+        id: number;
+        attributes: User;
+      } | null;
     };
   };
 }
