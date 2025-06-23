@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { addToCart } from '~/features/cartSlice';
-import type { Product } from '~/types/product';
+import type { Product} from '~/types/product';
 import { useTranslation } from 'react-i18next';
 
 interface AddToCartButtonProps {
@@ -11,7 +11,11 @@ interface AddToCartButtonProps {
   className?: string; // Optional className prop
 }
 
-const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, quantity = 1, className }) => {
+const AddToCartButton: React.FC<AddToCartButtonProps> = ({ 
+  product, 
+  quantity = 1, 
+  className 
+}) => {
   const {t} = useTranslation();
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector((state) => state.cart.items);

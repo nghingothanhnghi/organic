@@ -4,7 +4,7 @@ import AddToCartButton from '~/components/addToCartButton';
 import AddToWishListButton from '~/components/addToWishListButton';
 import ProceedToCheckoutButton from '~/components/proceedToCheckoutButton';
 import useResponsive from '~/hooks/useResponsive';
-import type { Product } from '~/types/product';
+import type { Product, ProductVariant } from '~/types/product';
 
 interface ProductActionsProps {
   product: Product; // Updated from 'any' to 'Product'

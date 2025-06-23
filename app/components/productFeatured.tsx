@@ -9,8 +9,10 @@ import ProductCard from "./productCard"; // Import ProductCard
 import NavSwiperButton from "./navSwiperButton";
 import EmptyState from "./emptyState";
 import IconProductEmpty from "~/assets/empty-item.png";
+import { useTranslation } from 'react-i18next';
 
 const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
+  const {t} = useTranslation();
   const [swiperInstance, setSwiperInstance] = useState<any>(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
@@ -84,7 +86,7 @@ const ProductFeatured = ({ products, viewMode }: ProductDisplayProps) => {
           ) : (
             <EmptyState
               messageKey="empty.bestsellers"
-              fallbackMessage="No featured products available at the moment."
+              fallbackMessage={t("info.product.message_02")}
               image={IconProductEmpty}
               link=""
               linkTextKey=""

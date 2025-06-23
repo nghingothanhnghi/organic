@@ -9,6 +9,7 @@ interface EmptyStateProps {
     link?: string; // Optional redirect link
     linkTextKey?: string; // i18n key for the link text
     fallbackLinkText?: string; // Fallback text for the link
+    showLinkButton?: boolean;
 }
 
 const EmptyState: React.FC<EmptyStateProps> = ({
@@ -19,6 +20,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
     link = "/",
     linkTextKey = "btn.continueShopping",
     fallbackLinkText = "Continue Shopping",
+     showLinkButton = true, 
 }) => {
     const { t } = useTranslation(); // Get translation function
 
@@ -37,7 +39,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
                 <img src={image} alt="Empty State" className="mx-auto mb-4 w-40 h-40 object-contain" />
             ) : null}
             <p className="text-gray-600 mb-8">{t(messageKey, fallbackMessage)}</p>
-            {link && (
+            {showLinkButton && link && (
                 <div className="flex items-center justify-center space-x-3">
                     <Link to={link} className="flex items-center justify-center text-sm font-semibold px-4 py-2 text-white rounded-lg shadow-md hover:shadow-lg bg-gradient-to-r from-sky-500 from-10% to-emerald-500 to-90% hover:from-emerald-500 hover:to-sky-500 transition duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 me-2">

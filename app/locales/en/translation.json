@@ -299,7 +299,8 @@
             "message_01": "No banners available."
         },
         "product":{
-            "message_01": "No products found for the selected filters."
+            "message_01": "No products found for the selected filters.",
+            "message_02": "No featured products available at the moment."
         },
         "post": {
             "message_01": "No description available...",
@@ -307,7 +308,9 @@
         },
         "review": {
             "message_01": "No reviews yet.",
-            "message_02": "Reviews(s)"
+            "message_02": "Reviews(s)",
+            "message_03": "Good",
+            "message_04": "Bad"
         },
         "cart": {
             "message_01": "Your cart is empty!",

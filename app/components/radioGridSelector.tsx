@@ -31,15 +31,17 @@ const RadioGridSelector: React.FC<RadioGridSelectorProps> = ({
       role="radiogroup"
     >
       <legend className="sr-only">{name}</legend>
-      {options.map((option) => (
+      {options.map((option) => {
+        const inputId = `${name}-${option.value}`; // Ensure uniqueness
+      return (
         <div key={option.id}>
           <label
-            htmlFor={option.id}
+            htmlFor={inputId}
             className={`flex items-start gap-3 cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 ${String(selectedValue) === String(option.value) ? 'border-blue-500 ring-1 ring-blue-500' : ''
               }`}
           >
             {option.icon && (
-              <div className="w-5 h-5 mt-1 text-gray-600 flex-shrink-0">
+              <div className="w-5 h-5 items-center justify-center text-gray-600 flex-shrink-0">
                 {option.icon}
               </div>
             )}
@@ -50,7 +52,7 @@ const RadioGridSelector: React.FC<RadioGridSelectorProps> = ({
             </div>
             <input
               type="radio"
-              id={option.id}
+              id={inputId}
               name={name}
               value={String(option.value)} // Ensure the value is a string when setting the radio input
               className="sr-only"
@@ -59,7 +61,8 @@ const RadioGridSelector: React.FC<RadioGridSelectorProps> = ({
             />
           </label>
         </div>
-      ))}
+      );
+      })}
     </fieldset>
   );
 };

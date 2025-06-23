@@ -299,15 +299,18 @@
             "message_01": "Không tìm thấy hình ảnh..."
         },
         "product":{
-            "message_01": "Không tìm thấy mặt hàng quý khách đã lựa chọn."
+            "message_01": "Không tìm thấy mặt hàng quý khách đã lựa chọn.",
+            "message_02": "Hiện chưa có sản phẩm nổi bật nào."
         },
         "post": {
             "message_01": "Không tìm thấy nội dung. Vui lòng quay lại sau nhé...",
             "message_02": "Không tìm thấy bài viết."
         },
         "review": {
-            "message_01": "Chưa có bình luận nào.",
-            "message_02": "Đánh giá"
+            "message_01": "Chưa có đánh giá nào.",
+            "message_02": "Đánh giá",
+            "message_03": "Hữu ích",
+            "message_04": "Tệ"
         },
         "cart": {
             "message_01": "Giỏ hàng của bạn đang trống!",
