@@ -10,6 +10,7 @@ import CartOffCanvas from "./cartOffCanvas";
 import MobileMenuOffCanvas from "./mobileMenuOffCanvas";
 import TopNavBar from "./topNavBar";
 import MainMenuDesktop from "./mainMenuDesktop";
+import { InputSearchGlobal } from "./inputSearchGlobal";
 import { useTranslation } from "react-i18next";
 
 const Header = () => {
@@ -66,6 +67,7 @@ const Header = () => {
 
                 {/* Right Side Buttons */}
                 <div className="flex items-center space-x-2">
+                    <InputSearchGlobal />
                     {!shouldHideCartButton && <CartButton onClick={toggleCart} />}
                     <WishlistButton />
                 </div>
