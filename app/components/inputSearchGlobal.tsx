@@ -1,5 +1,6 @@
 // src/components/inputSearchGlobal.tsx
 import React from 'react';
+import Modal from "./modal";
 import { useTranslation } from 'react-i18next';
 
 

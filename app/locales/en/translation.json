@@ -251,6 +251,9 @@
             "customer_reviews": "Customer reviews",
             "outOf": "out of",
             "global_ratings": "Global ratings",
+            "average": "{{rating}} out of {{max}}",
+            "count": "{{count}} global rating",
+            "count_plural": "{{count}} global ratings",
             "noRating": "No rating"
         },
         "view_by-add_review":{

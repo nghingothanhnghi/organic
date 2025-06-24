@@ -251,6 +251,9 @@
             "customer_reviews": "Khách hàng đã đánh giá",
             "outOf": "/",
             "global_ratings": "Xếp hạng",
+            "average": "{{rating}} trên {{max}}",
+            "count": "{{count}} lượt đánh giá",
+            "count_plural": "{{count}} lượt đánh giá",
             "noRating": "Hãy là người đầu tiên đánh giá"
         },
         "view_by-add_review":{

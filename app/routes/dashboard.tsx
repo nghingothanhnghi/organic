@@ -3,6 +3,13 @@ import type { Route } from './+types/dashboard';
 import React, { useEffect, useState } from 'react';
 import LoadingComp from '~/components/loadingComp';
 
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "Dashboard" },
+    { name: "description", content: "Welcome to React Router!" },
+  ];
+}
+
 const Dashboard = () => {
     const [loading, setLoading] = useState(true);
 
