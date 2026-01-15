@@ -61,7 +61,7 @@ const ProductBestSellers = ({ products, viewMode }: ProductDisplayProps) => {
         </p>
       </div>
 
-      <div className="relative mx-auto max-w-screen-xl flex items-center justify-between p-3 sm:py-4 sm:px-6">
+      <div className="relative mx-auto max-w-screen-xl flex items-center justify-between p-3 sm:py-4 sm:px-6 md:py-10">
         {/* Left Shadow */}
         {!isBeginning && (
           <div className="absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent pointer-events-none z-10"></div>
